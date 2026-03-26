@@ -41,6 +41,12 @@ export default [
     },
   },
   {
+    files: ['**/*.stories.ts'],
+    rules: {
+      '@angular-eslint/component-selector': 'off',
+    },
+  },
+  {
     files: ['**/*.html'],
     // Override or add rules here
     rules: {},
