@@ -1,0 +1,18 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--avatar-bg);
+  color: var(--avatar-color);
+  border-radius: var(--avatar-radius);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.avatar-initials {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  text-transform: uppercase;
+  user-select: none;
+}
