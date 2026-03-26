@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ui/shared-ui": ["libs/shared-ui/src/index.ts"]
+      "@ui/shared-ui": ["libs/shared-ui/src/index.ts"],
+      "@ui/shared-ui/icon": ["libs/shared-ui/icon/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
