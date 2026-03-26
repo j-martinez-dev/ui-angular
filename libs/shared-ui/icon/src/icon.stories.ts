@@ -94,7 +94,7 @@ class IconDocsComponent {}
 // ── Variants ────────────────────────────────────────────────────────────────
 
 const SIZES: IconSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'];
-const COLORS: IconColor[] = ['primary', 'success', 'warning', 'error', 'info', 'muted', 'disabled'];
+const COLORS: IconColor[] = ['default', 'primary', 'success', 'warning', 'error', 'info', 'muted', 'disabled'];
 
 @Component({
   selector: 'story-icon-variants',
@@ -177,6 +177,7 @@ const meta: Meta<UiIconComponent> = {
       control: 'select',
       options: [
         undefined,
+        'default',
         'primary',
         'success',
         'warning',

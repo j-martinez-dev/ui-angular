@@ -9,6 +9,7 @@ import { NgIcon } from '@ng-icons/core';
 export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 export type IconColor =
+  | 'default'
   | 'primary'
   | 'success'
   | 'warning'
@@ -21,15 +22,16 @@ export type IconColor =
   | 'accent-3';
 
 const SIZE_MAP: Record<IconSize, string> = {
-  xs: '12px',
-  sm: '16px',
-  md: '20px',
-  lg: '24px',
-  xl: '32px',
-  '2xl': '40px',
+  xs: 'var(--icon-size-xs)',
+  sm: 'var(--icon-size-sm)',
+  md: 'var(--icon-size-md)',
+  lg: 'var(--icon-size-lg)',
+  xl: 'var(--icon-size-xl)',
+  '2xl': 'var(--icon-size-2xl)',
 };
 
 const COLOR_MAP: Record<IconColor, string> = {
+  default: 'var(--color-text-default)',
   primary: 'var(--color-primary-default)',
   success: 'var(--color-success-default)',
   warning: 'var(--color-warning-default)',

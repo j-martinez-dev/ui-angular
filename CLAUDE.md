@@ -224,6 +224,54 @@ var(--radius-full)  /* 9999px  — pills, avatars, toggles */
 
 ---
 
+## Icon size tokens
+
+```css
+var(--icon-size-xs)   /* 0.75rem — inline indicators, status dots */
+var(--icon-size-sm)   /* 1rem    — buttons, form fields */
+var(--icon-size-md)   /* 1.25rem — default, standalone icons */
+var(--icon-size-lg)   /* 1.5rem  — section headers, emphasis */
+var(--icon-size-xl)   /* 2rem    — hero sections, empty states */
+var(--icon-size-2xl)  /* 2.5rem  — splash, decorative use */
+```
+
+---
+
+## Transition tokens
+
+```css
+/* Durations */
+var(--duration-fast)     /* 100ms — micro-interactions, toggles */
+var(--duration-normal)   /* 200ms — hover effects, color changes */
+var(--duration-slow)     /* 300ms — modals, drawers, page transitions */
+
+/* Easings */
+var(--easing-default)    /* cubic-bezier(0.4, 0, 0.2, 1) — general purpose */
+var(--easing-in)         /* cubic-bezier(0.4, 0, 1, 1)   — elements entering */
+var(--easing-out)        /* cubic-bezier(0, 0, 0.2, 1)   — elements exiting */
+```
+
+Usage:
+```scss
+.my-component {
+  transition: background-color var(--duration-normal) var(--easing-default);
+}
+```
+
+---
+
+## Z-index tokens
+
+```css
+var(--z-dropdown)  /* 100 — dropdowns, select menus */
+var(--z-sticky)    /* 200 — sticky headers, toolbars */
+var(--z-overlay)   /* 300 — overlays, backdrops */
+var(--z-modal)     /* 400 — modals, dialogs */
+var(--z-toast)     /* 500 — toasts, notifications (always on top) */
+```
+
+---
+
 ## Dark mode
 
 Dark mode is activated automatically via `prefers-color-scheme: dark` or by adding the `dark` class to the `html` element, depending on the consuming project's Tailwind configuration.
@@ -364,10 +412,13 @@ export const Variants: Story = {};
 ### File structure example
 
 ```
-libs/ui/button/
-  ├── button.component.ts
-  ├── button.component.scss
-  └── button.stories.ts      ← Docs + Playground + Variants
+libs/shared-ui/button/
+  ├── ng-package.json           ← secondary entry point
+  ├── index.ts                  ← public API
+  └── src/
+      ├── button.component.ts
+      ├── button.component.scss
+      └── button.stories.ts    ← Docs + Playground + Variants
 ```
 
 ### Storybook title convention
