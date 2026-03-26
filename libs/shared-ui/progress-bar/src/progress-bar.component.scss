@@ -1,0 +1,79 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+// ── Track ─────────────────────────────────────────────────────────────────────
+
+.progress-track {
+  width: 100%;
+  height: var(--progress-height);
+  background: var(--progress-track-color);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+// ── Fill ──────────────────────────────────────────────────────────────────────
+
+.progress-fill {
+  height: 100%;
+  width: var(--progress-value);
+  background-color: var(--progress-fill-color);
+  border-radius: var(--radius-full);
+  transition: width 300ms ease;
+}
+
+// ── Striped ───────────────────────────────────────────────────────────────────
+
+:host(.is-striped) .progress-fill {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 8px,
+    rgba(255, 255, 255, 0.2) 8px,
+    rgba(255, 255, 255, 0.2) 16px
+  );
+  background-size: 32px 100%;
+}
+
+// ── Indeterminate ─────────────────────────────────────────────────────────────
+
+:host(.is-indeterminate) .progress-fill {
+  transition: none;
+  animation: progress-indeterminate 1.4s ease-in-out infinite;
+}
+
+:host(.is-indeterminate.is-striped) .progress-fill {
+  animation:
+    progress-indeterminate 1.4s ease-in-out infinite,
+    progress-stripe-move 0.6s linear infinite;
+}
+
+// ── Keyframes ─────────────────────────────────────────────────────────────────
+
+@keyframes progress-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
+
+@keyframes progress-stripe-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 32px 0;
+  }
+}
+
+// ── Reduced motion ────────────────────────────────────────────────────────────
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-fill {
+    transition: none;
+    animation: none !important;
+  }
+}
