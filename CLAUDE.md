@@ -1,0 +1,329 @@
+# Design System — Token Documentation
+
+This document describes the design system token system and how to use them correctly when implementing components or consuming the library.
+
+---
+
+## Token system architecture
+
+Tokens live in `styles/` and are structured in three files:
+
+- `lib/theme.css` — base tokens (light mode)
+- `lib/dark.css` — overrides for dark mode
+- `lib/typography.css` — typography utility classes
+
+The entry point is `styles/index.css`, which imports all three in order.
+
+All tokens are **CSS custom properties** defined inside Tailwind 4's `@theme`, which means Tailwind consumes them automatically and exposes them as utilities.
+
+---
+
+## How to consume tokens
+
+### In an Angular project within the monorepo
+
+Add the following to the consuming project's `styles.css`:
+
+```css
+@import "styles/index.css";
+```
+
+### In a component with SCSS
+
+Reference tokens directly as CSS custom properties:
+
+```scss
+.my-component {
+  background-color: var(--color-surface-raised);
+  color: var(--color-text-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+```
+
+### In a component with Tailwind classes
+
+Tailwind 4 exposes tokens automatically as utilities:
+
+```html
+<div class="bg-surface-raised text-text-default rounded-md shadow-md">
+  ...
+</div>
+```
+
+---
+
+## Color tokens
+
+### Semantic scale
+
+Each color has **3 levels** plus a text color to use on top of it:
+
+| Level | Usage |
+|---|---|
+| `subtle` | Backgrounds, badges, alerts, soft hover states |
+| `default` | The main color — buttons, icons, focus borders |
+| `emphasis` | Active hover states, more intense version of the color |
+| `on-{color}` | Text color when the background is `{color}-default` |
+
+### Available colors
+
+#### Primary
+```css
+var(--color-primary-subtle)    /* Soft primary background */
+var(--color-primary-default)   /* Main color */
+var(--color-primary-emphasis)  /* Hover / active */
+var(--color-on-primary)        /* Text on top of primary-default */
+```
+
+#### Success
+```css
+var(--color-success-subtle)
+var(--color-success-default)
+var(--color-success-emphasis)
+var(--color-on-success)
+```
+
+#### Warning
+```css
+var(--color-warning-subtle)
+var(--color-warning-default)
+var(--color-warning-emphasis)
+var(--color-on-warning)        /* Dark — warning is a light color */
+```
+
+#### Error
+```css
+var(--color-error-subtle)
+var(--color-error-default)
+var(--color-error-emphasis)
+var(--color-on-error)
+```
+
+#### Info
+```css
+var(--color-info-subtle)
+var(--color-info-default)
+var(--color-info-emphasis)
+var(--color-on-info)
+```
+
+#### Accents (defined by the consuming project)
+```css
+var(--color-accent-1-subtle)
+var(--color-accent-1-default)
+var(--color-accent-1-emphasis)
+var(--color-on-accent-1)
+
+var(--color-accent-2-subtle)
+var(--color-accent-2-default)
+var(--color-accent-2-emphasis)
+var(--color-on-accent-2)
+
+var(--color-accent-3-subtle)
+var(--color-accent-3-default)
+var(--color-accent-3-emphasis)
+var(--color-on-accent-3)
+```
+
+> ⚠️ Accents are empty by default. Each consuming project must define them in its own CSS. If not defined, they must not be used.
+
+### Surfaces
+
+Surfaces define the visual depth levels of the UI:
+
+```css
+var(--color-surface-base)     /* Page background */
+var(--color-surface-raised)   /* Cards, panels */
+var(--color-surface-overlay)  /* Modals, dropdowns, tooltips */
+var(--color-surface-sunken)   /* Inputs, visually recessed areas */
+```
+
+**Expected visual hierarchy:**
+```
+surface-sunken  →  surface-base  →  surface-raised  →  surface-overlay
+  (lowest)                                                (highest)
+```
+
+### Text
+
+```css
+var(--color-text-default)   /* Primary text */
+var(--color-text-muted)     /* Secondary text, captions, placeholders */
+var(--color-text-disabled)  /* Text in disabled states */
+```
+
+### Borders
+
+```css
+var(--color-border-default)  /* Standard borders — inputs, cards, dividers */
+var(--color-border-strong)   /* Higher contrast borders — focus, separators */
+```
+
+---
+
+## Typography tokens
+
+### Font families
+
+```css
+var(--font-sans)  /* Inter — general use */
+var(--font-mono)  /* Fira Code — code, technical values */
+```
+
+The size scale, weights, and line-heights are inherited from Tailwind 4 defaults:
+
+```css
+/* Sizes */
+var(--text-xs)    /* 0.75rem */
+var(--text-sm)    /* 0.875rem */
+var(--text-base)  /* 1rem */
+var(--text-lg)    /* 1.125rem */
+var(--text-xl)    /* 1.25rem */
+var(--text-2xl)   /* 1.5rem */
+var(--text-3xl)   /* 1.875rem */
+var(--text-4xl)   /* 2.25rem */
+var(--text-5xl)   /* 3rem */
+
+/* Weights */
+var(--font-weight-normal)    /* 400 */
+var(--font-weight-medium)    /* 500 */
+var(--font-weight-semibold)  /* 600 */
+var(--font-weight-bold)      /* 700 */
+
+/* Line heights */
+var(--leading-tight)    /* 1.25 */
+var(--leading-snug)     /* 1.375 */
+var(--leading-normal)   /* 1.5 */
+var(--leading-relaxed)  /* 1.625 */
+```
+
+---
+
+## Shadow tokens
+
+```css
+var(--shadow-sm)   /* Subtle floating elements — small dropdowns */
+var(--shadow-md)   /* Cards, panels */
+var(--shadow-lg)   /* Modals, drawers */
+var(--shadow-xl)   /* Prominent overlays */
+```
+
+> In dark mode, shadows automatically have higher opacity to maintain the perception of depth.
+
+---
+
+## Border radius tokens
+
+```css
+var(--radius-sm)    /* 0.25rem — badges, tags, small inputs */
+var(--radius-md)    /* 0.5rem  — buttons, inputs, cards */
+var(--radius-lg)    /* 1rem    — large panels, modals */
+var(--radius-full)  /* 9999px  — pills, avatars, toggles */
+```
+
+---
+
+## Dark mode
+
+Dark mode is activated automatically via `prefers-color-scheme: dark` or by adding the `dark` class to the `html` element, depending on the consuming project's Tailwind configuration.
+
+Tokens have exactly the same names in both modes — there are no dark-specific tokens. The switch is transparent to components.
+
+```scss
+// ✅ Correct — works in both modes automatically
+.my-component {
+  background: var(--color-surface-raised);
+  color: var(--color-text-default);
+}
+
+// ❌ Incorrect — hardcoded colors break dark mode
+.my-component {
+  background: #ffffff;
+  color: #111111;
+}
+```
+
+---
+
+## Defining accents in a consuming project
+
+```css
+/* consuming project's styles.css */
+@import "styles/index.css";
+
+@theme {
+  --color-accent-1-subtle: oklch(95% 0.04 330);
+  --color-accent-1-default: oklch(60% 0.2 330);
+  --color-accent-1-emphasis: oklch(50% 0.2 330);
+  --color-on-accent-1: oklch(99% 0 0);
+}
+```
+
+For dark mode accents in the consuming project:
+
+```css
+@theme dark {
+  --color-accent-1-subtle: oklch(25% 0.07 330);
+  --color-accent-1-default: oklch(70% 0.2 330);
+  --color-accent-1-emphasis: oklch(80% 0.2 330);
+  --color-on-accent-1: oklch(10% 0 0);
+}
+```
+
+---
+
+## Typography utility classes
+
+These classes are available globally once `styles/index.css` is imported.
+
+### Headings
+
+```html
+<h1 class="ui-h1">Main title</h1>
+<h2 class="ui-h2">Section title</h2>
+<h3 class="ui-h3">Subtitle</h3>
+<h4 class="ui-h4">Heading 4</h4>
+<h5 class="ui-h5">Heading 5</h5>
+<h6 class="ui-h6">Heading 6</h6>
+```
+
+> `ui-h*` classes are independent of the HTML element. You can apply `ui-h2` to a `<p>` if the visual hierarchy requires it without affecting document semantics.
+
+### Body text
+
+```html
+<p class="ui-body-lg">Large text — intros, highlights</p>
+<p class="ui-body-md">Standard text — general content</p>
+<p class="ui-body-sm">Small text — secondary, forms</p>
+```
+
+### Special
+
+```html
+<span class="ui-caption">Supporting text, timestamps, metadata</span>
+<span class="ui-overline">SECTION LABEL</span>
+<code class="ui-code">const value = 42;</code>
+```
+
+### Color modifiers
+
+```html
+<p class="ui-body-md ui-text-muted">Secondary text</p>
+<p class="ui-body-sm ui-text-danger">Error message</p>
+<p class="ui-body-sm ui-text-success">Operation completed</p>
+```
+
+---
+
+## Rules for implementing components
+
+When implementing any component in the library, follow these rules without exception:
+
+1. **Never hardcode colors** — always use color tokens
+2. **Never hardcode border radii** — always use `var(--radius-*)`
+3. **Never hardcode shadows** — always use `var(--shadow-*)`
+4. **Never hardcode fonts** — always use `var(--font-sans)` or `var(--font-mono)`
+5. **Use Tailwind for spacing and layout** — `p-4`, `gap-2`, `flex`, etc.
+6. **Use tokens for everything themeable** — colors, radii, shadows, typography
+7. **Do not use accents without verifying** that the consuming project has defined them
