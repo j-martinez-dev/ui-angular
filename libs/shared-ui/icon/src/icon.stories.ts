@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { applicationConfig, argsToTemplate } from '@storybook/angular';
+import { applicationConfig, argsToTemplate, moduleMetadata } from '@storybook/angular';
 import { Component } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import {
@@ -199,8 +199,11 @@ export default meta;
 type Story = StoryObj<UiIconComponent>;
 
 export const Docs: Story = {
+  decorators: [
+    moduleMetadata({ imports: [IconDocsComponent] }),
+  ],
   render: () => ({
-    component: IconDocsComponent,
+    template: `<story-icon-docs />`,
   }),
 };
 
@@ -218,7 +221,10 @@ export const Playground: Story = {
 };
 
 export const Variants: Story = {
+  decorators: [
+    moduleMetadata({ imports: [IconVariantsComponent] }),
+  ],
   render: () => ({
-    component: IconVariantsComponent,
+    template: `<story-icon-variants />`,
   }),
 };
