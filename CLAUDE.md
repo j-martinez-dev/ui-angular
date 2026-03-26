@@ -327,3 +327,56 @@ When implementing any component in the library, follow these rules without excep
 5. **Use Tailwind for spacing and layout** — `p-4`, `gap-2`, `flex`, etc.
 6. **Use tokens for everything themeable** — colors, radii, shadows, typography
 7. **Do not use accents without verifying** that the consuming project has defined them
+8. **Always generate Storybook stories** — every component must have a `.stories.ts` file colocated next to it with exactly **3 exported stories**:
+
+### Story structure
+
+Each component story file must export:
+
+#### 1. `Docs` — Documentation
+A read-only showcase that explains what the component is and how to use it. It should display:
+- The component name and a short description
+- A usage example rendered visually
+- A table or list of inputs/outputs with their types and defaults
+
+```ts
+export const Docs: Story = {};
+```
+
+#### 2. `Playground` — Interactive
+The main interactive story. All component inputs are exposed as Storybook controls so the user can experiment with every option in real time.
+
+```ts
+export const Playground: Story = {
+  args: {
+    // all inputs with sensible defaults
+  },
+};
+```
+
+#### 3. `Variants` — Visual catalog
+A single canvas that renders the component in all its meaningful combinations (sizes, colors, states, disabled, etc.) side by side for quick visual comparison.
+
+```ts
+export const Variants: Story = {};
+```
+
+### File structure example
+
+```
+libs/ui/button/
+  ├── button.component.ts
+  ├── button.component.scss
+  └── button.stories.ts      ← Docs + Playground + Variants
+```
+
+### Storybook title convention
+
+Use the pattern `Components/<ComponentName>`:
+
+```ts
+const meta: Meta<ButtonComponent> = {
+  title: 'Components/Button',
+  component: ButtonComponent,
+};
+```
