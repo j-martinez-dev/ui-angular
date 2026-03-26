@@ -1,2 +1,1 @@
-export { UiIconComponent } from './src/icon.component';
-export type { IconSize, IconColor } from './src/icon.component';
+export { UiIconComponent, type IconSize, type IconColor } from './src/icon.component';

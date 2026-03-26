@@ -99,6 +99,14 @@
   --icon-size-2xl: 2.5rem;
 
   /* =====================
+     AVATAR SIZES
+  ===================== */
+  --avatar-size-sm: 1.5rem;
+  --avatar-size-md: 2rem;
+  --avatar-size-lg: 2.5rem;
+  --avatar-size-xl: 3rem;
+
+  /* =====================
      TRANSITIONS
   ===================== */
   --duration-fast: 100ms;

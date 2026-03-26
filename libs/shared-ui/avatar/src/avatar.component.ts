@@ -17,10 +17,10 @@ interface AvatarSizeConfig {
 }
 
 const SIZE_MAP: Record<AvatarSize, AvatarSizeConfig> = {
-  sm: { dimension: '24px', fontSize: 'var(--text-xs)', iconSize: 'sm' },
-  md: { dimension: '32px', fontSize: 'var(--text-sm)', iconSize: 'md' },
-  lg: { dimension: '40px', fontSize: 'var(--text-base)', iconSize: 'md' },
-  xl: { dimension: '48px', fontSize: 'var(--text-lg)', iconSize: 'lg' },
+  sm: { dimension: 'var(--avatar-size-sm)', fontSize: 'var(--text-xs)', iconSize: 'sm' },
+  md: { dimension: 'var(--avatar-size-md)', fontSize: 'var(--text-sm)', iconSize: 'md' },
+  lg: { dimension: 'var(--avatar-size-lg)', fontSize: 'var(--text-base)', iconSize: 'md' },
+  xl: { dimension: 'var(--avatar-size-xl)', fontSize: 'var(--text-lg)', iconSize: 'lg' },
 };
 
 const SHAPE_MAP: Record<AvatarShape, string> = {

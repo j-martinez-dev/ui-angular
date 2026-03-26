@@ -224,6 +224,40 @@ var(--radius-full)  /* 9999px  — pills, avatars, toggles */
 
 ---
 
+## Spacing
+
+Tailwind 4 exposes a single `--spacing` base unit (0.25rem = 4px). All spacing in component SCSS should use multiples of this unit instead of hardcoded `px` values:
+
+```scss
+// ✅ Correct — uses Tailwind spacing base
+.my-component {
+  padding: var(--spacing) calc(var(--spacing) * 2);       /* 4px 8px */
+  gap: calc(var(--spacing) * 1.5);                         /* 6px */
+  margin-bottom: calc(var(--spacing) * 4);                 /* 16px */
+}
+
+// ❌ Incorrect — hardcoded px
+.my-component {
+  padding: 4px 8px;
+  gap: 6px;
+}
+```
+
+Common multiples:
+
+| Expression | Value |
+|---|---|
+| `calc(var(--spacing) * 0.5)` | 2px / 0.125rem |
+| `var(--spacing)` | 4px / 0.25rem |
+| `calc(var(--spacing) * 1.5)` | 6px / 0.375rem |
+| `calc(var(--spacing) * 2)` | 8px / 0.5rem |
+| `calc(var(--spacing) * 3)` | 12px / 0.75rem |
+| `calc(var(--spacing) * 4)` | 16px / 1rem |
+
+> For templates, use Tailwind utility classes (`p-2`, `gap-1.5`, etc.) as stated in rule #5. The `var(--spacing)` pattern is for SCSS files where Tailwind classes are not available.
+
+---
+
 ## Icon size tokens
 
 Shared scale for all iconographic/indicator elements: icons, spinners, badges, avatars, and similar small visual elements. Components should reference these tokens instead of hardcoding sizes.
@@ -235,6 +269,19 @@ var(--icon-size-md)   /* 1.25rem — default, standalone icons */
 var(--icon-size-lg)   /* 1.5rem  — section headers, emphasis */
 var(--icon-size-xl)   /* 2rem    — hero sections, empty states */
 var(--icon-size-2xl)  /* 2.5rem  — splash, decorative use */
+```
+
+---
+
+## Avatar size tokens
+
+Dedicated scale for avatar components. Larger than icon sizes because avatars contain initials or images.
+
+```css
+var(--avatar-size-sm)   /* 1.5rem — inline, compact lists */
+var(--avatar-size-md)   /* 2rem   — default, navigation */
+var(--avatar-size-lg)   /* 2.5rem — cards, profiles */
+var(--avatar-size-xl)   /* 3rem   — hero, detail views */
 ```
 
 ---
@@ -310,10 +357,10 @@ Tokens have exactly the same names in both modes — there are no dark-specific 
 }
 ```
 
-For dark mode accents in the consuming project:
+For dark mode accents in the consuming project, override inside the `.theme-dark` selector:
 
 ```css
-@theme dark {
+.theme-dark {
   --color-accent-1-subtle: oklch(25% 0.07 330);
   --color-accent-1-default: oklch(70% 0.2 330);
   --color-accent-1-emphasis: oklch(80% 0.2 330);
@@ -374,10 +421,12 @@ When implementing any component in the library, follow these rules without excep
 2. **Never hardcode border radii** — always use `var(--radius-*)`
 3. **Never hardcode shadows** — always use `var(--shadow-*)`
 4. **Never hardcode fonts** — always use `var(--font-sans)` or `var(--font-mono)`
-5. **Use Tailwind for spacing and layout** — `p-4`, `gap-2`, `flex`, etc.
-6. **Use tokens for everything themeable** — colors, radii, shadows, typography
-7. **Do not use accents without verifying** that the consuming project has defined them
-8. **Always generate Storybook stories** — every component must have a `.stories.ts` file colocated next to it with exactly **3 exported stories**:
+5. **Use Tailwind for spacing and layout** — `p-4`, `gap-2`, `flex`, etc. In SCSS, use `var(--spacing)` multiples
+6. **Never hardcode transition durations or easings** — always use `var(--duration-*)` and `var(--easing-*)`
+7. **Never hardcode sizes for icons, spinners, or avatars** — always use `var(--icon-size-*)` or `var(--avatar-size-*)`
+8. **Use tokens for everything themeable** — colors, radii, shadows, typography, sizing, transitions
+9. **Do not use accents without verifying** that the consuming project has defined them
+10. **Always generate Storybook stories** — every component must have a `.stories.ts` file colocated next to it with exactly **3 exported stories**:
 
 ### Story structure
 
