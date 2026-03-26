@@ -1,0 +1,29 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  background: var(--badge-bg);
+  color: var(--badge-color);
+  border: var(--badge-border);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+:host(.badge-sm) {
+  font-size: var(--text-xs);
+  padding: 2px 6px;
+  gap: 4px;
+}
+
+:host(.badge-md) {
+  font-size: var(--text-sm);
+  padding: 4px 8px;
+  gap: 6px;
+}
+
+:host(.badge-lg) {
+  font-size: var(--text-base);
+  padding: 6px 10px;
+  gap: 6px;
+}
