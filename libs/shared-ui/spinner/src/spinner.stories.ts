@@ -53,7 +53,7 @@ import {
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <td class="ui-code" style="padding: 0.5rem;">size</td>
-              <td class="ui-code" style="padding: 0.5rem;">sm | md | lg | xl</td>
+              <td class="ui-code" style="padding: 0.5rem;">xs | sm | md | lg | xl</td>
               <td class="ui-code" style="padding: 0.5rem;">md</td>
               <td class="ui-body-sm" style="padding: 0.5rem;">Spinner size</td>
             </tr>
@@ -79,7 +79,7 @@ class SpinnerDocsComponent {}
 
 // ── Variants ────────────────────────────────────────────────────────────────
 
-const SIZES: SpinnerSize[] = ['sm', 'md', 'lg', 'xl'];
+const SIZES: SpinnerSize[] = ['xs', 'sm', 'md', 'lg', 'xl'];
 const COLORS: SpinnerColor[] = ['primary', 'success', 'warning', 'error', 'info', 'muted'];
 const VARIANTS: SpinnerVariant[] = ['circular', 'dots'];
 
@@ -168,7 +168,7 @@ const meta: Meta<UiSpinnerComponent> = {
     },
     size: {
       control: 'select',
-      options: ['sm', 'md', 'lg', 'xl'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
     },
     color: {
       control: 'select',

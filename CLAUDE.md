@@ -226,6 +226,8 @@ var(--radius-full)  /* 9999px  — pills, avatars, toggles */
 
 ## Icon size tokens
 
+Shared scale for all iconographic/indicator elements: icons, spinners, badges, avatars, and similar small visual elements. Components should reference these tokens instead of hardcoding sizes.
+
 ```css
 var(--icon-size-xs)   /* 0.75rem — inline indicators, status dots */
 var(--icon-size-sm)   /* 1rem    — buttons, form fields */

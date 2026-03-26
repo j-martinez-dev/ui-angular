@@ -6,14 +6,15 @@ import {
 } from '@angular/core';
 
 export type SpinnerVariant = 'circular' | 'dots';
-export type SpinnerSize = 'sm' | 'md' | 'lg' | 'xl';
+export type SpinnerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type SpinnerColor = 'primary' | 'success' | 'warning' | 'error' | 'info' | 'muted';
 
 const SIZE_MAP: Record<SpinnerSize, string> = {
-  sm: '16px',
-  md: '20px',
-  lg: '24px',
-  xl: '32px',
+  xs: 'var(--icon-size-xs)',
+  sm: 'var(--icon-size-sm)',
+  md: 'var(--icon-size-md)',
+  lg: 'var(--icon-size-lg)',
+  xl: 'var(--icon-size-xl)',
 };
 
 const COLOR_MAP: Record<SpinnerColor, string> = {
