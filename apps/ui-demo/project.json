@@ -20,7 +20,7 @@
             "input": "apps/ui-demo/public"
           }
         ],
-        "styles": ["apps/ui-demo/src/styles.scss"]
+        "styles": ["styles/index.css","apps/ui-demo/src/styles.scss"]
       },
       "configurations": {
         "production": {
