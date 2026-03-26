@@ -1,0 +1,59 @@
+.theme-pastel {
+  /* =====================
+     COLORS
+  ===================== */
+
+  /* Primary — soft lavender */
+  --color-primary-subtle: oklch(93% 0.04 290);
+  --color-primary-default: oklch(72% 0.12 290);
+  --color-primary-emphasis: oklch(62% 0.14 290);
+  --color-on-primary: oklch(99% 0 0);
+
+  /* Success — mint green */
+  --color-success-subtle: oklch(94% 0.04 160);
+  --color-success-default: oklch(75% 0.1 160);
+  --color-success-emphasis: oklch(65% 0.12 160);
+  --color-on-success: oklch(99% 0 0);
+
+  /* Warning — soft peach */
+  --color-warning-subtle: oklch(95% 0.04 70);
+  --color-warning-default: oklch(82% 0.1 70);
+  --color-warning-emphasis: oklch(72% 0.12 70);
+  --color-on-warning: oklch(20% 0 0);
+
+  /* Error — dusty rose */
+  --color-error-subtle: oklch(93% 0.04 10);
+  --color-error-default: oklch(72% 0.1 10);
+  --color-error-emphasis: oklch(62% 0.12 10);
+  --color-on-error: oklch(99% 0 0);
+
+  /* Info — baby blue */
+  --color-info-subtle: oklch(94% 0.03 230);
+  --color-info-default: oklch(75% 0.08 230);
+  --color-info-emphasis: oklch(65% 0.1 230);
+  --color-on-info: oklch(99% 0 0);
+
+  /* Surfaces — warm cream tones */
+  --color-surface-base: oklch(97% 0.01 80);
+  --color-surface-raised: oklch(99% 0.005 80);
+  --color-surface-overlay: oklch(100% 0.005 80);
+  --color-surface-sunken: oklch(94% 0.015 80);
+
+  /* Text — soft charcoal */
+  --color-text-default: oklch(25% 0.01 290);
+  --color-text-muted: oklch(55% 0.01 290);
+  --color-text-disabled: oklch(72% 0.01 290);
+
+  /* Borders — light lilac */
+  --color-border-default: oklch(88% 0.02 290);
+  --color-border-strong: oklch(75% 0.03 290);
+
+  /* =====================
+     SHADOWS
+     Softer, tinted shadows
+  ===================== */
+  --shadow-sm: 0 1px 2px oklch(60% 0.03 290 / 0.08);
+  --shadow-md: 0 4px 6px oklch(60% 0.03 290 / 0.1), 0 1px 3px oklch(60% 0.03 290 / 0.08);
+  --shadow-lg: 0 10px 15px oklch(60% 0.03 290 / 0.12), 0 4px 6px oklch(60% 0.03 290 / 0.08);
+  --shadow-xl: 0 20px 25px oklch(60% 0.03 290 / 0.14), 0 8px 10px oklch(60% 0.03 290 / 0.1);
+}
