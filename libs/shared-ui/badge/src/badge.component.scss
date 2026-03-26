@@ -12,18 +12,18 @@
 
 :host(.badge-sm) {
   font-size: var(--text-xs);
-  padding: 2px 6px;
-  gap: 4px;
+  padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1.5);
+  gap: var(--spacing);
 }
 
 :host(.badge-md) {
   font-size: var(--text-sm);
-  padding: 4px 8px;
-  gap: 6px;
+  padding: var(--spacing) calc(var(--spacing) * 2);
+  gap: calc(var(--spacing) * 1.5);
 }
 
 :host(.badge-lg) {
   font-size: var(--text-base);
-  padding: 6px 10px;
-  gap: 6px;
+  padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2.5);
+  gap: calc(var(--spacing) * 1.5);
 }

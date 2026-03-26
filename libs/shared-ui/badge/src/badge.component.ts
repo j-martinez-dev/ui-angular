@@ -11,6 +11,12 @@ export type BadgeColor = 'primary' | 'success' | 'warning' | 'error' | 'info' | 
 export type BadgeSize = 'sm' | 'md' | 'lg';
 export type BadgeShape = 'rounded' | 'pill';
 
+interface BadgeStyles {
+  bg: string;
+  color: string;
+  border: string;
+}
+
 const ICON_SIZE_MAP: Record<BadgeSize, IconSize> = {
   sm: 'xs',
   md: 'sm',
@@ -22,28 +28,38 @@ const SHAPE_MAP: Record<BadgeShape, string> = {
   pill: 'var(--radius-full)',
 };
 
-function resolveStyles(variant: BadgeVariant, color: BadgeColor) {
-  switch (variant) {
-    case 'filled':
-      return {
-        bg: color === 'muted' ? 'var(--color-text-muted)' : `var(--color-${color}-default)`,
-        color: color === 'muted' ? 'var(--color-text-default)' : `var(--color-on-${color})`,
-        border: 'none',
-      };
-    case 'subtle':
-      return {
-        bg: `var(--color-${color}-subtle)`,
-        color: color === 'muted' ? 'var(--color-text-default)' : `var(--color-${color}-emphasis)`,
-        border: 'none',
-      };
-    case 'outline':
-      return {
-        bg: 'transparent',
-        color: color === 'muted' ? 'var(--color-text-muted)' : `var(--color-${color}-default)`,
-        border: `1px solid ${color === 'muted' ? 'var(--color-text-muted)' : `var(--color-${color}-default)`}`,
-      };
-  }
-}
+const FILLED_MAP: Record<BadgeColor, BadgeStyles> = {
+  primary: { bg: 'var(--color-primary-default)', color: 'var(--color-on-primary)', border: 'none' },
+  success: { bg: 'var(--color-success-default)', color: 'var(--color-on-success)', border: 'none' },
+  warning: { bg: 'var(--color-warning-default)', color: 'var(--color-on-warning)', border: 'none' },
+  error: { bg: 'var(--color-error-default)', color: 'var(--color-on-error)', border: 'none' },
+  info: { bg: 'var(--color-info-default)', color: 'var(--color-on-info)', border: 'none' },
+  muted: { bg: 'var(--color-text-muted)', color: 'var(--color-text-default)', border: 'none' },
+};
+
+const SUBTLE_MAP: Record<BadgeColor, BadgeStyles> = {
+  primary: { bg: 'var(--color-primary-subtle)', color: 'var(--color-primary-emphasis)', border: 'none' },
+  success: { bg: 'var(--color-success-subtle)', color: 'var(--color-success-emphasis)', border: 'none' },
+  warning: { bg: 'var(--color-warning-subtle)', color: 'var(--color-warning-emphasis)', border: 'none' },
+  error: { bg: 'var(--color-error-subtle)', color: 'var(--color-error-emphasis)', border: 'none' },
+  info: { bg: 'var(--color-info-subtle)', color: 'var(--color-info-emphasis)', border: 'none' },
+  muted: { bg: 'var(--color-surface-sunken)', color: 'var(--color-text-default)', border: 'none' },
+};
+
+const OUTLINE_MAP: Record<BadgeColor, BadgeStyles> = {
+  primary: { bg: 'transparent', color: 'var(--color-primary-default)', border: '1px solid var(--color-primary-default)' },
+  success: { bg: 'transparent', color: 'var(--color-success-default)', border: '1px solid var(--color-success-default)' },
+  warning: { bg: 'transparent', color: 'var(--color-warning-default)', border: '1px solid var(--color-warning-default)' },
+  error: { bg: 'transparent', color: 'var(--color-error-default)', border: '1px solid var(--color-error-default)' },
+  info: { bg: 'transparent', color: 'var(--color-info-default)', border: '1px solid var(--color-info-default)' },
+  muted: { bg: 'transparent', color: 'var(--color-text-muted)', border: '1px solid var(--color-text-muted)' },
+};
+
+const VARIANT_MAPS: Record<BadgeVariant, Record<BadgeColor, BadgeStyles>> = {
+  filled: FILLED_MAP,
+  subtle: SUBTLE_MAP,
+  outline: OUTLINE_MAP,
+};
 
 @Component({
   selector: 'ui-badge',
@@ -76,7 +92,7 @@ export class UiBadgeComponent {
   shape = input<BadgeShape>('rounded');
   icon = input<string>();
 
-  protected styles = computed(() => resolveStyles(this.variant(), this.color()));
+  protected styles = computed(() => VARIANT_MAPS[this.variant()][this.color()]);
   protected radiusValue = computed(() => SHAPE_MAP[this.shape()]);
   protected iconSize = computed(() => ICON_SIZE_MAP[this.size()]);
 }
