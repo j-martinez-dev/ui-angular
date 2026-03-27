@@ -82,10 +82,12 @@ const HEIGHT_MAP: Record<MultiSelectSize, string> = {
         class="select-trigger"
         [class.select-trigger--open]="isOpen()"
         [class.select-trigger--disabled]="disabled()"
+        [class.select-trigger--readonly]="readonly()"
         [class.select-trigger--invalid]="invalid()"
         [attr.aria-expanded]="isOpen()"
         [attr.aria-haspopup]="'listbox'"
         [attr.aria-multiselectable]="true"
+        [attr.id]="id() || null"
         role="combobox"
         tabindex="0"
         (click)="toggleDropdown()"
@@ -180,6 +182,7 @@ export class UiMultiSelectComponent<T = unknown> implements FormValueControl<T[]
   size = input<MultiSelectSize>('md');
   searchable = input<boolean>(false);
   maxLabels = input<number>(1);
+  id = input<string>();
 
   // Internal state
   isOpen = signal<boolean>(false);
@@ -194,6 +197,7 @@ export class UiMultiSelectComponent<T = unknown> implements FormValueControl<T[]
   private readonly overlay = inject(Overlay);
   private readonly viewContainerRef = inject(ViewContainerRef);
   private overlayRef: OverlayRef | null = null;
+  private backdropSub: { unsubscribe(): void } | null = null;
 
   // Computed
   protected variantStyles = computed(() => VARIANT_MAP[this.variant()]);
@@ -310,11 +314,13 @@ export class UiMultiSelectComponent<T = unknown> implements FormValueControl<T[]
     this.searchQuery.set('');
     this.focusedIndex.set(0);
 
-    this.overlayRef.backdropClick().subscribe(() => this.close());
+    this.backdropSub = this.overlayRef.backdropClick().subscribe(() => this.close());
   }
 
   private close(): void {
     if (!this.isOpen()) return;
+    this.backdropSub?.unsubscribe();
+    this.backdropSub = null;
     this.overlayRef?.detach();
     this.isOpen.set(false);
     this.focusedIndex.set(-1);

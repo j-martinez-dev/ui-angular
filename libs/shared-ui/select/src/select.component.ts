@@ -196,6 +196,7 @@ export class UiSelectComponent<T = unknown> implements FormValueControl<T | null
   private readonly overlay = inject(Overlay);
   private readonly viewContainerRef = inject(ViewContainerRef);
   private overlayRef: OverlayRef | null = null;
+  private backdropSub: { unsubscribe(): void } | null = null;
 
   // Computed
   protected variantStyles = computed(() => VARIANT_MAP[this.variant()]);
@@ -303,11 +304,13 @@ export class UiSelectComponent<T = unknown> implements FormValueControl<T | null
     const selectedIdx = this.filteredOptions().findIndex(o => o.value === this.value());
     this.focusedIndex.set(selectedIdx >= 0 ? selectedIdx : 0);
 
-    this.overlayRef.backdropClick().subscribe(() => this.close());
+    this.backdropSub = this.overlayRef.backdropClick().subscribe(() => this.close());
   }
 
   private close(): void {
     if (!this.isOpen()) return;
+    this.backdropSub?.unsubscribe();
+    this.backdropSub = null;
     this.overlayRef?.detach();
     this.isOpen.set(false);
     this.focusedIndex.set(-1);

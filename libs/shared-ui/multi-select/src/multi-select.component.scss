@@ -46,6 +46,12 @@
   pointer-events: none;
 }
 
+.select-trigger--readonly {
+  background-color: var(--color-surface-sunken);
+  cursor: default;
+  pointer-events: none;
+}
+
 // ── Filled variant ──────────────────────────────────────────────────────────
 
 :host(.variant-filled) .select-trigger {
