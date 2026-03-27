@@ -102,9 +102,10 @@ const DIMENSION_MAP: Record<IconButtonSize, string> = {
     <button
       [type]="type()"
       [attr.aria-label]="label()"
-      [disabled]="disabled()"
+      [disabled]="disabled() || loading()"
       [uiTooltip]="label()"
       [uiTooltipPosition]="tooltipPosition()"
+      [attr.aria-busy]="loading() || null"
       class="icon-btn"
       [class.icon-btn--loading]="loading()"
       [class.icon-btn--disabled]="disabled()"

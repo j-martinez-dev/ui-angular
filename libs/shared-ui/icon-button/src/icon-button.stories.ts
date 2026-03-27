@@ -56,60 +56,60 @@ const icons = {
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Input</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Type</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Default</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Description</th>
+              <th class="ui-body-sm p-2 text-left">Input</th>
+              <th class="ui-body-sm p-2 text-left">Type</th>
+              <th class="ui-body-sm p-2 text-left">Default</th>
+              <th class="ui-body-sm p-2 text-left">Description</th>
             </tr>
           </thead>
           <tbody>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">icon</td>
-              <td class="ui-code" style="padding: 0.5rem;">string</td>
-              <td class="ui-code" style="padding: 0.5rem;">required</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Heroicon name</td>
+              <td class="ui-code p-2">icon</td>
+              <td class="ui-code p-2">string</td>
+              <td class="ui-code p-2">required</td>
+              <td class="ui-body-sm p-2">Heroicon name</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">label</td>
-              <td class="ui-code" style="padding: 0.5rem;">string</td>
-              <td class="ui-code" style="padding: 0.5rem;">required</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Accessible label and tooltip text</td>
+              <td class="ui-code p-2">label</td>
+              <td class="ui-code p-2">string</td>
+              <td class="ui-code p-2">required</td>
+              <td class="ui-body-sm p-2">Accessible label and tooltip text</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">variant</td>
-              <td class="ui-code" style="padding: 0.5rem;">primary | secondary | ghost | danger | accent-*</td>
-              <td class="ui-code" style="padding: 0.5rem;">ghost</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Visual style</td>
+              <td class="ui-code p-2">variant</td>
+              <td class="ui-code p-2">primary | secondary | ghost | danger | accent-*</td>
+              <td class="ui-code p-2">ghost</td>
+              <td class="ui-body-sm p-2">Visual style</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">size</td>
-              <td class="ui-code" style="padding: 0.5rem;">sm | md | lg</td>
-              <td class="ui-code" style="padding: 0.5rem;">md</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Button size</td>
+              <td class="ui-code p-2">size</td>
+              <td class="ui-code p-2">sm | md | lg</td>
+              <td class="ui-code p-2">md</td>
+              <td class="ui-body-sm p-2">Button size</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">shape</td>
-              <td class="ui-code" style="padding: 0.5rem;">square | circle</td>
-              <td class="ui-code" style="padding: 0.5rem;">square</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Border radius shape</td>
+              <td class="ui-code p-2">shape</td>
+              <td class="ui-code p-2">square | circle</td>
+              <td class="ui-code p-2">square</td>
+              <td class="ui-body-sm p-2">Border radius shape</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">disabled</td>
-              <td class="ui-code" style="padding: 0.5rem;">boolean</td>
-              <td class="ui-code" style="padding: 0.5rem;">false</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Disables the button</td>
+              <td class="ui-code p-2">disabled</td>
+              <td class="ui-code p-2">boolean</td>
+              <td class="ui-code p-2">false</td>
+              <td class="ui-body-sm p-2">Disables the button</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">loading</td>
-              <td class="ui-code" style="padding: 0.5rem;">boolean</td>
-              <td class="ui-code" style="padding: 0.5rem;">false</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Shows spinner and disables interaction</td>
+              <td class="ui-code p-2">loading</td>
+              <td class="ui-code p-2">boolean</td>
+              <td class="ui-code p-2">false</td>
+              <td class="ui-body-sm p-2">Shows spinner and disables interaction</td>
             </tr>
             <tr>
-              <td class="ui-code" style="padding: 0.5rem;">tooltipPosition</td>
-              <td class="ui-code" style="padding: 0.5rem;">top | bottom | left | right</td>
-              <td class="ui-code" style="padding: 0.5rem;">top</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Tooltip position</td>
+              <td class="ui-code p-2">tooltipPosition</td>
+              <td class="ui-code p-2">top | bottom | left | right</td>
+              <td class="ui-code p-2">top</td>
+              <td class="ui-body-sm p-2">Tooltip position</td>
             </tr>
           </tbody>
         </table>
@@ -173,6 +173,26 @@ const SHAPES: IconButtonShape[] = ['square', 'circle'];
           @for (variant of variants; track variant) {
             <ui-icon-button icon="heroHeart" [label]="variant" [variant]="variant" [disabled]="true" />
           }
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <p class="ui-overline">Theme — Dark</p>
+        <div class="theme-dark flex flex-wrap items-center gap-3 p-4" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
+          @for (variant of variants; track variant) {
+            <ui-icon-button icon="heroHeart" [label]="variant" [variant]="variant" />
+          }
+          <ui-icon-button icon="heroPlus" label="Add" variant="primary" shape="circle" />
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <p class="ui-overline">Theme — Pastel</p>
+        <div class="theme-pastel flex flex-wrap items-center gap-3 p-4" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
+          @for (variant of variants; track variant) {
+            <ui-icon-button icon="heroHeart" [label]="variant" [variant]="variant" />
+          }
+          <ui-icon-button icon="heroPlus" label="Add" variant="primary" shape="circle" />
         </div>
       </section>
 

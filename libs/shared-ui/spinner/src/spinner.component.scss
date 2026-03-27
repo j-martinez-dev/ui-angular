@@ -9,7 +9,7 @@
 .spinner-circular {
   width: var(--spinner-size);
   height: var(--spinner-size);
-  animation: spinner-rotate var(--duration-slow) linear infinite;
+  animation: spinner-rotate calc(var(--duration-slow) * 3) linear infinite;
 
   circle {
     stroke: var(--spinner-color);
