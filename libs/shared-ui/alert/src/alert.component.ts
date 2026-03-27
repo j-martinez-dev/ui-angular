@@ -6,8 +6,6 @@ import {
   output,
 } from '@angular/core';
 import { UiIconComponent } from '@ui/shared-ui/icon';
-import { UiButtonComponent } from '@ui/shared-ui/button';
-import { UiIconButtonComponent } from '@ui/shared-ui/icon-button';
 
 export type AlertVariant = 'filled' | 'subtle' | 'outline';
 export type AlertColor = 'success' | 'warning' | 'error' | 'info';
@@ -73,22 +71,22 @@ const SUBTLE_MAP: Record<AlertColor, AlertStyles> = {
 
 const OUTLINE_MAP: Record<AlertColor, AlertStyles> = {
   success: {
-    bg: 'transparent',
+    bg: 'var(--color-surface-raised)',
     color: 'var(--color-success-default)',
     border: '1px solid var(--color-success-default)',
   },
   warning: {
-    bg: 'transparent',
+    bg: 'var(--color-surface-raised)',
     color: 'var(--color-warning-default)',
     border: '1px solid var(--color-warning-default)',
   },
   error: {
-    bg: 'transparent',
+    bg: 'var(--color-surface-raised)',
     color: 'var(--color-error-default)',
     border: '1px solid var(--color-error-default)',
   },
   info: {
-    bg: 'transparent',
+    bg: 'var(--color-surface-raised)',
     color: 'var(--color-info-default)',
     border: '1px solid var(--color-info-default)',
   },
@@ -102,7 +100,7 @@ const VARIANT_MAPS: Record<AlertVariant, Record<AlertColor, AlertStyles>> = {
 
 @Component({
   selector: 'ui-alert',
-  imports: [UiIconComponent, UiButtonComponent, UiIconButtonComponent],
+  imports: [UiIconComponent],
   template: `
     <div class="alert" role="alert">
       <ui-icon [name]="resolvedIcon()" size="md" />
@@ -115,32 +113,30 @@ const VARIANT_MAPS: Record<AlertVariant, Record<AlertColor, AlertStyles>> = {
           <ng-content />
         </div>
         @if (actionLabel()) {
-          <ui-button
-            variant="ghost"
-            size="sm"
+          <button
+            type="button"
             class="alert-action"
             (click)="actionClick.emit()"
-          >
-            {{ actionLabel() }}
-          </ui-button>
+          >{{ actionLabel() }}</button>
         }
       </div>
 
       @if (removable()) {
-        <ui-icon-button
-          icon="heroXMark"
-          variant="ghost"
-          size="sm"
-          label="Close alert"
+        <button
+          type="button"
           class="alert-close"
+          aria-label="Close alert"
           (click)="removed.emit()"
-        />
+        >
+          <ui-icon name="heroXMark" size="sm" />
+        </button>
       }
     </div>
   `,
   styleUrl: './alert.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
+    'aria-live': 'assertive',
     '[style.--alert-bg]': 'styles().bg',
     '[style.--alert-color]': 'styles().color',
     '[style.--alert-border]': 'styles().border',
