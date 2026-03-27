@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@ui/shared-ui": ["libs/shared-ui/src/index.ts"],
+      "@ui/shared-ui/alert": ["libs/shared-ui/alert/index.ts"],
       "@ui/shared-ui/avatar": ["libs/shared-ui/avatar/index.ts"],
       "@ui/shared-ui/badge": ["libs/shared-ui/badge/index.ts"],
       "@ui/shared-ui/button": ["libs/shared-ui/button/index.ts"],
