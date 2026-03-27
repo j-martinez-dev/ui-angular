@@ -16,7 +16,16 @@
     "baseUrl": ".",
     "paths": {
       "@ui/shared-ui": ["libs/shared-ui/src/index.ts"],
-      "@ui/shared-ui/icon": ["libs/shared-ui/icon/index.ts"]
+      "@ui/shared-ui/avatar": ["libs/shared-ui/avatar/index.ts"],
+      "@ui/shared-ui/badge": ["libs/shared-ui/badge/index.ts"],
+      "@ui/shared-ui/button": ["libs/shared-ui/button/index.ts"],
+      "@ui/shared-ui/checkbox": ["libs/shared-ui/checkbox/index.ts"],
+      "@ui/shared-ui/icon": ["libs/shared-ui/icon/index.ts"],
+      "@ui/shared-ui/progress-bar": ["libs/shared-ui/progress-bar/index.ts"],
+      "@ui/shared-ui/radio": ["libs/shared-ui/radio/index.ts"],
+      "@ui/shared-ui/slider": ["libs/shared-ui/slider/index.ts"],
+      "@ui/shared-ui/spinner": ["libs/shared-ui/spinner/index.ts"],
+      "@ui/shared-ui/toggle": ["libs/shared-ui/toggle/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
