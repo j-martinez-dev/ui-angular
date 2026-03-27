@@ -1,0 +1,57 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing);
+  width: 100%;
+}
+
+.form-field-label {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-default);
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--spacing) * 0.5);
+}
+
+.form-field--invalid .form-field-label {
+  color: var(--color-error-default);
+}
+
+.form-field-required {
+  color: var(--color-error-default);
+  font-weight: var(--font-weight-bold);
+}
+
+.form-field-control {
+  width: 100%;
+}
+
+.form-field-errors {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 0.5);
+}
+
+.form-field-error {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--color-error-default);
+  line-height: var(--leading-normal);
+}
+
+.form-field-hint {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: var(--leading-normal);
+}

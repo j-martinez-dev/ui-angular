@@ -23,6 +23,7 @@
       "@ui/shared-ui/breadcrumb": ["libs/shared-ui/breadcrumb/index.ts"],
       "@ui/shared-ui/button": ["libs/shared-ui/button/index.ts"],
       "@ui/shared-ui/checkbox": ["libs/shared-ui/checkbox/index.ts"],
+      "@ui/shared-ui/form-field": ["libs/shared-ui/form-field/index.ts"],
       "@ui/shared-ui/icon": ["libs/shared-ui/icon/index.ts"],
       "@ui/shared-ui/input": ["libs/shared-ui/input/index.ts"],
       "@ui/shared-ui/list-item": ["libs/shared-ui/list-item/index.ts"],
