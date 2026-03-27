@@ -8,6 +8,26 @@ import {
   signal,
 } from '@angular/core';
 import { UiIconButtonComponent } from '@ui/shared-ui/icon-button';
+import {
+  startOfMonth,
+  startOfWeek,
+  addDays,
+  addMonths,
+  addYears,
+  subMonths,
+  subYears,
+  getMonth,
+  getYear,
+  getDate,
+  isBefore,
+  isAfter,
+  startOfDay,
+  endOfDay,
+  format as formatDate,
+  eachDayOfInterval,
+  type Locale,
+} from 'date-fns';
+import { fr, enUS, es } from 'date-fns/locale';
 
 type CalendarView = 'days' | 'months' | 'years';
 
@@ -23,17 +43,14 @@ interface MonthEntry {
   label: string;
 }
 
-function dateKey(d: Date): string {
-  return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
-}
+const LOCALE_MAP: Record<string, Locale> = {
+  'fr-FR': fr,
+  'en-US': enUS,
+  'es-ES': es,
+};
 
-// Find the Monday (or Sunday) of or before a given date
-function findDayOfWeek(dayOfWeek: number): Date {
-  const d = new Date(2024, 0, 1); // arbitrary start
-  while (d.getDay() !== dayOfWeek) {
-    d.setDate(d.getDate() + 1);
-  }
-  return d;
+function dateKey(d: Date): string {
+  return `${getYear(d)}-${getMonth(d)}-${getDate(d)}`;
 }
 
 @Component({
@@ -135,11 +152,10 @@ export class UiDatePickerCalendarComponent {
   viewDate = signal<Date>(new Date());
 
   constructor() {
-    // Sync viewDate to the selected value when it changes
     effect(() => {
       const v = this.value();
       if (v) {
-        this.viewDate.set(new Date(v.getFullYear(), v.getMonth(), 1));
+        this.viewDate.set(startOfMonth(v));
       }
     });
   }
@@ -153,21 +169,21 @@ export class UiDatePickerCalendarComponent {
 
   protected todayKey = computed(() => dateKey(new Date()));
 
+  private dateFnsLocale = computed(() => LOCALE_MAP[this.locale()] ?? enUS);
+
   // ── Computed ────────────────────────────────────────────────────────────
 
   protected headerLabel = computed(() => {
     const d = this.viewDate();
-    const loc = this.locale();
+    const loc = this.dateFnsLocale();
 
     switch (this.view()) {
-      case 'days': {
-        const month = new Intl.DateTimeFormat(loc, { month: 'long' }).format(d);
-        return `${month.charAt(0).toUpperCase() + month.slice(1)} ${d.getFullYear()}`;
-      }
+      case 'days':
+        return formatDate(d, 'LLLL yyyy', { locale: loc });
       case 'months':
-        return `${d.getFullYear()}`;
+        return formatDate(d, 'yyyy', { locale: loc });
       case 'years': {
-        const base = d.getFullYear();
+        const base = getYear(d);
         const start = base - (base % 12);
         return `${start} – ${start + 11}`;
       }
@@ -175,35 +191,27 @@ export class UiDatePickerCalendarComponent {
   });
 
   protected weekDayNames = computed(() => {
-    const loc = this.locale();
+    const loc = this.dateFnsLocale();
     const fdow = this.firstDayOfWeek();
-    const base = findDayOfWeek(fdow);
-    return Array.from({ length: 7 }, (_, i) => {
-      const d = new Date(base);
-      d.setDate(base.getDate() + i);
-      return new Intl.DateTimeFormat(loc, { weekday: 'short' }).format(d);
-    });
+    const weekStart = startOfWeek(new Date(), { weekStartsOn: fdow });
+    const days = eachDayOfInterval({ start: weekStart, end: addDays(weekStart, 6) });
+    return days.map(d => formatDate(d, 'EEEEEE', { locale: loc }));
   });
 
   protected dayCells = computed((): DayCell[] => {
     const vd = this.viewDate();
-    const year = vd.getFullYear();
-    const month = vd.getMonth();
+    const month = getMonth(vd);
     const fdow = this.firstDayOfWeek();
     const min = this.minDate();
     const max = this.maxDate();
 
-    const firstOfMonth = new Date(year, month, 1);
-    let startDay = firstOfMonth.getDay() - fdow;
-    if (startDay < 0) startDay += 7;
+    const firstOfMonth = startOfMonth(vd);
+    const gridStart = startOfWeek(firstOfMonth, { weekStartsOn: fdow });
 
-    const startDate = new Date(year, month, 1 - startDay);
     const cells: DayCell[] = [];
-
     for (let i = 0; i < 42; i++) {
-      const date = new Date(startDate);
-      date.setDate(startDate.getDate() + i);
-      const isAdjacentMonth = date.getMonth() !== month;
+      const date = addDays(gridStart, i);
+      const isAdjacentMonth = getMonth(date) !== month;
       const isDisabled = this.isDateDisabled(date, min, max);
       cells.push({ date, key: dateKey(date), isAdjacentMonth, isDisabled });
     }
@@ -212,15 +220,15 @@ export class UiDatePickerCalendarComponent {
   });
 
   protected monthNames = computed((): MonthEntry[] => {
-    const loc = this.locale();
+    const loc = this.dateFnsLocale();
     return Array.from({ length: 12 }, (_, i) => ({
       index: i,
-      label: new Intl.DateTimeFormat(loc, { month: 'short' }).format(new Date(2024, i, 1)),
+      label: formatDate(new Date(2024, i, 1), 'LLL', { locale: loc }),
     }));
   });
 
   protected yearRange = computed((): number[] => {
-    const base = this.viewDate().getFullYear();
+    const base = getYear(this.viewDate());
     const start = base - (base % 12);
     return Array.from({ length: 12 }, (_, i) => start + i);
   });
@@ -232,12 +240,12 @@ export class UiDatePickerCalendarComponent {
   }
 
   selectMonth(month: number): void {
-    this.viewDate.update(d => new Date(d.getFullYear(), month, 1));
+    this.viewDate.update(d => new Date(getYear(d), month, 1));
     this.view.set('days');
   }
 
   selectYear(year: number): void {
-    this.viewDate.update(d => new Date(year, d.getMonth(), 1));
+    this.viewDate.update(d => new Date(year, getMonth(d), 1));
     this.view.set('months');
   }
 
@@ -251,13 +259,13 @@ export class UiDatePickerCalendarComponent {
   navigatePrev(): void {
     switch (this.view()) {
       case 'days':
-        this.viewDate.update(d => new Date(d.getFullYear(), d.getMonth() - 1, 1));
+        this.viewDate.update(d => subMonths(d, 1));
         break;
       case 'months':
-        this.viewDate.update(d => new Date(d.getFullYear() - 1, d.getMonth(), 1));
+        this.viewDate.update(d => subYears(d, 1));
         break;
       case 'years':
-        this.viewDate.update(d => new Date(d.getFullYear() - 12, d.getMonth(), 1));
+        this.viewDate.update(d => subYears(d, 12));
         break;
     }
   }
@@ -265,13 +273,13 @@ export class UiDatePickerCalendarComponent {
   navigateNext(): void {
     switch (this.view()) {
       case 'days':
-        this.viewDate.update(d => new Date(d.getFullYear(), d.getMonth() + 1, 1));
+        this.viewDate.update(d => addMonths(d, 1));
         break;
       case 'months':
-        this.viewDate.update(d => new Date(d.getFullYear() + 1, d.getMonth(), 1));
+        this.viewDate.update(d => addYears(d, 1));
         break;
       case 'years':
-        this.viewDate.update(d => new Date(d.getFullYear() + 12, d.getMonth(), 1));
+        this.viewDate.update(d => addYears(d, 12));
         break;
     }
   }
@@ -286,24 +294,16 @@ export class UiDatePickerCalendarComponent {
   // ── Helpers ─────────────────────────────────────────────────────────────
 
   isCurrentMonth(month: number): boolean {
-    return this.viewDate().getMonth() === month;
+    return getMonth(this.viewDate()) === month;
   }
 
   isCurrentYear(year: number): boolean {
-    return this.viewDate().getFullYear() === year;
+    return getYear(this.viewDate()) === year;
   }
 
   private isDateDisabled(date: Date, min: Date | undefined, max: Date | undefined): boolean {
-    if (min && date < this.startOfDay(min)) return true;
-    if (max && date > this.endOfDay(max)) return true;
+    if (min && isBefore(date, startOfDay(min))) return true;
+    if (max && isAfter(date, endOfDay(max))) return true;
     return false;
-  }
-
-  private startOfDay(d: Date): Date {
-    return new Date(d.getFullYear(), d.getMonth(), d.getDate());
-  }
-
-  private endOfDay(d: Date): Date {
-    return new Date(d.getFullYear(), d.getMonth(), d.getDate(), 23, 59, 59, 999);
   }
 }

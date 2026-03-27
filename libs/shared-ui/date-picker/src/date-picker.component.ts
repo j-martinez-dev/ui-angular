@@ -24,7 +24,15 @@ import {
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { UiInputComponent, type InputVariant, type InputSize } from '@ui/shared-ui/input';
+import { format as formatDateFns, type Locale } from 'date-fns';
+import { fr, enUS, es } from 'date-fns/locale';
 import { UiDatePickerCalendarComponent } from './date-picker-calendar.component';
+
+const LOCALE_MAP: Record<string, Locale> = {
+  'fr-FR': fr,
+  'en-US': enUS,
+  'es-ES': es,
+};
 
 export type DatePickerVariant = InputVariant;
 export type DatePickerSize = InputSize;
@@ -167,13 +175,8 @@ export class UiDatePickerComponent implements FormValueControl<Date | null>, OnD
     });
   }
 
-  private formatDate(date: Date, format: string): string {
-    const dd = String(date.getDate()).padStart(2, '0');
-    const mm = String(date.getMonth() + 1).padStart(2, '0');
-    const yyyy = String(date.getFullYear());
-    return format
-      .replace('dd', dd)
-      .replace('MM', mm)
-      .replace('yyyy', yyyy);
+  private formatDate(date: Date, fmt: string): string {
+    const loc = LOCALE_MAP[this.locale()] ?? enUS;
+    return formatDateFns(date, fmt, { locale: loc });
   }
 }
