@@ -7,7 +7,6 @@ import { UiSliderComponent, SliderSize } from './slider.component';
 
 @Component({
   selector: 'story-slider-docs',
-  standalone: true,
   imports: [UiSliderComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">
@@ -95,7 +94,6 @@ const SIZES: SliderSize[] = ['sm', 'md', 'lg'];
 
 @Component({
   selector: 'story-slider-variants',
-  standalone: true,
   imports: [UiSliderComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">

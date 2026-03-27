@@ -7,7 +7,6 @@ import { UiRadioComponent, RadioSize } from './radio.component';
 
 @Component({
   selector: 'story-radio-docs',
-  standalone: true,
   imports: [UiRadioComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">
@@ -85,7 +84,6 @@ const SIZES: RadioSize[] = ['sm', 'md', 'lg'];
 
 @Component({
   selector: 'story-radio-variants',
-  standalone: true,
   imports: [UiRadioComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">

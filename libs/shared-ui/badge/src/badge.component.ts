@@ -63,7 +63,6 @@ const VARIANT_MAPS: Record<BadgeVariant, Record<BadgeColor, BadgeStyles>> = {
 
 @Component({
   selector: 'ui-badge',
-  standalone: true,
   imports: [UiIconComponent],
   template: `
     @if (icon()) {

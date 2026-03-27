@@ -7,7 +7,6 @@ import { UiToggleComponent, ToggleSize } from './toggle.component';
 
 @Component({
   selector: 'story-toggle-docs',
-  standalone: true,
   imports: [UiToggleComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">
@@ -89,7 +88,6 @@ const SIZES: ToggleSize[] = ['sm', 'md', 'lg'];
 
 @Component({
   selector: 'story-toggle-variants',
-  standalone: true,
   imports: [UiToggleComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">

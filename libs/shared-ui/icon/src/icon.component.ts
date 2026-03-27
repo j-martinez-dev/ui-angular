@@ -46,7 +46,6 @@ const COLOR_MAP: Record<IconColor, string> = {
 
 @Component({
   selector: 'ui-icon',
-  standalone: true,
   imports: [NgIcon],
   template: `<ng-icon [name]="name()" />`,
   styleUrl: './icon.component.scss',

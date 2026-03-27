@@ -15,7 +15,6 @@ export type ToggleSize = 'sm' | 'md' | 'lg';
 
 @Component({
   selector: 'ui-toggle',
-  standalone: true,
   template: `
     @if (!hidden()) {
       <label class="toggle-wrapper" [class.toggle--disabled]="disabled()">

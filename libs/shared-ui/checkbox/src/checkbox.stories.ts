@@ -11,7 +11,6 @@ const icons = { heroCheck, heroMinus };
 
 @Component({
   selector: 'story-checkbox-docs',
-  standalone: true,
   imports: [UiCheckboxComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">
@@ -99,7 +98,6 @@ const SIZES: CheckboxSize[] = ['sm', 'md', 'lg'];
 
 @Component({
   selector: 'story-checkbox-variants',
-  standalone: true,
   imports: [UiCheckboxComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">

@@ -84,7 +84,6 @@ const SPINNER_SIZE_MAP: Record<ButtonSize, SpinnerSize> = {
 
 @Component({
   selector: 'ui-button',
-  standalone: true,
   imports: [UiIconComponent, UiSpinnerComponent],
   template: `
     <button

@@ -16,7 +16,6 @@ const icons = { heroUser };
 
 @Component({
   selector: 'story-avatar-docs',
-  standalone: true,
   imports: [UiAvatarComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">
@@ -90,7 +89,6 @@ const SHAPES: AvatarShape[] = ['circle', 'square'];
 
 @Component({
   selector: 'story-avatar-variants',
-  standalone: true,
   imports: [UiAvatarComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">

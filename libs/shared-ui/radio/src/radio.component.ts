@@ -15,7 +15,6 @@ export type RadioSize = 'sm' | 'md' | 'lg';
 
 @Component({
   selector: 'ui-radio',
-  standalone: true,
   template: `
     @if (!hidden()) {
       <label class="radio-wrapper" [class.radio--disabled]="disabled()">

@@ -12,7 +12,6 @@ import {
 
 @Component({
   selector: 'story-spinner-docs',
-  standalone: true,
   imports: [UiSpinnerComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">
@@ -85,7 +84,6 @@ const VARIANTS: SpinnerVariant[] = ['circular', 'dots'];
 
 @Component({
   selector: 'story-spinner-variants',
-  standalone: true,
   imports: [UiSpinnerComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">

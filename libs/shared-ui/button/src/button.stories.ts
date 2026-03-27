@@ -27,7 +27,6 @@ const icons = {
 
 @Component({
   selector: 'story-button-docs',
-  standalone: true,
   imports: [UiButtonComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">
@@ -125,7 +124,6 @@ const SIZES: ButtonSize[] = ['sm', 'md', 'lg'];
 
 @Component({
   selector: 'story-button-variants',
-  standalone: true,
   imports: [UiButtonComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">

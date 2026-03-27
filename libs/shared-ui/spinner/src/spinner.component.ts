@@ -28,7 +28,6 @@ const COLOR_MAP: Record<SpinnerColor, string> = {
 
 @Component({
   selector: 'ui-spinner',
-  standalone: true,
   template: `
     @switch (variant()) {
       @case ('circular') {
@@ -70,7 +69,7 @@ export class UiSpinnerComponent {
   variant = input<SpinnerVariant>('circular');
   size = input<SpinnerSize>('md');
   color = input<SpinnerColor>('primary');
-  label = input<string>('Chargement...');
+  label = input<string>('Loading...');
 
   protected sizeValue = computed(() => SIZE_MAP[this.size()]);
   protected colorValue = computed(() => COLOR_MAP[this.color()]);

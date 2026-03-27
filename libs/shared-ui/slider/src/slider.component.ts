@@ -17,7 +17,6 @@ export type SliderSize = 'sm' | 'md' | 'lg';
 
 @Component({
   selector: 'ui-slider',
-  standalone: true,
   template: `
     @if (!hidden()) {
       <div class="slider-wrapper">
@@ -29,6 +28,7 @@ export type SliderSize = 'sm' | 'md' | 'lg';
           [max]="max() ?? 100"
           [step]="step()"
           [disabled]="disabled()"
+          [attr.aria-label]="label()"
           [attr.aria-invalid]="invalid() || null"
           [class.slider-input--invalid]="invalid()"
           [style.--slider-fill-percent]="fillPercent()"
@@ -69,6 +69,7 @@ export class UiSliderComponent implements FormValueControl<number> {
   max = input<number | undefined>(undefined);
 
   // Additional inputs
+  label = input<string>('Value');
   step = input<number>(1);
   size = input<SliderSize>('md');
 

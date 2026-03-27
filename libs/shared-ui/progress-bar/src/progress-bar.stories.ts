@@ -12,7 +12,6 @@ import {
 
 @Component({
   selector: 'story-progress-bar-docs',
-  standalone: true,
   imports: [UiProgressBarComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">
@@ -90,7 +89,6 @@ const VARIANTS: ProgressBarVariant[] = ['default', 'striped'];
 
 @Component({
   selector: 'story-progress-bar-variants',
-  standalone: true,
   imports: [UiProgressBarComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">

@@ -23,7 +23,6 @@ const ICON_SIZE_MAP: Record<CheckboxSize, IconSize> = {
 
 @Component({
   selector: 'ui-checkbox',
-  standalone: true,
   imports: [UiIconComponent],
   template: `
     @if (!hidden()) {

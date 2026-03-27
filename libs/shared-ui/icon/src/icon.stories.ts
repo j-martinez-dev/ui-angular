@@ -27,7 +27,6 @@ const icons = {
 
 @Component({
   selector: 'story-icon-docs',
-  standalone: true,
   imports: [UiIconComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">
@@ -98,7 +97,6 @@ const COLORS: IconColor[] = ['default', 'primary', 'success', 'warning', 'error'
 
 @Component({
   selector: 'story-icon-variants',
-  standalone: true,
   imports: [UiIconComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">

@@ -44,7 +44,6 @@ const COLOR_MAP: Record<AvatarColor, AvatarColorConfig> = {
 
 @Component({
   selector: 'ui-avatar',
-  standalone: true,
   imports: [UiIconComponent],
   template: `
     @if (initials()) {
