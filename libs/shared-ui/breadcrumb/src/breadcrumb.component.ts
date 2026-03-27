@@ -16,12 +16,6 @@ const ICON_SIZE_MAP: Record<BreadcrumbSize, IconSize> = {
   lg: 'sm',
 };
 
-const SEPARATOR_SIZE_MAP: Record<BreadcrumbSize, IconSize> = {
-  sm: 'xs',
-  md: 'xs',
-  lg: 'sm',
-};
-
 @Component({
   selector: 'ui-breadcrumb',
   imports: [UiIconComponent],
@@ -38,6 +32,17 @@ const SEPARATOR_SIZE_MAP: Record<BreadcrumbSize, IconSize> = {
                 }
                 {{ item.label }}
               </span>
+            } @else if (item.href) {
+              <a
+                class="breadcrumb-label breadcrumb-label--link"
+                [href]="item.href"
+                (click)="onItemClick($event, item.value)"
+              >
+                @if (item.icon) {
+                  <ui-icon [name]="item.icon" [size]="iconSize()" />
+                }
+                {{ item.label }}
+              </a>
             } @else {
               <button
                 class="breadcrumb-label breadcrumb-label--link"
@@ -53,7 +58,7 @@ const SEPARATOR_SIZE_MAP: Record<BreadcrumbSize, IconSize> = {
             @if (!last) {
               <ui-icon
                 name="heroChevronRight"
-                [size]="separatorSize()"
+                [size]="iconSize()"
                 color="muted"
                 class="breadcrumb-separator"
               />
@@ -79,5 +84,12 @@ export class UiBreadcrumbComponent<T = string> {
   itemClick = output<T>();
 
   protected iconSize = computed(() => ICON_SIZE_MAP[this.size()]);
-  protected separatorSize = computed(() => SEPARATOR_SIZE_MAP[this.size()]);
+
+  onItemClick(event: MouseEvent, value: T): void {
+    // Only emit for SPA navigation; let Ctrl+Click / middle-click work natively
+    if (!event.ctrlKey && !event.metaKey && !event.shiftKey) {
+      event.preventDefault();
+      this.itemClick.emit(value);
+    }
+  }
 }

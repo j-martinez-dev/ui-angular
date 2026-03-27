@@ -23,7 +23,7 @@
   align-items: center;
   gap: var(--spacing);
   font-family: var(--font-sans);
-  line-height: 1;
+  line-height: var(--leading-snug);
 }
 
 .breadcrumb-label--link {
@@ -32,6 +32,7 @@
   padding: 0;
   cursor: pointer;
   color: var(--color-text-muted);
+  text-decoration: none;
   transition: color var(--duration-fast) var(--easing-default);
 }
 
