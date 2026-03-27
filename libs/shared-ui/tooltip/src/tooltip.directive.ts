@@ -18,6 +18,7 @@ import { UiTooltipComponent } from './tooltip.component';
 
 export type TooltipPosition = 'top' | 'bottom' | 'left' | 'right';
 
+// Matches var(--spacing) base unit (0.25rem = 4px at default font size)
 const OFFSET = 4;
 
 const POSITION_MAP: Record<TooltipPosition, ConnectedPosition & { offsetX?: number; offsetY?: number }> = {
@@ -68,6 +69,7 @@ export class UiTooltipDirective implements OnDestroy {
   private overlayRef: OverlayRef | null = null;
   private componentRef: ComponentRef<UiTooltipComponent> | null = null;
   private showTimer: ReturnType<typeof setTimeout> | null = null;
+  private lastPosition: TooltipPosition | null = null;
   private readonly tooltipId = `ui-tooltip-${nextId++}`;
 
   // ── Event listeners ───────────────────────────────────────────────────
@@ -79,6 +81,7 @@ export class UiTooltipDirective implements OnDestroy {
     el.addEventListener('focusin', this.onShow);
     el.addEventListener('mouseleave', this.onHide);
     el.addEventListener('focusout', this.onHide);
+    el.addEventListener('keydown', this.onKeydown);
   }
 
   ngOnDestroy(): void {
@@ -87,6 +90,7 @@ export class UiTooltipDirective implements OnDestroy {
     el.removeEventListener('focusin', this.onShow);
     el.removeEventListener('mouseleave', this.onHide);
     el.removeEventListener('focusout', this.onHide);
+    el.removeEventListener('keydown', this.onKeydown);
 
     this.clearTimer();
     this.hide();
@@ -106,11 +110,25 @@ export class UiTooltipDirective implements OnDestroy {
     this.hide();
   };
 
+  private onKeydown = (event: KeyboardEvent): void => {
+    if (event.key === 'Escape' && this.componentRef) {
+      this.clearTimer();
+      this.hide();
+    }
+  };
+
   private show(): void {
     if (this.componentRef) return;
 
+    // Dispose stale overlay if position changed since last creation
+    if (this.overlayRef && this.lastPosition !== this.uiTooltipPosition()) {
+      this.overlayRef.dispose();
+      this.overlayRef = null;
+    }
+
     if (!this.overlayRef) {
       this.overlayRef = this.createOverlay();
+      this.lastPosition = this.uiTooltipPosition();
     }
 
     const portal = new ComponentPortal(UiTooltipComponent, this.viewContainerRef);

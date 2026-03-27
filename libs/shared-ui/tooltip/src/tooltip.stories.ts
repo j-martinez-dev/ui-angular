@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { applicationConfig, moduleMetadata } from '@storybook/angular';
+import { applicationConfig, argsToTemplate, moduleMetadata } from '@storybook/angular';
 import { Component, TemplateRef, viewChild } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { heroInformationCircle, heroTrash } from '@ng-icons/heroicons/outline';
@@ -38,30 +38,30 @@ const icons = { heroInformationCircle, heroTrash };
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Input</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Type</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Default</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Description</th>
+              <th class="ui-body-sm p-2 text-left">Input</th>
+              <th class="ui-body-sm p-2 text-left">Type</th>
+              <th class="ui-body-sm p-2 text-left">Default</th>
+              <th class="ui-body-sm p-2 text-left">Description</th>
             </tr>
           </thead>
           <tbody>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">uiTooltip</td>
-              <td class="ui-code" style="padding: 0.5rem;">string | TemplateRef</td>
-              <td class="ui-code" style="padding: 0.5rem;">required</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Tooltip content — plain text or an ng-template</td>
+              <td class="ui-code p-2">uiTooltip</td>
+              <td class="ui-code p-2">string | TemplateRef</td>
+              <td class="ui-code p-2">required</td>
+              <td class="ui-body-sm p-2">Tooltip content — plain text or an ng-template</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">uiTooltipPosition</td>
-              <td class="ui-code" style="padding: 0.5rem;">top | bottom | left | right</td>
-              <td class="ui-code" style="padding: 0.5rem;">top</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Preferred position relative to the host</td>
+              <td class="ui-code p-2">uiTooltipPosition</td>
+              <td class="ui-code p-2">top | bottom | left | right</td>
+              <td class="ui-code p-2">top</td>
+              <td class="ui-body-sm p-2">Preferred position relative to the host</td>
             </tr>
             <tr>
-              <td class="ui-code" style="padding: 0.5rem;">uiTooltipDelay</td>
-              <td class="ui-code" style="padding: 0.5rem;">number</td>
-              <td class="ui-code" style="padding: 0.5rem;">300</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Delay in ms before the tooltip appears</td>
+              <td class="ui-code p-2">uiTooltipDelay</td>
+              <td class="ui-code p-2">number</td>
+              <td class="ui-code p-2">300</td>
+              <td class="ui-body-sm p-2">Delay in ms before the tooltip appears</td>
             </tr>
           </tbody>
         </table>
@@ -112,6 +112,30 @@ const POSITIONS: TooltipPosition[] = ['top', 'bottom', 'left', 'right'];
           </ng-template>
           <ui-button variant="primary" [uiTooltip]="richTip" uiTooltipPosition="bottom">
             Save
+          </ui-button>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <p class="ui-overline">Theme — Dark</p>
+        <div class="theme-dark flex flex-wrap items-center justify-center gap-6 p-10" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
+          <ui-button variant="primary" uiTooltip="Dark theme tooltip" uiTooltipPosition="top">
+            Hover me
+          </ui-button>
+          <ui-button variant="secondary" uiTooltip="Another tooltip" uiTooltipPosition="bottom">
+            Or me
+          </ui-button>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <p class="ui-overline">Theme — Pastel</p>
+        <div class="theme-pastel flex flex-wrap items-center justify-center gap-6 p-10" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
+          <ui-button variant="primary" uiTooltip="Pastel theme tooltip" uiTooltipPosition="top">
+            Hover me
+          </ui-button>
+          <ui-button variant="secondary" uiTooltip="Soft tooltip" uiTooltipPosition="bottom">
+            Or me
           </ui-button>
         </div>
       </section>
@@ -168,13 +192,8 @@ export const Playground: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <div style="display: flex; justify-content: center; padding: 80px;">
-        <ui-button
-          variant="primary"
-          [uiTooltip]="'${args['uiTooltip']}'"
-          uiTooltipPosition="${args['uiTooltipPosition']}"
-          [uiTooltipDelay]="${args['uiTooltipDelay']}"
-        >
+      <div class="flex justify-center p-20">
+        <ui-button variant="primary" ${argsToTemplate(args)}>
           Hover me
         </ui-button>
       </div>
