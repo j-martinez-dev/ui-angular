@@ -1,0 +1,158 @@
+:host {
+  display: block;
+}
+
+// ── Layout ──────────────────────────────────────────────────────────────────
+
+.tabs--horizontal {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs--vertical {
+  display: flex;
+  flex-direction: row;
+}
+
+.tabs-strip {
+  display: flex;
+}
+
+.tabs--horizontal .tabs-strip {
+  flex-direction: row;
+}
+
+.tabs--vertical .tabs-strip {
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+// ── Line variant — strip borders ────────────────────────────────────────────
+
+.tabs--horizontal .tabs-strip:not(.tabs-strip--pill) {
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.tabs--vertical .tabs-strip:not(.tabs-strip--pill) {
+  border-right: 1px solid var(--color-border-default);
+}
+
+// ── Pill variant — strip ────────────────────────────────────────────────────
+
+.tabs-strip--pill {
+  background: var(--color-surface-sunken);
+  border-radius: var(--radius-full);
+  padding: var(--spacing);
+  gap: calc(var(--spacing) * 0.5);
+}
+
+.tabs--vertical .tabs-strip--pill {
+  border-radius: var(--radius-md);
+}
+
+// ── Tab button base ─────────────────────────────────────────────────────────
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--spacing) * 1.5);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  transition:
+    color var(--duration-fast) var(--easing-default),
+    background-color var(--duration-fast) var(--easing-default);
+}
+
+.tab:hover:not(.tab--disabled) {
+  color: var(--color-text-default);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: -2px;
+  border-radius: var(--radius-sm);
+}
+
+.tab--disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+// ── Line variant — active indicator ─────────────────────────────────────────
+
+.tab--line {
+  position: relative;
+}
+
+.tabs--horizontal .tab--line.tab--active {
+  color: var(--color-primary-default);
+  font-weight: var(--font-weight-medium);
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--color-primary-default);
+    border-radius: 1px;
+  }
+}
+
+.tabs--vertical .tab--line.tab--active {
+  color: var(--color-primary-default);
+  font-weight: var(--font-weight-medium);
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    height: auto;
+    background: var(--color-primary-default);
+    border-radius: 1px;
+  }
+}
+
+// ── Pill variant — active ───────────────────────────────────────────────────
+
+.tab--pill.tab--active {
+  background: var(--color-surface-raised);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-full);
+  color: var(--color-text-default);
+  font-weight: var(--font-weight-medium);
+}
+
+// ── Size variants ───────────────────────────────────────────────────────────
+
+:host(.size-sm) .tab {
+  font-size: var(--text-sm);
+  padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2.5);
+}
+
+:host(.size-md) .tab {
+  font-size: var(--text-base);
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3.5);
+}
+
+:host(.size-lg) .tab {
+  font-size: var(--text-lg);
+  padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 4.5);
+}
+
+// ── Reduced motion ──────────────────────────────────────────────────────────
+
+@media (prefers-reduced-motion: reduce) {
+  .tab {
+    transition: none;
+  }
+}

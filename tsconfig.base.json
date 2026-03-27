@@ -31,6 +31,7 @@
       "@ui/shared-ui/select": ["libs/shared-ui/select/index.ts"],
       "@ui/shared-ui/slider": ["libs/shared-ui/slider/index.ts"],
       "@ui/shared-ui/spinner": ["libs/shared-ui/spinner/index.ts"],
+      "@ui/shared-ui/tabs": ["libs/shared-ui/tabs/index.ts"],
       "@ui/shared-ui/tag": ["libs/shared-ui/tag/index.ts"],
       "@ui/shared-ui/textarea": ["libs/shared-ui/textarea/index.ts"],
       "@ui/shared-ui/toggle": ["libs/shared-ui/toggle/index.ts"],
