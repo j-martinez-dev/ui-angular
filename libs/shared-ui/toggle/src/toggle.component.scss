@@ -1,0 +1,156 @@
+// ── Wrapper ───────────────────────────────────────────────────────────────────
+
+.toggle-wrapper {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+// ── Track ─────────────────────────────────────────────────────────────────────
+
+.toggle-track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-full);
+  background-color: var(--color-border-strong);
+  flex-shrink: 0;
+  transition: background-color var(--duration-normal) var(--easing-default);
+}
+
+.toggle-track--checked {
+  background-color: var(--color-primary-default);
+}
+
+.toggle-track--invalid {
+  background-color: var(--color-error-subtle);
+}
+
+.toggle-track--invalid.toggle-track--checked {
+  background-color: var(--color-error-default);
+}
+
+// ── Thumb ─────────────────────────────────────────────────────────────────────
+
+.toggle-thumb {
+  position: absolute;
+  left: 2px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface-raised);
+  transition: transform var(--duration-normal) var(--easing-default);
+}
+
+// ── Focus ring ────────────────────────────────────────────────────────────────
+
+.toggle-wrapper:focus-within .toggle-track {
+  outline: 2px solid var(--color-primary-default);
+  outline-offset: 2px;
+}
+
+// ── Disabled ──────────────────────────────────────────────────────────────────
+
+.toggle--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+// ── Label ─────────────────────────────────────────────────────────────────────
+
+.toggle-label {
+  font-family: var(--font-sans);
+  color: var(--color-text-default);
+  user-select: none;
+}
+
+// ── Sizes ─────────────────────────────────────────────────────────────────────
+
+// sm: track 28×16, thumb 12
+:host(.size-sm) {
+  .toggle-wrapper {
+    gap: calc(var(--spacing) * 1.5);
+  }
+
+  .toggle-track {
+    width: 28px;
+    height: 16px;
+  }
+
+  .toggle-thumb {
+    width: 12px;
+    height: 12px;
+  }
+
+  .toggle-track--checked .toggle-thumb {
+    transform: translateX(12px); // 28 - 12 - 2*2 = 12
+  }
+
+  .toggle-label {
+    font-size: var(--text-sm);
+  }
+}
+
+// md: track 36×20, thumb 16
+:host(.size-md) {
+  .toggle-wrapper {
+    gap: calc(var(--spacing) * 2);
+  }
+
+  .toggle-track {
+    width: 36px;
+    height: 20px;
+  }
+
+  .toggle-thumb {
+    width: 16px;
+    height: 16px;
+  }
+
+  .toggle-track--checked .toggle-thumb {
+    transform: translateX(16px); // 36 - 16 - 2*2 = 16
+  }
+
+  .toggle-label {
+    font-size: var(--text-base);
+  }
+}
+
+// lg: track 44×24, thumb 20
+:host(.size-lg) {
+  .toggle-wrapper {
+    gap: calc(var(--spacing) * 2.5);
+  }
+
+  .toggle-track {
+    width: 44px;
+    height: 24px;
+  }
+
+  .toggle-thumb {
+    width: 20px;
+    height: 20px;
+  }
+
+  .toggle-track--checked .toggle-thumb {
+    transform: translateX(20px); // 44 - 20 - 2*2 = 20
+  }
+
+  .toggle-label {
+    font-size: var(--text-lg);
+  }
+}
+
+// ── Visually hidden ───────────────────────────────────────────────────────────
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
