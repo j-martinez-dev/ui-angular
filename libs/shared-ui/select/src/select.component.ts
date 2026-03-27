@@ -28,6 +28,8 @@ import { UiInputComponent } from '@ui/shared-ui/input';
 import { UiTooltipDirective } from '@ui/shared-ui/tooltip';
 import { type SelectOption } from './select.types';
 
+let nextId = 0;
+
 export type SelectVariant = 'outlined' | 'filled' | 'ghost';
 export type SelectSize = 'sm' | 'md' | 'lg';
 
@@ -86,6 +88,7 @@ const HEIGHT_MAP: Record<SelectSize, string> = {
         [attr.aria-expanded]="isOpen()"
         [attr.aria-haspopup]="'listbox'"
         [attr.id]="id() || null"
+        [attr.aria-activedescendant]="focusedOptionId()"
         role="combobox"
         tabindex="0"
         (click)="toggleDropdown()"
@@ -125,6 +128,7 @@ const HEIGHT_MAP: Record<SelectSize, string> = {
                 [class.select-option--selected]="isSelected(option)"
                 [class.select-option--disabled]="option.disabled"
                 [class.select-option--focused]="focusedIndex() === i"
+                [attr.id]="panelId + '-option-' + i"
                 [attr.aria-selected]="isSelected(option)"
                 role="option"
                 (click)="selectOption(option)"
@@ -187,6 +191,7 @@ export class UiSelectComponent<T = unknown> implements FormValueControl<T | null
   isOpen = signal<boolean>(false);
   searchQuery = signal<string>('');
   focusedIndex = signal<number>(-1);
+  protected readonly panelId = `ui-select-panel-${nextId++}`;
 
   // Template refs
   private triggerEl = viewChild<ElementRef<HTMLElement>>('trigger');
@@ -206,6 +211,11 @@ export class UiSelectComponent<T = unknown> implements FormValueControl<T | null
   protected selectedLabel = computed(() =>
     this.options().find(o => o.value === this.value())?.label ?? null,
   );
+
+  protected focusedOptionId = computed(() => {
+    const idx = this.focusedIndex();
+    return idx >= 0 ? `${this.panelId}-option-${idx}` : null;
+  });
 
   protected filteredOptions = computed(() => {
     const q = this.searchQuery().toLowerCase();
@@ -347,6 +357,12 @@ export class UiSelectComponent<T = unknown> implements FormValueControl<T | null
 
     if (idx >= 0 && idx < opts.length) {
       this.focusedIndex.set(idx);
+      this.scrollToFocused(idx);
     }
+  }
+
+  private scrollToFocused(idx: number): void {
+    const el = document.getElementById(`${this.panelId}-option-${idx}`);
+    el?.scrollIntoView({ block: 'nearest' });
   }
 }

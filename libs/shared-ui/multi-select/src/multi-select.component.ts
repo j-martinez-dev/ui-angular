@@ -29,6 +29,8 @@ import { UiCheckboxComponent } from '@ui/shared-ui/checkbox';
 import { UiTooltipDirective } from '@ui/shared-ui/tooltip';
 import { type SelectOption } from '@ui/shared-ui/select';
 
+let nextId = 0;
+
 export type MultiSelectVariant = 'outlined' | 'filled' | 'ghost';
 export type MultiSelectSize = 'sm' | 'md' | 'lg';
 
@@ -87,6 +89,7 @@ const HEIGHT_MAP: Record<MultiSelectSize, string> = {
         [attr.aria-expanded]="isOpen()"
         [attr.aria-haspopup]="'listbox'"
         [attr.aria-multiselectable]="true"
+        [attr.aria-activedescendant]="focusedOptionId()"
         [attr.id]="id() || null"
         role="combobox"
         tabindex="0"
@@ -127,6 +130,7 @@ const HEIGHT_MAP: Record<MultiSelectSize, string> = {
                 [class.select-option--selected]="isSelected(option)"
                 [class.select-option--disabled]="option.disabled"
                 [class.select-option--focused]="focusedIndex() === i"
+                [attr.id]="panelId + '-option-' + i"
                 [attr.aria-selected]="isSelected(option)"
                 role="option"
                 (click)="toggleOption(option)"
@@ -188,6 +192,7 @@ export class UiMultiSelectComponent<T = unknown> implements FormValueControl<T[]
   isOpen = signal<boolean>(false);
   searchQuery = signal<string>('');
   focusedIndex = signal<number>(-1);
+  protected readonly panelId = `ui-multi-select-panel-${nextId++}`;
 
   // Template refs
   private triggerEl = viewChild<ElementRef<HTMLElement>>('trigger');
@@ -203,6 +208,11 @@ export class UiMultiSelectComponent<T = unknown> implements FormValueControl<T[]
   protected variantStyles = computed(() => VARIANT_MAP[this.variant()]);
   protected iconSize = computed(() => ICON_SIZE_MAP[this.size()]);
   protected heightValue = computed(() => HEIGHT_MAP[this.size()]);
+
+  protected focusedOptionId = computed(() => {
+    const idx = this.focusedIndex();
+    return idx >= 0 ? `${this.panelId}-option-${idx}` : null;
+  });
 
   protected triggerLabel = computed(() => {
     const selected = this.value();
@@ -356,6 +366,12 @@ export class UiMultiSelectComponent<T = unknown> implements FormValueControl<T[]
 
     if (idx >= 0 && idx < opts.length) {
       this.focusedIndex.set(idx);
+      this.scrollToFocused(idx);
     }
+  }
+
+  private scrollToFocused(idx: number): void {
+    const el = document.getElementById(`${this.panelId}-option-${idx}`);
+    el?.scrollIntoView({ block: 'nearest' });
   }
 }
