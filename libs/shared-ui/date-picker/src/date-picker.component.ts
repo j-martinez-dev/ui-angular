@@ -24,15 +24,10 @@ import {
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { UiInputComponent, type InputVariant, type InputSize } from '@ui/shared-ui/input';
-import { format as formatDateFns, type Locale } from 'date-fns';
-import { fr, enUS, es } from 'date-fns/locale';
+import { format as formatDateFns } from 'date-fns';
+import { enUS } from 'date-fns/locale';
+import { LOCALE_MAP } from './date-picker.locale';
 import { UiDatePickerCalendarComponent } from './date-picker-calendar.component';
-
-const LOCALE_MAP: Record<string, Locale> = {
-  'fr-FR': fr,
-  'en-US': enUS,
-  'es-ES': es,
-};
 
 export type DatePickerVariant = InputVariant;
 export type DatePickerSize = InputSize;

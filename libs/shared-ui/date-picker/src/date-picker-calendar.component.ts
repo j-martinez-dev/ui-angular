@@ -19,20 +19,23 @@ import {
   getMonth,
   getYear,
   getDate,
+  setMonth,
+  setYear,
   isBefore,
   isAfter,
   startOfDay,
   endOfDay,
   format as formatDate,
   eachDayOfInterval,
-  type Locale,
 } from 'date-fns';
-import { fr, enUS, es } from 'date-fns/locale';
+import { enUS } from 'date-fns/locale';
+import { LOCALE_MAP } from './date-picker.locale';
 
 type CalendarView = 'days' | 'months' | 'years';
 
 interface DayCell {
   date: Date;
+  day: number;
   key: string;
   isAdjacentMonth: boolean;
   isDisabled: boolean;
@@ -42,12 +45,6 @@ interface MonthEntry {
   index: number;
   label: string;
 }
-
-const LOCALE_MAP: Record<string, Locale> = {
-  'fr-FR': fr,
-  'en-US': enUS,
-  'es-ES': es,
-};
 
 function dateKey(d: Date): string {
   return `${getYear(d)}-${getMonth(d)}-${getDate(d)}`;
@@ -93,13 +90,13 @@ function dateKey(d: Date): string {
             <button
               class="calendar-day"
               [class.calendar-day--selected]="selectedKey() === cell.key"
-              [class.calendar-day--today]="todayKey() === cell.key"
+              [class.calendar-day--today]="todayKey === cell.key"
               [class.calendar-day--adjacent]="cell.isAdjacentMonth"
               [class.calendar-day--disabled]="cell.isDisabled"
               [disabled]="cell.isDisabled || cell.isAdjacentMonth"
               (click)="selectDate(cell.date)"
             >
-              {{ cell.date.getDate() }}
+              {{ cell.day }}
             </button>
           }
         </div>
@@ -151,6 +148,9 @@ export class UiDatePickerCalendarComponent {
   view = signal<CalendarView>('days');
   viewDate = signal<Date>(new Date());
 
+  // Static today key — computed once at component creation
+  protected readonly todayKey = dateKey(new Date());
+
   constructor() {
     effect(() => {
       const v = this.value();
@@ -166,8 +166,6 @@ export class UiDatePickerCalendarComponent {
     const v = this.value();
     return v ? dateKey(v) : null;
   });
-
-  protected todayKey = computed(() => dateKey(new Date()));
 
   private dateFnsLocale = computed(() => LOCALE_MAP[this.locale()] ?? enUS);
 
@@ -213,7 +211,7 @@ export class UiDatePickerCalendarComponent {
       const date = addDays(gridStart, i);
       const isAdjacentMonth = getMonth(date) !== month;
       const isDisabled = this.isDateDisabled(date, min, max);
-      cells.push({ date, key: dateKey(date), isAdjacentMonth, isDisabled });
+      cells.push({ date, day: getDate(date), key: dateKey(date), isAdjacentMonth, isDisabled });
     }
 
     return cells;
@@ -240,12 +238,12 @@ export class UiDatePickerCalendarComponent {
   }
 
   selectMonth(month: number): void {
-    this.viewDate.update(d => new Date(getYear(d), month, 1));
+    this.viewDate.update(d => startOfMonth(setMonth(d, month)));
     this.view.set('days');
   }
 
   selectYear(year: number): void {
-    this.viewDate.update(d => new Date(year, getMonth(d), 1));
+    this.viewDate.update(d => startOfMonth(setYear(d, year)));
     this.view.set('months');
   }
 
