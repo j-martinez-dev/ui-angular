@@ -1,0 +1,68 @@
+:host {
+  display: inline-block;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing);
+  border-radius: var(--radius-full);
+  background-color: var(--tag-bg);
+  color: var(--tag-color);
+  border: var(--tag-border, none);
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  transition: background-color var(--duration-normal) var(--easing-default);
+}
+
+.tag--clickable {
+  cursor: pointer;
+}
+
+.tag--clickable:hover {
+  background-color: var(--tag-hover-bg);
+}
+
+.tag--clickable:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.tag-label {
+  line-height: 1;
+}
+
+// ── Size variants ───────────────────────────────────────────────────────────
+
+:host(.size-sm) .tag {
+  padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1.5);
+}
+
+:host(.size-sm) .tag-label {
+  font-size: var(--text-xs);
+}
+
+:host(.size-md) .tag {
+  padding: var(--spacing) calc(var(--spacing) * 2);
+}
+
+:host(.size-md) .tag-label {
+  font-size: var(--text-sm);
+}
+
+:host(.size-lg) .tag {
+  padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2.5);
+}
+
+:host(.size-lg) .tag-label {
+  font-size: var(--text-base);
+}
+
+// ── Reduced motion ──────────────────────────────────────────────────────────
+
+@media (prefers-reduced-motion: reduce) {
+  .tag {
+    transition: none;
+  }
+}
