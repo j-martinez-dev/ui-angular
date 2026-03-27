@@ -39,8 +39,8 @@ const ROLE_OPTIONS: SelectOption<string>[] = [
       <section class="flex flex-col gap-4">
         <h3 class="ui-h3">Usage</h3>
         <div class="flex flex-col gap-4 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-form-field label="Email" hint="We'll never share your email" [required]="true">
-            <ui-input type="email" placeholder="you{'@'}example.com" />
+          <ui-form-field #emailField label="Email" hint="We'll never share your email" [required]="true">
+            <ui-input type="email" placeholder="you@example.com" [id]="emailField.controlId()" [ariaDescribedBy]="emailField.describedBy()" />
           </ui-form-field>
         </div>
         <code class="ui-code">&lt;ui-form-field label="Email" [required]="true"&gt;...&lt;/ui-form-field&gt;</code>

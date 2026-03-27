@@ -14,10 +14,12 @@
   font-family: var(--font-sans);
   font-size: var(--text-sm);
   font-weight: var(--font-weight-medium);
+  line-height: var(--leading-snug);
   color: var(--color-text-default);
   display: inline-flex;
   align-items: center;
   gap: calc(var(--spacing) * 0.5);
+  cursor: pointer;
 }
 
 .form-field--invalid .form-field-label {
