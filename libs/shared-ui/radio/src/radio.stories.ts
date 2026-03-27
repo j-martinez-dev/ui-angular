@@ -33,42 +33,42 @@ import { UiRadioComponent, RadioSize } from './radio.component';
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Input</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Type</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Default</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Description</th>
+              <th class="ui-body-sm p-2 text-left">Input</th>
+              <th class="ui-body-sm p-2 text-left">Type</th>
+              <th class="ui-body-sm p-2 text-left">Default</th>
+              <th class="ui-body-sm p-2 text-left">Description</th>
             </tr>
           </thead>
           <tbody>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">checked</td>
-              <td class="ui-code" style="padding: 0.5rem;">boolean</td>
-              <td class="ui-code" style="padding: 0.5rem;">false</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Two-way bound checked state (model signal)</td>
+              <td class="ui-code p-2">checked</td>
+              <td class="ui-code p-2">boolean</td>
+              <td class="ui-code p-2">false</td>
+              <td class="ui-body-sm p-2">Two-way bound checked state (model signal)</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">label</td>
-              <td class="ui-code" style="padding: 0.5rem;">string</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">undefined</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Label text displayed next to the radio</td>
+              <td class="ui-code p-2">label</td>
+              <td class="ui-code p-2">string</td>
+              <td class="ui-body-sm p-2">undefined</td>
+              <td class="ui-body-sm p-2">Label text displayed next to the radio</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">size</td>
-              <td class="ui-code" style="padding: 0.5rem;">sm | md | lg</td>
-              <td class="ui-code" style="padding: 0.5rem;">md</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Radio and label size</td>
+              <td class="ui-code p-2">size</td>
+              <td class="ui-code p-2">sm | md | lg</td>
+              <td class="ui-code p-2">md</td>
+              <td class="ui-body-sm p-2">Radio and label size</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">disabled</td>
-              <td class="ui-code" style="padding: 0.5rem;">boolean</td>
-              <td class="ui-code" style="padding: 0.5rem;">false</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Disables the radio</td>
+              <td class="ui-code p-2">disabled</td>
+              <td class="ui-code p-2">boolean</td>
+              <td class="ui-code p-2">false</td>
+              <td class="ui-body-sm p-2">Disables the radio</td>
             </tr>
             <tr>
-              <td class="ui-code" style="padding: 0.5rem;">invalid</td>
-              <td class="ui-code" style="padding: 0.5rem;">boolean</td>
-              <td class="ui-code" style="padding: 0.5rem;">false</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Shows error border (managed by form field)</td>
+              <td class="ui-code p-2">invalid</td>
+              <td class="ui-code p-2">boolean</td>
+              <td class="ui-code p-2">false</td>
+              <td class="ui-body-sm p-2">Shows error border (managed by form field)</td>
             </tr>
           </tbody>
         </table>

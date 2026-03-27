@@ -51,36 +51,36 @@ const icons = {
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Input</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Type</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Default</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Description</th>
+              <th class="ui-body-sm p-2 text-left">Input</th>
+              <th class="ui-body-sm p-2 text-left">Type</th>
+              <th class="ui-body-sm p-2 text-left">Default</th>
+              <th class="ui-body-sm p-2 text-left">Description</th>
             </tr>
           </thead>
           <tbody>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">name</td>
-              <td class="ui-code" style="padding: 0.5rem;">string</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">required</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Icon name from @ng-icons</td>
+              <td class="ui-code p-2">name</td>
+              <td class="ui-code p-2">string</td>
+              <td class="ui-body-sm p-2">required</td>
+              <td class="ui-body-sm p-2">Icon name from @ng-icons</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">size</td>
-              <td class="ui-code" style="padding: 0.5rem;">xs | sm | md | lg | xl | 2xl</td>
-              <td class="ui-code" style="padding: 0.5rem;">md</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Icon size</td>
+              <td class="ui-code p-2">size</td>
+              <td class="ui-code p-2">xs | sm | md | lg | xl | 2xl</td>
+              <td class="ui-code p-2">md</td>
+              <td class="ui-body-sm p-2">Icon size</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">color</td>
-              <td class="ui-code" style="padding: 0.5rem;">primary | success | ... | accent-3</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">undefined (inherits currentColor)</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Semantic color token</td>
+              <td class="ui-code p-2">color</td>
+              <td class="ui-code p-2">primary | success | ... | accent-3</td>
+              <td class="ui-body-sm p-2">undefined (inherits currentColor)</td>
+              <td class="ui-body-sm p-2">Semantic color token</td>
             </tr>
             <tr>
-              <td class="ui-code" style="padding: 0.5rem;">label</td>
-              <td class="ui-code" style="padding: 0.5rem;">string</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">undefined</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Accessible label (decorative if absent)</td>
+              <td class="ui-code p-2">label</td>
+              <td class="ui-code p-2">string</td>
+              <td class="ui-body-sm p-2">undefined</td>
+              <td class="ui-body-sm p-2">Accessible label (decorative if absent)</td>
             </tr>
           </tbody>
         </table>

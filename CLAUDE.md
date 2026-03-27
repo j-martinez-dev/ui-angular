@@ -6,13 +6,14 @@ This document describes the design system token system and how to use them corre
 
 ## Token system architecture
 
-Tokens live in `styles/` and are structured in three files:
+Tokens live in `styles/` and are structured as follows:
 
 - `lib/theme.css` — base tokens (light mode)
-- `lib/dark.css` — overrides for dark mode
+- `lib/themes/dark.css` — overrides for dark mode (`.theme-dark`)
+- `lib/themes/pastel.css` — overrides for pastel theme (`.theme-pastel`)
 - `lib/typography.css` — typography utility classes
 
-The entry point is `styles/index.css`, which imports all three in order.
+The entry point is `styles/index.css`, which imports all files in order.
 
 All tokens are **CSS custom properties** defined inside Tailwind 4's `@theme`, which means Tailwind consumes them automatically and exposes them as utilities.
 
@@ -160,6 +161,33 @@ var(--color-border-default)  /* Standard borders — inputs, cards, dividers */
 var(--color-border-strong)   /* Higher contrast borders — focus, separators */
 ```
 
+### Focus
+
+```css
+var(--color-focus-ring)  /* Focus outline color — used on all interactive elements */
+```
+
+All interactive components use the same focus style:
+```scss
+outline: 2px solid var(--color-focus-ring);
+outline-offset: 2px;
+```
+
+### Disabled
+
+```css
+var(--opacity-disabled)  /* 0.4 in light/pastel, 0.35 in dark */
+```
+
+All disabled states must use this token instead of hardcoding opacity:
+```scss
+.my-component--disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+```
+
 ---
 
 ## Typography tokens
@@ -167,9 +195,11 @@ var(--color-border-strong)   /* Higher contrast borders — focus, separators */
 ### Font families
 
 ```css
-var(--font-sans)  /* Inter — general use */
+var(--font-sans)  /* Plus Jakarta Sans — general use */
 var(--font-mono)  /* Fira Code — code, technical values */
 ```
+
+> The consuming project must load the font (e.g., Google Fonts, Fontsource, or self-hosted). The token only declares the font-family stack.
 
 The size scale, weights, and line-heights are inherited from Tailwind 4 defaults:
 
@@ -307,6 +337,22 @@ Usage:
 }
 ```
 
+### Animation guidelines
+
+- **Hover effects and color changes** — use `--duration-normal` with `--easing-default`
+- **Micro-interactions** (toggles, checkmarks, dots) — use `--duration-fast` with `--easing-default`
+- **Entry/exit animations** (modals, drawers, tooltips) — use `--duration-slow` with `--easing-in`/`--easing-out`
+- **Always respect `prefers-reduced-motion`** — every animated component must include:
+
+```scss
+@media (prefers-reduced-motion: reduce) {
+  .animated-element {
+    transition: none;
+    animation: none;
+  }
+}
+```
+
 ---
 
 ## Z-index tokens
@@ -321,11 +367,19 @@ var(--z-toast)     /* 500 — toasts, notifications (always on top) */
 
 ---
 
-## Dark mode
+## Theming
 
-Dark mode is activated automatically via `prefers-color-scheme: dark` or by adding the `dark` class to the `html` element, depending on the consuming project's Tailwind configuration.
+Three themes are available out of the box:
 
-Tokens have exactly the same names in both modes — there are no dark-specific tokens. The switch is transparent to components.
+| Theme | CSS class | File | Description |
+|---|---|---|---|
+| Light | _(default)_ | `lib/theme.css` | Neutral light theme with blue primary |
+| Dark | `.theme-dark` | `lib/themes/dark.css` | Dark surfaces, lighter accent colors, stronger shadows |
+| Pastel | `.theme-pastel` | `lib/themes/pastel.css` | Warm cream surfaces, lavender primary, tinted shadows |
+
+Activate a theme by adding its class to a container element (typically `<html>` or a wrapper `<div>`). Themes can be nested — a `.theme-dark` section inside a `.theme-pastel` page works correctly.
+
+Tokens have exactly the same names in all themes — there are no theme-specific tokens. The switch is transparent to components.
 
 ```scss
 // ✅ Correct — works in both modes automatically
@@ -413,6 +467,23 @@ These classes are available globally once `styles/index.css` is imported.
 
 ---
 
+## Signal Forms integration
+
+Form control components (Checkbox, Radio, Toggle, Slider) implement Angular Signal Forms interfaces from `@angular/forms/signals`:
+
+| Component | Interface | Value type |
+|---|---|---|
+| `UiCheckboxComponent` | `FormCheckboxControl` | `boolean` (checked) |
+| `UiRadioComponent` | `FormCheckboxControl` | `boolean` (checked) |
+| `UiToggleComponent` | `FormCheckboxControl` | `boolean` (checked) |
+| `UiSliderComponent` | `FormValueControl<number>` | `number` (value) |
+
+These components expose `model()` signals for two-way binding (`checked` or `value`) and `input()` signals for form state (`disabled`, `invalid`, `errors`, `hidden`, `readonly`, `disabledReasons`). The form framework manages these inputs — consumers should not set `disabled` or `invalid` manually when using Signal Forms.
+
+For standalone use without Signal Forms, inputs like `disabled` and `invalid` can be set directly via template bindings.
+
+---
+
 ## Rules for implementing components
 
 When implementing any component in the library, follow these rules without exception:
@@ -426,7 +497,10 @@ When implementing any component in the library, follow these rules without excep
 7. **Never hardcode component dimensions** — use `var(--icon-size-*)` for icons/spinners, `var(--avatar-size-*)` for avatars, and `var(--spacing)` multiples for heights/widths of bars, tracks, and similar elements
 8. **Use tokens for everything themeable** — colors, radii, shadows, typography, sizing, transitions
 9. **Do not use accents without verifying** that the consuming project has defined them
-10. **Always generate Storybook stories** — every component must have a `.stories.ts` file colocated next to it with exactly **3 exported stories**:
+10. **Use `var(--color-focus-ring)` for focus outlines** — never hardcode focus colors
+11. **Use `var(--opacity-disabled)` for disabled states** — never hardcode opacity values
+12. **Always include `@media (prefers-reduced-motion: reduce)`** for animated components
+13. **Always generate Storybook stories** — every component must have a `.stories.ts` file colocated next to it with exactly **3 exported stories**:
 
 ### Story structure
 

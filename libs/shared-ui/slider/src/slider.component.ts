@@ -41,6 +41,7 @@ export type SliderSize = 'sm' | 'md' | 'lg';
           <span
             class="slider-tooltip"
             [style.left]="fillPercent()"
+            [style.--slider-tooltip-offset]="tooltipOffset()"
           >{{ value() }}</span>
         }
       </div>
@@ -83,6 +84,15 @@ export class UiSliderComponent implements FormValueControl<number> {
     if (range <= 0) return '0%';
     const clamped = Math.min(Math.max(this.value(), minVal), maxVal);
     return `${((clamped - minVal) / range) * 100}%`;
+  });
+
+  protected tooltipOffset = computed(() => {
+    const minVal = this.min() ?? 0;
+    const maxVal = this.max() ?? 100;
+    const range = maxVal - minVal;
+    if (range <= 0) return '-50%';
+    const ratio = Math.min(Math.max((this.value() - minVal) / range, 0), 1);
+    return `${-ratio * 100}%`;
   });
 
   onInput(event: Event): void {

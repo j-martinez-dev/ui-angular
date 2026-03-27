@@ -44,14 +44,14 @@
 // ── Focus ring ────────────────────────────────────────────────────────────────
 
 .toggle-wrapper:focus-within .toggle-track {
-  outline: 2px solid var(--color-primary-default);
+  outline: 2px solid var(--color-focus-ring);
   outline-offset: 2px;
 }
 
 // ── Disabled ──────────────────────────────────────────────────────────────────
 
 .toggle--disabled {
-  opacity: 0.4;
+  opacity: var(--opacity-disabled);
   cursor: not-allowed;
   pointer-events: none;
 }

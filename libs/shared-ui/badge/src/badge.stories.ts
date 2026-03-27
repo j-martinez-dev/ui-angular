@@ -55,42 +55,42 @@ const icons = {
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Input</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Type</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Default</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Description</th>
+              <th class="ui-body-sm p-2 text-left">Input</th>
+              <th class="ui-body-sm p-2 text-left">Type</th>
+              <th class="ui-body-sm p-2 text-left">Default</th>
+              <th class="ui-body-sm p-2 text-left">Description</th>
             </tr>
           </thead>
           <tbody>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">variant</td>
-              <td class="ui-code" style="padding: 0.5rem;">filled | subtle | outline</td>
-              <td class="ui-code" style="padding: 0.5rem;">filled</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Visual style of the badge</td>
+              <td class="ui-code p-2">variant</td>
+              <td class="ui-code p-2">filled | subtle | outline</td>
+              <td class="ui-code p-2">filled</td>
+              <td class="ui-body-sm p-2">Visual style of the badge</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">color</td>
-              <td class="ui-code" style="padding: 0.5rem;">primary | success | warning | error | info | muted</td>
-              <td class="ui-code" style="padding: 0.5rem;">primary</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Semantic color token</td>
+              <td class="ui-code p-2">color</td>
+              <td class="ui-code p-2">primary | success | warning | error | info | muted</td>
+              <td class="ui-code p-2">primary</td>
+              <td class="ui-body-sm p-2">Semantic color token</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">size</td>
-              <td class="ui-code" style="padding: 0.5rem;">sm | md | lg</td>
-              <td class="ui-code" style="padding: 0.5rem;">md</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Badge size</td>
+              <td class="ui-code p-2">size</td>
+              <td class="ui-code p-2">sm | md | lg</td>
+              <td class="ui-code p-2">md</td>
+              <td class="ui-body-sm p-2">Badge size</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">shape</td>
-              <td class="ui-code" style="padding: 0.5rem;">rounded | pill</td>
-              <td class="ui-code" style="padding: 0.5rem;">rounded</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Border radius shape</td>
+              <td class="ui-code p-2">shape</td>
+              <td class="ui-code p-2">rounded | pill</td>
+              <td class="ui-code p-2">rounded</td>
+              <td class="ui-body-sm p-2">Border radius shape</td>
             </tr>
             <tr>
-              <td class="ui-code" style="padding: 0.5rem;">icon</td>
-              <td class="ui-code" style="padding: 0.5rem;">string</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">undefined</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Optional icon name rendered to the left</td>
+              <td class="ui-code p-2">icon</td>
+              <td class="ui-code p-2">string</td>
+              <td class="ui-body-sm p-2">undefined</td>
+              <td class="ui-body-sm p-2">Optional icon name rendered to the left</td>
             </tr>
           </tbody>
         </table>
@@ -149,6 +149,24 @@ const SHAPES: BadgeShape[] = ['rounded', 'pill'];
           <ui-badge variant="subtle" color="warning" icon="heroExclamationTriangle">Warning</ui-badge>
           <ui-badge variant="outline" color="error" icon="heroXMark">Rejected</ui-badge>
           <ui-badge variant="filled" color="info" icon="heroInformationCircle" shape="pill">Info</ui-badge>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <p class="ui-overline">Theme — Dark</p>
+        <div class="theme-dark flex flex-wrap items-center gap-3 p-4" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
+          @for (color of colors; track color) {
+            <ui-badge variant="filled" [color]="color">{{ color }}</ui-badge>
+          }
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <p class="ui-overline">Theme — Pastel</p>
+        <div class="theme-pastel flex flex-wrap items-center gap-3 p-4" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
+          @for (color of colors; track color) {
+            <ui-badge variant="subtle" [color]="color">{{ color }}</ui-badge>
+          }
         </div>
       </section>
 

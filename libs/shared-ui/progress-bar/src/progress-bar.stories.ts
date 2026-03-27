@@ -36,42 +36,42 @@ import {
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Input</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Type</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Default</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Description</th>
+              <th class="ui-body-sm p-2 text-left">Input</th>
+              <th class="ui-body-sm p-2 text-left">Type</th>
+              <th class="ui-body-sm p-2 text-left">Default</th>
+              <th class="ui-body-sm p-2 text-left">Description</th>
             </tr>
           </thead>
           <tbody>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">value</td>
-              <td class="ui-code" style="padding: 0.5rem;">number</td>
-              <td class="ui-code" style="padding: 0.5rem;">0</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Progress value (0–100), clamped automatically</td>
+              <td class="ui-code p-2">value</td>
+              <td class="ui-code p-2">number</td>
+              <td class="ui-code p-2">0</td>
+              <td class="ui-body-sm p-2">Progress value (0–100), clamped automatically</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">variant</td>
-              <td class="ui-code" style="padding: 0.5rem;">default | striped</td>
-              <td class="ui-code" style="padding: 0.5rem;">default</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Visual style of the bar</td>
+              <td class="ui-code p-2">variant</td>
+              <td class="ui-code p-2">default | striped</td>
+              <td class="ui-code p-2">default</td>
+              <td class="ui-body-sm p-2">Visual style of the bar</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">color</td>
-              <td class="ui-code" style="padding: 0.5rem;">primary | success | warning | error | info | muted</td>
-              <td class="ui-code" style="padding: 0.5rem;">primary</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Semantic color token</td>
+              <td class="ui-code p-2">color</td>
+              <td class="ui-code p-2">primary | success | warning | error | info | muted</td>
+              <td class="ui-code p-2">primary</td>
+              <td class="ui-body-sm p-2">Semantic color token</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">size</td>
-              <td class="ui-code" style="padding: 0.5rem;">sm | md | lg</td>
-              <td class="ui-code" style="padding: 0.5rem;">md</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Bar height</td>
+              <td class="ui-code p-2">size</td>
+              <td class="ui-code p-2">sm | md | lg</td>
+              <td class="ui-code p-2">md</td>
+              <td class="ui-body-sm p-2">Bar height</td>
             </tr>
             <tr>
-              <td class="ui-code" style="padding: 0.5rem;">indeterminate</td>
-              <td class="ui-code" style="padding: 0.5rem;">boolean</td>
-              <td class="ui-code" style="padding: 0.5rem;">false</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Continuous animation regardless of value</td>
+              <td class="ui-code p-2">indeterminate</td>
+              <td class="ui-code p-2">boolean</td>
+              <td class="ui-code p-2">false</td>
+              <td class="ui-body-sm p-2">Continuous animation regardless of value</td>
             </tr>
           </tbody>
         </table>

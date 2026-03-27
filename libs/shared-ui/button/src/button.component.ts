@@ -89,10 +89,11 @@ const SPINNER_SIZE_MAP: Record<ButtonSize, SpinnerSize> = {
     <button
       [type]="type()"
       class="btn"
-      [disabled]="disabled()"
+      [disabled]="disabled() || loading()"
       [class.btn--full-width]="fullWidth()"
       [class.btn--loading]="loading()"
       [class.btn--disabled]="disabled()"
+      [attr.aria-busy]="loading() || null"
     >
       @if (loading()) {
         <ui-spinner [size]="spinnerSize()" color="muted" />

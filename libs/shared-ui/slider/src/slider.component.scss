@@ -59,7 +59,7 @@
 }
 
 .slider-input:focus-visible::-webkit-slider-thumb {
-  outline: 2px solid var(--color-primary-default);
+  outline: 2px solid var(--color-focus-ring);
   outline-offset: 2px;
 }
 
@@ -68,7 +68,7 @@
 }
 
 .slider-input--invalid:focus-visible::-webkit-slider-thumb {
-  outline-color: var(--color-error-default);
+  outline-color: var(--color-error-emphasis);
 }
 
 // ── Firefox track ─────────────────────────────────────────────────────────────
@@ -110,7 +110,7 @@
 }
 
 .slider-input:focus-visible::-moz-range-thumb {
-  outline: 2px solid var(--color-primary-default);
+  outline: 2px solid var(--color-focus-ring);
   outline-offset: 2px;
 }
 
@@ -119,7 +119,7 @@
 }
 
 .slider-input--invalid:focus-visible::-moz-range-thumb {
-  outline-color: var(--color-error-default);
+  outline-color: var(--color-error-emphasis);
 }
 
 // ── Tooltip ───────────────────────────────────────────────────────────────────
@@ -127,7 +127,7 @@
 .slider-tooltip {
   position: absolute;
   top: calc(-100% - calc(var(--spacing) * 2));
-  transform: translateX(-50%);
+  transform: translateX(var(--slider-tooltip-offset, -50%));
   white-space: nowrap;
   pointer-events: none;
   background: var(--color-surface-overlay);
@@ -143,7 +143,7 @@
 // ── Disabled ──────────────────────────────────────────────────────────────────
 
 :host(.slider--disabled) {
-  opacity: 0.4;
+  opacity: var(--opacity-disabled);
   pointer-events: none;
 
   .slider-input {

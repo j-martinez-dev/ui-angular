@@ -39,6 +39,12 @@
   --color-surface-overlay: oklch(20% 0 0);
   --color-surface-sunken: oklch(9% 0 0);
 
+  /* Focus */
+  --color-focus-ring: oklch(70% 0.2 250);
+
+  /* Disabled */
+  --opacity-disabled: 0.35;
+
   /* Text */
   --color-text-default: oklch(92% 0 0);
   --color-text-muted: oklch(60% 0 0);

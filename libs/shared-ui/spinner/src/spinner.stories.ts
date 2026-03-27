@@ -37,36 +37,36 @@ import {
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Input</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Type</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Default</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Description</th>
+              <th class="ui-body-sm p-2 text-left">Input</th>
+              <th class="ui-body-sm p-2 text-left">Type</th>
+              <th class="ui-body-sm p-2 text-left">Default</th>
+              <th class="ui-body-sm p-2 text-left">Description</th>
             </tr>
           </thead>
           <tbody>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">variant</td>
-              <td class="ui-code" style="padding: 0.5rem;">circular | dots</td>
-              <td class="ui-code" style="padding: 0.5rem;">circular</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Visual style of the spinner</td>
+              <td class="ui-code p-2">variant</td>
+              <td class="ui-code p-2">circular | dots</td>
+              <td class="ui-code p-2">circular</td>
+              <td class="ui-body-sm p-2">Visual style of the spinner</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">size</td>
-              <td class="ui-code" style="padding: 0.5rem;">xs | sm | md | lg | xl</td>
-              <td class="ui-code" style="padding: 0.5rem;">md</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Spinner size</td>
+              <td class="ui-code p-2">size</td>
+              <td class="ui-code p-2">xs | sm | md | lg | xl</td>
+              <td class="ui-code p-2">md</td>
+              <td class="ui-body-sm p-2">Spinner size</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">color</td>
-              <td class="ui-code" style="padding: 0.5rem;">primary | success | warning | error | info | muted</td>
-              <td class="ui-code" style="padding: 0.5rem;">primary</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Semantic color token</td>
+              <td class="ui-code p-2">color</td>
+              <td class="ui-code p-2">primary | success | warning | error | info | muted</td>
+              <td class="ui-code p-2">primary</td>
+              <td class="ui-body-sm p-2">Semantic color token</td>
             </tr>
             <tr>
-              <td class="ui-code" style="padding: 0.5rem;">label</td>
-              <td class="ui-code" style="padding: 0.5rem;">string</td>
-              <td class="ui-code" style="padding: 0.5rem;">Chargement...</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Accessible label (aria-label)</td>
+              <td class="ui-code p-2">label</td>
+              <td class="ui-code p-2">string</td>
+              <td class="ui-code p-2">Loading...</td>
+              <td class="ui-body-sm p-2">Accessible label (aria-label)</td>
             </tr>
           </tbody>
         </table>
@@ -195,7 +195,7 @@ export const Playground: Story = {
     variant: 'circular',
     size: 'md',
     color: 'primary',
-    label: 'Chargement...',
+    label: 'Loading...',
   },
   render: (args) => ({
     props: args,

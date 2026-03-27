@@ -42,36 +42,36 @@ const icons = { heroUser };
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Input</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Type</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Default</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Description</th>
+              <th class="ui-body-sm p-2 text-left">Input</th>
+              <th class="ui-body-sm p-2 text-left">Type</th>
+              <th class="ui-body-sm p-2 text-left">Default</th>
+              <th class="ui-body-sm p-2 text-left">Description</th>
             </tr>
           </thead>
           <tbody>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">initials</td>
-              <td class="ui-code" style="padding: 0.5rem;">string</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">undefined</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Text initials (e.g. 'JD'). Falls back to icon if absent</td>
+              <td class="ui-code p-2">initials</td>
+              <td class="ui-code p-2">string</td>
+              <td class="ui-body-sm p-2">undefined</td>
+              <td class="ui-body-sm p-2">Text initials (e.g. 'JD'). Falls back to icon if absent</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">color</td>
-              <td class="ui-code" style="padding: 0.5rem;">primary | success | warning | error | info | muted</td>
-              <td class="ui-code" style="padding: 0.5rem;">primary</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Semantic color token</td>
+              <td class="ui-code p-2">color</td>
+              <td class="ui-code p-2">primary | success | warning | error | info | muted</td>
+              <td class="ui-code p-2">primary</td>
+              <td class="ui-body-sm p-2">Semantic color token</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">size</td>
-              <td class="ui-code" style="padding: 0.5rem;">sm | md | lg | xl</td>
-              <td class="ui-code" style="padding: 0.5rem;">md</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Avatar size</td>
+              <td class="ui-code p-2">size</td>
+              <td class="ui-code p-2">sm | md | lg | xl</td>
+              <td class="ui-code p-2">md</td>
+              <td class="ui-body-sm p-2">Avatar size</td>
             </tr>
             <tr>
-              <td class="ui-code" style="padding: 0.5rem;">shape</td>
-              <td class="ui-code" style="padding: 0.5rem;">circle | square</td>
-              <td class="ui-code" style="padding: 0.5rem;">circle</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Border radius shape</td>
+              <td class="ui-code p-2">shape</td>
+              <td class="ui-code p-2">circle | square</td>
+              <td class="ui-code p-2">circle</td>
+              <td class="ui-body-sm p-2">Border radius shape</td>
             </tr>
           </tbody>
         </table>
@@ -144,11 +144,11 @@ const SHAPES: AvatarShape[] = ['circle', 'square'];
       <section class="flex flex-col gap-4">
         <p class="ui-overline">Group</p>
         <div class="flex items-center p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
-          <div class="flex" style="gap: -8px;">
-            <ui-avatar initials="JD" size="lg" color="primary" style="margin-left: -8px; border: 2px solid var(--color-surface-raised);" />
-            <ui-avatar initials="AB" size="lg" color="success" style="margin-left: -8px; border: 2px solid var(--color-surface-raised);" />
-            <ui-avatar initials="CD" size="lg" color="warning" style="margin-left: -8px; border: 2px solid var(--color-surface-raised);" />
-            <ui-avatar size="lg" color="muted" style="margin-left: -8px; border: 2px solid var(--color-surface-raised);" />
+          <div class="flex">
+            <ui-avatar initials="JD" size="lg" color="primary" style="margin-left: calc(var(--spacing) * -2); border: 2px solid var(--color-surface-raised);" />
+            <ui-avatar initials="AB" size="lg" color="success" style="margin-left: calc(var(--spacing) * -2); border: 2px solid var(--color-surface-raised);" />
+            <ui-avatar initials="CD" size="lg" color="warning" style="margin-left: calc(var(--spacing) * -2); border: 2px solid var(--color-surface-raised);" />
+            <ui-avatar size="lg" color="muted" style="margin-left: calc(var(--spacing) * -2); border: 2px solid var(--color-surface-raised);" />
           </div>
         </div>
       </section>

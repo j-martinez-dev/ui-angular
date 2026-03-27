@@ -54,60 +54,60 @@ const icons = {
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Input</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Type</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Default</th>
-              <th class="ui-body-sm" style="text-align: left; padding: 0.5rem;">Description</th>
+              <th class="ui-body-sm p-2 text-left">Input</th>
+              <th class="ui-body-sm p-2 text-left">Type</th>
+              <th class="ui-body-sm p-2 text-left">Default</th>
+              <th class="ui-body-sm p-2 text-left">Description</th>
             </tr>
           </thead>
           <tbody>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">variant</td>
-              <td class="ui-code" style="padding: 0.5rem;">primary | secondary | ghost | danger | accent-1 | accent-2 | accent-3</td>
-              <td class="ui-code" style="padding: 0.5rem;">primary</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Visual style of the button</td>
+              <td class="ui-code p-2">variant</td>
+              <td class="ui-code p-2">primary | secondary | ghost | danger | accent-1 | accent-2 | accent-3</td>
+              <td class="ui-code p-2">primary</td>
+              <td class="ui-body-sm p-2">Visual style of the button</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">size</td>
-              <td class="ui-code" style="padding: 0.5rem;">sm | md | lg</td>
-              <td class="ui-code" style="padding: 0.5rem;">md</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Button size</td>
+              <td class="ui-code p-2">size</td>
+              <td class="ui-code p-2">sm | md | lg</td>
+              <td class="ui-code p-2">md</td>
+              <td class="ui-body-sm p-2">Button size</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">type</td>
-              <td class="ui-code" style="padding: 0.5rem;">button | submit | reset</td>
-              <td class="ui-code" style="padding: 0.5rem;">button</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Native button type</td>
+              <td class="ui-code p-2">type</td>
+              <td class="ui-code p-2">button | submit | reset</td>
+              <td class="ui-code p-2">button</td>
+              <td class="ui-body-sm p-2">Native button type</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">disabled</td>
-              <td class="ui-code" style="padding: 0.5rem;">boolean</td>
-              <td class="ui-code" style="padding: 0.5rem;">false</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Disables the button</td>
+              <td class="ui-code p-2">disabled</td>
+              <td class="ui-code p-2">boolean</td>
+              <td class="ui-code p-2">false</td>
+              <td class="ui-body-sm p-2">Disables the button</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">loading</td>
-              <td class="ui-code" style="padding: 0.5rem;">boolean</td>
-              <td class="ui-code" style="padding: 0.5rem;">false</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Shows spinner and disables interaction</td>
+              <td class="ui-code p-2">loading</td>
+              <td class="ui-code p-2">boolean</td>
+              <td class="ui-code p-2">false</td>
+              <td class="ui-body-sm p-2">Shows spinner and disables interaction</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">fullWidth</td>
-              <td class="ui-code" style="padding: 0.5rem;">boolean</td>
-              <td class="ui-code" style="padding: 0.5rem;">false</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Stretches button to 100% width</td>
+              <td class="ui-code p-2">fullWidth</td>
+              <td class="ui-code p-2">boolean</td>
+              <td class="ui-code p-2">false</td>
+              <td class="ui-body-sm p-2">Stretches button to 100% width</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
-              <td class="ui-code" style="padding: 0.5rem;">iconLeft</td>
-              <td class="ui-code" style="padding: 0.5rem;">string</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">undefined</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Heroicon name rendered to the left</td>
+              <td class="ui-code p-2">iconLeft</td>
+              <td class="ui-code p-2">string</td>
+              <td class="ui-body-sm p-2">undefined</td>
+              <td class="ui-body-sm p-2">Heroicon name rendered to the left</td>
             </tr>
             <tr>
-              <td class="ui-code" style="padding: 0.5rem;">iconRight</td>
-              <td class="ui-code" style="padding: 0.5rem;">string</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">undefined</td>
-              <td class="ui-body-sm" style="padding: 0.5rem;">Heroicon name rendered to the right</td>
+              <td class="ui-code p-2">iconRight</td>
+              <td class="ui-code p-2">string</td>
+              <td class="ui-body-sm p-2">undefined</td>
+              <td class="ui-body-sm p-2">Heroicon name rendered to the right</td>
             </tr>
           </tbody>
         </table>
@@ -179,6 +179,24 @@ const SIZES: ButtonSize[] = ['sm', 'md', 'lg'];
         <div class="flex flex-col gap-3 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
           <ui-button variant="primary" [fullWidth]="true">Full width primary</ui-button>
           <ui-button variant="secondary" [fullWidth]="true">Full width secondary</ui-button>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <p class="ui-overline">Theme — Dark</p>
+        <div class="theme-dark flex flex-wrap items-center gap-3 p-4" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
+          @for (variant of variants; track variant) {
+            <ui-button [variant]="variant">{{ variant }}</ui-button>
+          }
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <p class="ui-overline">Theme — Pastel</p>
+        <div class="theme-pastel flex flex-wrap items-center gap-3 p-4" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
+          @for (variant of variants; track variant) {
+            <ui-button [variant]="variant">{{ variant }}</ui-button>
+          }
         </div>
       </section>
 

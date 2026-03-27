@@ -53,9 +53,15 @@
 
   /* Surfaces */
   --color-surface-base: oklch(98% 0 0);
-  --color-surface-raised: oklch(100% 0 0);
+  --color-surface-raised: oklch(99.5% 0 0);
   --color-surface-overlay: oklch(100% 0 0);
   --color-surface-sunken: oklch(94% 0 0);
+
+  /* Focus */
+  --color-focus-ring: oklch(55% 0.2 250);
+
+  /* Disabled */
+  --opacity-disabled: 0.4;
 
   /* Text */
   --color-text-default: oklch(15% 0 0);
@@ -69,7 +75,7 @@
   /* =====================
      TYPOGRAPHY
   ===================== */
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Fira Code", ui-monospace, monospace;
 
   /* =====================
