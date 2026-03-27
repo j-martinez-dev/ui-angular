@@ -22,7 +22,7 @@
 
 .input-wrapper--focused {
   border: var(--input-focus-border);
-  box-shadow: 0 0 0 3px oklch(from var(--color-primary-default) l c h / 0.15);
+  box-shadow: 0 0 0 3px oklch(from var(--color-focus-ring) l c h / 0.15);
 }
 
 .input-wrapper--invalid {
@@ -30,7 +30,7 @@
 }
 
 .input-wrapper--invalid.input-wrapper--focused {
-  box-shadow: 0 0 0 3px oklch(from var(--color-error-default) l c h / 0.15);
+  box-shadow: 0 0 0 3px oklch(from var(--color-error-emphasis) l c h / 0.15);
 }
 
 // ── Filled variant (bottom border) ─────────────────────────────────────────
@@ -94,7 +94,7 @@
 }
 
 .input-field::placeholder {
-  color: var(--color-text-disabled);
+  color: var(--color-text-muted);
 }
 
 .input-field:disabled {

@@ -2,9 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  ElementRef,
   input,
   model,
   signal,
+  viewChild,
 } from '@angular/core';
 import {
   FormValueControl,
@@ -82,17 +84,20 @@ const HEIGHT_MAP: Record<InputSize, string> = {
         }
 
         <input
+          #inputEl
           class="input-field"
           [type]="type()"
           [value]="value()"
           [placeholder]="placeholder() ?? ''"
           [disabled]="disabled()"
           [readonly]="readonly()"
+          [attr.id]="id() || null"
           [attr.required]="required() || null"
           [attr.minlength]="minLength() ?? null"
           [attr.maxlength]="maxLength() ?? null"
           [attr.aria-invalid]="invalid() || null"
           [attr.aria-required]="required() || null"
+          [attr.aria-describedby]="ariaDescribedBy() || null"
           (input)="onInput($event)"
           (focus)="isFocused.set(true)"
           (blur)="onBlur()"
@@ -159,9 +164,12 @@ export class UiInputComponent implements FormValueControl<string> {
   clearable = input<boolean>(false);
   prefixIsIcon = input<boolean>(true);
   suffixIsIcon = input<boolean>(true);
+  id = input<string>();
+  ariaDescribedBy = input<string>();
 
   // Internal state
   isFocused = signal<boolean>(false);
+  private inputEl = viewChild<ElementRef<HTMLInputElement>>('inputEl');
 
   // Computed
   protected variantStyles = computed(() => VARIANT_MAP[this.variant()]);
@@ -191,5 +199,6 @@ export class UiInputComponent implements FormValueControl<string> {
 
   clearValue(): void {
     this.value.set('');
+    this.inputEl()?.nativeElement.focus();
   }
 }

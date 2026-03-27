@@ -174,6 +174,26 @@ const SIZES: InputSize[] = ['sm', 'md', 'lg'];
         </div>
       </section>
 
+      <section class="flex flex-col gap-4">
+        <p class="ui-overline">Theme — Dark</p>
+        <div class="theme-dark flex flex-col gap-3 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 400px;">
+          <ui-input placeholder="Outlined" />
+          <ui-input variant="filled" placeholder="Filled" />
+          <ui-input variant="ghost" placeholder="Ghost" />
+          <ui-input placeholder="Invalid" [invalid]="true" />
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <p class="ui-overline">Theme — Pastel</p>
+        <div class="theme-pastel flex flex-col gap-3 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 400px;">
+          <ui-input placeholder="Outlined" />
+          <ui-input variant="filled" placeholder="Filled" />
+          <ui-input variant="ghost" placeholder="Ghost" />
+          <ui-input placeholder="Invalid" [invalid]="true" />
+        </div>
+      </section>
+
     </div>
   `,
 })
@@ -256,7 +276,7 @@ export const Playground: Story = {
   },
   render: (args) => ({
     props: args,
-    template: `<div style="max-width: 400px;"><ui-input ${argsToTemplate(args)} /></div>`,
+    template: `<div class="max-w-sm"><ui-input ${argsToTemplate(args)} /></div>`,
   }),
 };
 
