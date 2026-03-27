@@ -2,6 +2,10 @@
   display: block;
 }
 
+:host:last-child .list-item {
+  border-bottom: none;
+}
+
 .list-item {
   display: flex;
   align-items: center;
@@ -50,6 +54,7 @@
 .list-item-label {
   color: var(--color-text-default);
   font-weight: var(--font-weight-medium);
+  line-height: var(--leading-snug);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -57,6 +62,7 @@
 
 .list-item-description {
   color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -67,6 +73,10 @@
   align-items: center;
   flex-shrink: 0;
   margin-left: auto;
+
+  &:empty {
+    display: none;
+  }
 }
 
 // ── Size variants ───────────────────────────────────────────────────────────
