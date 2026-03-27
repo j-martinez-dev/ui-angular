@@ -1,0 +1,164 @@
+// ── Wrapper ───────────────────────────────────────────────────────────────────
+
+.radio-wrapper {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+// ── Circle ────────────────────────────────────────────────────────────────────
+
+.radio-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  background-color: transparent;
+  transition:
+    border-color var(--duration-fast) var(--easing-default);
+  flex-shrink: 0;
+}
+
+.radio-circle--checked {
+  border-color: var(--color-primary-default);
+}
+
+.radio-circle--invalid {
+  border-color: var(--color-error-default);
+}
+
+// ── Dot ───────────────────────────────────────────────────────────────────────
+
+.radio-dot {
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-default);
+  animation: radio-dot-in var(--duration-fast) var(--easing-default);
+}
+
+@keyframes radio-dot-in {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+// ── Focus ring ────────────────────────────────────────────────────────────────
+
+.radio-wrapper:focus-within .radio-circle {
+  outline: 2px solid var(--color-primary-default);
+  outline-offset: 2px;
+}
+
+// ── Hover ─────────────────────────────────────────────────────────────────────
+
+.radio-wrapper:hover .radio-circle:not(.radio-circle--checked) {
+  border-color: var(--color-border-strong);
+}
+
+// ── Disabled ──────────────────────────────────────────────────────────────────
+
+.radio--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+// ── Label ─────────────────────────────────────────────────────────────────────
+
+.radio-label {
+  font-family: var(--font-sans);
+  color: var(--color-text-default);
+  user-select: none;
+}
+
+// ── Sizes ─────────────────────────────────────────────────────────────────────
+
+:host(.size-sm) {
+  .radio-wrapper {
+    gap: calc(var(--spacing) * 1.5);
+  }
+
+  .radio-circle {
+    width: calc(var(--spacing) * 3.5);
+    height: calc(var(--spacing) * 3.5);
+  }
+
+  .radio-dot {
+    width: calc(var(--spacing) * 1.5);
+    height: calc(var(--spacing) * 1.5);
+  }
+
+  .radio-label {
+    font-size: var(--text-sm);
+  }
+}
+
+:host(.size-md) {
+  .radio-wrapper {
+    gap: calc(var(--spacing) * 2);
+  }
+
+  .radio-circle {
+    width: calc(var(--spacing) * 4);
+    height: calc(var(--spacing) * 4);
+  }
+
+  .radio-dot {
+    width: calc(var(--spacing) * 2);
+    height: calc(var(--spacing) * 2);
+  }
+
+  .radio-label {
+    font-size: var(--text-base);
+  }
+}
+
+:host(.size-lg) {
+  .radio-wrapper {
+    gap: calc(var(--spacing) * 2.5);
+  }
+
+  .radio-circle {
+    width: calc(var(--spacing) * 5);
+    height: calc(var(--spacing) * 5);
+  }
+
+  .radio-dot {
+    width: calc(var(--spacing) * 2.5);
+    height: calc(var(--spacing) * 2.5);
+  }
+
+  .radio-label {
+    font-size: var(--text-lg);
+  }
+}
+
+// ── Reduced motion ────────────────────────────────────────────────────────────
+
+@media (prefers-reduced-motion: reduce) {
+  .radio-circle {
+    transition: none;
+  }
+
+  .radio-dot {
+    animation: none;
+  }
+}
+
+// ── Visually hidden ───────────────────────────────────────────────────────────
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
