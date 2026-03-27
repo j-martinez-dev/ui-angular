@@ -93,6 +93,7 @@
 }
 
 .textarea-field--auto-resize {
+  field-sizing: content;
   resize: none;
   overflow: hidden;
 }
@@ -120,6 +121,17 @@
 :host(.size-lg) .textarea-field {
   font-size: var(--text-lg);
   padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 4);
+}
+
+// ── Character counter ────────────────────────────────────────────────────────
+
+.textarea-count {
+  display: block;
+  text-align: right;
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: calc(var(--spacing) * 0.5);
 }
 
 // ── Reduced motion ──────────────────────────────────────────────────────────

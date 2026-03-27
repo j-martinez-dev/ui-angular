@@ -75,6 +75,9 @@ const VARIANT_MAP: Record<TextareaVariant, VariantStyles> = {
           (blur)="onBlur()"
         ></textarea>
       </div>
+      @if (showCount()) {
+        <span class="textarea-count">{{ charCount() }}</span>
+      }
     }
   `,
   styleUrl: './textarea.component.scss',
@@ -111,6 +114,7 @@ export class UiTextareaComponent implements FormValueControl<string> {
   placeholder = input<string>();
   rows = input<number>(3);
   autoResize = input<boolean>(false);
+  showCount = input<boolean>(false);
   id = input<string>();
   ariaDescribedBy = input<string>();
 
@@ -119,6 +123,12 @@ export class UiTextareaComponent implements FormValueControl<string> {
 
   // Computed
   protected variantStyles = computed(() => VARIANT_MAP[this.variant()]);
+
+  protected charCount = computed(() => {
+    const max = this.maxLength();
+    const len = this.value().length;
+    return max != null ? `${len} / ${max}` : `${len}`;
+  });
 
   onInput(event: Event): void {
     const textarea = event.target as HTMLTextAreaElement;

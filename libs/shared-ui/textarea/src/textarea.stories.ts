@@ -140,6 +140,14 @@ const SIZES: TextareaSize[] = ['sm', 'md', 'lg'];
       </section>
 
       <section class="flex flex-col gap-4">
+        <p class="ui-overline">Character counter</p>
+        <div class="flex flex-col gap-3 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md); max-width: 400px;">
+          <ui-textarea placeholder="No limit" [showCount]="true" />
+          <ui-textarea placeholder="Max 100 chars" [showCount]="true" [maxLength]="100" />
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
         <p class="ui-overline">Theme — Dark</p>
         <div class="theme-dark flex flex-col gap-3 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 400px;">
           <ui-textarea placeholder="Outlined" />
@@ -183,6 +191,7 @@ const meta: Meta<UiTextareaComponent> = {
     placeholder: { control: 'text' },
     rows: { control: 'number' },
     autoResize: { control: 'boolean' },
+    showCount: { control: 'boolean' },
     disabled: { control: 'boolean' },
     readonly: { control: 'boolean' },
     invalid: { control: 'boolean' },
@@ -209,6 +218,7 @@ export const Playground: Story = {
     placeholder: 'Type something...',
     rows: 3,
     autoResize: false,
+    showCount: false,
     disabled: false,
     readonly: false,
     invalid: false,
