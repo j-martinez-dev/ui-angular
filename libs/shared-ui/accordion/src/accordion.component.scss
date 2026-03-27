@@ -1,0 +1,102 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+// ── Item ────────────────────────────────────────────────────────────────────
+
+.accordion-item {
+  border-bottom: 1px solid var(--color-border-default);
+
+  &:first-child {
+    border-top: 1px solid var(--color-border-default);
+  }
+}
+
+.accordion-item--disabled {
+  opacity: var(--opacity-disabled);
+  pointer-events: none;
+}
+
+// ── Header ──────────────────────────────────────────────────────────────────
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: calc(var(--spacing) * 4) 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-default);
+  text-align: left;
+  transition: color var(--duration-normal) var(--easing-default);
+}
+
+.accordion-header:hover {
+  color: var(--color-primary-default);
+}
+
+.accordion-header:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+// ── Chevron ─────────────────────────────────────────────────────────────────
+
+.accordion-chevron {
+  flex-shrink: 0;
+  transition: transform var(--duration-slow) var(--easing-default);
+}
+
+.accordion-chevron--open {
+  transform: rotate(180deg);
+}
+
+// ── Panel (grid animation) ──────────────────────────────────────────────────
+
+.accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--duration-slow) var(--easing-default);
+}
+
+.accordion-item--expanded .accordion-panel {
+  grid-template-rows: 1fr;
+}
+
+// ── Content ─────────────────────────────────────────────────────────────────
+
+.accordion-content {
+  overflow: hidden;
+
+  p {
+    margin: 0;
+    padding-bottom: calc(var(--spacing) * 4);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+}
+
+// ── Reduced motion ──────────────────────────────────────────────────────────
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion-header,
+  .accordion-chevron,
+  .accordion-panel {
+    transition: none;
+  }
+}
