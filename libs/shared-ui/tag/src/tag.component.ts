@@ -5,7 +5,7 @@ import {
   input,
   output,
 } from '@angular/core';
-import { UiIconButtonComponent } from '@ui/shared-ui/icon-button';
+import { UiIconComponent } from '@ui/shared-ui/icon';
 
 export type TagVariant = 'filled' | 'subtle' | 'outline';
 export type TagColor = 'primary' | 'success' | 'warning' | 'error' | 'info' | 'muted';
@@ -62,31 +62,31 @@ const SUBTLE_MAP: Record<TagColor, TagStyles> = {
     bg: 'var(--color-primary-subtle)',
     color: 'var(--color-primary-emphasis)',
     border: 'none',
-    hoverBg: 'var(--color-primary-default)',
+    hoverBg: 'oklch(from var(--color-primary-subtle) calc(l - 0.05) c h)',
   },
   success: {
     bg: 'var(--color-success-subtle)',
     color: 'var(--color-success-emphasis)',
     border: 'none',
-    hoverBg: 'var(--color-success-default)',
+    hoverBg: 'oklch(from var(--color-success-subtle) calc(l - 0.05) c h)',
   },
   warning: {
     bg: 'var(--color-warning-subtle)',
     color: 'var(--color-warning-emphasis)',
     border: 'none',
-    hoverBg: 'var(--color-warning-default)',
+    hoverBg: 'oklch(from var(--color-warning-subtle) calc(l - 0.05) c h)',
   },
   error: {
     bg: 'var(--color-error-subtle)',
     color: 'var(--color-error-emphasis)',
     border: 'none',
-    hoverBg: 'var(--color-error-default)',
+    hoverBg: 'oklch(from var(--color-error-subtle) calc(l - 0.05) c h)',
   },
   info: {
     bg: 'var(--color-info-subtle)',
     color: 'var(--color-info-emphasis)',
     border: 'none',
-    hoverBg: 'var(--color-info-default)',
+    hoverBg: 'oklch(from var(--color-info-subtle) calc(l - 0.05) c h)',
   },
   muted: {
     bg: 'var(--color-surface-sunken)',
@@ -143,7 +143,7 @@ const VARIANT_MAPS: Record<TagVariant, Record<TagColor, TagStyles>> = {
 
 @Component({
   selector: 'ui-tag',
-  imports: [UiIconButtonComponent],
+  imports: [UiIconComponent],
   template: `
     <span
       class="tag"
@@ -158,13 +158,14 @@ const VARIANT_MAPS: Record<TagVariant, Record<TagColor, TagStyles>> = {
       </span>
 
       @if (removable()) {
-        <ui-icon-button
-          icon="heroXMark"
-          variant="ghost"
-          size="sm"
-          label="Remove"
+        <button
+          type="button"
+          class="tag-remove"
+          aria-label="Remove"
           (click)="onRemove($event)"
-        />
+        >
+          <ui-icon name="heroXMark" size="xs" />
+        </button>
       }
     </span>
   `,
