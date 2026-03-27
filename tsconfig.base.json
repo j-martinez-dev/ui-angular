@@ -31,6 +31,7 @@
       "@ui/shared-ui/icon-button": ["libs/shared-ui/icon-button/index.ts"],
       "@ui/shared-ui/progress-bar": ["libs/shared-ui/progress-bar/index.ts"],
       "@ui/shared-ui/radio": ["libs/shared-ui/radio/index.ts"],
+      "@ui/shared-ui/search-bar": ["libs/shared-ui/search-bar/index.ts"],
       "@ui/shared-ui/select": ["libs/shared-ui/select/index.ts"],
       "@ui/shared-ui/slider": ["libs/shared-ui/slider/index.ts"],
       "@ui/shared-ui/spinner": ["libs/shared-ui/spinner/index.ts"],
