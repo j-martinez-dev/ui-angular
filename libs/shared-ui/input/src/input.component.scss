@@ -1,0 +1,152 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing);
+  width: 100%;
+  height: var(--input-height);
+  border-radius: var(--radius-md);
+  background-color: var(--input-bg);
+  border: var(--input-border);
+  overflow: hidden;
+  transition:
+    border-color var(--duration-normal) var(--easing-default),
+    box-shadow var(--duration-normal) var(--easing-default);
+}
+
+// ── Outlined focus ──────────────────────────────────────────────────────────
+
+.input-wrapper--focused {
+  border: var(--input-focus-border);
+  box-shadow: 0 0 0 3px oklch(from var(--color-primary-default) l c h / 0.15);
+}
+
+.input-wrapper--invalid {
+  border: var(--input-invalid-border);
+}
+
+.input-wrapper--invalid.input-wrapper--focused {
+  box-shadow: 0 0 0 3px oklch(from var(--color-error-default) l c h / 0.15);
+}
+
+// ── Filled variant (bottom border) ─────────────────────────────────────────
+
+:host(.variant-filled) .input-wrapper {
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  border-bottom: 2px solid transparent;
+}
+
+:host(.variant-filled) .input-wrapper--focused {
+  border: none;
+  border-bottom: 2px solid var(--color-primary-default);
+  box-shadow: none;
+}
+
+:host(.variant-filled) .input-wrapper--invalid {
+  border: none;
+  border-bottom: 2px solid var(--color-error-default);
+}
+
+// ── Ghost variant (underline) ───────────────────────────────────────────────
+
+:host(.variant-ghost) .input-wrapper {
+  border-radius: 0;
+  border-bottom: 1px solid transparent;
+}
+
+:host(.variant-ghost) .input-wrapper--focused {
+  border: none;
+  border-bottom: 1px solid var(--color-border-default);
+  box-shadow: none;
+}
+
+:host(.variant-ghost) .input-wrapper--invalid {
+  border: none;
+  border-bottom: 1px solid var(--color-error-default);
+}
+
+// ── Disabled / Readonly ─────────────────────────────────────────────────────
+
+.input-wrapper--disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
+.input-wrapper--readonly {
+  background-color: var(--color-surface-sunken);
+  cursor: default;
+}
+
+// ── Field ───────────────────────────────────────────────────────────────────
+
+.input-field {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-text-default);
+  font-family: var(--font-sans);
+  min-width: 0;
+}
+
+.input-field::placeholder {
+  color: var(--color-text-disabled);
+}
+
+.input-field:disabled {
+  cursor: not-allowed;
+}
+
+// ── Size variants ───────────────────────────────────────────────────────────
+
+:host(.size-sm) .input-wrapper {
+  padding: var(--spacing) calc(var(--spacing) * 2);
+}
+
+:host(.size-sm) .input-field {
+  font-size: var(--text-sm);
+}
+
+:host(.size-md) .input-wrapper {
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+}
+
+:host(.size-md) .input-field {
+  font-size: var(--text-base);
+}
+
+:host(.size-lg) .input-wrapper {
+  padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 4);
+}
+
+:host(.size-lg) .input-field {
+  font-size: var(--text-lg);
+}
+
+// ── Prefix / Suffix ─────────────────────────────────────────────────────────
+
+.input-prefix,
+.input-suffix {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.input-prefix-text,
+.input-suffix-text {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-family: var(--font-sans);
+}
+
+// ── Reduced motion ──────────────────────────────────────────────────────────
+
+@media (prefers-reduced-motion: reduce) {
+  .input-wrapper {
+    transition: none;
+  }
+}
