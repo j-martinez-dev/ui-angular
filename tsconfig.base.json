@@ -20,6 +20,7 @@
       "@ui/shared-ui/alert": ["libs/shared-ui/alert/index.ts"],
       "@ui/shared-ui/avatar": ["libs/shared-ui/avatar/index.ts"],
       "@ui/shared-ui/badge": ["libs/shared-ui/badge/index.ts"],
+      "@ui/shared-ui/breadcrumb": ["libs/shared-ui/breadcrumb/index.ts"],
       "@ui/shared-ui/button": ["libs/shared-ui/button/index.ts"],
       "@ui/shared-ui/checkbox": ["libs/shared-ui/checkbox/index.ts"],
       "@ui/shared-ui/icon": ["libs/shared-ui/icon/index.ts"],

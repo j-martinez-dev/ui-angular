@@ -1,0 +1,78 @@
+:host {
+  display: block;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--spacing);
+}
+
+.breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing);
+}
+
+.breadcrumb-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing);
+  font-family: var(--font-sans);
+  line-height: 1;
+}
+
+.breadcrumb-label--link {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  transition: color var(--duration-fast) var(--easing-default);
+}
+
+.breadcrumb-label--link:hover {
+  color: var(--color-primary-default);
+}
+
+.breadcrumb-label--link:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.breadcrumb-label--active {
+  color: var(--color-text-default);
+  font-weight: var(--font-weight-medium);
+  cursor: default;
+}
+
+.breadcrumb-separator {
+  flex-shrink: 0;
+}
+
+// ── Size variants ───────────────────────────────────────────────────────────
+
+:host(.size-sm) .breadcrumb-label {
+  font-size: var(--text-xs);
+}
+
+:host(.size-md) .breadcrumb-label {
+  font-size: var(--text-sm);
+}
+
+:host(.size-lg) .breadcrumb-label {
+  font-size: var(--text-base);
+}
+
+// ── Reduced motion ──────────────────────────────────────────────────────────
+
+@media (prefers-reduced-motion: reduce) {
+  .breadcrumb-label--link {
+    transition: none;
+  }
+}
