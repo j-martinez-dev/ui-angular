@@ -20,7 +20,7 @@
   width: var(--progress-value);
   background-color: var(--progress-fill-color);
   border-radius: var(--radius-full);
-  transition: width 300ms ease;
+  transition: width var(--duration-slow) var(--easing-default);
 }
 
 // ── Striped ───────────────────────────────────────────────────────────────────
@@ -29,24 +29,24 @@
   background-image: repeating-linear-gradient(
     45deg,
     transparent,
-    transparent 8px,
-    rgba(255, 255, 255, 0.2) 8px,
-    rgba(255, 255, 255, 0.2) 16px
+    transparent calc(var(--spacing) * 2),
+    oklch(100% 0 0 / 0.2) calc(var(--spacing) * 2),
+    oklch(100% 0 0 / 0.2) calc(var(--spacing) * 4)
   );
-  background-size: 32px 100%;
+  background-size: calc(var(--spacing) * 8) 100%;
 }
 
 // ── Indeterminate ─────────────────────────────────────────────────────────────
 
 :host(.is-indeterminate) .progress-fill {
   transition: none;
-  animation: progress-indeterminate 1.4s ease-in-out infinite;
+  animation: progress-indeterminate calc(var(--duration-slow) * 5) var(--easing-default) infinite;
 }
 
 :host(.is-indeterminate.is-striped) .progress-fill {
   animation:
-    progress-indeterminate 1.4s ease-in-out infinite,
-    progress-stripe-move 0.6s linear infinite;
+    progress-indeterminate calc(var(--duration-slow) * 5) var(--easing-default) infinite,
+    progress-stripe-move calc(var(--duration-slow) * 2) linear infinite;
 }
 
 // ── Keyframes ─────────────────────────────────────────────────────────────────
@@ -65,7 +65,7 @@
     background-position: 0 0;
   }
   100% {
-    background-position: 32px 0;
+    background-position: calc(var(--spacing) * 8) 0;
   }
 }
 

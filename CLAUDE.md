@@ -423,7 +423,7 @@ When implementing any component in the library, follow these rules without excep
 4. **Never hardcode fonts** — always use `var(--font-sans)` or `var(--font-mono)`
 5. **Use Tailwind for spacing and layout** — `p-4`, `gap-2`, `flex`, etc. In SCSS, use `var(--spacing)` multiples
 6. **Never hardcode transition durations or easings** — always use `var(--duration-*)` and `var(--easing-*)`
-7. **Never hardcode sizes for icons, spinners, or avatars** — always use `var(--icon-size-*)` or `var(--avatar-size-*)`
+7. **Never hardcode component dimensions** — use `var(--icon-size-*)` for icons/spinners, `var(--avatar-size-*)` for avatars, and `var(--spacing)` multiples for heights/widths of bars, tracks, and similar elements
 8. **Use tokens for everything themeable** — colors, radii, shadows, typography, sizing, transitions
 9. **Do not use accents without verifying** that the consuming project has defined them
 10. **Always generate Storybook stories** — every component must have a `.stories.ts` file colocated next to it with exactly **3 exported stories**:

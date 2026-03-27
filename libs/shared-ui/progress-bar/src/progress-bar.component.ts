@@ -15,9 +15,9 @@ interface ProgressBarColorConfig {
 }
 
 const SIZE_MAP: Record<ProgressBarSize, string> = {
-  sm: '4px',
-  md: '8px',
-  lg: '12px',
+  sm: 'var(--spacing)',
+  md: 'calc(var(--spacing) * 2)',
+  lg: 'calc(var(--spacing) * 3)',
 };
 
 const COLOR_MAP: Record<ProgressBarColor, ProgressBarColorConfig> = {
