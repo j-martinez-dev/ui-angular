@@ -80,15 +80,11 @@
 
 .accordion-content {
   overflow: hidden;
-
-  p {
-    margin: 0;
-    padding-bottom: calc(var(--spacing) * 4);
-    font-family: var(--font-sans);
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    line-height: var(--leading-relaxed);
-  }
+  padding-bottom: calc(var(--spacing) * 4);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
 }
 
 // ── Reduced motion ──────────────────────────────────────────────────────────
