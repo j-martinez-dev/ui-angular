@@ -61,6 +61,7 @@ export class UiTooltipDirective implements OnDestroy {
   uiTooltip = input.required<string | TemplateRef<unknown>>();
   uiTooltipPosition = input<TooltipPosition>('top');
   uiTooltipDelay = input<number>(300);
+  uiTooltipDisabled = input<boolean>(false);
 
   private readonly overlay = inject(Overlay);
   private readonly elementRef = inject(ElementRef);
@@ -100,7 +101,7 @@ export class UiTooltipDirective implements OnDestroy {
   // ── Show / Hide ───────────────────────────────────────────────────────
 
   private onShow = (): void => {
-    if (this.componentRef) return;
+    if (this.componentRef || this.uiTooltipDisabled()) return;
     this.clearTimer();
     this.showTimer = setTimeout(() => this.show(), this.uiTooltipDelay());
   };
@@ -118,7 +119,7 @@ export class UiTooltipDirective implements OnDestroy {
   };
 
   private show(): void {
-    if (this.componentRef) return;
+    if (this.componentRef || this.uiTooltipDisabled()) return;
 
     // Dispose stale overlay if position changed since last creation
     if (this.overlayRef && this.lastPosition !== this.uiTooltipPosition()) {
