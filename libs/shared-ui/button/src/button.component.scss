@@ -16,7 +16,6 @@
   transition:
     background-color var(--duration-normal) var(--easing-default),
     opacity var(--duration-normal) var(--easing-default);
-  line-height: 1;
 }
 
 .btn:hover:not(.btn--disabled):not(.btn--loading) {
@@ -43,7 +42,7 @@
 }
 
 .btn-label {
-  line-height: 1;
+  line-height: var(--leading-snug);
 }
 
 // ── Size variants ───────────────────────────────────────────────────────────

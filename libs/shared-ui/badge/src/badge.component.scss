@@ -7,7 +7,7 @@
   color: var(--badge-color);
   border: var(--badge-border);
   white-space: nowrap;
-  line-height: 1;
+  line-height: var(--leading-snug);
 }
 
 :host(.badge-sm) {

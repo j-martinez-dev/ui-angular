@@ -115,3 +115,11 @@
   }
 }
 
+// ── Reduced motion ──────────────────────────────────────────────────────────
+
+@media (prefers-reduced-motion: reduce) {
+  .checkbox-box {
+    transition: none;
+  }
+}
+

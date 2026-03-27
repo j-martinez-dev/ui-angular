@@ -477,6 +477,10 @@ Form control components (Checkbox, Radio, Toggle, Slider) implement Angular Sign
 | `UiRadioComponent` | `FormCheckboxControl` | `boolean` (checked) |
 | `UiToggleComponent` | `FormCheckboxControl` | `boolean` (checked) |
 | `UiSliderComponent` | `FormValueControl<number>` | `number` (value) |
+| `UiInputComponent` | `FormValueControl<string>` | `string` (value) |
+| `UiTextareaComponent` | `FormValueControl<string>` | `string` (value) |
+| `UiSelectComponent` | `FormValueControl<T \| null>` | `T \| null` (value) |
+| `UiMultiSelectComponent` | `FormValueControl<T[]>` | `T[]` (value) |
 
 These components expose `model()` signals for two-way binding (`checked` or `value`) and `input()` signals for form state (`disabled`, `invalid`, `errors`, `hidden`, `readonly`, `disabledReasons`). The form framework manages these inputs — consumers should not set `disabled` or `invalid` manually when using Signal Forms.
 
@@ -499,8 +503,11 @@ When implementing any component in the library, follow these rules without excep
 9. **Do not use accents without verifying** that the consuming project has defined them
 10. **Use `var(--color-focus-ring)` for focus outlines** — never hardcode focus colors
 11. **Use `var(--opacity-disabled)` for disabled states** — never hardcode opacity values
-12. **Always include `@media (prefers-reduced-motion: reduce)`** for animated components
-13. **Always generate Storybook stories** — every component must have a `.stories.ts` file colocated next to it with exactly **3 exported stories**:
+12. **Always include `@media (prefers-reduced-motion: reduce)`** for any component with `transition` or `animation` in its SCSS
+13. **Always set `changeDetection: ChangeDetectionStrategy.OnPush`** in every component decorator
+14. **Never use `line-height: 1`** — use `var(--leading-snug)` (1.375) for compact text or `var(--leading-tight)` (1.25) for headings. The only exception is avatar initials (single uppercase letters inside centered containers).
+15. **Prefer HTML5 semantic elements** — use `<details>`/`<summary>` for accordions, `<search>` for search landmarks, `<nav>` + `<ol>` for breadcrumbs, `<label>` for form labels, native `<button>` and `<input>` elements. Only use `<div>` with ARIA roles when no semantic element exists.
+16. **Always generate Storybook stories** — every component must have a `.stories.ts` file colocated next to it with exactly **3 exported stories**:
 
 ### Story structure
 
