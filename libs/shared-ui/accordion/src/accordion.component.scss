@@ -1,6 +1,9 @@
 :host {
   display: block;
   width: 100%;
+
+  // Enable animating between keyword sizes (auto height)
+  interpolate-size: allow-keywords;
 }
 
 .accordion {
@@ -9,7 +12,7 @@
   width: 100%;
 }
 
-// ── Item ────────────────────────────────────────────────────────────────────
+// ── Item (<details>) ───────────────────────────────────────────────────────
 
 .accordion-item {
   border-bottom: 1px solid var(--color-border-default);
@@ -24,7 +27,7 @@
   pointer-events: none;
 }
 
-// ── Header ──────────────────────────────────────────────────────────────────
+// ── Header (<summary>) ─────────────────────────────────────────────────────
 
 .accordion-header {
   display: flex;
@@ -32,15 +35,19 @@
   justify-content: space-between;
   width: 100%;
   padding: calc(var(--spacing) * 4) 0;
-  background: transparent;
-  border: none;
   cursor: pointer;
   font-family: var(--font-sans);
   font-size: var(--text-base);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-default);
-  text-align: left;
+  list-style: none;
   transition: color var(--duration-normal) var(--easing-default);
+
+  // Remove default marker
+  &::marker,
+  &::-webkit-details-marker {
+    display: none;
+  }
 }
 
 .accordion-header:hover {
@@ -53,6 +60,10 @@
   border-radius: var(--radius-sm);
 }
 
+.accordion-header--disabled {
+  cursor: default;
+}
+
 // ── Chevron ─────────────────────────────────────────────────────────────────
 
 .accordion-chevron {
@@ -60,26 +71,27 @@
   transition: transform var(--duration-slow) var(--easing-default);
 }
 
-.accordion-chevron--open {
+.accordion-item[open] .accordion-chevron {
   transform: rotate(180deg);
 }
 
-// ── Panel (grid animation) ──────────────────────────────────────────────────
+// ── Content animation ───────────────────────────────────────────────────────
 
-.accordion-panel {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows var(--duration-slow) var(--easing-default);
+.accordion-item::details-content {
+  height: 0;
+  overflow: hidden;
+  transition:
+    height var(--duration-slow) var(--easing-default),
+    content-visibility var(--duration-slow) var(--easing-default) allow-discrete;
 }
 
-.accordion-item--expanded .accordion-panel {
-  grid-template-rows: 1fr;
+.accordion-item[open]::details-content {
+  height: auto;
 }
 
-// ── Content ─────────────────────────────────────────────────────────────────
+// ── Content styling ─────────────────────────────────────────────────────────
 
 .accordion-content {
-  overflow: hidden;
   padding-bottom: calc(var(--spacing) * 4);
   font-family: var(--font-sans);
   font-size: var(--text-sm);
@@ -91,8 +103,11 @@
 
 @media (prefers-reduced-motion: reduce) {
   .accordion-header,
-  .accordion-chevron,
-  .accordion-panel {
+  .accordion-chevron {
+    transition: none;
+  }
+
+  .accordion-item::details-content {
     transition: none;
   }
 }
