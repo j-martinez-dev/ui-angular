@@ -13,7 +13,7 @@ import { UiIconButtonComponent } from '@ui/shared-ui/icon-button';
   selector: 'ui-search-bar',
   imports: [UiInputComponent, UiIconButtonComponent],
   template: `
-    <div class="search-bar" [class.search-bar--disabled]="disabled()">
+    <search class="search-bar" [attr.aria-label]="ariaLabel()">
       <ui-input
         type="search"
         [placeholder]="placeholder()"
@@ -33,7 +33,7 @@ import { UiIconButtonComponent } from '@ui/shared-ui/icon-button';
         [disabled]="disabled()"
         (click)="onSearch()"
       />
-    </div>
+    </search>
   `,
   styleUrl: './search-bar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -45,6 +45,7 @@ export class UiSearchBarComponent implements OnDestroy {
   debounce = input<number>(0);
   disabled = input<boolean>(false);
   value = input<string>('');
+  ariaLabel = input<string>('Search');
 
   search = output<string>();
   searchChange = output<string>();

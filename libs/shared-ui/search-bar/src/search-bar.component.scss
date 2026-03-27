@@ -5,12 +5,7 @@
 
 .search-bar {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: calc(var(--spacing) * 2);
   width: 100%;
-}
-
-.search-bar--disabled {
-  opacity: var(--opacity-disabled);
-  pointer-events: none;
 }
