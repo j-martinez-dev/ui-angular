@@ -145,7 +145,7 @@ const SIZES: SliderSize[] = ['sm', 'md', 'lg'];
           </div>
           <div class="flex flex-col gap-1">
             <span class="ui-caption ui-text-muted">Range 0–1, step 0.1</span>
-            <ui-slider [value]="0.5" [min]="0" [max]="1" [step]="0.1" />
+            <ui-slider [(value)]="rangeValue" [min]="0" [max]="1" [step]="0.1" />
           </div>
         </div>
       </section>
@@ -165,6 +165,7 @@ const SIZES: SliderSize[] = ['sm', 'md', 'lg'];
 })
 class SliderVariantsComponent {
   sizes = SIZES;
+  rangeValue = signal(0.5);
   volume = signal(75);
 }
 

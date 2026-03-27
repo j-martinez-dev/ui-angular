@@ -30,7 +30,7 @@
 }
 
 .tag-label {
-  line-height: 1;
+  line-height: var(--leading-snug);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -65,7 +65,7 @@
 // ── Size variants ───────────────────────────────────────────────────────────
 
 :host(.size-sm) .tag {
-  padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1.5);
+  padding: var(--spacing) calc(var(--spacing) * 1.5);
 }
 
 :host(.size-sm) .tag-label {

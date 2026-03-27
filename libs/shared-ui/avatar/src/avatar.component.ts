@@ -39,7 +39,7 @@ const COLOR_MAP: Record<AvatarColor, AvatarColorConfig> = {
   warning: { bg: 'var(--color-warning-subtle)', color: 'var(--color-warning-emphasis)' },
   error: { bg: 'var(--color-error-subtle)', color: 'var(--color-error-emphasis)' },
   info: { bg: 'var(--color-info-subtle)', color: 'var(--color-info-emphasis)' },
-  muted: { bg: 'var(--color-surface-sunken)', color: 'var(--color-text-muted)' },
+  muted: { bg: 'var(--color-surface-sunken)', color: 'var(--color-text-default)' },
 };
 
 @Component({

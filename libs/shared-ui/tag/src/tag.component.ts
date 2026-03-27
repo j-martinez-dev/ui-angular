@@ -50,10 +50,10 @@ const FILLED_MAP: Record<TagColor, TagStyles> = {
     hoverBg: 'var(--color-info-emphasis)',
   },
   muted: {
-    bg: 'var(--color-surface-sunken)',
+    bg: 'var(--color-border-default)',
     color: 'var(--color-text-default)',
     border: 'none',
-    hoverBg: 'var(--color-surface-raised)',
+    hoverBg: 'var(--color-border-strong)',
   },
 };
 
@@ -89,10 +89,10 @@ const SUBTLE_MAP: Record<TagColor, TagStyles> = {
     hoverBg: 'oklch(from var(--color-info-subtle) calc(l - 0.05) c h)',
   },
   muted: {
-    bg: 'var(--color-surface-sunken)',
-    color: 'var(--color-text-muted)',
+    bg: 'var(--color-border-default)',
+    color: 'var(--color-text-default)',
     border: 'none',
-    hoverBg: 'var(--color-surface-raised)',
+    hoverBg: 'var(--color-border-strong)',
   },
 };
 

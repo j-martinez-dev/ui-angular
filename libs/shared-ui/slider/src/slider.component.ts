@@ -23,10 +23,10 @@ export type SliderSize = 'sm' | 'md' | 'lg';
         <input
           type="range"
           class="slider-input"
-          [value]="value()"
           [min]="min() ?? 0"
           [max]="max() ?? 100"
           [step]="step()"
+          [value]="value()"
           [disabled]="disabled()"
           [attr.aria-label]="label()"
           [attr.aria-invalid]="invalid() || null"
