@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   input,
@@ -57,7 +56,6 @@ const ICON_SIZE_MAP: Record<CheckboxSize, IconSize> = {
     }
   `,
   styleUrl: './checkbox.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.size-sm]': 'size() === "sm"',
     '[class.size-md]': 'size() === "md"',

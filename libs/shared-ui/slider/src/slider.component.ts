@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   input,
@@ -48,7 +47,6 @@ export type SliderSize = 'sm' | 'md' | 'lg';
     }
   `,
   styleUrl: './slider.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.size-sm]': 'size() === "sm"',
     '[class.size-md]': 'size() === "md"',

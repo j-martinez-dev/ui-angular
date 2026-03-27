@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   input,
@@ -20,7 +19,6 @@ import { NgTemplateOutlet } from '@angular/common';
     </div>
   `,
   styleUrl: './tooltip.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'tooltip',
   },

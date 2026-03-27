@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   input,
@@ -81,7 +80,6 @@ const VARIANT_MAP: Record<TextareaVariant, VariantStyles> = {
     }
   `,
   styleUrl: './textarea.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[style.--textarea-bg]': 'variantStyles().bg',
     '[style.--textarea-border]': 'variantStyles().border',

@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   input,
@@ -111,7 +110,6 @@ const SPINNER_SIZE_MAP: Record<ButtonSize, SpinnerSize> = {
     </button>
   `,
   styleUrl: './button.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[style.--btn-bg]': 'styles().bg',
     '[style.--btn-color]': 'styles().color',

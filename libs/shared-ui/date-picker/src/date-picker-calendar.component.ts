@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
@@ -133,7 +132,6 @@ function dateKey(d: Date): string {
     </div>
   `,
   styleUrl: './date-picker-calendar.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiDatePickerCalendarComponent {
   value = input<Date | null>(null);

@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   ElementRef,
@@ -66,7 +65,6 @@ export type DatePickerSize = InputSize;
     }
   `,
   styleUrl: './date-picker.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiDatePickerComponent implements FormValueControl<Date | null>, OnDestroy {
   // Signal Forms contract

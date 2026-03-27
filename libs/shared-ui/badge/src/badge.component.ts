@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   input,
@@ -34,7 +33,7 @@ const FILLED_MAP: Record<BadgeColor, BadgeStyles> = {
   warning: { bg: 'var(--color-warning-default)', color: 'var(--color-on-warning)', border: 'none' },
   error: { bg: 'var(--color-error-default)', color: 'var(--color-on-error)', border: 'none' },
   info: { bg: 'var(--color-info-default)', color: 'var(--color-on-info)', border: 'none' },
-  muted: { bg: 'var(--color-text-muted)', color: 'var(--color-text-default)', border: 'none' },
+  muted: { bg: 'var(--color-border-default)', color: 'var(--color-on-primary)', border: 'none' },
 };
 
 const SUBTLE_MAP: Record<BadgeColor, BadgeStyles> = {
@@ -73,7 +72,6 @@ const VARIANT_MAPS: Record<BadgeVariant, Record<BadgeColor, BadgeStyles>> = {
     </span>
   `,
   styleUrl: './badge.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[style.--badge-bg]': 'styles().bg',
     '[style.--badge-color]': 'styles().color',

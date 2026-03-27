@@ -326,8 +326,8 @@ var(--duration-slow)     /* 300ms — modals, drawers, page transitions */
 
 /* Easings */
 var(--easing-default)    /* cubic-bezier(0.4, 0, 0.2, 1) — general purpose */
-var(--easing-in)         /* cubic-bezier(0.4, 0, 1, 1)   — elements entering */
-var(--easing-out)        /* cubic-bezier(0, 0, 0.2, 1)   — elements exiting */
+var(--easing-in)         /* cubic-bezier(0, 0, 0.2, 1)   — elements entering (deceleration) */
+var(--easing-out)        /* cubic-bezier(0.4, 0, 1, 1)   — elements exiting (acceleration) */
 ```
 
 Usage:
@@ -481,10 +481,52 @@ Form control components (Checkbox, Radio, Toggle, Slider) implement Angular Sign
 | `UiTextareaComponent` | `FormValueControl<string>` | `string` (value) |
 | `UiSelectComponent` | `FormValueControl<T \| null>` | `T \| null` (value) |
 | `UiMultiSelectComponent` | `FormValueControl<T[]>` | `T[]` (value) |
+| `UiDatePickerComponent` | `FormValueControl<Date \| null>` | `Date \| null` (value) |
 
 These components expose `model()` signals for two-way binding (`checked` or `value`) and `input()` signals for form state (`disabled`, `invalid`, `errors`, `hidden`, `readonly`, `disabledReasons`). The form framework manages these inputs — consumers should not set `disabled` or `invalid` manually when using Signal Forms.
 
 For standalone use without Signal Forms, inputs like `disabled` and `invalid` can be set directly via template bindings.
+
+---
+
+## Date handling with date-fns
+
+All date manipulation in the library uses [date-fns](https://date-fns.org/) v4. Never use manual `Date` arithmetic (`getMonth() + 1`, `new Date(year, month - 1)`, etc.).
+
+### Key functions used
+
+```ts
+import {
+  startOfMonth, startOfWeek, addDays, addMonths, subMonths,
+  addYears, subYears, getMonth, getYear, getDate,
+  setMonth, setYear, isBefore, isAfter, startOfDay, endOfDay,
+  format, eachDayOfInterval,
+} from 'date-fns';
+```
+
+### Locale handling
+
+Locales are mapped from BCP-47 strings to date-fns locale objects in a shared file:
+
+```ts
+// date-picker.locale.ts
+import { type Locale } from 'date-fns';
+import { fr, enUS, es } from 'date-fns/locale';
+
+export const LOCALE_MAP: Record<string, Locale> = {
+  'fr-FR': fr,
+  'en-US': enUS,
+  'es-ES': es,
+};
+```
+
+- **Fallback**: always fall back to `enUS` when a locale string is not in the map
+- **Adding locales**: import from `date-fns/locale` and add to the map — no other code changes needed
+- **Format patterns**: use date-fns format tokens (`dd/MM/yyyy`, `LLLL yyyy`, `EEEEEE`, `LLL`) — not `Intl.DateTimeFormat`
+
+### Accepted exceptions
+
+- `@keyframes` opacity values (e.g., spinner dot pulse `opacity: 0.3`) are not token violations — CSS keyframes need literal numeric values for animation rhythm
 
 ---
 
@@ -504,10 +546,12 @@ When implementing any component in the library, follow these rules without excep
 10. **Use `var(--color-focus-ring)` for focus outlines** — never hardcode focus colors
 11. **Use `var(--opacity-disabled)` for disabled states** — never hardcode opacity values
 12. **Always include `@media (prefers-reduced-motion: reduce)`** for any component with `transition` or `animation` in its SCSS
-13. **Always set `changeDetection: ChangeDetectionStrategy.OnPush`** in every component decorator
+13. **Do not set `changeDetection` explicitly** — Angular's default is already `OnPush` in this project. Adding it is redundant noise
 14. **Never use `line-height: 1`** — use `var(--leading-snug)` (1.375) for compact text or `var(--leading-tight)` (1.25) for headings. The only exception is avatar initials (single uppercase letters inside centered containers).
 15. **Prefer HTML5 semantic elements** — use `<details>`/`<summary>` for accordions, `<search>` for search landmarks, `<nav>` + `<ol>` for breadcrumbs, `<label>` for form labels, native `<button>` and `<input>` elements. Only use `<div>` with ARIA roles when no semantic element exists.
-16. **Always generate Storybook stories** — every component must have a `.stories.ts` file colocated next to it with exactly **3 exported stories**:
+16. **Components using `@angular/cdk/overlay` must use `ViewEncapsulation.None`** — CDK Overlay portals render content outside the component host, so scoped SCSS will not apply to the overlay panel. Move overlay-specific styles under a unique host class to avoid global leaks.
+17. **Extract shared SCSS when multiple components share identical styles** — never duplicate an entire SCSS file across components. Use a shared partial (e.g., `_select-shared.scss`) and `@use` it in each component.
+18. **Always generate Storybook stories** — every component must have a `.stories.ts` file colocated next to it with exactly **3 exported stories**:
 
 ### Story structure
 

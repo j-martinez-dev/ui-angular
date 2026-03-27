@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   input,
@@ -37,7 +36,6 @@ const COLOR_MAP: Record<ProgressBarColor, ProgressBarColorConfig> = {
     </div>
   `,
   styleUrl: './progress-bar.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'role': 'progressbar',
     '[attr.aria-valuemin]': '0',

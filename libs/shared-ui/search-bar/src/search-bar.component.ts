@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   input,
   linkedSignal,
@@ -37,7 +36,6 @@ import { UiIconButtonComponent } from '@ui/shared-ui/icon-button';
     </search>
   `,
   styleUrl: './search-bar.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiSearchBarComponent implements OnDestroy {
   placeholder = input<string>('Search...');

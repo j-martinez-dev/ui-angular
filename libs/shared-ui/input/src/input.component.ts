@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   ElementRef,
@@ -126,7 +125,6 @@ const HEIGHT_MAP: Record<InputSize, string> = {
     }
   `,
   styleUrl: './input.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[style.--input-bg]': 'variantStyles().bg',
     '[style.--input-border]': 'variantStyles().border',

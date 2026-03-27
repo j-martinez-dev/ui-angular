@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   input,
@@ -170,7 +169,6 @@ const VARIANT_MAPS: Record<TagVariant, Record<TagColor, TagStyles>> = {
     </span>
   `,
   styleUrl: './tag.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[style.--tag-bg]': 'styles().bg',
     '[style.--tag-color]': 'styles().color',

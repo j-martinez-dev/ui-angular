@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   input,
   model,
@@ -42,7 +41,6 @@ export type ToggleSize = 'sm' | 'md' | 'lg';
     }
   `,
   styleUrl: './toggle.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.size-sm]': 'size() === "sm"',
     '[class.size-md]': 'size() === "md"',

@@ -5,7 +5,7 @@
   border-radius: var(--radius-lg);
   padding: calc(var(--spacing) * 4);
   width: calc(var(--spacing) * 70);
-  animation: calendar-enter var(--duration-fast) var(--easing-out) both;
+  animation: calendar-enter var(--duration-slow) var(--easing-in) both;
 }
 
 @keyframes calendar-enter {
@@ -84,6 +84,11 @@
   &:hover:not(:disabled) {
     background: var(--color-surface-sunken);
   }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
 }
 
 .calendar-day--selected {
@@ -101,6 +106,8 @@
 
 .calendar-day--adjacent {
   color: var(--color-text-disabled);
+  cursor: default;
+  pointer-events: none;
 }
 
 .calendar-day--disabled {

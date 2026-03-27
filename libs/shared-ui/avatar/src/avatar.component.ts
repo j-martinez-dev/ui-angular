@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   input,
@@ -53,7 +52,6 @@ const COLOR_MAP: Record<AvatarColor, AvatarColorConfig> = {
     }
   `,
   styleUrl: './avatar.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'role': 'img',
     '[attr.aria-label]': 'ariaLabel()',

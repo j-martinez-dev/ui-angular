@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   ElementRef,
@@ -11,6 +10,7 @@ import {
   TemplateRef,
   viewChild,
   ViewContainerRef,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   FormValueControl,
@@ -153,7 +153,7 @@ const HEIGHT_MAP: Record<MultiSelectSize, string> = {
     }
   `,
   styleUrl: './multi-select.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   host: {
     '[style.--select-bg]': 'variantStyles().bg',
     '[style.--select-border]': 'variantStyles().border',

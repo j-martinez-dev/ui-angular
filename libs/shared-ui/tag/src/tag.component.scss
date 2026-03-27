@@ -46,14 +46,13 @@
   border: none;
   background: none;
   padding: 0;
-  color: currentColor;
+  color: color-mix(in oklch, currentColor 70%, transparent);
   cursor: pointer;
-  opacity: 0.7;
   border-radius: var(--radius-full);
-  transition: opacity var(--duration-fast) var(--easing-default);
+  transition: color var(--duration-fast) var(--easing-default);
 
   &:hover {
-    opacity: 1;
+    color: currentColor;
   }
 
   &:focus-visible {
@@ -91,7 +90,8 @@
 // ── Reduced motion ──────────────────────────────────────────────────────────
 
 @media (prefers-reduced-motion: reduce) {
-  .tag {
+  .tag,
+  .tag-remove {
     transition: none;
   }
 }

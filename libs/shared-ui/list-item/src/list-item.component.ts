@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   input,
@@ -58,7 +57,6 @@ const AVATAR_SIZE_MAP: Record<ListItemSize, AvatarSize> = {
     </div>
   `,
   styleUrl: './list-item.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.size-sm]': 'size() === "sm"',
     '[class.size-md]': 'size() === "md"',

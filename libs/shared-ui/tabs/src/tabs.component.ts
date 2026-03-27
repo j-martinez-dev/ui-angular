@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   ElementRef,
@@ -64,7 +63,6 @@ const ICON_SIZE_MAP: Record<TabsSize, IconSize> = {
     </div>
   `,
   styleUrl: './tabs.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.size-sm]': 'size() === "sm"',
     '[class.size-md]': 'size() === "md"',

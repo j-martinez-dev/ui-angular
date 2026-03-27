@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   input,
@@ -49,7 +48,6 @@ const COLOR_MAP: Record<IconColor, string> = {
   imports: [NgIcon],
   template: `<ng-icon [name]="name()" />`,
   styleUrl: './icon.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[style.font-size]': 'sizeValue()',
     '[style.color]': 'colorValue()',

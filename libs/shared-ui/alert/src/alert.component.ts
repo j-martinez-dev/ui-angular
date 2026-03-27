@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   input,
@@ -134,7 +133,6 @@ const VARIANT_MAPS: Record<AlertVariant, Record<AlertColor, AlertStyles>> = {
     </div>
   `,
   styleUrl: './alert.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'aria-live': 'assertive',
     '[style.--alert-bg]': 'styles().bg',

@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   input,
@@ -118,7 +117,6 @@ const DIMENSION_MAP: Record<IconButtonSize, string> = {
     </button>
   `,
   styleUrl: './icon-button.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[style.--icon-btn-bg]': 'styles().bg',
     '[style.--icon-btn-color]': 'styles().color',

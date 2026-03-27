@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   input,
@@ -57,7 +56,6 @@ const COLOR_MAP: Record<SpinnerColor, string> = {
     <span class="sr-only">{{ label() }}</span>
   `,
   styleUrl: './spinner.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'role': 'status',
     '[attr.aria-label]': 'label()',

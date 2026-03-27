@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   input,
@@ -44,7 +43,6 @@ let nextId = 0;
     </div>
   `,
   styleUrl: './form-field.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiFormFieldComponent {
   label = input<string>();

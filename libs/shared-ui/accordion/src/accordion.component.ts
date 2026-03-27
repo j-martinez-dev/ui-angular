@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   input,
@@ -51,7 +50,6 @@ let nextId = 0;
     </div>
   `,
   styleUrl: './accordion.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiAccordionComponent {
   items = input<AccordionItem[]>([]);
