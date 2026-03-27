@@ -35,7 +35,7 @@
 
 .toggle-thumb {
   position: absolute;
-  left: 2px;
+  left: calc(var(--spacing) * 0.5);
   border-radius: var(--radius-full);
   background-color: var(--color-surface-raised);
   transition: transform var(--duration-normal) var(--easing-default);
@@ -66,24 +66,24 @@
 
 // ── Sizes ─────────────────────────────────────────────────────────────────────
 
-// sm: track 28×16, thumb 12
+// sm: track 28×16, thumb 12, travel 12
 :host(.size-sm) {
   .toggle-wrapper {
     gap: calc(var(--spacing) * 1.5);
   }
 
   .toggle-track {
-    width: 28px;
-    height: 16px;
+    width: calc(var(--spacing) * 7);
+    height: calc(var(--spacing) * 4);
   }
 
   .toggle-thumb {
-    width: 12px;
-    height: 12px;
+    width: calc(var(--spacing) * 3);
+    height: calc(var(--spacing) * 3);
   }
 
   .toggle-track--checked .toggle-thumb {
-    transform: translateX(12px); // 28 - 12 - 2*2 = 12
+    transform: translateX(calc(var(--spacing) * 3));
   }
 
   .toggle-label {
@@ -91,24 +91,24 @@
   }
 }
 
-// md: track 36×20, thumb 16
+// md: track 36×20, thumb 16, travel 16
 :host(.size-md) {
   .toggle-wrapper {
     gap: calc(var(--spacing) * 2);
   }
 
   .toggle-track {
-    width: 36px;
-    height: 20px;
+    width: calc(var(--spacing) * 9);
+    height: calc(var(--spacing) * 5);
   }
 
   .toggle-thumb {
-    width: 16px;
-    height: 16px;
+    width: calc(var(--spacing) * 4);
+    height: calc(var(--spacing) * 4);
   }
 
   .toggle-track--checked .toggle-thumb {
-    transform: translateX(16px); // 36 - 16 - 2*2 = 16
+    transform: translateX(calc(var(--spacing) * 4));
   }
 
   .toggle-label {
@@ -116,28 +116,40 @@
   }
 }
 
-// lg: track 44×24, thumb 20
+// lg: track 44×24, thumb 20, travel 20
 :host(.size-lg) {
   .toggle-wrapper {
     gap: calc(var(--spacing) * 2.5);
   }
 
   .toggle-track {
-    width: 44px;
-    height: 24px;
+    width: calc(var(--spacing) * 11);
+    height: calc(var(--spacing) * 6);
   }
 
   .toggle-thumb {
-    width: 20px;
-    height: 20px;
+    width: calc(var(--spacing) * 5);
+    height: calc(var(--spacing) * 5);
   }
 
   .toggle-track--checked .toggle-thumb {
-    transform: translateX(20px); // 44 - 20 - 2*2 = 20
+    transform: translateX(calc(var(--spacing) * 5));
   }
 
   .toggle-label {
     font-size: var(--text-lg);
+  }
+}
+
+// ── Reduced motion ────────────────────────────────────────────────────────────
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle-track {
+    transition: none;
+  }
+
+  .toggle-thumb {
+    transition: none;
   }
 }
 

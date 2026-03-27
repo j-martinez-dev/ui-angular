@@ -126,7 +126,7 @@
 
 .slider-tooltip {
   position: absolute;
-  top: calc(-100% - 8px);
+  top: calc(-100% - calc(var(--spacing) * 2));
   transform: translateX(-50%);
   white-space: nowrap;
   pointer-events: none;
@@ -153,69 +153,80 @@
 
 // ── Sizes ─────────────────────────────────────────────────────────────────────
 
+// Each size defines --_track and --_thumb as local props for the margin-top calc.
+
 // sm: track 4px, thumb 14px
 :host(.size-sm) {
+  --_track: var(--spacing);
+  --_thumb: calc(var(--spacing) * 3.5);
+
   .slider-input::-webkit-slider-runnable-track {
-    height: 4px;
+    height: var(--_track);
   }
 
   .slider-input::-moz-range-track {
-    height: 4px;
+    height: var(--_track);
   }
 
   .slider-input::-webkit-slider-thumb {
-    width: 14px;
-    height: 14px;
-    margin-top: -5px; // (14 - 4) / 2
+    width: var(--_thumb);
+    height: var(--_thumb);
+    margin-top: calc((var(--_track) - var(--_thumb)) / 2);
   }
 
   .slider-input::-moz-range-thumb {
-    width: 14px;
-    height: 14px;
+    width: var(--_thumb);
+    height: var(--_thumb);
   }
 }
 
 // md: track 6px, thumb 18px
 :host(.size-md) {
+  --_track: calc(var(--spacing) * 1.5);
+  --_thumb: calc(var(--spacing) * 4.5);
+
   .slider-input::-webkit-slider-runnable-track {
-    height: 6px;
+    height: var(--_track);
   }
 
   .slider-input::-moz-range-track {
-    height: 6px;
+    height: var(--_track);
   }
 
   .slider-input::-webkit-slider-thumb {
-    width: 18px;
-    height: 18px;
-    margin-top: -6px; // (18 - 6) / 2
+    width: var(--_thumb);
+    height: var(--_thumb);
+    margin-top: calc((var(--_track) - var(--_thumb)) / 2);
   }
 
   .slider-input::-moz-range-thumb {
-    width: 18px;
-    height: 18px;
+    width: var(--_thumb);
+    height: var(--_thumb);
   }
 }
 
 // lg: track 8px, thumb 22px
 :host(.size-lg) {
+  --_track: calc(var(--spacing) * 2);
+  --_thumb: calc(var(--spacing) * 5.5);
+
   .slider-input::-webkit-slider-runnable-track {
-    height: 8px;
+    height: var(--_track);
   }
 
   .slider-input::-moz-range-track {
-    height: 8px;
+    height: var(--_track);
   }
 
   .slider-input::-webkit-slider-thumb {
-    width: 22px;
-    height: 22px;
-    margin-top: -7px; // (22 - 8) / 2
+    width: var(--_thumb);
+    height: var(--_thumb);
+    margin-top: calc((var(--_track) - var(--_thumb)) / 2);
   }
 
   .slider-input::-moz-range-thumb {
-    width: 22px;
-    height: 22px;
+    width: var(--_thumb);
+    height: var(--_thumb);
   }
 }
 
