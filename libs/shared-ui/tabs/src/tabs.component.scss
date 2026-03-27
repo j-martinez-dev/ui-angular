@@ -31,6 +31,7 @@
 
 .tabs--horizontal .tabs-strip:not(.tabs-strip--pill) {
   border-bottom: 1px solid var(--color-border-default);
+  width: fit-content;
 }
 
 .tabs--vertical .tabs-strip:not(.tabs-strip--pill) {
@@ -130,6 +131,10 @@
   border-radius: var(--radius-full);
   color: var(--color-text-default);
   font-weight: var(--font-weight-medium);
+}
+
+.tabs--vertical .tab--pill.tab--active {
+  border-radius: var(--radius-md);
 }
 
 // ── Size variants ───────────────────────────────────────────────────────────

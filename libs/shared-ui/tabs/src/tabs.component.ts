@@ -2,9 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  ElementRef,
+  inject,
   input,
   linkedSignal,
   output,
+  viewChildren,
 } from '@angular/core';
 import { UiIconComponent, type IconSize } from '@ui/shared-ui/icon';
 import { type TabItem } from './tabs.types';
@@ -36,13 +39,16 @@ const ICON_SIZE_MAP: Record<TabsSize, IconSize> = {
       >
         @for (tab of tabs(); track tab.value) {
           <button
+            #tabBtn
             class="tab"
             [class.tab--active]="activeTabValue() === tab.value"
             [class.tab--disabled]="tab.disabled"
             [class.tab--line]="variant() === 'line'"
             [class.tab--pill]="variant() === 'pill'"
             role="tab"
+            [id]="'tab-' + tab.value"
             [attr.aria-selected]="activeTabValue() === tab.value"
+            [attr.aria-controls]="'tabpanel-' + tab.value"
             [attr.tabindex]="activeTabValue() === tab.value ? 0 : -1"
             [disabled]="tab.disabled"
             (click)="selectTab(tab.value)"
@@ -71,6 +77,7 @@ export class UiTabsComponent<T = string> {
   variant = input<TabsVariant>('line');
   orientation = input<TabsOrientation>('horizontal');
   size = input<TabsSize>('md');
+  activation = input<'automatic' | 'manual'>('automatic');
 
   activeValueChange = output<T>();
 
@@ -82,6 +89,20 @@ export class UiTabsComponent<T = string> {
   });
 
   protected iconSize = computed(() => ICON_SIZE_MAP[this.size()]);
+
+  /** Consumers use this to set aria-labelledby on their tabpanel */
+  activeTabId = computed(() => {
+    const val = this.activeTabValue();
+    return val !== null ? `tab-${val}` : null;
+  });
+
+  /** Consumers use this to set id on their tabpanel */
+  activePanelId = computed(() => {
+    const val = this.activeTabValue();
+    return val !== null ? `tabpanel-${val}` : null;
+  });
+
+  private tabButtons = viewChildren<ElementRef<HTMLButtonElement>>('tabBtn');
 
   selectTab(value: T): void {
     this.activeTabValue.set(value);
@@ -130,14 +151,18 @@ export class UiTabsComponent<T = string> {
     if (nextIdx >= enabledTabs.length) nextIdx = 0;
 
     const tab = enabledTabs[nextIdx];
-    this.selectTab(tab.value);
+    if (this.activation() === 'automatic') {
+      this.selectTab(tab.value);
+    }
     this.focusTabButton(tab.value);
   }
 
   private focusFirst(): void {
     const first = this.tabs().find(t => !t.disabled);
     if (first) {
-      this.selectTab(first.value);
+      if (this.activation() === 'automatic') {
+        this.selectTab(first.value);
+      }
       this.focusTabButton(first.value);
     }
   }
@@ -145,19 +170,17 @@ export class UiTabsComponent<T = string> {
   private focusLast(): void {
     const last = [...this.tabs()].reverse().find(t => !t.disabled);
     if (last) {
-      this.selectTab(last.value);
+      if (this.activation() === 'automatic') {
+        this.selectTab(last.value);
+      }
       this.focusTabButton(last.value);
     }
   }
 
   private focusTabButton(value: T): void {
-    // Focus the button in the next microtask after signal update
     queueMicrotask(() => {
-      const buttons = document.querySelectorAll<HTMLButtonElement>(
-        '[role="tablist"] [role="tab"]',
-      );
       const idx = this.tabs().findIndex(t => t.value === value);
-      buttons[idx]?.focus();
+      this.tabButtons()[idx]?.nativeElement.focus();
     });
   }
 }
