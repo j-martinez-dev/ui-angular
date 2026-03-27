@@ -57,6 +57,7 @@ export type DatePickerSize = InputSize;
           [firstDayOfWeek]="firstDayOfWeek()"
           [locale]="locale()"
           (dateSelected)="onDateSelected($event)"
+          (closeRequested)="close()"
         />
       </ng-template>
     }
@@ -141,7 +142,7 @@ export class UiDatePickerComponent implements FormValueControl<Date | null>, OnD
     this.backdropSub = this.overlayRef.backdropClick().subscribe(() => this.close());
   }
 
-  private close(): void {
+  close(): void {
     if (!this.isOpen()) return;
     this.backdropSub?.unsubscribe();
     this.backdropSub = null;

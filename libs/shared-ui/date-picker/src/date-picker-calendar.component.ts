@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   input,
   output,
   signal,
@@ -12,6 +13,7 @@ type CalendarView = 'days' | 'months' | 'years';
 
 interface DayCell {
   date: Date;
+  key: string;
   isAdjacentMonth: boolean;
   isDisabled: boolean;
 }
@@ -21,11 +23,29 @@ interface MonthEntry {
   label: string;
 }
 
+function dateKey(d: Date): string {
+  return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+}
+
+// Find the Monday (or Sunday) of or before a given date
+function findDayOfWeek(dayOfWeek: number): Date {
+  const d = new Date(2024, 0, 1); // arbitrary start
+  while (d.getDay() !== dayOfWeek) {
+    d.setDate(d.getDate() + 1);
+  }
+  return d;
+}
+
 @Component({
   selector: 'ui-date-picker-calendar',
   imports: [UiIconButtonComponent],
   template: `
-    <div class="calendar" role="dialog" aria-label="Date picker">
+    <div
+      class="calendar"
+      role="dialog"
+      aria-label="Date picker"
+      (keydown)="onKeydown($event)"
+    >
 
       <div class="calendar-header">
         <ui-icon-button
@@ -48,15 +68,15 @@ interface MonthEntry {
       </div>
 
       @if (view() === 'days') {
-        <div class="calendar-grid">
+        <div class="calendar-grid" role="grid">
           @for (day of weekDayNames(); track day) {
             <span class="calendar-weekday">{{ day }}</span>
           }
-          @for (cell of dayCells(); track cellTrackBy(cell)) {
+          @for (cell of dayCells(); track cell.key) {
             <button
               class="calendar-day"
-              [class.calendar-day--selected]="isSelected(cell.date)"
-              [class.calendar-day--today]="isToday(cell.date)"
+              [class.calendar-day--selected]="selectedKey() === cell.key"
+              [class.calendar-day--today]="todayKey() === cell.key"
               [class.calendar-day--adjacent]="cell.isAdjacentMonth"
               [class.calendar-day--disabled]="cell.isDisabled"
               [disabled]="cell.isDisabled || cell.isAdjacentMonth"
@@ -109,9 +129,29 @@ export class UiDatePickerCalendarComponent {
   locale = input<string>('fr-FR');
 
   dateSelected = output<Date>();
+  closeRequested = output<void>();
 
   view = signal<CalendarView>('days');
   viewDate = signal<Date>(new Date());
+
+  constructor() {
+    // Sync viewDate to the selected value when it changes
+    effect(() => {
+      const v = this.value();
+      if (v) {
+        this.viewDate.set(new Date(v.getFullYear(), v.getMonth(), 1));
+      }
+    });
+  }
+
+  // ── Pre-computed keys for O(1) lookups ──────────────────────────────────
+
+  protected selectedKey = computed(() => {
+    const v = this.value();
+    return v ? dateKey(v) : null;
+  });
+
+  protected todayKey = computed(() => dateKey(new Date()));
 
   // ── Computed ────────────────────────────────────────────────────────────
 
@@ -137,7 +177,7 @@ export class UiDatePickerCalendarComponent {
   protected weekDayNames = computed(() => {
     const loc = this.locale();
     const fdow = this.firstDayOfWeek();
-    const base = new Date(2024, 0, fdow === 1 ? 1 : 7); // Mon Jan 1, 2024 or Sun Jan 7, 2024
+    const base = findDayOfWeek(fdow);
     return Array.from({ length: 7 }, (_, i) => {
       const d = new Date(base);
       d.setDate(base.getDate() + i);
@@ -165,7 +205,7 @@ export class UiDatePickerCalendarComponent {
       date.setDate(startDate.getDate() + i);
       const isAdjacentMonth = date.getMonth() !== month;
       const isDisabled = this.isDateDisabled(date, min, max);
-      cells.push({ date, isAdjacentMonth, isDisabled });
+      cells.push({ date, key: dateKey(date), isAdjacentMonth, isDisabled });
     }
 
     return cells;
@@ -236,22 +276,14 @@ export class UiDatePickerCalendarComponent {
     }
   }
 
+  onKeydown(event: KeyboardEvent): void {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      this.closeRequested.emit();
+    }
+  }
+
   // ── Helpers ─────────────────────────────────────────────────────────────
-
-  isSelected(date: Date): boolean {
-    const v = this.value();
-    if (!v) return false;
-    return date.getFullYear() === v.getFullYear()
-      && date.getMonth() === v.getMonth()
-      && date.getDate() === v.getDate();
-  }
-
-  isToday(date: Date): boolean {
-    const t = new Date();
-    return date.getFullYear() === t.getFullYear()
-      && date.getMonth() === t.getMonth()
-      && date.getDate() === t.getDate();
-  }
 
   isCurrentMonth(month: number): boolean {
     return this.viewDate().getMonth() === month;
@@ -259,10 +291,6 @@ export class UiDatePickerCalendarComponent {
 
   isCurrentYear(year: number): boolean {
     return this.viewDate().getFullYear() === year;
-  }
-
-  cellTrackBy(cell: DayCell): string {
-    return `${cell.date.getFullYear()}-${cell.date.getMonth()}-${cell.date.getDate()}`;
   }
 
   private isDateDisabled(date: Date, min: Date | undefined, max: Date | undefined): boolean {
