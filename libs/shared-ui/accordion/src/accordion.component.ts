@@ -11,6 +11,8 @@ import { NgTemplateOutlet } from '@angular/common';
 import { UiIconComponent } from '@ui/shared-ui/icon';
 import { type AccordionItem } from './accordion.types';
 
+let nextId = 0;
+
 @Component({
   selector: 'ui-accordion',
   imports: [UiIconComponent, NgTemplateOutlet],
@@ -86,5 +88,3 @@ export class UiAccordionComponent {
     return content as TemplateRef<unknown>;
   }
 }
-
-let nextId = 0;

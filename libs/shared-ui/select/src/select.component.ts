@@ -223,6 +223,7 @@ export class UiSelectComponent<T = unknown> implements FormValueControl<T | null
   });
 
   ngOnDestroy(): void {
+    this.backdropSub?.unsubscribe();
     this.overlayRef?.dispose();
   }
 

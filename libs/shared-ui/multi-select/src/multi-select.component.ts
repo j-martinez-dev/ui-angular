@@ -231,6 +231,7 @@ export class UiMultiSelectComponent<T = unknown> implements FormValueControl<T[]
   });
 
   ngOnDestroy(): void {
+    this.backdropSub?.unsubscribe();
     this.overlayRef?.dispose();
   }
 
