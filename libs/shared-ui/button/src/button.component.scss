@@ -1,0 +1,73 @@
+:host {
+  display: inline-block;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  border: var(--btn-border, none);
+  background-color: var(--btn-bg);
+  color: var(--btn-color);
+  transition:
+    background-color var(--duration-normal) var(--easing-default),
+    opacity var(--duration-normal) var(--easing-default);
+  line-height: 1;
+}
+
+.btn:hover:not(.btn--disabled):not(.btn--loading) {
+  background-color: var(--btn-hover-bg);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary-default);
+  outline-offset: 2px;
+}
+
+.btn--full-width {
+  width: 100%;
+}
+
+.btn--loading {
+  pointer-events: none;
+}
+
+.btn--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn-label {
+  line-height: 1;
+}
+
+// ── Size variants ───────────────────────────────────────────────────────────
+
+:host(.size-sm) .btn {
+  font-size: var(--text-sm);
+  padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 3);
+  gap: calc(var(--spacing) * 1.5);
+}
+
+:host(.size-md) .btn {
+  font-size: var(--text-base);
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+  gap: calc(var(--spacing) * 2);
+}
+
+:host(.size-lg) .btn {
+  font-size: var(--text-lg);
+  padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+  gap: calc(var(--spacing) * 2.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
