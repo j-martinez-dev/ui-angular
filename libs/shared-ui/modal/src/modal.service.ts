@@ -1,6 +1,7 @@
 import { inject, Injectable, Injector, TemplateRef } from '@angular/core';
 import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
+import { filter } from 'rxjs';
 import { UiModalRef } from './modal-ref';
 import { type ModalConfig, type ModalContent, UI_MODAL_DATA } from './modal.types';
 import { UiModalComponent } from './modal.component';
@@ -15,12 +16,15 @@ export class UiModalService {
     config?: ModalConfig<D>,
   ): UiModalRef<R> {
     const modalRef = new UiModalRef<R>();
+    const previouslyFocused = document.activeElement as HTMLElement | null;
 
     const overlayRef = this.overlay.create({
       hasBackdrop: true,
       backdropClass: 'ui-modal-backdrop',
       positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
       scrollStrategy: this.overlay.scrollStrategies.block(),
+      width: '100%',
+      maxWidth: '100vw',
     });
 
     const modalInjector = Injector.create({
@@ -56,11 +60,22 @@ export class UiModalService {
       }
     });
 
-    // Dispose on close
+    // Escape key via overlay (reliable even when focus is outside the modal)
+    const escapeSub = overlayRef.keydownEvents()
+      .pipe(filter(e => e.key === 'Escape'))
+      .subscribe(() => {
+        if (config?.closeOnEscape !== false) {
+          modalRef.close();
+        }
+      });
+
+    // Dispose on close and restore focus
     modalRef.closed$.subscribe({
       complete: () => {
         backdropSub.unsubscribe();
+        escapeSub.unsubscribe();
         overlayRef.dispose();
+        previouslyFocused?.focus();
       },
     });
 

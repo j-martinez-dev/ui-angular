@@ -15,10 +15,8 @@ import { UI_MODAL_DATA, type ModalSize } from './modal.types';
   selector: 'story-dynamic-content',
   imports: [UiButtonComponent],
   template: `
-    <p class="ui-body-md" style="color: var(--color-text-default);">
-      {{ data.message }}
-    </p>
-    <div slot="footer">
+    <p class="ui-body-md">{{ data.message }}</p>
+    <div class="flex justify-end gap-2 pt-4" style="border-top: 1px solid var(--color-border-default); margin-top: calc(var(--spacing) * 4);">
       <ui-button variant="ghost" (click)="modalRef.close()">Cancel</ui-button>
       <ui-button variant="primary" (click)="modalRef.close('confirmed')">Confirm</ui-button>
     </div>
@@ -106,9 +104,7 @@ class DynamicContentComponent {
     </div>
 
     <ng-template #tpl>
-      <p class="ui-body-md" style="color: var(--color-text-default);">
-        This content is rendered from a TemplateRef.
-      </p>
+      <p class="ui-body-md">This content is rendered from a TemplateRef.</p>
     </ng-template>
   `,
 })
