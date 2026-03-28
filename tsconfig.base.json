@@ -42,7 +42,8 @@
       "@ui/shared-ui/tooltip": ["libs/shared-ui/tooltip/index.ts"],
       "@ui/shared-ui/dropdown-menu": ["libs/shared-ui/dropdown-menu/index.ts"],
       "@ui/shared-ui/modal": ["libs/shared-ui/modal/index.ts"],
-      "@ui/shared-ui/toast": ["libs/shared-ui/toast/index.ts"]
+      "@ui/shared-ui/toast": ["libs/shared-ui/toast/index.ts"],
+      "@ui/shared-ui/file-upload": ["libs/shared-ui/file-upload/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
