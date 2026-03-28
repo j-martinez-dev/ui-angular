@@ -34,19 +34,7 @@
 }
 
 .pagination-size-select {
-  font-family: var(--font-sans);
-  color: var(--color-text-default);
-  background: var(--color-surface-raised);
-  border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-sm);
-  padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1.5);
-  cursor: pointer;
-  transition: border-color var(--duration-normal) var(--easing-default);
-
-  &:focus-visible {
-    outline: 2px solid var(--color-focus-ring);
-    outline-offset: 2px;
-  }
+  width: calc(var(--spacing) * 20);
 }
 
 .pagination-pages {
@@ -84,6 +72,11 @@
     color: var(--color-on-primary);
     font-weight: var(--font-weight-medium);
     cursor: default;
+
+    &:focus-visible {
+      outline-color: var(--color-on-primary);
+      outline-offset: -2px;
+    }
   }
 }
 
@@ -102,17 +95,21 @@
 
 :host(.size-sm) .pagination-info,
 :host(.size-sm) .pagination-size-label,
-:host(.size-sm) .pagination-size-select,
 :host(.size-sm) .pagination-page,
 :host(.size-sm) .pagination-ellipsis {
   font-size: var(--text-xs);
+}
+
+:host(.size-sm) .pagination-page,
+:host(.size-sm) .pagination-ellipsis {
+  min-width: calc(var(--spacing) * 6);
+  height: calc(var(--spacing) * 6);
 }
 
 // ── Size: md ───────────────────────────────────────────────────────────────
 
 :host(.size-md) .pagination-info,
 :host(.size-md) .pagination-size-label,
-:host(.size-md) .pagination-size-select,
 :host(.size-md) .pagination-page,
 :host(.size-md) .pagination-ellipsis {
   font-size: var(--text-sm);
@@ -122,15 +119,19 @@
 
 :host(.size-lg) .pagination-info,
 :host(.size-lg) .pagination-size-label,
-:host(.size-lg) .pagination-size-select,
 :host(.size-lg) .pagination-page,
 :host(.size-lg) .pagination-ellipsis {
   font-size: var(--text-base);
 }
 
+:host(.size-lg) .pagination-page,
+:host(.size-lg) .pagination-ellipsis {
+  min-width: calc(var(--spacing) * 10);
+  height: calc(var(--spacing) * 10);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .pagination-page,
-  .pagination-size-select {
+  .pagination-page {
     transition: none;
   }
 }

@@ -5,6 +5,7 @@ import {
   output,
 } from '@angular/core';
 import { UiIconButtonComponent, type IconButtonSize } from '@ui/shared-ui/icon-button';
+import { UiSelectComponent, type SelectSize, type SelectOption } from '@ui/shared-ui/select';
 
 export type PaginationSize = 'sm' | 'md' | 'lg';
 
@@ -14,9 +15,15 @@ const BUTTON_SIZE_MAP: Record<PaginationSize, IconButtonSize> = {
   lg: 'lg',
 };
 
+const SELECT_SIZE_MAP: Record<PaginationSize, SelectSize> = {
+  sm: 'sm',
+  md: 'sm',
+  lg: 'md',
+};
+
 @Component({
   selector: 'ui-pagination',
-  imports: [UiIconButtonComponent],
+  imports: [UiIconButtonComponent, UiSelectComponent],
   template: `
     <nav class="pagination" [attr.aria-label]="'Pagination'">
 
@@ -31,15 +38,15 @@ const BUTTON_SIZE_MAP: Record<PaginationSize, IconButtonSize> = {
         @if (pageSizeOptions()) {
           <div class="pagination-size-selector">
             <span class="pagination-size-label">Lignes par page</span>
-            <select
+            <ui-select
               class="pagination-size-select"
-              [attr.aria-label]="'Lignes par page'"
-              (change)="onPageSizeChange($event)"
-            >
-              @for (option of pageSizeOptions(); track option) {
-                <option [value]="option" [selected]="option === pageSize()">{{ option }}</option>
-              }
-            </select>
+              [options]="selectOptions()"
+              [value]="pageSize()"
+              [size]="selectSize()"
+              variant="outlined"
+              placeholder=""
+              (valueChange)="onPageSizeChange($event)"
+            />
           </div>
         }
 
@@ -102,8 +109,15 @@ export class UiPaginationComponent {
   pageSizeChange = output<number>();
 
   protected buttonSize = computed(() => BUTTON_SIZE_MAP[this.size()]);
+  protected selectSize = computed(() => SELECT_SIZE_MAP[this.size()]);
 
-  totalPages = computed(() => Math.ceil(this.totalItems() / this.pageSize()));
+  protected selectOptions = computed<SelectOption<number>[]>(() => {
+    const opts = this.pageSizeOptions();
+    if (!opts) return [];
+    return opts.map(n => ({ label: String(n), value: n }));
+  });
+
+  totalPages = computed(() => Math.ceil(this.totalItems() / Math.max(1, this.pageSize())));
 
   visiblePages = computed(() => {
     const total = this.totalPages();
@@ -126,7 +140,7 @@ export class UiPaginationComponent {
     return pages;
   });
 
-  rangeStart = computed(() => (this.currentPage() - 1) * this.pageSize() + 1);
+  rangeStart = computed(() => this.totalItems() === 0 ? 0 : (this.currentPage() - 1) * this.pageSize() + 1);
   rangeEnd = computed(() => Math.min(this.currentPage() * this.pageSize(), this.totalItems()));
 
   goToPage(page: number): void {
@@ -134,8 +148,8 @@ export class UiPaginationComponent {
     this.pageChange.emit(page);
   }
 
-  onPageSizeChange(event: Event): void {
-    const value = Number((event.target as HTMLSelectElement).value);
+  onPageSizeChange(value: number | null): void {
+    if (value == null) return;
     this.pageSizeChange.emit(value);
     this.pageChange.emit(1);
   }
