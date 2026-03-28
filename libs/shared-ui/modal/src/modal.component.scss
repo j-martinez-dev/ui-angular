@@ -1,3 +1,8 @@
+ui-modal {
+  display: block;
+  width: 100%;
+}
+
 .ui-modal-backdrop {
   background: oklch(0% 0 0 / 0.4);
   animation: ui-modal-backdrop-in var(--duration-normal) var(--easing-default) both;

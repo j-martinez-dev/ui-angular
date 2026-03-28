@@ -9,7 +9,7 @@ import { UiModalService } from './modal.service';
 import { UiModalRef } from './modal-ref';
 import { UI_MODAL_DATA, type ModalSize } from './modal.types';
 
-// ── Dynamic component used in stories ────────────────────────────────────────
+// ── Dynamic components used in stories ────────────────────────────────────────
 
 @Component({
   selector: 'story-dynamic-content',
@@ -25,6 +25,30 @@ import { UI_MODAL_DATA, type ModalSize } from './modal.types';
 class DynamicContentComponent {
   readonly data = inject(UI_MODAL_DATA) as { message: string };
   readonly modalRef = inject(UiModalRef);
+}
+
+@Component({
+  selector: 'story-scrollable-content',
+  imports: [UiButtonComponent],
+  template: `
+    <div class="flex flex-col gap-4">
+      <p class="ui-body-md">This modal has enough content to trigger vertical scrolling. The header stays fixed at the top while the body scrolls independently.</p>
+      @for (i of paragraphs; track i) {
+        <div style="padding: calc(var(--spacing) * 4); background: var(--color-surface-sunken); border-radius: var(--radius-md);">
+          <p class="ui-body-sm" style="font-weight: var(--font-weight-semibold); color: var(--color-text-default);">Section {{ i }}</p>
+          <p class="ui-body-sm ui-text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+        </div>
+      }
+      <div class="flex justify-end gap-2 pt-4" style="border-top: 1px solid var(--color-border-default);">
+        <ui-button variant="ghost" (click)="modalRef.close()">Cancel</ui-button>
+        <ui-button variant="primary" (click)="modalRef.close('confirmed')">Accept</ui-button>
+      </div>
+    </div>
+  `,
+})
+class ScrollableContentComponent {
+  readonly modalRef = inject(UiModalRef);
+  readonly paragraphs = Array.from({ length: 12 }, (_, i) => i + 1);
 }
 
 // ── Docs ─────────────────────────────────────────────────────────────────────
@@ -192,6 +216,13 @@ class PlaygroundModalComponent {
       </section>
 
       <section class="flex flex-col gap-4">
+        <p class="ui-overline">Scrollable content</p>
+        <div class="flex flex-wrap items-center gap-4 p-6" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
+          <ui-button variant="secondary" (click)="openScrollable()">Open scrollable</ui-button>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
         <p class="ui-overline">Backdrop dismiss disabled</p>
         <div class="flex flex-wrap items-center gap-4 p-6" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
           <ui-button variant="secondary" (click)="openPersistent()">Persistent modal</ui-button>
@@ -240,6 +271,13 @@ class ModalVariantsComponent {
     });
   }
 
+  openScrollable(): void {
+    this.modal.open(ScrollableContentComponent, {
+      title: 'Terms & Conditions',
+      size: 'md',
+    });
+  }
+
   openPersistent(): void {
     this.modal.open(DynamicContentComponent, {
       title: 'Persistent',
@@ -260,7 +298,7 @@ const meta: Meta<UiModalComponent> = {
       providers: [provideIcons({ heroXMark })],
     }),
     moduleMetadata({
-      imports: [UiModalComponent, UiButtonComponent, DynamicContentComponent],
+      imports: [UiModalComponent, UiButtonComponent, DynamicContentComponent, ScrollableContentComponent],
     }),
   ],
 };
