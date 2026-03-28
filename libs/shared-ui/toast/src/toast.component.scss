@@ -5,6 +5,7 @@ ui-toast {
 .ui-toast {
   --toast-bg: var(--color-surface-overlay);
   --toast-color: var(--color-text-default);
+  --toast-border: var(--color-border-default);
 
   display: flex;
   align-items: center;
@@ -12,7 +13,7 @@ ui-toast {
   padding: calc(var(--spacing) * 3) calc(var(--spacing) * 3.5);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
-  border: 1px solid var(--color-border-default);
+  border: 1px solid var(--toast-border);
   background: var(--toast-bg);
   color: var(--toast-color);
   font-family: var(--font-sans);
@@ -33,21 +34,25 @@ ui-toast {
 .ui-toast--success {
   --toast-bg: var(--color-success-subtle);
   --toast-color: var(--color-success-emphasis);
+  --toast-border: var(--color-success-default);
 }
 
 .ui-toast--warning {
   --toast-bg: var(--color-warning-subtle);
   --toast-color: var(--color-warning-emphasis);
+  --toast-border: var(--color-warning-default);
 }
 
 .ui-toast--error {
   --toast-bg: var(--color-error-subtle);
   --toast-color: var(--color-error-emphasis);
+  --toast-border: var(--color-error-default);
 }
 
 .ui-toast--info {
   --toast-bg: var(--color-info-subtle);
   --toast-color: var(--color-info-emphasis);
+  --toast-border: var(--color-info-default);
 }
 
 .ui-toast-dismiss {
@@ -83,6 +88,11 @@ ui-toast {
 
   &:hover {
     opacity: 0.8;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
   }
 }
 

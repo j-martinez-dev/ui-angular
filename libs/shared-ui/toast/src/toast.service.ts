@@ -92,12 +92,16 @@ export class UiToastService {
   dismiss(id: string): void {
     this.clearTimer(id);
     this.toasts.update(current => current.filter(t => t.id !== id));
+    if (this.toasts().length === 0) {
+      this.destroyContainer();
+    }
   }
 
   dismissAll(): void {
     this.timers.forEach(timer => clearTimeout(timer));
     this.timers.clear();
     this.toasts.set([]);
+    this.destroyContainer();
   }
 
   private clearTimer(id: string): void {
