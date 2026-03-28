@@ -27,11 +27,20 @@ import { formatFileSize, isFileAccepted, isFileSizeValid } from './file-upload.u
         [class.file-upload--dragging]="isDragging()"
         [class.file-upload--has-file]="value().length > 0"
         [class.file-upload--disabled]="disabled()"
+        [class.file-upload--readonly]="readonly()"
         [class.file-upload--invalid]="invalid()"
+        [attr.tabindex]="disabled() || readonly() ? -1 : 0"
+        role="button"
+        [attr.aria-label]="value().length > 0
+          ? value().length + ' file(s) selected'
+          : placeholder()"
+        [attr.aria-disabled]="disabled()"
         (dragover)="onDragOver($event)"
-        (dragleave)="onDragLeave()"
+        (dragleave)="onDragLeave($event)"
         (drop)="onDrop($event)"
         (click)="openFilePicker()"
+        (keydown.enter)="openFilePicker()"
+        (keydown.space)="onSpaceKey($event)"
       >
         <input
           #fileInput
@@ -59,20 +68,22 @@ import { formatFileSize, isFileAccepted, isFileSizeValid } from './file-upload.u
 
         @if (value().length > 0) {
           <ul class="file-list">
-            @for (file of value(); track file.name) {
+            @for (file of value(); track $index) {
               <li class="file-list-item" (click)="$event.stopPropagation()">
                 <ui-icon name="heroDocument" size="sm" color="muted" />
                 <div class="file-upload-info">
                   <span class="file-upload-name">{{ file.name }}</span>
                   <span class="file-upload-size">{{ formatFileSize(file.size) }}</span>
                 </div>
-                <ui-icon-button
-                  icon="heroXMark"
-                  label="Remove file"
-                  variant="ghost"
-                  size="sm"
-                  (click)="removeFile(file)"
-                />
+                @if (!readonly()) {
+                  <ui-icon-button
+                    icon="heroXMark"
+                    label="Remove file"
+                    variant="ghost"
+                    size="sm"
+                    (click)="removeFile(file)"
+                  />
+                }
               </li>
             }
           </ul>
@@ -83,7 +94,6 @@ import { formatFileSize, isFileAccepted, isFileSizeValid } from './file-upload.u
   styleUrl: './multi-file-upload.component.scss',
 })
 export class UiMultiFileUploadComponent implements FormValueControl<File[]> {
-  // Signal Forms contract
   value = model<File[]>([]);
   touched = model<boolean>(false);
   disabled = input<boolean>(false);
@@ -94,42 +104,51 @@ export class UiMultiFileUploadComponent implements FormValueControl<File[]> {
   errors = input<readonly ValidationError.WithOptionalFieldTree[]>([]);
   required = input<boolean>(false);
 
-  // Additional inputs
   accept = input<string>('');
   maxSize = input<number | undefined>(undefined);
   maxFiles = input<number | undefined>(undefined);
   placeholder = input<string>('Glissez des fichiers ici ou cliquez pour sélectionner');
 
-  // Outputs
   fileRejected = output<{ file: File; reason: 'type' | 'size' | 'limit' }>();
 
-  // Internal state
   isDragging = signal<boolean>(false);
   private fileInput = viewChild.required<ElementRef<HTMLInputElement>>('fileInput');
 
   protected formatFileSize = formatFileSize;
 
   openFilePicker(): void {
+    if (this.readonly()) return;
     this.fileInput().nativeElement.click();
+  }
+
+  onSpaceKey(event: Event): void {
+    event.preventDefault();
+    this.openFilePicker();
   }
 
   onDragOver(event: DragEvent): void {
     event.preventDefault();
-    this.isDragging.set(true);
+    if (!this.readonly()) this.isDragging.set(true);
   }
 
-  onDragLeave(): void {
+  onDragLeave(event: DragEvent): void {
+    const target = event.currentTarget as HTMLElement;
+    const related = event.relatedTarget as Node | null;
+    if (related && target.contains(related)) return;
     this.isDragging.set(false);
   }
 
   onDrop(event: DragEvent): void {
     event.preventDefault();
     this.isDragging.set(false);
+    if (this.readonly()) return;
     this.processFiles(event.dataTransfer?.files);
   }
 
   onFileSelected(event: Event): void {
-    this.processFiles((event.target as HTMLInputElement).files);
+    const input = event.target as HTMLInputElement;
+    this.processFiles(input.files);
+    input.value = '';
   }
 
   removeFile(file: File): void {

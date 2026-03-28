@@ -13,7 +13,7 @@ const icons = { heroArrowUpTray, heroDocument, heroXMark };
 
 @Component({
   selector: 'story-file-upload-docs',
-  imports: [UiFileUploadComponent],
+  imports: [UiFileUploadComponent, UiMultiFileUploadComponent],
   template: `
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">
       <section class="flex flex-col gap-2">

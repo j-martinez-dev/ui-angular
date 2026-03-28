@@ -15,6 +15,6 @@ export function isFileAccepted(file: File, accept: string): boolean {
 }
 
 export function isFileSizeValid(file: File, maxSize: number | undefined): boolean {
-  if (!maxSize) return true;
+  if (maxSize == null) return true;
   return file.size <= maxSize;
 }

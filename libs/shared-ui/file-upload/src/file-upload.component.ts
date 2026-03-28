@@ -27,11 +27,18 @@ import { formatFileSize, isFileAccepted, isFileSizeValid } from './file-upload.u
         [class.file-upload--dragging]="isDragging()"
         [class.file-upload--has-file]="!!value()"
         [class.file-upload--disabled]="disabled()"
+        [class.file-upload--readonly]="readonly()"
         [class.file-upload--invalid]="invalid()"
+        [attr.tabindex]="disabled() || readonly() ? -1 : 0"
+        role="button"
+        [attr.aria-label]="value() ? value()!.name : placeholder()"
+        [attr.aria-disabled]="disabled()"
         (dragover)="onDragOver($event)"
-        (dragleave)="onDragLeave()"
+        (dragleave)="onDragLeave($event)"
         (drop)="onDrop($event)"
         (click)="openFilePicker()"
+        (keydown.enter)="openFilePicker()"
+        (keydown.space)="onSpaceKey($event)"
       >
         <input
           #fileInput
@@ -60,13 +67,15 @@ import { formatFileSize, isFileAccepted, isFileSizeValid } from './file-upload.u
               <span class="file-upload-name">{{ value()!.name }}</span>
               <span class="file-upload-size">{{ formatFileSize(value()!.size) }}</span>
             </div>
-            <ui-icon-button
-              icon="heroXMark"
-              label="Remove file"
-              variant="ghost"
-              size="sm"
-              (click)="removeFile()"
-            />
+            @if (!readonly()) {
+              <ui-icon-button
+                icon="heroXMark"
+                label="Remove file"
+                variant="ghost"
+                size="sm"
+                (click)="removeFile()"
+              />
+            }
           </div>
         }
       </div>
@@ -75,7 +84,6 @@ import { formatFileSize, isFileAccepted, isFileSizeValid } from './file-upload.u
   styleUrl: './file-upload.component.scss',
 })
 export class UiFileUploadComponent implements FormValueControl<File | null> {
-  // Signal Forms contract
   value = model<File | null>(null);
   touched = model<boolean>(false);
   disabled = input<boolean>(false);
@@ -86,41 +94,50 @@ export class UiFileUploadComponent implements FormValueControl<File | null> {
   errors = input<readonly ValidationError.WithOptionalFieldTree[]>([]);
   required = input<boolean>(false);
 
-  // Additional inputs
   accept = input<string>('');
   maxSize = input<number | undefined>(undefined);
   placeholder = input<string>('Glissez un fichier ici ou cliquez pour sélectionner');
 
-  // Outputs
   fileRejected = output<{ file: File; reason: 'type' | 'size' }>();
 
-  // Internal state
   isDragging = signal<boolean>(false);
   private fileInput = viewChild.required<ElementRef<HTMLInputElement>>('fileInput');
 
   protected formatFileSize = formatFileSize;
 
   openFilePicker(): void {
+    if (this.readonly()) return;
     this.fileInput().nativeElement.click();
+  }
+
+  onSpaceKey(event: Event): void {
+    event.preventDefault();
+    this.openFilePicker();
   }
 
   onDragOver(event: DragEvent): void {
     event.preventDefault();
-    this.isDragging.set(true);
+    if (!this.readonly()) this.isDragging.set(true);
   }
 
-  onDragLeave(): void {
+  onDragLeave(event: DragEvent): void {
+    const target = event.currentTarget as HTMLElement;
+    const related = event.relatedTarget as Node | null;
+    if (related && target.contains(related)) return;
     this.isDragging.set(false);
   }
 
   onDrop(event: DragEvent): void {
     event.preventDefault();
     this.isDragging.set(false);
+    if (this.readonly()) return;
     this.processFile(event.dataTransfer?.files[0]);
   }
 
   onFileSelected(event: Event): void {
-    this.processFile((event.target as HTMLInputElement).files?.[0]);
+    const input = event.target as HTMLInputElement;
+    this.processFile(input.files?.[0]);
+    input.value = '';
   }
 
   removeFile(): void {
