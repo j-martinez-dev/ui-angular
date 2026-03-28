@@ -43,7 +43,7 @@ let nextId = 0;
         @if (showCloseButton()) {
           <ui-icon-button
             icon="heroXMark"
-            label="Close modal"
+            label="Fermer"
             variant="ghost"
             size="sm"
             class="ui-modal-close"

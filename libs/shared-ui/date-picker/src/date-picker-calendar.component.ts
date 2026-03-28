@@ -56,14 +56,14 @@ function dateKey(d: Date): string {
     <div
       class="calendar"
       role="dialog"
-      aria-label="Date picker"
+      aria-label="Sélecteur de date"
       (keydown)="onKeydown($event)"
     >
 
       <div class="calendar-header">
         <ui-icon-button
           icon="heroChevronLeft"
-          label="Previous"
+          label="Précédent"
           variant="ghost"
           size="sm"
           (click)="navigatePrev()"
@@ -73,7 +73,7 @@ function dateKey(d: Date): string {
         </button>
         <ui-icon-button
           icon="heroChevronRight"
-          label="Next"
+          label="Suivant"
           variant="ghost"
           size="sm"
           (click)="navigateNext()"

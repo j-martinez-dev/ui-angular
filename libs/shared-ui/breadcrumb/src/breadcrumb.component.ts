@@ -19,7 +19,7 @@ const ICON_SIZE_MAP: Record<BreadcrumbSize, IconSize> = {
   selector: 'ui-breadcrumb',
   imports: [UiIconComponent],
   template: `
-    <nav aria-label="Breadcrumb">
+    <nav aria-label="Fil d'Ariane">
       <ol class="breadcrumb">
         @for (item of items(); track item.value; let last = $last) {
           <li class="breadcrumb-item" [class.breadcrumb-item--active]="last">

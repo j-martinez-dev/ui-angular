@@ -66,7 +66,7 @@ export class UiSpinnerComponent {
   variant = input<SpinnerVariant>('circular');
   size = input<SpinnerSize>('md');
   color = input<SpinnerColor>('primary');
-  label = input<string>('Loading...');
+  label = input<string>('Chargement...');
 
   protected sizeValue = computed(() => SIZE_MAP[this.size()]);
   protected colorValue = computed(() => COLOR_MAP[this.color()]);

@@ -65,7 +65,7 @@ const POSITION_MAP: Record<
 })
 export class UiDropdownMenuComponent implements DropdownMenuRef, OnDestroy {
   icon = input<string>('heroEllipsisVertical');
-  label = input<string>('Open menu');
+  label = input<string>('Ouvrir le menu');
   triggerVariant = input<'primary' | 'secondary' | 'ghost' | 'danger'>('ghost');
   triggerSize = input<'sm' | 'md' | 'lg'>('md');
   position = input<DropdownPosition>('bottom-end');

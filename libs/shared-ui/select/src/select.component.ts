@@ -84,7 +84,7 @@ const HEIGHT_MAP: Record<SelectSize, string> = {
         <div class="select-panel" role="listbox">
           @if (searchable()) {
             <div class="select-search">
-              <ui-input type="search" size="sm" [(value)]="searchQuery" placeholder="Search..." />
+              <ui-input type="search" size="sm" [(value)]="searchQuery" placeholder="Rechercher..." />
             </div>
           }
           <div class="select-options">
@@ -111,7 +111,7 @@ const HEIGHT_MAP: Record<SelectSize, string> = {
                 }
               </div>
             } @empty {
-              <div class="select-empty">No options found</div>
+              <div class="select-empty">Aucune option trouvée</div>
             }
           </div>
         </div>
@@ -145,7 +145,7 @@ export class UiSelectComponent<T = unknown> implements FormValueControl<T | null
   required = input<boolean>(false);
 
   options = input<SelectOption<T>[]>([]);
-  placeholder = input<string>('Select an option');
+  placeholder = input<string>('Sélectionnez une option');
   variant = input<SelectVariant>('outlined');
   size = input<SelectSize>('md');
   searchable = input<boolean>(false);

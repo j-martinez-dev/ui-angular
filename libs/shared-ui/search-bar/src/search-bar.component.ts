@@ -27,7 +27,7 @@ import { UiIconButtonComponent } from '@ui/shared-ui/icon-button';
       />
       <ui-icon-button
         icon="heroMagnifyingGlass"
-        label="Search"
+        label="Rechercher"
         variant="primary"
         [size]="size()"
         [disabled]="disabled()"
@@ -38,13 +38,13 @@ import { UiIconButtonComponent } from '@ui/shared-ui/icon-button';
   styleUrl: './search-bar.component.scss',
 })
 export class UiSearchBarComponent implements OnDestroy {
-  placeholder = input<string>('Search...');
+  placeholder = input<string>('Rechercher...');
   size = input<'sm' | 'md' | 'lg'>('md');
   variant = input<'outlined' | 'filled' | 'ghost'>('outlined');
   debounce = input<number>(0);
   disabled = input<boolean>(false);
   value = input<string>('');
-  ariaLabel = input<string>('Search');
+  ariaLabel = input<string>('Rechercher');
 
   search = output<string>();
   searchChange = output<string>();

@@ -124,7 +124,7 @@ const VARIANT_MAPS: Record<AlertVariant, Record<AlertColor, AlertStyles>> = {
         <button
           type="button"
           class="alert-close"
-          aria-label="Close alert"
+          aria-label="Fermer l'alerte"
           (click)="removed.emit()"
         >
           <ui-icon name="heroXMark" size="sm" />

@@ -53,7 +53,7 @@ const SELECT_SIZE_MAP: Record<PaginationSize, SelectSize> = {
         <div class="pagination-pages">
           <ui-icon-button
             icon="heroChevronLeft"
-            label="Previous page"
+            label="Page précédente"
             variant="ghost"
             [size]="buttonSize()"
             [disabled]="currentPage() === 1"
@@ -78,7 +78,7 @@ const SELECT_SIZE_MAP: Record<PaginationSize, SelectSize> = {
 
           <ui-icon-button
             icon="heroChevronRight"
-            label="Next page"
+            label="Page suivante"
             variant="ghost"
             [size]="buttonSize()"
             [disabled]="currentPage() === totalPages()"

@@ -48,7 +48,7 @@ const ICON_COLOR_MAP: Record<ToastType, IconColor> = {
 
       <ui-icon-button
         icon="heroXMark"
-        label="Dismiss"
+        label="Fermer"
         variant="ghost"
         size="sm"
         class="ui-toast-dismiss"

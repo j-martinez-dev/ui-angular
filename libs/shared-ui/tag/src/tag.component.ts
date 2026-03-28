@@ -171,7 +171,7 @@ const VARIANT_MAPS: Record<TagVariant, Record<TagColor, TagStyles>> = {
           <button
             type="button"
             class="tag-remove"
-            aria-label="Remove"
+            aria-label="Supprimer"
             (click)="onRemove($event)"
           >
             <ui-icon name="heroXMark" size="xs" />

@@ -80,7 +80,7 @@ export class UiDatePickerComponent implements FormValueControl<Date | null>, OnD
 
   // Additional inputs
   displayFormat = input<string>('dd/MM/yyyy');
-  placeholder = input<string>('Select a date');
+  placeholder = input<string>('Sélectionnez une date');
   minDate = input<Date | undefined>(undefined);
   maxDate = input<Date | undefined>(undefined);
   firstDayOfWeek = input<0 | 1>(1);

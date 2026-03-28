@@ -80,7 +80,7 @@ const HEIGHT_MAP: Record<InputSize, string> = {
             icon="heroXMark"
             variant="ghost"
             size="sm"
-            label="Clear input"
+            label="Effacer"
             (click)="clearValue()"
           />
         }

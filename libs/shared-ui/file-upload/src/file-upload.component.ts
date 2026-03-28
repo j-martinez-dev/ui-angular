@@ -70,7 +70,7 @@ import { formatFileSize, isFileAccepted, isFileSizeValid } from './file-upload.u
             @if (!readonly()) {
               <ui-icon-button
                 icon="heroXMark"
-                label="Remove file"
+                label="Supprimer le fichier"
                 variant="ghost"
                 size="sm"
                 (click)="removeFile()"
@@ -96,7 +96,7 @@ export class UiFileUploadComponent implements FormValueControl<File | null> {
 
   accept = input<string>('');
   maxSize = input<number | undefined>(undefined);
-  placeholder = input<string>('Drop a file here or click to select');
+  placeholder = input<string>('Glissez un fichier ici ou cliquez pour sélectionner');
 
   fileRejected = output<{ file: File; reason: 'type' | 'size' }>();
 

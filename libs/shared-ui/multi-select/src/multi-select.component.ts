@@ -86,7 +86,7 @@ const HEIGHT_MAP: Record<MultiSelectSize, string> = {
         <div class="select-panel" role="listbox" aria-multiselectable="true">
           @if (searchable()) {
             <div class="select-search">
-              <ui-input type="search" size="sm" [(value)]="searchQuery" placeholder="Search..." />
+              <ui-input type="search" size="sm" [(value)]="searchQuery" placeholder="Rechercher..." />
             </div>
           }
           <div class="select-options">
@@ -111,7 +111,7 @@ const HEIGHT_MAP: Record<MultiSelectSize, string> = {
                 >{{ option.label }}</span>
               </div>
             } @empty {
-              <div class="select-empty">No options found</div>
+              <div class="select-empty">Aucune option trouvée</div>
             }
           </div>
         </div>
@@ -147,7 +147,7 @@ export class UiMultiSelectComponent<T = unknown> implements FormValueControl<T[]
 
   // Additional inputs
   options = input<SelectOption<T>[]>([]);
-  placeholder = input<string>('Select options');
+  placeholder = input<string>('Sélectionnez des options');
   variant = input<MultiSelectVariant>('outlined');
   size = input<MultiSelectSize>('md');
   searchable = input<boolean>(false);
