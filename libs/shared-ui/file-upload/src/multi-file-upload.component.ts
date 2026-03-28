@@ -107,7 +107,7 @@ export class UiMultiFileUploadComponent implements FormValueControl<File[]> {
   accept = input<string>('');
   maxSize = input<number | undefined>(undefined);
   maxFiles = input<number | undefined>(undefined);
-  placeholder = input<string>('Glissez des fichiers ici ou cliquez pour sélectionner');
+  placeholder = input<string>('Drop files here or click to select');
 
   fileRejected = output<{ file: File; reason: 'type' | 'size' | 'limit' }>();
 

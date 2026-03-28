@@ -96,7 +96,7 @@ export class UiFileUploadComponent implements FormValueControl<File | null> {
 
   accept = input<string>('');
   maxSize = input<number | undefined>(undefined);
-  placeholder = input<string>('Glissez un fichier ici ou cliquez pour sélectionner');
+  placeholder = input<string>('Drop a file here or click to select');
 
   fileRejected = output<{ file: File; reason: 'type' | 'size' }>();
 

@@ -48,6 +48,7 @@ const COLOR_MAP: Record<ProgressBarColor, ProgressBarColorConfig> = {
     '[style.--progress-height]': 'heightValue()',
     '[class.is-indeterminate]': 'indeterminate()',
     '[class.is-striped]': 'variant() === "striped"',
+    '[attr.aria-label]': 'label() ?? null',
   },
 })
 export class UiProgressBarComponent {
@@ -56,6 +57,7 @@ export class UiProgressBarComponent {
   color = input<ProgressBarColor>('primary');
   size = input<ProgressBarSize>('md');
   indeterminate = input<boolean>(false);
+  label = input<string>();
 
   protected clampedValue = computed(() => Math.max(0, Math.min(100, this.value())));
   protected colorConfig = computed(() => COLOR_MAP[this.color()]);

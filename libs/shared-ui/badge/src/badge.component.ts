@@ -33,7 +33,7 @@ const FILLED_MAP: Record<BadgeColor, BadgeStyles> = {
   warning: { bg: 'var(--color-warning-default)', color: 'var(--color-on-warning)', border: 'none' },
   error: { bg: 'var(--color-error-default)', color: 'var(--color-on-error)', border: 'none' },
   info: { bg: 'var(--color-info-default)', color: 'var(--color-on-info)', border: 'none' },
-  muted: { bg: 'var(--color-border-default)', color: 'var(--color-on-primary)', border: 'none' },
+  muted: { bg: 'var(--color-surface-sunken)', color: 'var(--color-text-default)', border: 'none' },
 };
 
 const SUBTLE_MAP: Record<BadgeColor, BadgeStyles> = {

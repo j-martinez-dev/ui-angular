@@ -4,7 +4,7 @@ ui-modal {
 }
 
 .ui-modal-backdrop {
-  background: oklch(0% 0 0 / 0.4);
+  background: oklch(from var(--color-text-default) l c h / 0.4);
   animation: ui-modal-backdrop-in var(--duration-normal) var(--easing-default) both;
 }
 

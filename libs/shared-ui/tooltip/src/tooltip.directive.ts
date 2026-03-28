@@ -139,10 +139,11 @@ export class UiTooltipDirective implements OnDestroy {
     const tooltipEl = this.componentRef.location.nativeElement as HTMLElement;
     tooltipEl.setAttribute('id', this.tooltipId);
 
-    (this.elementRef.nativeElement as HTMLElement).setAttribute(
-      'aria-describedby',
-      this.tooltipId,
-    );
+    const el = this.elementRef.nativeElement as HTMLElement;
+    const existing = el.getAttribute('aria-describedby');
+    const ids = existing ? existing.split(' ').filter(id => id !== this.tooltipId) : [];
+    ids.push(this.tooltipId);
+    el.setAttribute('aria-describedby', ids.join(' '));
   }
 
   private hide(): void {
@@ -151,7 +152,12 @@ export class UiTooltipDirective implements OnDestroy {
     this.overlayRef?.detach();
     this.componentRef = null;
 
-    (this.elementRef.nativeElement as HTMLElement).removeAttribute('aria-describedby');
+    const el = this.elementRef.nativeElement as HTMLElement;
+    const existing = el.getAttribute('aria-describedby');
+    if (existing) {
+      const ids = existing.split(' ').filter(id => id !== this.tooltipId);
+      ids.length ? el.setAttribute('aria-describedby', ids.join(' ')) : el.removeAttribute('aria-describedby');
+    }
   }
 
   // ── Helpers ───────────────────────────────────────────────────────────

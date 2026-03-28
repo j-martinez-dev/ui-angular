@@ -101,7 +101,7 @@ const VARIANT_MAPS: Record<AlertVariant, Record<AlertColor, AlertStyles>> = {
   selector: 'ui-alert',
   imports: [UiIconComponent],
   template: `
-    <div class="alert" role="alert">
+    <div class="alert" [attr.role]="live() === 'off' ? null : 'alert'" [attr.aria-live]="live()">
       <ui-icon [name]="resolvedIcon()" size="md" />
 
       <div class="alert-content">
@@ -134,13 +134,13 @@ const VARIANT_MAPS: Record<AlertVariant, Record<AlertColor, AlertStyles>> = {
   `,
   styleUrl: './alert.component.scss',
   host: {
-    'aria-live': 'assertive',
     '[style.--alert-bg]': 'styles().bg',
     '[style.--alert-color]': 'styles().color',
     '[style.--alert-border]': 'styles().border',
   },
 })
 export class UiAlertComponent {
+  live = input<'assertive' | 'polite' | 'off'>('assertive');
   variant = input<AlertVariant>('subtle');
   color = input<AlertColor>('info');
   title = input<string>();

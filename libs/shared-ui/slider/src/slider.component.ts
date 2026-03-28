@@ -68,7 +68,7 @@ export class UiSliderComponent implements FormValueControl<number> {
   max = input<number | undefined>(undefined);
 
   // Additional inputs
-  label = input<string>('Value');
+  label = input.required<string>();
   step = input<number>(1);
   size = input<SliderSize>('md');
 

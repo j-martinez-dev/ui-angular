@@ -28,6 +28,7 @@ let nextId = 0;
           <summary
             class="accordion-header"
             [class.accordion-header--disabled]="item.disabled"
+            [attr.aria-disabled]="item.disabled || null"
           >
             <span class="accordion-title">{{ item.title }}</span>
             <ui-icon
@@ -65,6 +66,8 @@ export class UiAccordionComponent {
   protected readonly accordionName = `ui-accordion-${nextId++}`;
 
   onToggle(event: Event, id: string): void {
+    const item = this.items().find(i => i.id === id);
+    if (item?.disabled) return;
     const details = event.target as HTMLDetailsElement;
     if (details.open) {
       if (this.mode() === 'single') {

@@ -20,6 +20,7 @@ export type RadioSize = 'sm' | 'md' | 'lg';
         <input
           type="radio"
           class="sr-only"
+          [attr.name]="name() || null"
           [checked]="checked()"
           [disabled]="disabled()"
           [attr.aria-invalid]="invalid() || null"
@@ -62,6 +63,7 @@ export class UiRadioComponent implements FormCheckboxControl {
 
   // Additional inputs
   label = input<string>();
+  name = input<string>('');
   size = input<RadioSize>('md');
   required = input<boolean>(false);
 

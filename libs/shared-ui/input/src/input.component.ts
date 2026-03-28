@@ -15,38 +15,11 @@ import {
 } from '@angular/forms/signals';
 import { UiIconComponent, type IconSize } from '@ui/shared-ui/icon';
 import { UiIconButtonComponent } from '@ui/shared-ui/icon-button';
+import { FORM_FIELD_VARIANT_MAP, type FormFieldVariant } from './form-field-variants';
 
 export type InputType = 'text' | 'password' | 'email' | 'number' | 'search';
-export type InputVariant = 'outlined' | 'filled' | 'ghost';
+export type InputVariant = FormFieldVariant;
 export type InputSize = 'sm' | 'md' | 'lg';
-
-interface VariantStyles {
-  bg: string;
-  border: string;
-  focusBorder: string;
-  invalidBorder: string;
-}
-
-const VARIANT_MAP: Record<InputVariant, VariantStyles> = {
-  outlined: {
-    bg: 'var(--color-surface-raised)',
-    border: '1px solid var(--color-border-default)',
-    focusBorder: '1px solid var(--color-primary-default)',
-    invalidBorder: '1px solid var(--color-error-default)',
-  },
-  filled: {
-    bg: 'var(--color-surface-sunken)',
-    border: 'none',
-    focusBorder: 'none',
-    invalidBorder: 'none',
-  },
-  ghost: {
-    bg: 'transparent',
-    border: 'none',
-    focusBorder: 'none',
-    invalidBorder: 'none',
-  },
-};
 
 const ICON_SIZE_MAP: Record<InputSize, IconSize> = {
   sm: 'sm',
@@ -166,11 +139,11 @@ export class UiInputComponent implements FormValueControl<string> {
   ariaDescribedBy = input<string>();
 
   // Internal state
-  isFocused = signal<boolean>(false);
+  protected isFocused = signal<boolean>(false);
   private inputEl = viewChild<ElementRef<HTMLInputElement>>('inputEl');
 
   // Computed
-  protected variantStyles = computed(() => VARIANT_MAP[this.variant()]);
+  protected variantStyles = computed(() => FORM_FIELD_VARIANT_MAP[this.variant()]);
   protected iconSize = computed(() => ICON_SIZE_MAP[this.size()]);
   protected heightValue = computed(() => HEIGHT_MAP[this.size()]);
 

@@ -6,8 +6,6 @@ import {
   input,
   model,
   OnDestroy,
-  signal,
-  TemplateRef,
   viewChild,
   ViewContainerRef,
   ViewEncapsulation,
@@ -18,49 +16,18 @@ import {
   DisabledReason,
   WithOptionalFieldTree,
 } from '@angular/forms/signals';
-import {
-  Overlay,
-  OverlayRef,
-} from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
+import { Overlay } from '@angular/cdk/overlay';
 import { UiIconComponent, type IconSize } from '@ui/shared-ui/icon';
 import { UiInputComponent } from '@ui/shared-ui/input';
 import { UiCheckboxComponent } from '@ui/shared-ui/checkbox';
 import { UiTooltipDirective } from '@ui/shared-ui/tooltip';
-import { type SelectOption } from '@ui/shared-ui/select';
+import { type SelectOption, SelectOverlayController } from '@ui/shared-ui/select';
+import { FORM_FIELD_VARIANT_MAP, type FormFieldVariant } from '@ui/shared-ui/input';
 
 let nextId = 0;
 
-export type MultiSelectVariant = 'outlined' | 'filled' | 'ghost';
+export type MultiSelectVariant = FormFieldVariant;
 export type MultiSelectSize = 'sm' | 'md' | 'lg';
-
-interface VariantStyles {
-  bg: string;
-  border: string;
-  focusBorder: string;
-  invalidBorder: string;
-}
-
-const VARIANT_MAP: Record<MultiSelectVariant, VariantStyles> = {
-  outlined: {
-    bg: 'var(--color-surface-raised)',
-    border: '1px solid var(--color-border-default)',
-    focusBorder: '1px solid var(--color-primary-default)',
-    invalidBorder: '1px solid var(--color-error-default)',
-  },
-  filled: {
-    bg: 'var(--color-surface-sunken)',
-    border: 'none',
-    focusBorder: 'none',
-    invalidBorder: 'none',
-  },
-  ghost: {
-    bg: 'transparent',
-    border: 'none',
-    focusBorder: 'none',
-    invalidBorder: 'none',
-  },
-};
 
 const ICON_SIZE_MAP: Record<MultiSelectSize, IconSize> = {
   sm: 'sm',
@@ -88,7 +55,6 @@ const HEIGHT_MAP: Record<MultiSelectSize, string> = {
         [class.select-trigger--invalid]="invalid()"
         [attr.aria-expanded]="isOpen()"
         [attr.aria-haspopup]="'listbox'"
-        [attr.aria-multiselectable]="true"
         [attr.aria-activedescendant]="focusedOptionId()"
         [attr.id]="id() || null"
         role="combobox"
@@ -188,31 +154,20 @@ export class UiMultiSelectComponent<T = unknown> implements FormValueControl<T[]
   maxLabels = input<number>(1);
   id = input<string>();
 
-  // Internal state
-  isOpen = signal<boolean>(false);
-  searchQuery = signal<string>('');
-  focusedIndex = signal<number>(-1);
-  protected readonly panelId = `ui-multi-select-panel-${nextId++}`;
+  protected readonly oc = new SelectOverlayController<T>(inject(Overlay), inject(ViewContainerRef));
+  protected readonly isOpen = this.oc.isOpen;
+  protected readonly searchQuery = this.oc.searchQuery;
+  protected readonly focusedIndex = this.oc.focusedIndex;
+  protected readonly panelId = this.oc.panelId;
 
-  // Template refs
   private triggerEl = viewChild<ElementRef<HTMLElement>>('trigger');
-  private panelTpl = viewChild<TemplateRef<unknown>>('panelTpl');
+  private panelTpl = viewChild<unknown>('panelTpl');
 
-  // Services
-  private readonly overlay = inject(Overlay);
-  private readonly viewContainerRef = inject(ViewContainerRef);
-  private overlayRef: OverlayRef | null = null;
-  private backdropSub: { unsubscribe(): void } | null = null;
-
-  // Computed
-  protected variantStyles = computed(() => VARIANT_MAP[this.variant()]);
+  protected variantStyles = computed(() => FORM_FIELD_VARIANT_MAP[this.variant()]);
   protected iconSize = computed(() => ICON_SIZE_MAP[this.size()]);
   protected heightValue = computed(() => HEIGHT_MAP[this.size()]);
 
-  protected focusedOptionId = computed(() => {
-    const idx = this.focusedIndex();
-    return idx >= 0 ? `${this.panelId}-option-${idx}` : null;
-  });
+  protected focusedOptionId = computed(() => this.oc.focusedOptionId());
 
   protected triggerLabel = computed(() => {
     const selected = this.value();
@@ -231,8 +186,7 @@ export class UiMultiSelectComponent<T = unknown> implements FormValueControl<T[]
   });
 
   ngOnDestroy(): void {
-    this.backdropSub?.unsubscribe();
-    this.overlayRef?.dispose();
+    this.oc.destroy();
   }
 
   isSelected(option: SelectOption<T>): boolean {
@@ -240,12 +194,16 @@ export class UiMultiSelectComponent<T = unknown> implements FormValueControl<T[]
   }
 
   isTruncated(el: HTMLElement): boolean {
-    return el.scrollWidth > el.clientWidth;
+    return this.oc.isTruncated(el);
   }
 
   toggleDropdown(): void {
     if (this.disabled() || this.readonly()) return;
-    this.isOpen() ? this.close() : this.open();
+    if (this.isOpen()) {
+      this.oc.close(this.triggerEl());
+    } else {
+      this.oc.open(this.triggerEl(), this.panelTpl() as any, 0);
+    }
   }
 
   toggleOption(option: SelectOption<T>): void {
@@ -273,106 +231,34 @@ export class UiMultiSelectComponent<T = unknown> implements FormValueControl<T[]
             this.toggleOption(opts[idx]);
           }
         } else {
-          this.open();
+          this.toggleDropdown();
         }
         break;
       case 'ArrowDown':
         event.preventDefault();
         if (!this.isOpen()) {
-          this.open();
+          this.toggleDropdown();
         } else {
-          this.moveFocus(1);
+          this.oc.moveFocus(1, this.filteredOptions());
         }
         break;
       case 'ArrowUp':
         event.preventDefault();
         if (this.isOpen()) {
-          this.moveFocus(-1);
+          this.oc.moveFocus(-1, this.filteredOptions());
         }
         break;
       case 'Escape':
         if (this.isOpen()) {
           event.preventDefault();
-          this.close();
+          this.oc.close(this.triggerEl());
         }
         break;
       case 'Tab':
         if (this.isOpen()) {
-          this.close();
+          this.oc.close(this.triggerEl());
         }
         break;
     }
-  }
-
-  // ── Private ─────────────────────────────────────────────────────────────
-
-  private open(): void {
-    if (this.isOpen()) return;
-
-    const triggerEl = this.triggerEl();
-    const panelTpl = this.panelTpl();
-    if (!triggerEl || !panelTpl) return;
-
-    if (!this.overlayRef) {
-      this.overlayRef = this.createOverlay(triggerEl);
-    }
-
-    this.overlayRef.updateSize({ width: triggerEl.nativeElement.offsetWidth });
-
-    const portal = new TemplatePortal(panelTpl, this.viewContainerRef);
-    this.overlayRef.attach(portal);
-    this.isOpen.set(true);
-    this.searchQuery.set('');
-    this.focusedIndex.set(0);
-
-    this.backdropSub = this.overlayRef.backdropClick().subscribe(() => this.close());
-  }
-
-  private close(): void {
-    if (!this.isOpen()) return;
-    this.backdropSub?.unsubscribe();
-    this.backdropSub = null;
-    this.overlayRef?.detach();
-    this.isOpen.set(false);
-    this.focusedIndex.set(-1);
-    this.triggerEl()?.nativeElement.focus();
-  }
-
-  private createOverlay(triggerEl: ElementRef<HTMLElement>): OverlayRef {
-    const positionStrategy = this.overlay
-      .position()
-      .flexibleConnectedTo(triggerEl)
-      .withPositions([
-        { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top', offsetY: 4 },
-        { originX: 'start', originY: 'top', overlayX: 'start', overlayY: 'bottom', offsetY: -4 },
-      ]);
-
-    return this.overlay.create({
-      positionStrategy,
-      scrollStrategy: this.overlay.scrollStrategies.close(),
-      hasBackdrop: true,
-      backdropClass: 'cdk-overlay-transparent-backdrop',
-    });
-  }
-
-  private moveFocus(delta: number): void {
-    const opts = this.filteredOptions();
-    if (opts.length === 0) return;
-
-    let idx = this.focusedIndex() + delta;
-
-    while (idx >= 0 && idx < opts.length && opts[idx].disabled) {
-      idx += delta;
-    }
-
-    if (idx >= 0 && idx < opts.length) {
-      this.focusedIndex.set(idx);
-      this.scrollToFocused(idx);
-    }
-  }
-
-  private scrollToFocused(idx: number): void {
-    const el = document.getElementById(`${this.panelId}-option-${idx}`);
-    el?.scrollIntoView({ block: 'nearest' });
   }
 }

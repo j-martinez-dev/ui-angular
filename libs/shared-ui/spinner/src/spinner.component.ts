@@ -58,7 +58,6 @@ const COLOR_MAP: Record<SpinnerColor, string> = {
   styleUrl: './spinner.component.scss',
   host: {
     'role': 'status',
-    '[attr.aria-label]': 'label()',
     '[style.--spinner-color]': 'colorValue()',
     '[style.--spinner-size]': 'sizeValue()',
   },

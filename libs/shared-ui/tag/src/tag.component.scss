@@ -16,6 +16,14 @@
   transition: background-color var(--duration-normal) var(--easing-default);
 }
 
+button.tag {
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+}
+
 .tag--clickable {
   cursor: pointer;
 }

@@ -108,6 +108,18 @@ export class UiDropdownMenuComponent implements DropdownMenuRef, OnDestroy {
         event.preventDefault();
         this.close();
         break;
+      case 'Home':
+        event.preventDefault();
+        this.focusedIndex = 0;
+        this.menuItems().filter(item => !item.disabled())[0]?.focus();
+        break;
+      case 'End': {
+        event.preventDefault();
+        const items = this.menuItems().filter(item => !item.disabled());
+        this.focusedIndex = items.length - 1;
+        items[this.focusedIndex]?.focus();
+        break;
+      }
       case 'Tab':
         this.close();
         break;
@@ -181,7 +193,10 @@ export class UiDropdownMenuComponent implements DropdownMenuRef, OnDestroy {
     const items = this.menuItems().filter(item => !item.disabled());
     if (items.length === 0) return;
 
-    this.focusedIndex = Math.max(0, Math.min(items.length - 1, this.focusedIndex + delta));
+    let next = this.focusedIndex + delta;
+    if (next < 0) next = items.length - 1;
+    if (next >= items.length) next = 0;
+    this.focusedIndex = next;
     items[this.focusedIndex].focus();
   }
 }

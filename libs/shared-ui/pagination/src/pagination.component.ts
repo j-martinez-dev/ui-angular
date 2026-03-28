@@ -50,7 +50,7 @@ const SELECT_SIZE_MAP: Record<PaginationSize, SelectSize> = {
           </div>
         }
 
-        <div class="pagination-pages" role="list">
+        <div class="pagination-pages">
           <ui-icon-button
             icon="heroChevronLeft"
             label="Previous page"
