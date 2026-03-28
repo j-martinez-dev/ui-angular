@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata, applicationConfig } from '@storybook/angular';
 import { Component, signal } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
-import { heroChevronLeft, heroChevronRight } from '@ng-icons/heroicons/outline';
+import { heroChevronLeft, heroChevronRight, heroChevronDown } from '@ng-icons/heroicons/outline';
 import { UiPaginationComponent, type PaginationSize } from './pagination.component';
 
-const icons = { heroChevronLeft, heroChevronRight };
+const icons = { heroChevronLeft, heroChevronRight, heroChevronDown };
 
 // ── Docs ────────────────────────────────────────────────────────────────────
 

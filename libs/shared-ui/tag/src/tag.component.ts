@@ -144,41 +144,29 @@ const VARIANT_MAPS: Record<TagVariant, Record<TagColor, TagStyles>> = {
   selector: 'ui-tag',
   imports: [UiIconComponent],
   template: `
-    @if (clickable() && !removable()) {
-      <button
-        type="button"
-        class="tag tag--clickable"
-        (click)="onClick()"
-      >
-        <span class="tag-label">
-          <ng-content />
-        </span>
-      </button>
-    } @else {
-      <span
-        class="tag"
-        [class.tag--clickable]="clickable()"
-        [attr.role]="clickable() ? 'button' : null"
-        [attr.tabindex]="clickable() ? 0 : null"
-        (click)="onClick()"
-        (keydown)="onKeydown($event)"
-      >
-        <span class="tag-label">
-          <ng-content />
-        </span>
-
-        @if (removable()) {
-          <button
-            type="button"
-            class="tag-remove"
-            aria-label="Supprimer"
-            (click)="onRemove($event)"
-          >
-            <ui-icon name="heroXMark" size="xs" />
-          </button>
-        }
+    <span
+      class="tag"
+      [class.tag--clickable]="clickable()"
+      [attr.role]="clickable() && !removable() ? 'button' : clickable() ? 'button' : null"
+      [attr.tabindex]="clickable() ? 0 : null"
+      (click)="onClick()"
+      (keydown)="onKeydown($event)"
+    >
+      <span class="tag-label">
+        <ng-content />
       </span>
-    }
+
+      @if (removable()) {
+        <button
+          type="button"
+          class="tag-remove"
+          aria-label="Supprimer"
+          (click)="onRemove($event)"
+        >
+          <ui-icon name="heroXMark" size="xs" />
+        </button>
+      }
+    </span>
   `,
   styleUrl: './tag.component.scss',
   host: {

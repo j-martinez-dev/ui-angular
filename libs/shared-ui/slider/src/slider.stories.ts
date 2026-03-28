@@ -21,7 +21,7 @@ import { UiSliderComponent, SliderSize } from './slider.component';
       <section class="flex flex-col gap-4">
         <h3 class="ui-h3">Usage</h3>
         <div class="flex flex-col gap-3 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
-          <ui-slider [value]="50" />
+          <ui-slider [value]="50" label="Valeur" />
           <code class="ui-code">&lt;ui-slider [value]="50" /&gt;</code>
         </div>
       </section>
@@ -103,23 +103,23 @@ const SIZES: SliderSize[] = ['sm', 'md', 'lg'];
         <div class="flex flex-col gap-4 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
           <div class="flex flex-col gap-1">
             <span class="ui-caption ui-text-muted">Default (50%)</span>
-            <ui-slider [value]="50" />
+            <ui-slider [value]="50" label="Valeur" />
           </div>
           <div class="flex flex-col gap-1">
             <span class="ui-caption ui-text-muted">Empty (0%)</span>
-            <ui-slider [value]="0" />
+            <ui-slider [value]="0" label="Valeur" />
           </div>
           <div class="flex flex-col gap-1">
             <span class="ui-caption ui-text-muted">Full (100%)</span>
-            <ui-slider [value]="100" />
+            <ui-slider [value]="100" label="Valeur" />
           </div>
           <div class="flex flex-col gap-1">
             <span class="ui-caption ui-text-muted">Disabled</span>
-            <ui-slider [value]="40" [disabled]="true" />
+            <ui-slider [value]="40" [disabled]="true" label="Valeur" />
           </div>
           <div class="flex flex-col gap-1">
             <span class="ui-caption ui-text-muted">Invalid</span>
-            <ui-slider [value]="30" [invalid]="true" />
+            <ui-slider [value]="30" [invalid]="true" label="Valeur" />
           </div>
         </div>
       </section>
@@ -130,7 +130,7 @@ const SIZES: SliderSize[] = ['sm', 'md', 'lg'];
           @for (size of sizes; track size) {
             <div class="flex flex-col gap-1">
               <span class="ui-caption ui-text-muted">{{ size }}</span>
-              <ui-slider [value]="60" [size]="size" />
+              <ui-slider [value]="60" [size]="size" label="Valeur" />
             </div>
           }
         </div>
@@ -141,11 +141,11 @@ const SIZES: SliderSize[] = ['sm', 'md', 'lg'];
         <div class="flex flex-col gap-4 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
           <div class="flex flex-col gap-1">
             <span class="ui-caption ui-text-muted">Range 0–10, step 1</span>
-            <ui-slider [value]="5" [min]="0" [max]="10" [step]="1" />
+            <ui-slider [value]="5" [min]="0" [max]="10" [step]="1" label="Pas" />
           </div>
           <div class="flex flex-col gap-1">
             <span class="ui-caption ui-text-muted">Range 0–1, step 0.1</span>
-            <ui-slider [(value)]="rangeValue" [min]="0" [max]="1" [step]="0.1" />
+            <ui-slider [(value)]="rangeValue" [min]="0" [max]="1" [step]="0.1" label="Précision" />
           </div>
         </div>
       </section>
@@ -153,7 +153,7 @@ const SIZES: SliderSize[] = ['sm', 'md', 'lg'];
       <section class="flex flex-col gap-4">
         <p class="ui-overline">Interactive</p>
         <div class="flex flex-col gap-3 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
-          <ui-slider [(value)]="volume" />
+          <ui-slider [(value)]="volume" label="Volume" />
           <p class="ui-caption ui-text-muted">
             Volume: {{ volume() }}%
           </p>
@@ -224,7 +224,7 @@ export const Playground: Story = {
   },
   render: (args) => ({
     props: args,
-    template: `<ui-slider ${argsToTemplate(args)} />`,
+    template: `<ui-slider label="Valeur" ${argsToTemplate(args)} />`,
   }),
 };
 

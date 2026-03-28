@@ -174,7 +174,7 @@ class FileUploadDocsComponent {}
           <ui-file-upload
             accept="image/*"
             [maxSize]="1048576"
-            placeholder="Only images under 1 MB"
+            placeholder="Images uniquement, 1 Mo max"
             (fileRejected)="onRejected($event)"
           />
           @if (rejections().length > 0) {
