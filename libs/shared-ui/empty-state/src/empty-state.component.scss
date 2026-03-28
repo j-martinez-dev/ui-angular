@@ -20,6 +20,7 @@
 .empty-state-content {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: calc(var(--spacing) * 1);
 }
 
@@ -35,7 +36,7 @@
   color: var(--color-text-muted);
   line-height: var(--leading-relaxed);
   margin: 0;
-  max-width: 320px;
+  max-width: calc(var(--spacing) * 80);
 }
 
 // ── Size: sm ───────────────────────────────────────────────────────────────
@@ -50,6 +51,7 @@
 
 :host(.size-sm) .empty-state-description {
   font-size: var(--text-sm);
+  line-height: var(--leading-normal);
 }
 
 // ── Size: md ───────────────────────────────────────────────────────────────
