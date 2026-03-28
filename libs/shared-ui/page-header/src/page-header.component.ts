@@ -1,6 +1,5 @@
 import { Component, input, output } from '@angular/core';
-import { UiBreadcrumbComponent } from '@ui/shared-ui/breadcrumb';
-import { type BreadcrumbItem } from '@ui/shared-ui/breadcrumb';
+import { UiBreadcrumbComponent, type BreadcrumbItem } from '@ui/shared-ui/breadcrumb';
 
 @Component({
   selector: 'ui-page-header',
