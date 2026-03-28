@@ -550,8 +550,9 @@ When implementing any component in the library, follow these rules without excep
 14. **Never use `line-height: 1`** — use `var(--leading-snug)` (1.375) for compact text or `var(--leading-tight)` (1.25) for headings. The only exception is avatar initials (single uppercase letters inside centered containers).
 15. **Prefer HTML5 semantic elements** — use `<details>`/`<summary>` for accordions, `<search>` for search landmarks, `<nav>` + `<ol>` for breadcrumbs, `<label>` for form labels, native `<button>` and `<input>` elements. Only use `<div>` with ARIA roles when no semantic element exists.
 16. **Components using `@angular/cdk/overlay` must use `ViewEncapsulation.None`** — CDK Overlay portals render content outside the component host, so scoped SCSS will not apply to the overlay panel. Move overlay-specific styles under a unique host class to avoid global leaks.
-17. **Extract shared SCSS when multiple components share identical styles** — never duplicate an entire SCSS file across components. Use a shared partial (e.g., `_select-shared.scss`) and `@use` it in each component.
-18. **Always generate Storybook stories** — every component must have a `.stories.ts` file colocated next to it with exactly **3 exported stories**:
+17. **Never use `:host` in SCSS of components with `ViewEncapsulation.None`** — without Shadow DOM, the browser ignores `:host` and `:host(...)` selectors entirely. Use the element selector directly instead (e.g., `ui-modal` instead of `:host`) and plain class selectors for conditional styles (e.g., `.size-md .trigger` instead of `:host(.size-md) .trigger`).
+18. **Extract shared SCSS when multiple components share identical styles** — never duplicate an entire SCSS file across components. Use a shared partial (e.g., `_select-shared.scss`) and `@use` it in each component.
+19. **Always generate Storybook stories** — every component must have a `.stories.ts` file colocated next to it with exactly **3 exported stories**:
 
 ### Story structure
 
