@@ -77,7 +77,7 @@ const SAMPLE_GROUPS: SidebarGroup[] = [
 
       <section class="flex flex-col gap-4">
         <h3 class="ui-h3">Utilisation</h3>
-        <div style="height: 480px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
+        <div style="height: 620px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
           <ui-sidebar
             [groups]="groups"
             [activeValue]="active()"
@@ -140,7 +140,7 @@ class SidebarDocsComponent {
 
       <section class="flex flex-col gap-4">
         <p class="ui-overline">Étendue — avec en-tête et pied de page</p>
-        <div style="height: 480px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
+        <div style="height: 620px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
           <ui-sidebar
             [groups]="groups"
             [activeValue]="active1()"
@@ -152,6 +152,21 @@ class SidebarDocsComponent {
             <div slot="footer" class="flex items-center gap-2">
               <ui-avatar initials="JD" color="primary" size="sm" />
               <span class="ui-body-sm">Jean Dupont</span>
+            </div>
+          </ui-sidebar>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <p class="ui-overline">Plusieurs sous-groupes</p>
+        <div style="height: 700px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
+          <ui-sidebar
+            [groups]="manyGroups"
+            [activeValue]="active5()"
+            (activeValueChange)="active5.set($event)"
+          >
+            <div slot="header">
+              <span class="ui-h4" style="color: var(--color-primary-default);">AdminPro</span>
             </div>
           </ui-sidebar>
         </div>
@@ -170,7 +185,7 @@ class SidebarDocsComponent {
 
       <section class="flex flex-col gap-4">
         <p class="ui-overline">Thème — Dark</p>
-        <div class="theme-dark" style="height: 480px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
+        <div class="theme-dark" style="height: 620px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
           <ui-sidebar
             [groups]="groups"
             [activeValue]="active3()"
@@ -189,7 +204,7 @@ class SidebarDocsComponent {
 
       <section class="flex flex-col gap-4">
         <p class="ui-overline">Thème — Pastel</p>
-        <div class="theme-pastel" style="height: 480px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
+        <div class="theme-pastel" style="height: 620px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
           <ui-sidebar
             [groups]="groups"
             [activeValue]="active4()"
@@ -215,6 +230,7 @@ class SidebarVariantsComponent {
   active2 = signal('dashboard');
   active3 = signal('inbox');
   active4 = signal('analytics');
+  active5 = signal('overview');
 
   flatGroups: SidebarGroup[] = [
     {
@@ -223,6 +239,38 @@ class SidebarVariantsComponent {
         { value: 'inbox', label: 'Boîte de réception', icon: 'heroInbox', badge: 5 },
         { value: 'users', label: 'Utilisateurs', icon: 'heroUsers' },
         { value: 'settings', label: 'Paramètres', icon: 'heroCog6Tooth' },
+      ],
+    },
+  ];
+
+  manyGroups: SidebarGroup[] = [
+    {
+      label: 'Aperçu',
+      items: [
+        { value: 'overview', label: 'Vue d\'ensemble', icon: 'heroHome' },
+        { value: 'analytics', label: 'Analytique', icon: 'heroChartBarSquare', badge: 'Nouveau' },
+      ],
+    },
+    {
+      label: 'Contenu',
+      items: [
+        { value: 'documents', label: 'Documents', icon: 'heroFolder', badge: 24 },
+        { value: 'inbox', label: 'Messages', icon: 'heroInbox', badge: 3 },
+      ],
+    },
+    {
+      label: 'Équipe',
+      items: [
+        { value: 'members', label: 'Membres', icon: 'heroUsers' },
+        { value: 'roles', label: 'Rôles et accès', icon: 'heroShieldCheck' },
+      ],
+    },
+    {
+      label: 'Configuration',
+      items: [
+        { value: 'notifications', label: 'Notifications', icon: 'heroBell' },
+        { value: 'settings', label: 'Paramètres', icon: 'heroCog6Tooth' },
+        { value: 'help', label: 'Centre d\'aide', icon: 'heroQuestionMarkCircle', disabled: true },
       ],
     },
   ];
@@ -258,7 +306,7 @@ export const Playground: Story = {
   ],
   render: () => ({
     template: `
-      <div style="height: 500px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
+      <div style="height: 620px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
         <story-sidebar-docs />
       </div>
     `,

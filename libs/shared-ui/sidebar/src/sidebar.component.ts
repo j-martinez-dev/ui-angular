@@ -15,8 +15,11 @@ import { type SidebarItem, type SidebarGroup } from './sidebar.types';
     >
       <!-- Header slot -->
       <div class="sidebar-header">
-        <ng-content select="[slot=header]" />
+        <div class="sidebar-header-content">
+          <ng-content select="[slot=header]" />
+        </div>
         <ui-icon-button
+          class="sidebar-toggle"
           [icon]="isCollapsed() ? 'heroChevronRight' : 'heroChevronLeft'"
           [label]="isCollapsed() ? 'Déplier la barre latérale' : 'Replier la barre latérale'"
           variant="ghost"
@@ -70,7 +73,9 @@ import { type SidebarItem, type SidebarGroup } from './sidebar.types';
 
       <!-- Footer slot -->
       <div class="sidebar-footer">
-        <ng-content select="[slot=footer]" />
+        <div class="sidebar-footer-content">
+          <ng-content select="[slot=footer]" />
+        </div>
       </div>
     </aside>
   `,
