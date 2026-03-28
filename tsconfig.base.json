@@ -44,7 +44,8 @@
       "@ui/shared-ui/modal": ["libs/shared-ui/modal/index.ts"],
       "@ui/shared-ui/toast": ["libs/shared-ui/toast/index.ts"],
       "@ui/shared-ui/file-upload": ["libs/shared-ui/file-upload/index.ts"],
-      "@ui/shared-ui/empty-state": ["libs/shared-ui/empty-state/index.ts"]
+      "@ui/shared-ui/empty-state": ["libs/shared-ui/empty-state/index.ts"],
+      "@ui/shared-ui/pagination": ["libs/shared-ui/pagination/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
