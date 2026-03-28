@@ -1,6 +1,7 @@
-import { computed, effect, inject, Injectable, Injector, signal } from '@angular/core';
+import { ComponentRef, effect, type EffectRef, inject, Injectable, Injector, signal } from '@angular/core';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
+import { type OutputRefSubscription } from '@angular/core';
 import { UiToastContainerComponent } from './toast-container.component';
 import {
   type ToastConfig,
@@ -41,14 +42,21 @@ export class UiToastService {
   private defaultDuration = 4000;
 
   private overlayRef: OverlayRef | null = null;
-  private containerInstance: UiToastContainerComponent | null = null;
-
-  readonly activeToasts = computed(() => this.toasts());
+  private containerRef: ComponentRef<UiToastContainerComponent> | null = null;
+  private syncEffectRef: EffectRef | null = null;
+  private dismissSub: OutputRefSubscription | null = null;
 
   configure(config: ToastGlobalConfig): void {
-    if (config.position != null) this.position = config.position;
     if (config.maxToasts != null) this.maxToasts = config.maxToasts;
     if (config.duration != null) this.defaultDuration = config.duration;
+
+    if (config.position != null && config.position !== this.position) {
+      this.position = config.position;
+      if (this.overlayRef) {
+        this.destroyContainer();
+        this.ensureContainer();
+      }
+    }
   }
 
   show(config: ToastConfig): string {
@@ -66,7 +74,6 @@ export class UiToastService {
 
     this.toasts.update(current => {
       const next = [...current, toast];
-      // Remove oldest if over max
       while (next.length > this.maxToasts) {
         const removed = next.shift()!;
         this.clearTimer(removed.id);
@@ -101,6 +108,16 @@ export class UiToastService {
     }
   }
 
+  private destroyContainer(): void {
+    this.syncEffectRef?.destroy();
+    this.syncEffectRef = null;
+    this.dismissSub?.unsubscribe();
+    this.dismissSub = null;
+    this.overlayRef?.dispose();
+    this.overlayRef = null;
+    this.containerRef = null;
+  }
+
   private ensureContainer(): void {
     if (this.overlayRef) return;
 
@@ -113,22 +130,20 @@ export class UiToastService {
       positionStrategy,
       scrollStrategy: this.overlay.scrollStrategies.noop(),
       hasBackdrop: false,
+      panelClass: 'ui-toast-overlay',
     });
 
     const portal = new ComponentPortal(UiToastContainerComponent);
-    const containerRef = this.overlayRef.attach(portal);
-    this.containerInstance = containerRef.instance;
+    this.containerRef = this.overlayRef.attach(portal);
 
-    containerRef.setInput('toasts', this.toasts());
-    containerRef.setInput('position', this.position);
+    this.containerRef.setInput('toasts', this.toasts());
+    this.containerRef.setInput('position', this.position);
 
-    // Keep container inputs in sync via effect
-    effect(() => {
-      containerRef.setInput('toasts', this.toasts());
+    this.syncEffectRef = effect(() => {
+      this.containerRef!.setInput('toasts', this.toasts());
     }, { injector: this.injector });
 
-    // Handle dismiss from container
-    this.containerInstance.dismissed.subscribe((id: string) => {
+    this.dismissSub = this.containerRef.instance.dismissed.subscribe((id: string) => {
       this.dismiss(id);
     });
   }

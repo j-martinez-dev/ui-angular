@@ -32,15 +32,15 @@ const ICON_COLOR_MAP: Record<ToastType, IconColor> = {
   template: `
     <div
       [class]="'ui-toast ui-toast--' + toast().type"
-      role="alert"
-      aria-live="polite"
+      [attr.role]="toast().type === 'error' ? 'alert' : 'status'"
+      [attr.aria-live]="toast().type === 'error' ? 'assertive' : 'polite'"
     >
       <ui-icon [name]="resolvedIcon()" size="sm" [color]="resolvedIconColor()" />
 
       <div class="ui-toast-content">
         <p class="ui-toast-message">{{ toast().message }}</p>
         @if (toast().actionLabel) {
-          <button class="ui-toast-action" (click)="onAction()">
+          <button type="button" class="ui-toast-action" (click)="onAction()">
             {{ toast().actionLabel }}
           </button>
         }
@@ -51,6 +51,7 @@ const ICON_COLOR_MAP: Record<ToastType, IconColor> = {
         label="Dismiss"
         variant="ghost"
         size="sm"
+        class="ui-toast-dismiss"
         (click)="dismissed.emit()"
       />
     </div>

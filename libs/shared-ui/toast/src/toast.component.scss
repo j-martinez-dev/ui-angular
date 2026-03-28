@@ -7,7 +7,7 @@ ui-toast {
   --toast-color: var(--color-text-default);
 
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: calc(var(--spacing) * 2.5);
   padding: calc(var(--spacing) * 3) calc(var(--spacing) * 3.5);
   border-radius: var(--radius-md);
@@ -19,7 +19,15 @@ ui-toast {
   min-width: calc(var(--spacing) * 70);
   max-width: calc(var(--spacing) * 100);
   pointer-events: all;
-  animation: ui-toast-enter var(--duration-normal) var(--easing-in) both;
+
+  // When toast has action label (multi-line), align icon to first line
+  &:has(.ui-toast-action) {
+    align-items: flex-start;
+
+    ui-icon {
+      margin-top: calc(var(--spacing) * 0.5);
+    }
+  }
 }
 
 .ui-toast--success {
@@ -40,6 +48,11 @@ ui-toast {
 .ui-toast--info {
   --toast-bg: var(--color-info-subtle);
   --toast-color: var(--color-info-emphasis);
+}
+
+.ui-toast-dismiss {
+  color: var(--toast-color);
+  opacity: 0.6;
 }
 
 .ui-toast-content {
@@ -73,10 +86,15 @@ ui-toast {
   }
 }
 
-@keyframes ui-toast-enter {
+// Direction-aware entry animations — set by container via CSS variable
+ui-toast {
+  animation: ui-toast-slide-in var(--duration-normal) var(--easing-in) both;
+}
+
+@keyframes ui-toast-slide-in {
   from {
     opacity: 0;
-    transform: translateY(calc(var(--spacing) * 2));
+    transform: translateY(var(--toast-slide-from, calc(var(--spacing) * 2)));
   }
   to {
     opacity: 1;
@@ -85,7 +103,11 @@ ui-toast {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ui-toast {
+  ui-toast {
     animation: none;
+  }
+
+  .ui-toast-action {
+    transition: none;
   }
 }

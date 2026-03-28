@@ -201,6 +201,14 @@ class PlaygroundToastComponent {
       </section>
 
       <section class="flex flex-col gap-4">
+        <p class="ui-overline">Long content</p>
+        <div class="flex flex-wrap items-center gap-4 p-6" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
+          <ui-button variant="secondary" (click)="showLong()">Long message</ui-button>
+          <ui-button variant="secondary" (click)="showLongWithAction()">Long + action</ui-button>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
         <p class="ui-overline">Stack overflow (max 5)</p>
         <div class="flex flex-wrap items-center gap-4 p-6" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
           <ui-button variant="secondary" (click)="showMany()">Show 7 toasts</ui-button>
@@ -246,6 +254,24 @@ class ToastVariantsComponent {
   showPosition(position: ToastPosition): void {
     this.toast.configure({ position });
     this.toast.show({ message: `Position: ${position}`, type: 'info' });
+  }
+
+  showLong(): void {
+    this.toast.show({
+      message: 'Your export is being processed. This may take a few minutes depending on the size of the dataset. You will receive a notification when the file is ready to download.',
+      type: 'info',
+      duration: 8000,
+    });
+  }
+
+  showLongWithAction(): void {
+    this.toast.show({
+      message: 'The deployment to production failed due to a configuration mismatch in the environment variables. Please review your settings and try again.',
+      type: 'error',
+      duration: 0,
+      actionLabel: 'View details',
+      onAction: () => console.log('View details clicked'),
+    });
   }
 
   showMany(): void {
