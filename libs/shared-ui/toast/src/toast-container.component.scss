@@ -1,0 +1,16 @@
+ui-toast-container {
+  display: block;
+}
+
+.ui-toast-container {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 2);
+  pointer-events: none;
+}
+
+.ui-toast-container--bottom-left,
+.ui-toast-container--bottom-center,
+.ui-toast-container--bottom-right {
+  flex-direction: column-reverse;
+}
