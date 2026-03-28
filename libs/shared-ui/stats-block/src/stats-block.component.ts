@@ -21,10 +21,11 @@ const TREND_ICON_MAP: Record<StatsTrend, string> = {
   template: `
     <div
       class="stats-block"
+      role="list"
       [style.--stats-columns]="columns()"
     >
       @for (item of items(); track item.label) {
-        <div class="stats-card">
+        <div class="stats-card" role="listitem">
 
           <div class="stats-card-header">
             <span class="stats-label">{{ item.label }}</span>
