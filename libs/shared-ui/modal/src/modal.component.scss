@@ -5,7 +5,7 @@ ui-modal {
 
 .ui-modal-backdrop {
   background: oklch(from var(--color-text-default) l c h / 0.4);
-  animation: ui-modal-backdrop-in var(--duration-normal) var(--easing-default) both;
+  animation: ui-modal-backdrop-in var(--duration-slow) var(--easing-default) both;
 }
 
 .ui-modal {
@@ -19,7 +19,7 @@ ui-modal {
   width: 100%;
   margin: 0 auto;
   overflow: hidden;
-  animation: ui-modal-enter var(--duration-normal) var(--easing-in) both;
+  animation: ui-modal-enter var(--duration-slow) var(--easing-out) both;
 }
 
 .ui-modal--sm {

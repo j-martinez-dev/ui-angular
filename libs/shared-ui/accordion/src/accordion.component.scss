@@ -68,7 +68,7 @@
 
 .accordion-chevron {
   flex-shrink: 0;
-  transition: transform var(--duration-slow) var(--easing-default);
+  transition: transform var(--duration-normal) var(--easing-default);
 }
 
 .accordion-item[open] .accordion-chevron {

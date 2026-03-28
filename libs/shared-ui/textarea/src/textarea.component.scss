@@ -1,109 +1,36 @@
+@use '../../input/src/field-shared' as field;
+
 :host {
   display: block;
   width: 100%;
 }
 
+@include field.field-wrapper('textarea-wrapper');
+@include field.field-element('textarea-field');
+
 .textarea-wrapper {
-  display: flex;
-  width: 100%;
-  border-radius: var(--radius-md);
   background-color: var(--textarea-bg);
   border: var(--textarea-border);
-  overflow: hidden;
-  transition:
-    border-color var(--duration-normal) var(--easing-default),
-    box-shadow var(--duration-normal) var(--easing-default);
 }
-
-// ── Outlined focus ──────────────────────────────────────────────────────────
 
 .textarea-wrapper--focused {
   border: var(--textarea-focus-border);
-  box-shadow: 0 0 0 3px oklch(from var(--color-focus-ring) l c h / 0.15);
 }
 
 .textarea-wrapper--invalid {
   border: var(--textarea-invalid-border);
 }
 
-.textarea-wrapper--invalid.textarea-wrapper--focused {
-  box-shadow: 0 0 0 3px oklch(from var(--color-error-emphasis) l c h / 0.15);
-}
-
-// ── Filled variant (bottom border) ─────────────────────────────────────────
-
-:host(.variant-filled) .textarea-wrapper {
-  border-radius: var(--radius-md) var(--radius-md) 0 0;
-  border-bottom: 2px solid transparent;
-}
-
-:host(.variant-filled) .textarea-wrapper--focused {
-  border: none;
-  border-bottom: 2px solid var(--color-primary-default);
-  box-shadow: none;
-}
-
-:host(.variant-filled) .textarea-wrapper--invalid {
-  border: none;
-  border-bottom: 2px solid var(--color-error-default);
-}
-
-// ── Ghost variant (underline) ───────────────────────────────────────────────
-
-:host(.variant-ghost) .textarea-wrapper {
-  border-radius: 0;
-  border-bottom: 1px solid transparent;
-}
-
-:host(.variant-ghost) .textarea-wrapper--focused {
-  border: none;
-  border-bottom: 1px solid var(--color-border-default);
-  box-shadow: none;
-}
-
-:host(.variant-ghost) .textarea-wrapper--invalid {
-  border: none;
-  border-bottom: 1px solid var(--color-error-default);
-}
-
-// ── Disabled / Readonly ─────────────────────────────────────────────────────
-
-.textarea-wrapper--disabled {
-  opacity: var(--opacity-disabled);
-  cursor: not-allowed;
-}
-
-.textarea-wrapper--readonly {
-  background-color: var(--color-surface-sunken);
-  cursor: default;
-}
-
-// ── Field ───────────────────────────────────────────────────────────────────
-
 .textarea-field {
   width: 100%;
-  border: none;
-  outline: none;
-  background: transparent;
-  color: var(--color-text-default);
-  font-family: var(--font-sans);
   line-height: var(--leading-relaxed);
   resize: vertical;
-  min-width: 0;
 }
 
 .textarea-field--auto-resize {
   field-sizing: content;
   resize: none;
   overflow: hidden;
-}
-
-.textarea-field::placeholder {
-  color: var(--color-text-muted);
-}
-
-.textarea-field:disabled {
-  cursor: not-allowed;
 }
 
 // ── Size variants ───────────────────────────────────────────────────────────
@@ -132,12 +59,4 @@
   font-size: var(--text-xs);
   color: var(--color-text-muted);
   margin-top: calc(var(--spacing) * 0.5);
-}
-
-// ── Reduced motion ──────────────────────────────────────────────────────────
-
-@media (prefers-reduced-motion: reduce) {
-  .textarea-wrapper {
-    transition: none;
-  }
 }

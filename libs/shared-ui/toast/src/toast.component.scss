@@ -58,6 +58,11 @@ ui-toast {
 .ui-toast-dismiss {
   color: var(--toast-color);
   opacity: 0.6;
+  transition: opacity var(--duration-fast) var(--easing-default);
+
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .ui-toast-content {
@@ -98,7 +103,7 @@ ui-toast {
 
 // Direction-aware entry animations — set by container via CSS variable
 ui-toast {
-  animation: ui-toast-slide-in var(--duration-normal) var(--easing-in) both;
+  animation: ui-toast-slide-in var(--duration-slow) var(--easing-out) both;
 }
 
 @keyframes ui-toast-slide-in {
@@ -118,6 +123,10 @@ ui-toast {
   }
 
   .ui-toast-action {
+    transition: none;
+  }
+
+  .ui-toast-dismiss {
     transition: none;
   }
 }

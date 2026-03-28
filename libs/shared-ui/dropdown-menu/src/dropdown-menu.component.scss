@@ -11,7 +11,7 @@ ui-dropdown-menu {
   padding: var(--spacing);
   min-width: calc(var(--spacing) * 40);
   max-width: calc(var(--spacing) * 70);
-  animation: menu-panel-enter var(--duration-fast) var(--easing-in) both;
+  animation: menu-panel-enter var(--duration-normal) var(--easing-out) both;
 }
 
 @keyframes menu-panel-enter {

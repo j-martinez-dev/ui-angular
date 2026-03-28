@@ -8,6 +8,7 @@
   border: var(--badge-border);
   white-space: nowrap;
   line-height: var(--leading-snug);
+  border-radius: var(--radius-sm);
 }
 
 :host(.badge-sm) {

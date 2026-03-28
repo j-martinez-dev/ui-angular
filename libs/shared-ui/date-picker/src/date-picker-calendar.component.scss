@@ -113,6 +113,7 @@
 .calendar-day--disabled {
   opacity: var(--opacity-disabled);
   cursor: not-allowed;
+  pointer-events: none;
 }
 
 // ── Months / Years grid ─────────────────────────────────────────────────────
