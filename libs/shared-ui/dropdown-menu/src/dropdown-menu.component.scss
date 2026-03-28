@@ -1,0 +1,32 @@
+ui-dropdown-menu {
+  display: inline-flex;
+  position: relative;
+}
+
+.menu-panel {
+  background: var(--color-surface-overlay);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-default);
+  padding: var(--spacing);
+  min-width: calc(var(--spacing) * 40);
+  max-width: calc(var(--spacing) * 70);
+  animation: menu-panel-enter var(--duration-fast) var(--easing-in) both;
+}
+
+@keyframes menu-panel-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-panel {
+    animation: none;
+  }
+}

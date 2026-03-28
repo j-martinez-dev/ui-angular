@@ -39,7 +39,8 @@
       "@ui/shared-ui/tag": ["libs/shared-ui/tag/index.ts"],
       "@ui/shared-ui/textarea": ["libs/shared-ui/textarea/index.ts"],
       "@ui/shared-ui/toggle": ["libs/shared-ui/toggle/index.ts"],
-      "@ui/shared-ui/tooltip": ["libs/shared-ui/tooltip/index.ts"]
+      "@ui/shared-ui/tooltip": ["libs/shared-ui/tooltip/index.ts"],
+      "@ui/shared-ui/dropdown-menu": ["libs/shared-ui/dropdown-menu/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
