@@ -1,11 +1,13 @@
 import {
   Component,
   ElementRef,
+  inject,
   input,
   output,
   viewChild,
 } from '@angular/core';
 import { UiIconComponent } from '@ui/shared-ui/icon';
+import { DROPDOWN_MENU } from './dropdown-menu.token';
 
 @Component({
   selector: 'ui-menu-item',
@@ -37,6 +39,7 @@ export class UiMenuItemComponent {
 
   itemClick = output<void>();
 
+  private readonly dropdownMenu = inject(DROPDOWN_MENU, { optional: true });
   private btnRef = viewChild<ElementRef<HTMLButtonElement>>('btnRef');
 
   focus(): void {
@@ -45,5 +48,6 @@ export class UiMenuItemComponent {
 
   protected onItemClick(): void {
     this.itemClick.emit();
+    this.dropdownMenu?.close();
   }
 }

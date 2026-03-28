@@ -1,8 +1,10 @@
 import {
+  afterNextRender,
   Component,
   contentChildren,
   ElementRef,
   inject,
+  Injector,
   input,
   OnDestroy,
   signal,
@@ -15,6 +17,7 @@ import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { UiIconButtonComponent } from '@ui/shared-ui/icon-button';
 import { UiMenuItemComponent } from './menu-item.component';
+import { DROPDOWN_MENU, type DropdownMenuRef } from './dropdown-menu.token';
 
 export type DropdownPosition = 'bottom-start' | 'bottom-end' | 'top-start' | 'top-end';
 
@@ -58,8 +61,9 @@ const POSITION_MAP: Record<
   `,
   styleUrl: './dropdown-menu.component.scss',
   encapsulation: ViewEncapsulation.None,
+  providers: [{ provide: DROPDOWN_MENU, useExisting: UiDropdownMenuComponent }],
 })
-export class UiDropdownMenuComponent implements OnDestroy {
+export class UiDropdownMenuComponent implements DropdownMenuRef, OnDestroy {
   icon = input<string>('heroEllipsisVertical');
   label = input<string>('Open menu');
   triggerVariant = input<'primary' | 'secondary' | 'ghost' | 'danger'>('ghost');
@@ -69,11 +73,12 @@ export class UiDropdownMenuComponent implements OnDestroy {
 
   isOpen = signal(false);
 
-  private triggerEl = viewChild<ElementRef<HTMLElement>>('triggerRef');
+  private triggerEl = viewChild('triggerRef', { read: ElementRef });
   private panelTpl = viewChild<TemplateRef<unknown>>('panelTpl');
   private menuItems = contentChildren(UiMenuItemComponent);
 
   private readonly overlay = inject(Overlay);
+  private readonly injector = inject(Injector);
   private readonly viewContainerRef = inject(ViewContainerRef);
   private overlayRef: OverlayRef | null = null;
   private backdropSub: { unsubscribe(): void } | null = null;
@@ -85,6 +90,7 @@ export class UiDropdownMenuComponent implements OnDestroy {
   }
 
   toggleMenu(): void {
+    if (this.disabled()) return;
     this.isOpen() ? this.close() : this.open();
   }
 
@@ -119,6 +125,8 @@ export class UiDropdownMenuComponent implements OnDestroy {
 
     if (!this.overlayRef) {
       this.overlayRef = this.createOverlay(triggerEl);
+    } else {
+      this.updateOverlayPosition(triggerEl);
     }
 
     const portal = new TemplatePortal(panelTpl, this.viewContainerRef);
@@ -128,8 +136,7 @@ export class UiDropdownMenuComponent implements OnDestroy {
 
     this.backdropSub = this.overlayRef.backdropClick().subscribe(() => this.close());
 
-    // Focus first enabled item
-    requestAnimationFrame(() => this.moveFocus(1));
+    afterNextRender(() => this.moveFocus(1), { injector: this.injector });
   }
 
   close(): void {
@@ -146,22 +153,28 @@ export class UiDropdownMenuComponent implements OnDestroy {
   }
 
   private createOverlay(triggerEl: ElementRef<HTMLElement>): OverlayRef {
+    return this.overlay.create({
+      positionStrategy: this.buildPositionStrategy(triggerEl),
+      scrollStrategy: this.overlay.scrollStrategies.close(),
+      hasBackdrop: true,
+      backdropClass: 'cdk-overlay-transparent-backdrop',
+    });
+  }
+
+  private updateOverlayPosition(triggerEl: ElementRef<HTMLElement>): void {
+    this.overlayRef!.updatePositionStrategy(this.buildPositionStrategy(triggerEl));
+  }
+
+  private buildPositionStrategy(triggerEl: ElementRef<HTMLElement>) {
     const pos = POSITION_MAP[this.position()];
     const offsetY = pos.overlayY === 'top' ? 4 : -4;
 
-    const positionStrategy = this.overlay
+    return this.overlay
       .position()
       .flexibleConnectedTo(triggerEl)
       .withPositions([
         { originX: pos.originX, originY: pos.originY, overlayX: pos.overlayX, overlayY: pos.overlayY, offsetY },
       ]);
-
-    return this.overlay.create({
-      positionStrategy,
-      scrollStrategy: this.overlay.scrollStrategies.close(),
-      hasBackdrop: true,
-      backdropClass: 'cdk-overlay-transparent-backdrop',
-    });
   }
 
   private moveFocus(delta: number): void {
