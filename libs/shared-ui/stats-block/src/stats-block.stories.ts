@@ -39,25 +39,25 @@ const SAMPLE_ITEMS: StatsItem[] = [
       <section class="flex flex-col gap-2">
         <h2 class="ui-h2">Stats Block</h2>
         <p class="ui-body-md ui-text-muted">
-          Affiche une grille de statistiques avec valeurs, ic\u00F4nes et tendances.
-          Id\u00E9al pour les tableaux de bord et les pages de synth\u00E8se.
+          Displays a grid of statistics with values, icons, and trends.
+          Ideal for dashboards and summary pages.
         </p>
       </section>
 
       <section class="flex flex-col gap-4">
-        <h3 class="ui-h3">Utilisation</h3>
+        <h3 class="ui-h3">Usage</h3>
         <ui-stats-block [items]="items" [columns]="4" />
         <code class="ui-code">&lt;ui-stats-block [items]="items" [columns]="4" /&gt;</code>
       </section>
 
       <section class="flex flex-col gap-4">
-        <h3 class="ui-h3">Entr\u00E9es</h3>
+        <h3 class="ui-h3">Inputs</h3>
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <th class="ui-body-sm p-2 text-left">Input</th>
               <th class="ui-body-sm p-2 text-left">Type</th>
-              <th class="ui-body-sm p-2 text-left">D\u00E9faut</th>
+              <th class="ui-body-sm p-2 text-left">Default</th>
               <th class="ui-body-sm p-2 text-left">Description</th>
             </tr>
           </thead>
@@ -65,14 +65,14 @@ const SAMPLE_ITEMS: StatsItem[] = [
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <td class="ui-code p-2">items</td>
               <td class="ui-code p-2">StatsItem[]</td>
-              <td class="ui-code p-2">requis</td>
-              <td class="ui-body-sm p-2">Liste des statistiques \u00E0 afficher</td>
+              <td class="ui-code p-2">required</td>
+              <td class="ui-body-sm p-2">List of stat items to display</td>
             </tr>
             <tr>
               <td class="ui-code p-2">columns</td>
               <td class="ui-code p-2">1 | 2 | 3 | 4</td>
               <td class="ui-code p-2">4</td>
-              <td class="ui-body-sm p-2">Nombre de colonnes de la grille</td>
+              <td class="ui-body-sm p-2">Number of grid columns</td>
             </tr>
           </tbody>
         </table>
@@ -93,44 +93,44 @@ class StatsBlockDocsComponent {
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">4 colonnes</p>
+        <p class="ui-overline">4 columns</p>
         <ui-stats-block [items]="items" [columns]="4" />
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">3 colonnes</p>
+        <p class="ui-overline">3 columns</p>
         <ui-stats-block [items]="items.slice(0, 3)" [columns]="3" />
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">2 colonnes</p>
+        <p class="ui-overline">2 columns</p>
         <ui-stats-block [items]="items.slice(0, 2)" [columns]="2" />
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">1 colonne</p>
+        <p class="ui-overline">1 column</p>
         <ui-stats-block [items]="items.slice(0, 2)" [columns]="1" />
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Sans ic\u00F4nes</p>
+        <p class="ui-overline">Without icons</p>
         <ui-stats-block [items]="itemsNoIcons" [columns]="3" />
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Sans tendances</p>
+        <p class="ui-overline">Without trends</p>
         <ui-stats-block [items]="itemsNoTrends" [columns]="3" />
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Th\u00E8me \u2014 Dark</p>
+        <p class="ui-overline">Theme \u2014 Dark</p>
         <div class="theme-dark p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
           <ui-stats-block [items]="items" [columns]="4" />
         </div>
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Th\u00E8me \u2014 Pastel</p>
+        <p class="ui-overline">Theme \u2014 Pastel</p>
         <div class="theme-pastel p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
           <ui-stats-block [items]="items" [columns]="4" />
         </div>

@@ -70,13 +70,13 @@ const SAMPLE_GROUPS: SidebarGroup[] = [
       <section class="flex flex-col gap-2">
         <h2 class="ui-h2">Sidebar</h2>
         <p class="ui-body-md ui-text-muted">
-          Barre latérale de navigation avec groupes, icônes, badges et mode réduit.
-          Supporte un slot d'en-tête (logo) et un slot de pied de page (profil).
+          Navigation sidebar with groups, icons, badges, and collapsed mode.
+          Supports a header slot (logo) and a footer slot (profile).
         </p>
       </section>
 
       <section class="flex flex-col gap-4">
-        <h3 class="ui-h3">Utilisation</h3>
+        <h3 class="ui-h3">Usage</h3>
         <div style="height: 620px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
           <ui-sidebar
             [groups]="groups"
@@ -96,13 +96,13 @@ const SAMPLE_GROUPS: SidebarGroup[] = [
       </section>
 
       <section class="flex flex-col gap-4">
-        <h3 class="ui-h3">Entrées</h3>
+        <h3 class="ui-h3">Inputs</h3>
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <th class="ui-body-sm p-2 text-left">Input</th>
               <th class="ui-body-sm p-2 text-left">Type</th>
-              <th class="ui-body-sm p-2 text-left">Défaut</th>
+              <th class="ui-body-sm p-2 text-left">Default</th>
               <th class="ui-body-sm p-2 text-left">Description</th>
             </tr>
           </thead>
@@ -110,14 +110,14 @@ const SAMPLE_GROUPS: SidebarGroup[] = [
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <td class="ui-code p-2">groups</td>
               <td class="ui-code p-2">SidebarGroup&lt;T&gt;[]</td>
-              <td class="ui-code p-2">requis</td>
-              <td class="ui-body-sm p-2">Groupes de navigation</td>
+              <td class="ui-code p-2">required</td>
+              <td class="ui-body-sm p-2">Navigation groups</td>
             </tr>
             <tr>
               <td class="ui-code p-2">activeValue</td>
               <td class="ui-code p-2">T</td>
               <td class="ui-body-sm p-2">undefined</td>
-              <td class="ui-body-sm p-2">Valeur de l'élément actif</td>
+              <td class="ui-body-sm p-2">Currently active item value</td>
             </tr>
           </tbody>
         </table>
@@ -139,7 +139,7 @@ class SidebarDocsComponent {
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Étendue — avec en-tête et pied de page</p>
+        <p class="ui-overline">Expanded — with header and footer</p>
         <div style="height: 620px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
           <ui-sidebar
             [groups]="groups"
@@ -158,7 +158,7 @@ class SidebarDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Plusieurs sous-groupes</p>
+        <p class="ui-overline">Multiple subgroups</p>
         <div style="height: 700px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
           <ui-sidebar
             [groups]="manyGroups"
@@ -173,7 +173,7 @@ class SidebarDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Sans groupes nommés</p>
+        <p class="ui-overline">Without named groups</p>
         <div style="height: 400px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
           <ui-sidebar
             [groups]="flatGroups"
@@ -184,7 +184,7 @@ class SidebarDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Thème — Dark</p>
+        <p class="ui-overline">Theme — Dark</p>
         <div class="theme-dark" style="height: 620px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
           <ui-sidebar
             [groups]="groups"
@@ -203,7 +203,7 @@ class SidebarDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Thème — Pastel</p>
+        <p class="ui-overline">Theme — Pastel</p>
         <div class="theme-pastel" style="height: 620px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
           <ui-sidebar
             [groups]="groups"

@@ -48,13 +48,13 @@ const SAMPLE_ROWS: Row[] = [
       <section class="flex flex-col gap-2">
         <h2 class="ui-h2">Table</h2>
         <p class="ui-body-md ui-text-muted">
-          Directives pour styliser les tableaux HTML natifs avec le design system.
-          Préserve la sémantique complète des éléments table, thead, tbody, tfoot, tr, th, td.
+          Directives to style native HTML tables with the design system.
+          Preserves full semantics of table, thead, tbody, tfoot, tr, th, td elements.
         </p>
       </section>
 
       <section class="flex flex-col gap-4">
-        <h3 class="ui-h3">Utilisation</h3>
+        <h3 class="ui-h3">Usage</h3>
         <table uiTable [hoverable]="true" size="md">
           <thead uiTableHeader>
             <tr uiTableRow>
@@ -83,13 +83,13 @@ const SAMPLE_ROWS: Row[] = [
       </section>
 
       <section class="flex flex-col gap-4">
-        <h3 class="ui-h3">Entrées (uiTable)</h3>
+        <h3 class="ui-h3">Inputs (uiTable)</h3>
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <th class="ui-body-sm p-2 text-left">Input</th>
               <th class="ui-body-sm p-2 text-left">Type</th>
-              <th class="ui-body-sm p-2 text-left">Défaut</th>
+              <th class="ui-body-sm p-2 text-left">Default</th>
               <th class="ui-body-sm p-2 text-left">Description</th>
             </tr>
           </thead>
@@ -98,25 +98,25 @@ const SAMPLE_ROWS: Row[] = [
               <td class="ui-code p-2">size</td>
               <td class="ui-code p-2">sm | md | lg</td>
               <td class="ui-code p-2">md</td>
-              <td class="ui-body-sm p-2">Taille des cellules</td>
+              <td class="ui-body-sm p-2">Cell padding size</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <td class="ui-code p-2">striped</td>
               <td class="ui-code p-2">boolean</td>
               <td class="ui-code p-2">false</td>
-              <td class="ui-body-sm p-2">Lignes alternées</td>
+              <td class="ui-body-sm p-2">Alternating row backgrounds</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <td class="ui-code p-2">bordered</td>
               <td class="ui-code p-2">boolean</td>
               <td class="ui-code p-2">false</td>
-              <td class="ui-body-sm p-2">Bordures sur toutes les cellules</td>
+              <td class="ui-body-sm p-2">Borders on all cells</td>
             </tr>
             <tr>
               <td class="ui-code p-2">hoverable</td>
               <td class="ui-code p-2">boolean</td>
               <td class="ui-code p-2">true</td>
-              <td class="ui-body-sm p-2">Surbrillance au survol</td>
+              <td class="ui-body-sm p-2">Highlight rows on hover</td>
             </tr>
           </tbody>
         </table>
@@ -137,7 +137,7 @@ class TableDocsComponent {
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Taille — sm</p>
+        <p class="ui-overline">Size — sm</p>
         <table uiTable size="sm" [hoverable]="true">
           <thead uiTableHeader>
             <tr uiTableRow>
@@ -161,7 +161,7 @@ class TableDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Taille — lg</p>
+        <p class="ui-overline">Size — lg</p>
         <table uiTable size="lg" [hoverable]="true">
           <thead uiTableHeader>
             <tr uiTableRow>
@@ -185,7 +185,7 @@ class TableDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Rayé (striped)</p>
+        <p class="ui-overline">Striped</p>
         <table uiTable [striped]="true" [hoverable]="false">
           <thead uiTableHeader>
             <tr uiTableRow>
@@ -211,7 +211,7 @@ class TableDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Bordé (bordered)</p>
+        <p class="ui-overline">Bordered</p>
         <table uiTable [bordered]="true">
           <thead uiTableHeader>
             <tr uiTableRow>
@@ -235,7 +235,7 @@ class TableDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Lignes cliquables</p>
+        <p class="ui-overline">Clickable rows</p>
         <table uiTable [hoverable]="true">
           <thead uiTableHeader>
             <tr uiTableRow>
@@ -261,7 +261,7 @@ class TableDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Tri sur colonnes</p>
+        <p class="ui-overline">Column sorting</p>
         <table uiTable [hoverable]="true">
           <thead uiTableHeader>
             <tr uiTableRow>
@@ -283,7 +283,7 @@ class TableDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Avec pied de page</p>
+        <p class="ui-overline">With footer</p>
         <table uiTable>
           <thead uiTableHeader>
             <tr uiTableRow>
@@ -312,7 +312,7 @@ class TableDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Thème — Dark</p>
+        <p class="ui-overline">Theme — Dark</p>
         <div class="theme-dark p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
           <table uiTable [hoverable]="true" [striped]="true">
             <thead uiTableHeader>
@@ -340,7 +340,7 @@ class TableDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Thème — Pastel</p>
+        <p class="ui-overline">Theme — Pastel</p>
         <div class="theme-pastel p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
           <table uiTable [hoverable]="true">
             <thead uiTableHeader>

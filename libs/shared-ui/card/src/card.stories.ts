@@ -29,13 +29,13 @@ const VARIANTS: CardVariant[] = ['elevated', 'outlined', 'flat'];
       <section class="flex flex-col gap-2">
         <h2 class="ui-h2">Card</h2>
         <p class="ui-body-md ui-text-muted">
-          Conteneur flexible avec en-tête, corps et pied de page optionnels.
-          Disponible en trois variantes : élevée, encadrée et plate.
+          Flexible container with optional header, body, and footer.
+          Available in three variants: elevated, outlined, and flat.
         </p>
       </section>
 
       <section class="flex flex-col gap-4">
-        <h3 class="ui-h3">Utilisation</h3>
+        <h3 class="ui-h3">Usage</h3>
         <div class="flex gap-4" style="max-width: 400px;">
           <ui-card variant="elevated">
             <div slot="header">
@@ -52,13 +52,13 @@ const VARIANTS: CardVariant[] = ['elevated', 'outlined', 'flat'];
       </section>
 
       <section class="flex flex-col gap-4">
-        <h3 class="ui-h3">Entrées</h3>
+        <h3 class="ui-h3">Inputs</h3>
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <th class="ui-body-sm p-2 text-left">Input</th>
               <th class="ui-body-sm p-2 text-left">Type</th>
-              <th class="ui-body-sm p-2 text-left">Défaut</th>
+              <th class="ui-body-sm p-2 text-left">Default</th>
               <th class="ui-body-sm p-2 text-left">Description</th>
             </tr>
           </thead>
@@ -67,31 +67,31 @@ const VARIANTS: CardVariant[] = ['elevated', 'outlined', 'flat'];
               <td class="ui-code p-2">variant</td>
               <td class="ui-code p-2">elevated | outlined | flat</td>
               <td class="ui-code p-2">elevated</td>
-              <td class="ui-body-sm p-2">Style visuel</td>
+              <td class="ui-body-sm p-2">Visual style</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <td class="ui-code p-2">clickable</td>
               <td class="ui-code p-2">boolean</td>
               <td class="ui-code p-2">false</td>
-              <td class="ui-body-sm p-2">Rend la carte interactive</td>
+              <td class="ui-body-sm p-2">Makes the card interactive</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <td class="ui-code p-2">disabled</td>
               <td class="ui-code p-2">boolean</td>
               <td class="ui-code p-2">false</td>
-              <td class="ui-body-sm p-2">Désactive les interactions</td>
+              <td class="ui-body-sm p-2">Disables interactions</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <td class="ui-code p-2">image</td>
               <td class="ui-code p-2">string</td>
               <td class="ui-body-sm p-2">undefined</td>
-              <td class="ui-body-sm p-2">URL de l'image en haut</td>
+              <td class="ui-body-sm p-2">Image URL at the top</td>
             </tr>
             <tr>
               <td class="ui-code p-2">imageAlt</td>
               <td class="ui-code p-2">string</td>
               <td class="ui-code p-2">''</td>
-              <td class="ui-body-sm p-2">Texte alternatif de l'image</td>
+              <td class="ui-body-sm p-2">Alt text for the image</td>
             </tr>
           </tbody>
         </table>
@@ -110,7 +110,7 @@ class CardDocsComponent {}
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Variantes</p>
+        <p class="ui-overline">Variants</p>
         <div class="flex gap-4 flex-wrap">
           @for (variant of variants; track variant) {
             <ui-card [variant]="variant" style="width: 280px;">
@@ -127,7 +127,7 @@ class CardDocsComponent {}
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Cliquable</p>
+        <p class="ui-overline">Clickable</p>
         <div class="flex gap-4 flex-wrap">
           @for (variant of variants; track variant) {
             <ui-card [variant]="variant" [clickable]="true" style="width: 280px;">
@@ -141,7 +141,7 @@ class CardDocsComponent {}
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Désactivée</p>
+        <p class="ui-overline">Disabled</p>
         <div class="flex gap-4 flex-wrap">
           @for (variant of variants; track variant) {
             <ui-card [variant]="variant" [disabled]="true" style="width: 280px;">
@@ -155,7 +155,7 @@ class CardDocsComponent {}
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Avec image</p>
+        <p class="ui-overline">With image</p>
         <div class="flex gap-4 flex-wrap">
           <ui-card variant="elevated" image="https://picsum.photos/seed/card1/600/340" imageAlt="Aperçu du projet" style="width: 320px;">
             <div slot="header">
@@ -180,7 +180,7 @@ class CardDocsComponent {}
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Corps seul (sans en-tête ni pied de page)</p>
+        <p class="ui-overline">Body only (no header or footer)</p>
         <div class="flex gap-4 flex-wrap">
           <ui-card variant="outlined" style="width: 280px;">
             <p class="ui-body-md">Carte simple avec uniquement du contenu dans le corps.</p>
@@ -192,7 +192,7 @@ class CardDocsComponent {}
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Thème — Dark</p>
+        <p class="ui-overline">Theme — Dark</p>
         <div class="theme-dark flex gap-4 flex-wrap p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
           @for (variant of variants; track variant) {
             <ui-card [variant]="variant" style="width: 280px;">
@@ -209,7 +209,7 @@ class CardDocsComponent {}
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Thème — Pastel</p>
+        <p class="ui-overline">Theme — Pastel</p>
         <div class="theme-pastel flex gap-4 flex-wrap p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
           @for (variant of variants; track variant) {
             <ui-card [variant]="variant" style="width: 280px;">

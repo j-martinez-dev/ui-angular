@@ -47,13 +47,13 @@ const SAMPLE_ITEMS: NavbarItem[] = [
       <section class="flex flex-col gap-2">
         <h2 class="ui-h2">Navbar</h2>
         <p class="ui-body-md ui-text-muted">
-          Barre de navigation horizontale avec liens, zone de marque et actions.
-          Responsive avec menu hamburger sur mobile.
+          Horizontal navigation bar with links, brand area, and actions.
+          Responsive with hamburger menu on mobile.
         </p>
       </section>
 
       <section class="flex flex-col gap-4">
-        <h3 class="ui-h3">Utilisation</h3>
+        <h3 class="ui-h3">Usage</h3>
         <div style="border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
           <ui-navbar
             [items]="items"
@@ -73,13 +73,13 @@ const SAMPLE_ITEMS: NavbarItem[] = [
       </section>
 
       <section class="flex flex-col gap-4">
-        <h3 class="ui-h3">Entrées</h3>
+        <h3 class="ui-h3">Inputs</h3>
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <th class="ui-body-sm p-2 text-left">Input</th>
               <th class="ui-body-sm p-2 text-left">Type</th>
-              <th class="ui-body-sm p-2 text-left">Défaut</th>
+              <th class="ui-body-sm p-2 text-left">Default</th>
               <th class="ui-body-sm p-2 text-left">Description</th>
             </tr>
           </thead>
@@ -88,25 +88,25 @@ const SAMPLE_ITEMS: NavbarItem[] = [
               <td class="ui-code p-2">items</td>
               <td class="ui-code p-2">NavbarItem&lt;T&gt;[]</td>
               <td class="ui-code p-2">[]</td>
-              <td class="ui-body-sm p-2">Liens de navigation</td>
+              <td class="ui-body-sm p-2">Navigation links</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <td class="ui-code p-2">activeValue</td>
               <td class="ui-code p-2">T</td>
               <td class="ui-body-sm p-2">undefined</td>
-              <td class="ui-body-sm p-2">Valeur de l'élément actif</td>
+              <td class="ui-body-sm p-2">Currently active item value</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <td class="ui-code p-2">position</td>
               <td class="ui-code p-2">static | fixed</td>
               <td class="ui-code p-2">static</td>
-              <td class="ui-body-sm p-2">Position de la barre</td>
+              <td class="ui-body-sm p-2">Navbar position</td>
             </tr>
             <tr>
               <td class="ui-code p-2">transparent</td>
               <td class="ui-code p-2">boolean</td>
               <td class="ui-code p-2">false</td>
-              <td class="ui-body-sm p-2">Fond transparent</td>
+              <td class="ui-body-sm p-2">Transparent background</td>
             </tr>
           </tbody>
         </table>
@@ -128,7 +128,7 @@ class NavbarDocsComponent {
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Standard — avec marque et actions</p>
+        <p class="ui-overline">Standard — with brand and actions</p>
         <div style="border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
           <ui-navbar
             [items]="items"
@@ -147,7 +147,7 @@ class NavbarDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Sans icônes</p>
+        <p class="ui-overline">Without icons</p>
         <div style="border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
           <ui-navbar
             [items]="itemsNoIcons"
@@ -162,7 +162,7 @@ class NavbarDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Avec élément désactivé</p>
+        <p class="ui-overline">With disabled item</p>
         <div style="border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
           <ui-navbar
             [items]="itemsWithDisabled"
@@ -177,7 +177,7 @@ class NavbarDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Transparent — pour sections héros</p>
+        <p class="ui-overline">Transparent — for hero sections</p>
         <div style="border-radius: var(--radius-md); overflow: hidden; background: linear-gradient(135deg, var(--color-primary-subtle), var(--color-info-subtle)); padding-bottom: 80px;">
           <ui-navbar
             [items]="items"
@@ -196,7 +196,7 @@ class NavbarDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Thème — Dark</p>
+        <p class="ui-overline">Theme — Dark</p>
         <div class="theme-dark" style="border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
           <ui-navbar
             [items]="items"
@@ -215,7 +215,7 @@ class NavbarDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Thème — Pastel</p>
+        <p class="ui-overline">Theme — Pastel</p>
         <div class="theme-pastel" style="border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
           <ui-navbar
             [items]="items"

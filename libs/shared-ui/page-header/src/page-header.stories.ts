@@ -42,13 +42,13 @@ const SAMPLE_BREADCRUMBS: BreadcrumbItem[] = [
       <section class="flex flex-col gap-2">
         <h2 class="ui-h2">Page Header</h2>
         <p class="ui-body-md ui-text-muted">
-          En-tête de page avec titre, description optionnelle, fil d'Ariane et zone d'actions.
-          Utilisé en haut de chaque page pour donner le contexte et les actions principales.
+          Page header with title, optional description, breadcrumbs, and actions area.
+          Used at the top of each page to provide context and primary actions.
         </p>
       </section>
 
       <section class="flex flex-col gap-4">
-        <h3 class="ui-h3">Utilisation</h3>
+        <h3 class="ui-h3">Usage</h3>
         <div class="p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
           <ui-page-header
             title="Utilisateurs"
@@ -65,13 +65,13 @@ const SAMPLE_BREADCRUMBS: BreadcrumbItem[] = [
       </section>
 
       <section class="flex flex-col gap-4">
-        <h3 class="ui-h3">Entrées</h3>
+        <h3 class="ui-h3">Inputs</h3>
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <th class="ui-body-sm p-2 text-left">Input</th>
               <th class="ui-body-sm p-2 text-left">Type</th>
-              <th class="ui-body-sm p-2 text-left">Défaut</th>
+              <th class="ui-body-sm p-2 text-left">Default</th>
               <th class="ui-body-sm p-2 text-left">Description</th>
             </tr>
           </thead>
@@ -79,20 +79,20 @@ const SAMPLE_BREADCRUMBS: BreadcrumbItem[] = [
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <td class="ui-code p-2">title</td>
               <td class="ui-code p-2">string</td>
-              <td class="ui-code p-2">requis</td>
-              <td class="ui-body-sm p-2">Titre principal de la page</td>
+              <td class="ui-code p-2">required</td>
+              <td class="ui-body-sm p-2">Main page title</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <td class="ui-code p-2">description</td>
               <td class="ui-code p-2">string</td>
               <td class="ui-body-sm p-2">undefined</td>
-              <td class="ui-body-sm p-2">Texte de support sous le titre</td>
+              <td class="ui-body-sm p-2">Supporting text below the title</td>
             </tr>
             <tr>
               <td class="ui-code p-2">breadcrumbs</td>
               <td class="ui-code p-2">BreadcrumbItem[]</td>
               <td class="ui-body-sm p-2">undefined</td>
-              <td class="ui-body-sm p-2">Éléments du fil d'Ariane</td>
+              <td class="ui-body-sm p-2">Breadcrumb items</td>
             </tr>
           </tbody>
         </table>
@@ -113,7 +113,7 @@ class PageHeaderDocsComponent {
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Complet — titre, description, breadcrumbs, actions</p>
+        <p class="ui-overline">Complete — title, description, breadcrumbs, actions</p>
         <div class="p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
           <ui-page-header
             title="Utilisateurs"
@@ -129,14 +129,14 @@ class PageHeaderDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Titre seul</p>
+        <p class="ui-overline">Title only</p>
         <div class="p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
           <ui-page-header title="Tableau de bord" />
         </div>
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Titre + description</p>
+        <p class="ui-overline">Title + description</p>
         <div class="p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
           <ui-page-header
             title="Paramètres"
@@ -146,7 +146,7 @@ class PageHeaderDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Titre + breadcrumbs (sans description)</p>
+        <p class="ui-overline">Title + breadcrumbs (no description)</p>
         <div class="p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
           <ui-page-header
             title="Documents"
@@ -156,7 +156,7 @@ class PageHeaderDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Titre + actions (sans breadcrumbs)</p>
+        <p class="ui-overline">Title + actions (no breadcrumbs)</p>
         <div class="p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
           <ui-page-header title="Rapports">
             <div slot="actions">
@@ -167,7 +167,7 @@ class PageHeaderDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Thème — Dark</p>
+        <p class="ui-overline">Theme — Dark</p>
         <div class="theme-dark p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
           <ui-page-header
             title="Utilisateurs"
@@ -183,7 +183,7 @@ class PageHeaderDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Thème — Pastel</p>
+        <p class="ui-overline">Theme — Pastel</p>
         <div class="theme-pastel p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
           <ui-page-header
             title="Utilisateurs"
