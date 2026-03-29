@@ -9,7 +9,6 @@
     [attr.aria-expanded]="isOpen()"
     [attr.aria-haspopup]="'listbox'"
     [attr.id]="id() || null"
-    [attr.aria-activedescendant]="focusedOptionId()"
     role="combobox"
     tabindex="0"
     (click)="toggleDropdown()"
@@ -36,24 +35,23 @@
   </div>
 
   <ng-template #panelTpl>
-    <div class="select-panel" role="listbox">
+    <div class="select-panel">
       @if (searchable()) {
         <div class="select-search">
           <ui-input type="search" size="sm" [(value)]="searchQuery" placeholder="Rechercher..." />
         </div>
       }
-      <div class="select-options">
+      <div ngListbox [selectionMode]="'explicit'" class="select-options">
         @for (option of filteredOptions(); track option.value; let i = $index) {
           <div
+            ngOption
+            [value]="option.value"
+            [disabled]="option.disabled ?? false"
             class="select-option"
             [class.select-option--selected]="isSelected(option)"
             [class.select-option--disabled]="option.disabled"
-            [class.select-option--focused]="focusedIndex() === i"
             [attr.id]="panelId + '-option-' + i"
-            [attr.aria-selected]="isSelected(option)"
-            role="option"
             (click)="selectOption(option)"
-            (mouseenter)="focusedIndex.set(i)"
           >
             <span
               #optionLabel

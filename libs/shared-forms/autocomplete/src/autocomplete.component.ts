@@ -21,6 +21,7 @@ import {
 } from '@angular/forms/signals';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
+import { Listbox, Option } from '@angular/aria/listbox';
 import { UiIconComponent } from '@ui/shared-ui/icon';
 import { UiIconButtonComponent } from '@ui/shared-ui/icon-button';
 import { UiSpinnerComponent } from '@ui/shared-ui/spinner';
@@ -43,7 +44,7 @@ let nextPanelId = 0;
 
 @Component({
   selector: 'ui-autocomplete',
-  imports: [UiIconComponent, UiIconButtonComponent, UiSpinnerComponent],
+  imports: [UiIconComponent, UiIconButtonComponent, UiSpinnerComponent, Listbox, Option],
   styleUrl: './autocomplete.component.scss',
   encapsulation: ViewEncapsulation.None,
   host: {
@@ -102,7 +103,7 @@ let nextPanelId = 0;
       </div>
 
       <ng-template #panelTpl>
-        <div class="autocomplete-panel" [attr.id]="panelId" role="listbox">
+        <div class="autocomplete-panel" [attr.id]="panelId">
           @if (loading()) {
             <div class="autocomplete-loading">
               <ui-spinner size="sm" color="primary" label="Chargement des suggestions" />
@@ -110,23 +111,25 @@ let nextPanelId = 0;
           } @else if (options().length === 0 && hasSearched()) {
             <div class="autocomplete-empty">{{ noResultsLabel() }}</div>
           } @else {
-            @for (option of options(); track option.value; let i = $index) {
-              <div
-                class="autocomplete-option"
-                [class.autocomplete-option--selected]="value() === option.value"
-                [class.autocomplete-option--focused]="focusedIndex() === i"
-                [attr.id]="panelId + '-option-' + i"
-                [attr.aria-selected]="value() === option.value"
-                role="option"
-                (mousedown)="selectOption(option)"
-                (mouseenter)="focusedIndex.set(i)"
-              >
-                <span>{{ option.label }}</span>
-                @if (value() === option.value) {
-                  <ui-icon name="heroCheck" size="sm" color="primary" />
-                }
-              </div>
-            }
+            <div ngListbox [selectionMode]="'explicit'">
+              @for (option of options(); track option.value; let i = $index) {
+                <div
+                  ngOption
+                  [value]="option.value"
+                  class="autocomplete-option"
+                  [class.autocomplete-option--selected]="value() === option.value"
+                  [class.autocomplete-option--focused]="focusedIndex() === i"
+                  [attr.id]="panelId + '-option-' + i"
+                  (mousedown)="selectOption(option)"
+                  (mouseenter)="focusedIndex.set(i)"
+                >
+                  <span>{{ option.label }}</span>
+                  @if (value() === option.value) {
+                    <ui-icon name="heroCheck" size="sm" color="primary" />
+                  }
+                </div>
+              }
+            </div>
           }
         </div>
       </ng-template>

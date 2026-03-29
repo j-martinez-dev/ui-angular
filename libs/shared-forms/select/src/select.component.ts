@@ -17,6 +17,7 @@ import {
   WithOptionalFieldTree,
 } from '@angular/forms/signals';
 import { Overlay } from '@angular/cdk/overlay';
+import { Listbox, Option } from '@angular/aria/listbox';
 import { UiIconComponent, type IconSize } from '@ui/shared-ui/icon';
 import { UiInputComponent } from '@ui/shared-forms/input';
 import { UiTooltipDirective } from '@ui/shared-ui/tooltip';
@@ -41,7 +42,7 @@ const HEIGHT_MAP: Record<SelectSize, string> = {
 
 @Component({
   selector: 'ui-select',
-  imports: [UiIconComponent, UiInputComponent, UiTooltipDirective],
+  imports: [UiIconComponent, UiInputComponent, UiTooltipDirective, Listbox, Option],
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -79,7 +80,6 @@ export class UiSelectComponent<T = unknown> implements FormValueControl<T | null
   protected readonly oc = new SelectOverlayController<T>(inject(Overlay), inject(ViewContainerRef));
   protected readonly isOpen = this.oc.isOpen;
   protected readonly searchQuery = this.oc.searchQuery;
-  protected readonly focusedIndex = this.oc.focusedIndex;
   protected readonly panelId = this.oc.panelId;
 
   private triggerEl = viewChild<ElementRef<HTMLElement>>('trigger');
@@ -92,8 +92,6 @@ export class UiSelectComponent<T = unknown> implements FormValueControl<T | null
   protected selectedLabel = computed(() =>
     this.options().find(o => o.value === this.value())?.label ?? null,
   );
-
-  protected focusedOptionId = computed(() => this.oc.focusedOptionId());
 
   protected filteredOptions = computed(() => {
     const q = this.searchQuery().toLowerCase();
@@ -117,8 +115,7 @@ export class UiSelectComponent<T = unknown> implements FormValueControl<T | null
     if (this.isOpen()) {
       this.oc.close(this.triggerEl());
     } else {
-      const selectedIdx = this.filteredOptions().findIndex(o => o.value === this.value());
-      this.oc.open(this.triggerEl(), this.panelTpl() as any, selectedIdx >= 0 ? selectedIdx : 0);
+      this.oc.open(this.triggerEl(), this.panelTpl() as any);
     }
   }
 
@@ -135,13 +132,7 @@ export class UiSelectComponent<T = unknown> implements FormValueControl<T | null
       case 'Enter':
       case ' ':
         event.preventDefault();
-        if (this.isOpen()) {
-          const opts = this.filteredOptions();
-          const idx = this.focusedIndex();
-          if (idx >= 0 && idx < opts.length && !opts[idx].disabled) {
-            this.selectOption(opts[idx]);
-          }
-        } else {
+        if (!this.isOpen()) {
           this.toggleDropdown();
         }
         break;
@@ -149,14 +140,12 @@ export class UiSelectComponent<T = unknown> implements FormValueControl<T | null
         event.preventDefault();
         if (!this.isOpen()) {
           this.toggleDropdown();
-        } else {
-          this.oc.moveFocus(1, this.filteredOptions());
         }
         break;
       case 'ArrowUp':
         event.preventDefault();
-        if (this.isOpen()) {
-          this.oc.moveFocus(-1, this.filteredOptions());
+        if (!this.isOpen()) {
+          this.toggleDropdown();
         }
         break;
       case 'Escape':

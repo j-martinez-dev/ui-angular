@@ -17,14 +17,13 @@ import {
   WithOptionalFieldTree,
 } from '@angular/forms/signals';
 import { Overlay } from '@angular/cdk/overlay';
+import { Listbox, Option } from '@angular/aria/listbox';
 import { UiIconComponent, type IconSize } from '@ui/shared-ui/icon';
 import { UiInputComponent } from '@ui/shared-forms/input';
 import { UiCheckboxComponent } from '@ui/shared-forms/checkbox';
 import { UiTooltipDirective } from '@ui/shared-ui/tooltip';
 import { type SelectOption, SelectOverlayController } from '@ui/shared-forms/select';
 import { FORM_FIELD_VARIANT_MAP, type FormFieldVariant } from '@ui/shared-forms/input';
-
-let nextId = 0;
 
 export type MultiSelectVariant = FormFieldVariant;
 export type MultiSelectSize = 'sm' | 'md' | 'lg';
@@ -43,7 +42,7 @@ const HEIGHT_MAP: Record<MultiSelectSize, string> = {
 
 @Component({
   selector: 'ui-multi-select',
-  imports: [UiIconComponent, UiInputComponent, UiCheckboxComponent, UiTooltipDirective],
+  imports: [UiIconComponent, UiInputComponent, UiCheckboxComponent, UiTooltipDirective, Listbox, Option],
   templateUrl: './multi-select.component.html',
   styleUrl: './multi-select.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -84,7 +83,6 @@ export class UiMultiSelectComponent<T = unknown> implements FormValueControl<T[]
   protected readonly oc = new SelectOverlayController<T>(inject(Overlay), inject(ViewContainerRef));
   protected readonly isOpen = this.oc.isOpen;
   protected readonly searchQuery = this.oc.searchQuery;
-  protected readonly focusedIndex = this.oc.focusedIndex;
   protected readonly panelId = this.oc.panelId;
 
   private triggerEl = viewChild<ElementRef<HTMLElement>>('trigger');
@@ -93,8 +91,6 @@ export class UiMultiSelectComponent<T = unknown> implements FormValueControl<T[]
   protected variantStyles = computed(() => FORM_FIELD_VARIANT_MAP[this.variant()]);
   protected iconSize = computed(() => ICON_SIZE_MAP[this.size()]);
   protected heightValue = computed(() => HEIGHT_MAP[this.size()]);
-
-  protected focusedOptionId = computed(() => this.oc.focusedOptionId());
 
   protected triggerLabel = computed(() => {
     const selected = this.value();
@@ -129,7 +125,7 @@ export class UiMultiSelectComponent<T = unknown> implements FormValueControl<T[]
     if (this.isOpen()) {
       this.oc.close(this.triggerEl());
     } else {
-      this.oc.open(this.triggerEl(), this.panelTpl() as any, 0);
+      this.oc.open(this.triggerEl(), this.panelTpl() as any);
     }
   }
 
@@ -151,13 +147,7 @@ export class UiMultiSelectComponent<T = unknown> implements FormValueControl<T[]
       case 'Enter':
       case ' ':
         event.preventDefault();
-        if (this.isOpen()) {
-          const opts = this.filteredOptions();
-          const idx = this.focusedIndex();
-          if (idx >= 0 && idx < opts.length && !opts[idx].disabled) {
-            this.toggleOption(opts[idx]);
-          }
-        } else {
+        if (!this.isOpen()) {
           this.toggleDropdown();
         }
         break;
@@ -165,14 +155,12 @@ export class UiMultiSelectComponent<T = unknown> implements FormValueControl<T[]
         event.preventDefault();
         if (!this.isOpen()) {
           this.toggleDropdown();
-        } else {
-          this.oc.moveFocus(1, this.filteredOptions());
         }
         break;
       case 'ArrowUp':
         event.preventDefault();
-        if (this.isOpen()) {
-          this.oc.moveFocus(-1, this.filteredOptions());
+        if (!this.isOpen()) {
+          this.toggleDropdown();
         }
         break;
       case 'Escape':
