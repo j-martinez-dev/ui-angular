@@ -1,0 +1,165 @@
+/* ── Table base ──────────────────────────────────────────────────────────── */
+
+.ui-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  background: var(--color-surface-raised);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* ── Size variants ───────────────────────────────────────────────────────── */
+
+.ui-table--sm .ui-table__head,
+.ui-table--sm .ui-table__cell {
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+  font-size: var(--text-xs);
+}
+
+.ui-table--md .ui-table__head,
+.ui-table--md .ui-table__cell {
+  padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
+  font-size: var(--text-sm);
+}
+
+.ui-table--lg .ui-table__head,
+.ui-table--lg .ui-table__cell {
+  padding: calc(var(--spacing) * 4) calc(var(--spacing) * 5);
+  font-size: var(--text-base);
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.ui-table__header {
+  background: var(--color-surface-sunken);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.ui-table__head {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  text-align: left;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.ui-table__head--sortable {
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--easing-default);
+}
+
+.ui-table__head--sortable:hover {
+  color: var(--color-text-default);
+}
+
+.ui-table__head--asc,
+.ui-table__head--desc {
+  color: var(--color-primary-default);
+}
+
+.ui-table__head--center {
+  text-align: center;
+}
+
+.ui-table__head--right {
+  text-align: right;
+}
+
+/* ── Sort icon ───────────────────────────────────────────────────────────── */
+
+.ui-table__sort-icon {
+  display: inline-block;
+  margin-left: var(--spacing);
+  font-size: var(--text-xs);
+  color: var(--color-text-disabled);
+  vertical-align: middle;
+}
+
+.ui-table__sort-icon--active {
+  color: var(--color-primary-default);
+}
+
+/* ── Row ─────────────────────────────────────────────────────────────────── */
+
+.ui-table__row {
+  border-bottom: 1px solid var(--color-border-default);
+  transition: background-color var(--duration-fast) var(--easing-default);
+}
+
+.ui-table__row:last-child {
+  border-bottom: none;
+}
+
+.ui-table--hoverable .ui-table__body .ui-table__row:hover:not(.ui-table__row--disabled) {
+  background: var(--color-surface-sunken);
+}
+
+.ui-table__row--clickable {
+  cursor: pointer;
+}
+
+.ui-table__row--active {
+  background: var(--color-primary-subtle);
+}
+
+.ui-table__row--disabled {
+  opacity: var(--opacity-disabled);
+  pointer-events: none;
+}
+
+/* ── Striped ─────────────────────────────────────────────────────────────── */
+
+.ui-table--striped .ui-table__body .ui-table__row:nth-child(even) {
+  background: var(--color-surface-sunken);
+}
+
+/* ── Bordered ────────────────────────────────────────────────────────────── */
+
+.ui-table--bordered .ui-table__head,
+.ui-table--bordered .ui-table__cell {
+  border: 1px solid var(--color-border-default);
+}
+
+/* ── Cell ────────────────────────────────────────────────────────────────── */
+
+.ui-table__cell {
+  color: var(--color-text-default);
+  vertical-align: middle;
+}
+
+.ui-table__cell--center {
+  text-align: center;
+}
+
+.ui-table__cell--right {
+  text-align: right;
+}
+
+.ui-table__cell--truncate {
+  max-width: calc(var(--spacing) * 50);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+
+.ui-table__footer {
+  border-top: 2px solid var(--color-border-default);
+  background: var(--color-surface-sunken);
+}
+
+.ui-table__footer .ui-table__cell {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-default);
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-table__row,
+  .ui-table__head--sortable {
+    transition: none;
+  }
+}
