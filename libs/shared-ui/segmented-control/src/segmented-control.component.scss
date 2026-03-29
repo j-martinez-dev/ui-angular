@@ -1,0 +1,93 @@
+ui-segmented-control {
+  display: inline-flex;
+}
+
+// ── Container ───────────────────────────────────────────────────────────────
+
+.segmented-control {
+  display: inline-flex;
+  background: var(--color-surface-sunken);
+  border-radius: var(--radius-md);
+  padding: calc(var(--spacing) * 0.5);
+  gap: calc(var(--spacing) * 0.5);
+}
+
+.segmented-control--full-width {
+  display: flex;
+  width: 100%;
+}
+
+.segmented-control--full-width .segmented-option {
+  flex: 1;
+}
+
+.segmented-control--disabled {
+  opacity: var(--opacity-disabled);
+  pointer-events: none;
+}
+
+// ── Option button ───────────────────────────────────────────────────────────
+
+.segmented-option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--spacing) * 1.5);
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color var(--duration-fast) var(--easing-default),
+    box-shadow var(--duration-fast) var(--easing-default),
+    color var(--duration-fast) var(--easing-default);
+}
+
+.segmented-option:hover:not(.segmented-option--active):not(:disabled) {
+  color: var(--color-text-default);
+}
+
+.segmented-option:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.segmented-option--active {
+  background: var(--color-surface-raised);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-default);
+  font-weight: var(--font-weight-medium);
+}
+
+.segmented-option:disabled:not(.segmented-option--active) {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
+// ── Size variants ───────────────────────────────────────────────────────────
+
+.size-sm .segmented-option {
+  font-size: var(--text-xs);
+  padding: var(--spacing) calc(var(--spacing) * 2);
+}
+
+.size-md .segmented-option {
+  font-size: var(--text-sm);
+  padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 3);
+}
+
+.size-lg .segmented-option {
+  font-size: var(--text-base);
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+}
+
+// ── Reduced motion ──────────────────────────────────────────────────────────
+
+@media (prefers-reduced-motion: reduce) {
+  .segmented-option {
+    transition: none;
+  }
+}
