@@ -1,3 +1,5 @@
+@use '../../select/src/dropdown-shared' as dropdown;
+
 ui-autocomplete {
   display: block;
   width: 100%;
@@ -21,6 +23,16 @@ ui-autocomplete {
     box-shadow var(--duration-normal) var(--easing-default);
 }
 
+.autocomplete-wrapper:hover:not(.autocomplete-wrapper--disabled):not(.autocomplete-wrapper--readonly):not(.autocomplete-wrapper--focused) {
+  border-color: var(--color-border-strong);
+  background-color: var(--color-surface-sunken);
+}
+
+.autocomplete-wrapper:focus-within:not(.autocomplete-wrapper--focused) {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
 .autocomplete-wrapper--focused {
   border: var(--ac-focus-border);
   box-shadow: 0 0 0 3px oklch(from var(--color-focus-ring) l c h / 0.15);
@@ -37,11 +49,13 @@ ui-autocomplete {
 .autocomplete-wrapper--disabled {
   opacity: var(--opacity-disabled);
   cursor: not-allowed;
+  pointer-events: none;
 }
 
 .autocomplete-wrapper--readonly {
   background-color: var(--color-surface-sunken);
   cursor: default;
+  pointer-events: none;
 }
 
 // ── Filled variant ──────────────────────────────────────────────────────────
@@ -49,6 +63,11 @@ ui-autocomplete {
 .variant-filled .autocomplete-wrapper {
   border-radius: var(--radius-md) var(--radius-md) 0 0;
   border-bottom: 2px solid transparent;
+}
+
+.variant-filled .autocomplete-wrapper:hover:not(.autocomplete-wrapper--disabled):not(.autocomplete-wrapper--readonly):not(.autocomplete-wrapper--focused) {
+  border-color: transparent;
+  border-bottom-color: var(--color-border-strong);
 }
 
 .variant-filled .autocomplete-wrapper--focused {
@@ -67,6 +86,12 @@ ui-autocomplete {
 .variant-ghost .autocomplete-wrapper {
   border-radius: 0;
   border-bottom: 1px solid transparent;
+}
+
+.variant-ghost .autocomplete-wrapper:hover:not(.autocomplete-wrapper--disabled):not(.autocomplete-wrapper--readonly):not(.autocomplete-wrapper--focused) {
+  background-color: transparent;
+  border-color: transparent;
+  border-bottom-color: var(--color-border-strong);
 }
 
 .variant-ghost .autocomplete-wrapper--focused {
@@ -126,102 +151,24 @@ ui-autocomplete {
   cursor: not-allowed;
 }
 
-// ── Panel ───────────────────────────────────────────────────────────────────
+// ── Panel / Option / Empty / Loading (shared via mixin) ─────────────────────
+
+@include dropdown.panel('autocomplete');
+@include dropdown.option('autocomplete');
+@include dropdown.empty('autocomplete');
+@include dropdown.loading('autocomplete');
 
 .autocomplete-panel {
-  width: 100%;
-  box-sizing: border-box;
-  background: var(--color-surface-overlay);
-  border: 1px solid var(--color-border-default);
-  box-shadow: var(--shadow-lg);
-  border-radius: var(--radius-md);
-  overflow: hidden;
   max-height: calc(var(--spacing) * 60);
   overflow-y: auto;
-  animation: autocomplete-panel-enter var(--duration-fast) var(--easing-out) both;
-}
-
-@keyframes autocomplete-panel-enter {
-  from {
-    opacity: 0;
-    transform: translateY(calc(var(--spacing) * -1));
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-// ── Option ──────────────────────────────────────────────────────────────────
-
-.autocomplete-option {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: calc(var(--spacing) * 2);
-  min-height: calc(var(--spacing) * 9);
-  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  color: var(--color-text-default);
-  cursor: pointer;
-  border-left: 2px solid transparent;
-  transition:
-    background-color var(--duration-fast) var(--easing-default),
-    border-color var(--duration-fast) var(--easing-default);
-
-  > span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    min-width: 0;
-    flex: 1;
-  }
-}
-
-.autocomplete-option:hover,
-.autocomplete-option--focused {
-  background-color: var(--color-surface-sunken);
-}
-
-.autocomplete-option--selected {
-  background-color: var(--color-primary-subtle);
-  color: var(--color-primary-emphasis);
-  font-weight: var(--font-weight-medium);
-  border-left-color: var(--color-primary-default);
-}
-
-.autocomplete-option--selected:hover,
-.autocomplete-option--selected.autocomplete-option--focused {
-  background-color: var(--color-primary-subtle);
-}
-
-// ── Loading / Empty ─────────────────────────────────────────────────────────
-
-.autocomplete-loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: calc(var(--spacing) * 4);
-}
-
-.autocomplete-empty {
-  padding: calc(var(--spacing) * 3);
-  text-align: center;
-  color: var(--color-text-muted);
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
 }
 
 // ── Reduced motion ──────────────────────────────────────────────────────────
 
 @media (prefers-reduced-motion: reduce) {
-  .autocomplete-wrapper,
-  .autocomplete-option {
+  .autocomplete-wrapper {
     transition: none;
   }
-
-  .autocomplete-panel {
-    animation: none;
-  }
 }
+
+@include dropdown.reduced-motion('autocomplete');

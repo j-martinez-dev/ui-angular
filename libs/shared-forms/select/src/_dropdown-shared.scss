@@ -1,0 +1,114 @@
+// Shared dropdown panel, option, empty-state, and animation styles.
+// Used by select, multi-select, and autocomplete components.
+
+@mixin panel($prefix) {
+  .#{$prefix}-panel {
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--color-surface-overlay);
+    border: 1px solid var(--color-border-default);
+    box-shadow: var(--shadow-lg);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    animation: #{$prefix}-panel-enter var(--duration-fast) var(--easing-out) both;
+  }
+
+  @keyframes #{$prefix}-panel-enter {
+    from {
+      opacity: 0;
+      transform: translateY(calc(var(--spacing) * -1));
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@mixin options-scroll($prefix) {
+  .#{$prefix}-options {
+    max-height: calc(var(--spacing) * 60);
+    overflow-y: auto;
+    padding: calc(var(--spacing) * 1) 0;
+  }
+}
+
+@mixin option($prefix) {
+  .#{$prefix}-option {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 2);
+    min-height: calc(var(--spacing) * 9);
+    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--color-text-default);
+    cursor: pointer;
+    border-left: 2px solid transparent;
+    transition:
+      background-color var(--duration-fast) var(--easing-default),
+      border-color var(--duration-fast) var(--easing-default);
+
+    > span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
+      flex: 1;
+    }
+  }
+
+  .#{$prefix}-option:hover,
+  .#{$prefix}-option--focused {
+    background-color: var(--color-surface-sunken);
+  }
+
+  .#{$prefix}-option--selected {
+    background-color: var(--color-primary-subtle);
+    color: var(--color-primary-emphasis);
+    font-weight: var(--font-weight-medium);
+    border-left-color: var(--color-primary-default);
+  }
+
+  .#{$prefix}-option--selected:hover,
+  .#{$prefix}-option--selected.#{$prefix}-option--focused {
+    background-color: var(--color-primary-subtle);
+  }
+
+  .#{$prefix}-option--disabled {
+    opacity: var(--opacity-disabled);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+@mixin empty($prefix) {
+  .#{$prefix}-empty {
+    padding: calc(var(--spacing) * 4) calc(var(--spacing) * 3);
+    text-align: center;
+    color: var(--color-text-muted);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+  }
+}
+
+@mixin loading($prefix) {
+  .#{$prefix}-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(var(--spacing) * 4);
+  }
+}
+
+@mixin reduced-motion($prefix) {
+  @media (prefers-reduced-motion: reduce) {
+    .#{$prefix}-option {
+      transition: none;
+    }
+
+    .#{$prefix}-panel {
+      animation: none;
+    }
+  }
+}

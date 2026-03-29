@@ -107,7 +107,7 @@ let nextPanelId = 0;
             <div class="autocomplete-loading">
               <ui-spinner size="sm" color="primary" label="Chargement des suggestions" />
             </div>
-          } @else if (options().length === 0) {
+          } @else if (options().length === 0 && hasSearched()) {
             <div class="autocomplete-empty">{{ noResultsLabel() }}</div>
           } @else {
             @for (option of options(); track option.value; let i = $index) {
@@ -169,6 +169,7 @@ export class UiAutocompleteComponent<T = string>
   protected inputText = signal<string>('');
   protected isOpen = signal<boolean>(false);
   protected focusedIndex = signal<number>(-1);
+  protected hasSearched = signal<boolean>(false);
   protected readonly panelId = `ui-autocomplete-panel-${nextPanelId++}`;
   private debounceTimer: ReturnType<typeof setTimeout> | null = null;
   private overlayRef: OverlayRef | null = null;
@@ -208,6 +209,7 @@ export class UiAutocompleteComponent<T = string>
     if (this.debounceTimer) clearTimeout(this.debounceTimer);
     this.debounceTimer = setTimeout(() => {
       this.search.emit(input.value);
+      this.hasSearched.set(true);
     }, this.debounce());
   }
 
@@ -233,6 +235,7 @@ export class UiAutocompleteComponent<T = string>
   protected clearInput(): void {
     this.inputText.set('');
     this.value.set(null);
+    this.hasSearched.set(false);
     this.closePanel();
   }
 

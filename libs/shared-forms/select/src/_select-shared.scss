@@ -1,3 +1,5 @@
+@use 'dropdown-shared' as dropdown;
+
 ui-select,
 ui-multi-select {
   display: block;
@@ -158,108 +160,25 @@ ui-multi-select {
   opacity: 1;
 }
 
-// ── Panel ───────────────────────────────────────────────────────────────────
+// ── Panel / Option / Empty (shared via mixin) ───────────────────────────────
 
-.select-panel {
-  width: 100%;
-  box-sizing: border-box;
-  background: var(--color-surface-overlay);
-  border: 1px solid var(--color-border-default);
-  box-shadow: var(--shadow-lg);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  animation: select-panel-enter var(--duration-fast) var(--easing-out) both;
-}
-
-@keyframes select-panel-enter {
-  from {
-    opacity: 0;
-    transform: translateY(calc(var(--spacing) * -1));
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+@include dropdown.panel('select');
+@include dropdown.options-scroll('select');
+@include dropdown.option('select');
+@include dropdown.empty('select');
 
 .select-search {
   padding: calc(var(--spacing) * 2);
   border-bottom: 1px solid var(--color-border-default);
 }
 
-.select-options {
-  max-height: calc(var(--spacing) * 60);
-  overflow-y: auto;
-  padding: calc(var(--spacing) * 1) 0;
-}
-
-// ── Option ──────────────────────────────────────────────────────────────────
-
-.select-option {
-  display: flex;
-  align-items: center;
-  gap: calc(var(--spacing) * 2);
-  min-height: calc(var(--spacing) * 9);
-  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  color: var(--color-text-default);
-  cursor: pointer;
-  border-left: 2px solid transparent;
-  transition:
-    background-color var(--duration-fast) var(--easing-default),
-    border-color var(--duration-fast) var(--easing-default);
-
-  > span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    min-width: 0;
-    flex: 1;
-  }
-}
-
-.select-option:hover,
-.select-option--focused {
-  background-color: var(--color-surface-sunken);
-}
-
-.select-option--selected {
-  background-color: var(--color-primary-subtle);
-  color: var(--color-primary-emphasis);
-  font-weight: var(--font-weight-medium);
-  border-left-color: var(--color-primary-default);
-}
-
-.select-option--selected:hover,
-.select-option--selected.select-option--focused {
-  background-color: var(--color-primary-subtle);
-}
-
-.select-option--disabled {
-  opacity: var(--opacity-disabled);
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-.select-empty {
-  padding: calc(var(--spacing) * 4) calc(var(--spacing) * 3);
-  text-align: center;
-  color: var(--color-text-muted);
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-}
-
 // ── Reduced motion ──────────────────────────────────────────────────────────
 
 @media (prefers-reduced-motion: reduce) {
   .select-trigger,
-  .select-chevron,
-  .select-option {
+  .select-chevron {
     transition: none;
   }
-
-  .select-panel {
-    animation: none;
-  }
 }
+
+@include dropdown.reduced-motion('select');
