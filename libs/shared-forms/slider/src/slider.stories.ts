@@ -172,7 +172,7 @@ class SliderVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiSliderComponent> = {
-  title: 'Components/Slider',
+  title: 'Shared Forms/Slider',
   component: UiSliderComponent,
   argTypes: {
     value: {

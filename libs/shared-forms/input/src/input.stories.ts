@@ -207,7 +207,7 @@ class InputVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiInputComponent> = {
-  title: 'Components/Input',
+  title: 'Shared Forms/Input',
   component: UiInputComponent,
   decorators: [
     applicationConfig({

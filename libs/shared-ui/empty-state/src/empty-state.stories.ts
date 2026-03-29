@@ -173,7 +173,7 @@ class EmptyStateVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiEmptyStateComponent> = {
-  title: 'Components/EmptyState',
+  title: 'Shared UI/EmptyState',
   component: UiEmptyStateComponent,
   decorators: [
     applicationConfig({

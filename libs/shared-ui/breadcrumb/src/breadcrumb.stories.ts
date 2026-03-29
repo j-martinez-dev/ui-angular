@@ -159,7 +159,7 @@ class BreadcrumbVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiBreadcrumbComponent> = {
-  title: 'Components/Breadcrumb',
+  title: 'Shared UI/Breadcrumb',
   component: UiBreadcrumbComponent,
   decorators: [
     applicationConfig({

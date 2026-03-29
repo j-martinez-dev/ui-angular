@@ -178,7 +178,7 @@ class TagVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiTagComponent> = {
-  title: 'Components/Tag',
+  title: 'Shared UI/Tag',
   component: UiTagComponent,
   decorators: [
     applicationConfig({

@@ -271,7 +271,7 @@ class DropdownMenuVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiDropdownMenuComponent> = {
-  title: 'Components/DropdownMenu',
+  title: 'Shared UI/DropdownMenu',
   component: UiDropdownMenuComponent,
   decorators: [
     applicationConfig({

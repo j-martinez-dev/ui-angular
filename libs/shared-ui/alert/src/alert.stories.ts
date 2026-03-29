@@ -179,7 +179,7 @@ class AlertVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiAlertComponent> = {
-  title: 'Components/Alert',
+  title: 'Shared UI/Alert',
   component: UiAlertComponent,
   decorators: [
     applicationConfig({

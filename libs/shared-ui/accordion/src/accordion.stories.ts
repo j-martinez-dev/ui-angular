@@ -161,7 +161,7 @@ class AccordionVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiAccordionComponent> = {
-  title: 'Components/Accordion',
+  title: 'Shared UI/Accordion',
   component: UiAccordionComponent,
   decorators: [
     applicationConfig({

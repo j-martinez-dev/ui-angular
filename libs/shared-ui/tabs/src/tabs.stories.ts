@@ -223,7 +223,7 @@ class TabsVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiTabsComponent> = {
-  title: 'Components/Tabs',
+  title: 'Shared UI/Tabs',
   component: UiTabsComponent,
   decorators: [
     applicationConfig({

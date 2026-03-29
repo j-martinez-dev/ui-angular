@@ -211,7 +211,7 @@ class ButtonVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiButtonComponent> = {
-  title: 'Components/Button',
+  title: 'Shared UI/Button',
   component: UiButtonComponent,
   decorators: [
     applicationConfig({

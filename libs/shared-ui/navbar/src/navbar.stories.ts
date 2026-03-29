@@ -264,7 +264,7 @@ class NavbarVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiNavbarComponent> = {
-  title: 'Components/Navbar',
+  title: 'Shared UI/Navbar',
   component: UiNavbarComponent,
   decorators: [
     applicationConfig({

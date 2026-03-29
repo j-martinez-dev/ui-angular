@@ -157,7 +157,7 @@ class SpinnerVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiSpinnerComponent> = {
-  title: 'Components/Spinner',
+  title: 'Shared UI/Spinner',
   component: UiSpinnerComponent,
   argTypes: {
     variant: {

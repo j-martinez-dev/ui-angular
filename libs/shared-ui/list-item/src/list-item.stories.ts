@@ -197,7 +197,7 @@ class ListItemVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiListItemComponent> = {
-  title: 'Components/ListItem',
+  title: 'Shared UI/ListItem',
   component: UiListItemComponent,
   decorators: [
     applicationConfig({

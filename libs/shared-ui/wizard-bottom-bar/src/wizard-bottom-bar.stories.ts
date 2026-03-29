@@ -225,7 +225,7 @@ class WizardVariantsComponent {}
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiWizardBottomBarComponent> = {
-  title: 'Components/WizardBottomBar',
+  title: 'Shared UI/WizardBottomBar',
   component: UiWizardBottomBarComponent,
   decorators: [
     applicationConfig({

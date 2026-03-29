@@ -154,7 +154,7 @@ class ToggleVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiToggleComponent> = {
-  title: 'Components/Toggle',
+  title: 'Shared Forms/Toggle',
   component: UiToggleComponent,
   argTypes: {
     checked: {

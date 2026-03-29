@@ -279,7 +279,7 @@ class SidebarVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiSidebarComponent> = {
-  title: 'Components/Sidebar',
+  title: 'Shared UI/Sidebar',
   component: UiSidebarComponent,
   decorators: [
     applicationConfig({

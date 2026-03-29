@@ -149,7 +149,7 @@ class RadioVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiRadioComponent> = {
-  title: 'Components/Radio',
+  title: 'Shared Forms/Radio',
   component: UiRadioComponent,
   argTypes: {
     checked: {

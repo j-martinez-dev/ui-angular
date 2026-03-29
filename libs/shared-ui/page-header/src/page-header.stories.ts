@@ -214,7 +214,7 @@ class PageHeaderVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiPageHeaderComponent> = {
-  title: 'Components/PageHeader',
+  title: 'Shared UI/PageHeader',
   component: UiPageHeaderComponent,
   decorators: [
     applicationConfig({

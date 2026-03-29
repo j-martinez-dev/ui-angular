@@ -215,7 +215,7 @@ class MultiSelectVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiMultiSelectComponent<string>> = {
-  title: 'Components/MultiSelect',
+  title: 'Shared Forms/MultiSelect',
   component: UiMultiSelectComponent,
   decorators: [
     applicationConfig({

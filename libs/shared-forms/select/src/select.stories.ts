@@ -232,7 +232,7 @@ class SelectVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiSelectComponent> = {
-  title: 'Components/Select',
+  title: 'Shared Forms/Select',
   component: UiSelectComponent,
   decorators: [
     applicationConfig({

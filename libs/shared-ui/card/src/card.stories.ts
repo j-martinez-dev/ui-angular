@@ -235,7 +235,7 @@ class CardVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiCardComponent> = {
-  title: 'Components/Card',
+  title: 'Shared UI/Card',
   component: UiCardComponent,
   decorators: [
     applicationConfig({

@@ -213,7 +213,7 @@ class FormFieldVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiFormFieldComponent> = {
-  title: 'Components/FormField',
+  title: 'Shared Forms/FormField',
   component: UiFormFieldComponent,
   decorators: [
     applicationConfig({

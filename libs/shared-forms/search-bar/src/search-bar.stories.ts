@@ -171,7 +171,7 @@ class SearchBarVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiSearchBarComponent> = {
-  title: 'Components/SearchBar',
+  title: 'Shared Forms/SearchBar',
   component: UiSearchBarComponent,
   decorators: [
     applicationConfig({

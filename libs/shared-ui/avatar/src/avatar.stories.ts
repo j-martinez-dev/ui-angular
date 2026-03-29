@@ -177,7 +177,7 @@ class AvatarVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiAvatarComponent> = {
-  title: 'Components/Avatar',
+  title: 'Shared UI/Avatar',
   component: UiAvatarComponent,
   decorators: [
     applicationConfig({

@@ -183,7 +183,7 @@ class BadgeVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiBadgeComponent> = {
-  title: 'Components/Badge',
+  title: 'Shared UI/Badge',
   component: UiBadgeComponent,
   decorators: [
     applicationConfig({

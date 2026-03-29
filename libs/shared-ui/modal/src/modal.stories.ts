@@ -291,7 +291,7 @@ class ModalVariantsComponent {
 // ── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiModalComponent> = {
-  title: 'Components/Modal',
+  title: 'Shared UI/Modal',
   component: UiModalComponent,
   decorators: [
     applicationConfig({

@@ -208,7 +208,7 @@ class DatePickerVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiDatePickerComponent> = {
-  title: 'Components/DatePicker',
+  title: 'Shared Forms/DatePicker',
   component: UiDatePickerComponent,
   decorators: [
     applicationConfig({

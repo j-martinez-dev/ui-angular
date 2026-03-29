@@ -177,7 +177,7 @@ class TextareaVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiTextareaComponent> = {
-  title: 'Components/Textarea',
+  title: 'Shared Forms/Textarea',
   component: UiTextareaComponent,
   argTypes: {
     variant: {

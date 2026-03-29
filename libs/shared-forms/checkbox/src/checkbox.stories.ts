@@ -166,7 +166,7 @@ class CheckboxVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiCheckboxComponent> = {
-  title: 'Components/Checkbox',
+  title: 'Shared Forms/Checkbox',
   component: UiCheckboxComponent,
   decorators: [
     applicationConfig({

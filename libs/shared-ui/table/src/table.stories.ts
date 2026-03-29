@@ -385,7 +385,7 @@ class TableVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiTableDirective> = {
-  title: 'Components/Table',
+  title: 'Shared UI/Table',
   component: UiTableDirective,
 };
 

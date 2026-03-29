@@ -150,7 +150,7 @@ class TooltipVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiTooltipDirective> = {
-  title: 'Components/Tooltip',
+  title: 'Shared UI/Tooltip',
   component: UiTooltipDirective,
   decorators: [
     applicationConfig({

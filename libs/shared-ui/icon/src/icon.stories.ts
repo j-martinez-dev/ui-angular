@@ -155,7 +155,7 @@ class IconVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiIconComponent> = {
-  title: 'Components/Icon',
+  title: 'Shared UI/Icon',
   component: UiIconComponent,
   decorators: [
     applicationConfig({

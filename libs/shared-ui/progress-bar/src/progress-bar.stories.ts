@@ -179,7 +179,7 @@ class ProgressBarVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiProgressBarComponent> = {
-  title: 'Components/Progress Bar',
+  title: 'Shared UI/Progress Bar',
   component: UiProgressBarComponent,
   argTypes: {
     value: {

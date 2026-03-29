@@ -284,7 +284,7 @@ class ToastVariantsComponent {
 // ── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiToastComponent> = {
-  title: 'Components/Toast',
+  title: 'Shared UI/Toast',
   component: UiToastComponent,
   decorators: [
     applicationConfig({

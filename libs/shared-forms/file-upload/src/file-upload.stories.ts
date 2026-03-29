@@ -204,7 +204,7 @@ class FileUploadVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiFileUploadComponent> = {
-  title: 'Components/FileUpload',
+  title: 'Shared Forms/FileUpload',
   component: UiFileUploadComponent,
   decorators: [
     applicationConfig({
