@@ -12,6 +12,8 @@ import {
 import {
   UiSegmentedControlComponent,
   type SegmentedControlSize,
+  type SegmentedControlVariant,
+  type SegmentedControlColor,
 } from './segmented-control.component';
 import { type TabItem } from '@ui/shared-ui/tabs';
 
@@ -52,19 +54,22 @@ const WITH_DISABLED: TabItem<string>[] = [
         <p class="ui-body-md ui-text-muted">
           A group of mutually exclusive options displayed as connected buttons.
           Used for switching views, filters, or modes.
+          Available in three shape variants (default, pill, bordered)
+          and six color variants (neutral, primary, success, warning, error, info).
         </p>
       </section>
 
       <section class="flex flex-col gap-4">
         <h3 class="ui-h3">Usage</h3>
-        <div class="flex flex-col gap-4 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
+        <div class="flex flex-col gap-4 p-6" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
           <ui-segmented-control
             [options]="periods"
             [value]="selectedPeriod()"
+            color="primary"
             label="Period"
             (valueChange)="selectedPeriod.set($event)"
           />
-          <code class="ui-code">&lt;ui-segmented-control [options]="periods" [value]="selected" (valueChange)="selected = $event" /&gt;</code>
+          <code class="ui-code">&lt;ui-segmented-control [options]="periods" [value]="selected" color="primary" /&gt;</code>
         </div>
       </section>
 
@@ -91,6 +96,18 @@ const WITH_DISABLED: TabItem<string>[] = [
               <td class="ui-code p-2">T</td>
               <td class="ui-code p-2">undefined</td>
               <td class="ui-body-sm p-2">Currently selected value</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border-default);">
+              <td class="ui-code p-2">variant</td>
+              <td class="ui-code p-2">default | pill | bordered</td>
+              <td class="ui-code p-2">default</td>
+              <td class="ui-body-sm p-2">Shape variant</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border-default);">
+              <td class="ui-code p-2">color</td>
+              <td class="ui-code p-2">neutral | primary | success | warning | error | info</td>
+              <td class="ui-code p-2">neutral</td>
+              <td class="ui-body-sm p-2">Color of active segment</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <td class="ui-code p-2">size</td>
@@ -130,6 +147,7 @@ class SegmentedDocsComponent {
 // ── Variants ────────────────────────────────────────────────────────────────
 
 const SIZES: SegmentedControlSize[] = ['sm', 'md', 'lg'];
+const COLORS: SegmentedControlColor[] = ['neutral', 'primary', 'success', 'warning', 'error', 'info'];
 
 @Component({
   selector: 'story-segmented-variants',
@@ -138,89 +156,121 @@ const SIZES: SegmentedControlSize[] = ['sm', 'md', 'lg'];
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">
 
       <section class="flex flex-col gap-4">
+        <p class="ui-overline">Colors — Default shape</p>
+        <div class="flex flex-col gap-3 p-6" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
+          @for (color of colors; track color) {
+            <div class="flex items-center gap-4">
+              <span class="ui-caption w-16">{{ color }}</span>
+              <ui-segmented-control
+                [options]="periods"
+                [value]="selectedPeriod()"
+                [color]="color"
+                [label]="color"
+                (valueChange)="selectedPeriod.set($event)"
+              />
+            </div>
+          }
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <p class="ui-overline">Colors — Pill shape</p>
+        <div class="flex flex-col gap-3 p-6" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
+          @for (color of colors; track color) {
+            <div class="flex items-center gap-4">
+              <span class="ui-caption w-16">{{ color }}</span>
+              <ui-segmented-control
+                [options]="periods"
+                [value]="selectedPeriod()"
+                [color]="color"
+                variant="pill"
+                [label]="color"
+                (valueChange)="selectedPeriod.set($event)"
+              />
+            </div>
+          }
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <p class="ui-overline">Colors — Bordered shape</p>
+        <div class="flex flex-col gap-3 p-6" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
+          @for (color of colors; track color) {
+            <div class="flex items-center gap-4">
+              <span class="ui-caption w-16">{{ color }}</span>
+              <ui-segmented-control
+                [options]="periods"
+                [value]="selectedPeriod()"
+                [color]="color"
+                variant="bordered"
+                [label]="color"
+                (valueChange)="selectedPeriod.set($event)"
+              />
+            </div>
+          }
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
         <p class="ui-overline">Sizes</p>
-        <div class="flex flex-col gap-3 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
+        <div class="flex flex-col gap-3 p-6" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
           @for (size of sizes; track size) {
-            <ui-segmented-control
-              [options]="periods"
-              [value]="selectedPeriod()"
-              [size]="size"
-              [label]="'Period ' + size"
-              (valueChange)="selectedPeriod.set($event)"
-            />
+            <div class="flex items-center gap-4">
+              <span class="ui-caption w-8">{{ size }}</span>
+              <ui-segmented-control
+                [options]="periods"
+                [value]="selectedPeriod()"
+                [size]="size"
+                color="primary"
+                [label]="'Period ' + size"
+                (valueChange)="selectedPeriod.set($event)"
+              />
+            </div>
           }
         </div>
       </section>
 
       <section class="flex flex-col gap-4">
         <p class="ui-overline">With icons</p>
-        <div class="flex flex-col gap-3 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
-          <ui-segmented-control
-            [options]="viewOptions"
-            [value]="selectedView()"
-            label="View mode"
-            (valueChange)="selectedView.set($event)"
-          />
-          <ui-segmented-control
-            [options]="themeOptions"
-            [value]="selectedTheme()"
-            label="Theme"
-            (valueChange)="selectedTheme.set($event)"
-          />
+        <div class="flex flex-col gap-4 p-6" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
+          <ui-segmented-control [options]="viewOptions" [value]="selectedView()" color="primary" label="View" (valueChange)="selectedView.set($event)" />
+          <ui-segmented-control [options]="themeOptions" [value]="selectedTheme()" color="info" variant="pill" label="Theme" (valueChange)="selectedTheme.set($event)" />
+          <ui-segmented-control [options]="themeOptions" [value]="selectedTheme()" color="primary" variant="bordered" label="Theme" (valueChange)="selectedTheme.set($event)" />
         </div>
       </section>
 
       <section class="flex flex-col gap-4">
         <p class="ui-overline">Full width</p>
-        <div class="flex flex-col gap-3 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-segmented-control
-            [options]="viewOptions"
-            [value]="selectedView()"
-            [fullWidth]="true"
-            label="View mode"
-            (valueChange)="selectedView.set($event)"
-          />
+        <div class="flex flex-col gap-3 p-6" style="background: var(--color-surface-raised); border-radius: var(--radius-md); max-width: 400px;">
+          <ui-segmented-control [options]="viewOptions" [value]="selectedView()" [fullWidth]="true" color="primary" label="View" (valueChange)="selectedView.set($event)" />
+          <ui-segmented-control [options]="viewOptions" [value]="selectedView()" [fullWidth]="true" color="success" variant="pill" label="View" (valueChange)="selectedView.set($event)" />
+          <ui-segmented-control [options]="viewOptions" [value]="selectedView()" [fullWidth]="true" color="info" variant="bordered" label="View" (valueChange)="selectedView.set($event)" />
         </div>
       </section>
 
       <section class="flex flex-col gap-4">
         <p class="ui-overline">States</p>
-        <div class="flex flex-col gap-3 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
-          <ui-segmented-control
-            [options]="withDisabled"
-            [value]="'a'"
-            label="With disabled option"
-          />
-          <ui-segmented-control
-            [options]="periods"
-            [value]="'month'"
-            [disabled]="true"
-            label="Fully disabled"
-          />
+        <div class="flex flex-col gap-3 p-6" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
+          <ui-segmented-control [options]="withDisabled" [value]="'a'" color="primary" label="With disabled option" />
+          <ui-segmented-control [options]="periods" [value]="'month'" [disabled]="true" color="primary" label="Fully disabled" />
         </div>
       </section>
 
       <section class="flex flex-col gap-4">
         <p class="ui-overline">Theme — Dark</p>
-        <div class="theme-dark p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
-          <ui-segmented-control
-            [options]="themeOptions"
-            [value]="selectedTheme()"
-            label="Theme"
-            (valueChange)="selectedTheme.set($event)"
-          />
+        <div class="theme-dark flex flex-col gap-3 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
+          <ui-segmented-control [options]="periods" [value]="selectedPeriod()" color="primary" label="Period" (valueChange)="selectedPeriod.set($event)" />
+          <ui-segmented-control [options]="themeOptions" [value]="selectedTheme()" color="info" variant="pill" label="Theme" (valueChange)="selectedTheme.set($event)" />
+          <ui-segmented-control [options]="periods" [value]="selectedPeriod()" color="success" variant="bordered" label="Period" (valueChange)="selectedPeriod.set($event)" />
         </div>
       </section>
 
       <section class="flex flex-col gap-4">
         <p class="ui-overline">Theme — Pastel</p>
-        <div class="theme-pastel p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
-          <ui-segmented-control
-            [options]="themeOptions"
-            [value]="selectedTheme()"
-            label="Theme"
-            (valueChange)="selectedTheme.set($event)"
-          />
+        <div class="theme-pastel flex flex-col gap-3 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
+          <ui-segmented-control [options]="periods" [value]="selectedPeriod()" color="primary" label="Period" (valueChange)="selectedPeriod.set($event)" />
+          <ui-segmented-control [options]="themeOptions" [value]="selectedTheme()" color="warning" variant="pill" label="Theme" (valueChange)="selectedTheme.set($event)" />
+          <ui-segmented-control [options]="periods" [value]="selectedPeriod()" color="error" variant="bordered" label="Period" (valueChange)="selectedPeriod.set($event)" />
         </div>
       </section>
 
@@ -229,6 +279,7 @@ const SIZES: SegmentedControlSize[] = ['sm', 'md', 'lg'];
 })
 class SegmentedVariantsComponent {
   sizes = SIZES;
+  colors = COLORS;
   periods = PERIOD_OPTIONS;
   viewOptions = VIEW_OPTIONS;
   themeOptions = THEME_OPTIONS;
@@ -250,6 +301,14 @@ const meta: Meta<UiSegmentedControlComponent> = {
     }),
   ],
   argTypes: {
+    variant: {
+      control: 'select',
+      options: ['default', 'pill', 'bordered'],
+    },
+    color: {
+      control: 'select',
+      options: ['neutral', 'primary', 'success', 'warning', 'error', 'info'],
+    },
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
@@ -275,6 +334,8 @@ export const Playground: Story = {
   args: {
     options: PERIOD_OPTIONS,
     value: 'month',
+    variant: 'default',
+    color: 'primary',
     size: 'md',
     fullWidth: false,
     disabled: false,
@@ -284,6 +345,8 @@ export const Playground: Story = {
     template: `<ui-segmented-control
       [options]="options"
       [value]="value"
+      [variant]="variant"
+      [color]="color"
       [size]="size"
       [fullWidth]="fullWidth"
       [disabled]="disabled"

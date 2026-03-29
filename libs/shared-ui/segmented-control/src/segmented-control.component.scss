@@ -8,7 +8,7 @@ ui-segmented-control {
   display: inline-flex;
   background: var(--color-surface-sunken);
   border-radius: var(--radius-md);
-  padding: calc(var(--spacing) * 0.5);
+  padding: calc(var(--spacing) * 0.75);
   gap: calc(var(--spacing) * 0.5);
 }
 
@@ -41,13 +41,20 @@ ui-segmented-control {
   cursor: pointer;
   white-space: nowrap;
   transition:
-    background-color var(--duration-fast) var(--easing-default),
-    box-shadow var(--duration-fast) var(--easing-default),
-    color var(--duration-fast) var(--easing-default);
+    background-color var(--duration-normal) var(--easing-default),
+    box-shadow var(--duration-normal) var(--easing-default),
+    color var(--duration-normal) var(--easing-default),
+    border-color var(--duration-normal) var(--easing-default),
+    transform var(--duration-fast) var(--easing-default);
 }
 
 .segmented-option:hover:not(.segmented-option--active):not(:disabled) {
-  color: var(--color-text-default);
+  color: var(--sc-hover-text);
+  background: var(--sc-hover-bg);
+}
+
+.segmented-option:active:not(:disabled) {
+  transform: scale(0.97);
 }
 
 .segmented-option:focus-visible {
@@ -56,13 +63,13 @@ ui-segmented-control {
 }
 
 .segmented-option--active {
-  background: var(--color-surface-raised);
+  background: var(--sc-active-bg);
   box-shadow: var(--shadow-sm);
-  color: var(--color-text-default);
-  font-weight: var(--font-weight-medium);
+  color: var(--sc-active-text);
+  font-weight: var(--font-weight-semibold);
 }
 
-.segmented-option:disabled:not(.segmented-option--active) {
+.segmented-control:not(.segmented-control--disabled) .segmented-option:disabled:not(.segmented-option--active) {
   opacity: var(--opacity-disabled);
   cursor: not-allowed;
 }
@@ -81,7 +88,44 @@ ui-segmented-control {
 
 .size-lg .segmented-option {
   font-size: var(--text-base);
-  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+  padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// VARIANT: pill
+// ═══════════════════════════════════════════════════════════════════════════
+
+.segmented-control.variant-pill {
+  border-radius: var(--radius-full);
+}
+
+.variant-pill .segmented-option {
+  border-radius: var(--radius-full);
+}
+
+.variant-pill .segmented-option--active {
+  box-shadow: var(--shadow-md);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// VARIANT: bordered
+// ═══════════════════════════════════════════════════════════════════════════
+
+.segmented-control.variant-bordered {
+  background: transparent;
+  border: 1px solid var(--color-border-default);
+  padding: calc(var(--spacing) * 0.75);
+  gap: calc(var(--spacing) * 0.5);
+}
+
+.variant-bordered .segmented-option {
+  border-radius: var(--radius-sm);
+}
+
+.variant-bordered .segmented-option--active {
+  background: var(--sc-subtle-bg);
+  color: var(--sc-hover-text);
+  box-shadow: none;
 }
 
 // ── Reduced motion ──────────────────────────────────────────────────────────
@@ -89,5 +133,6 @@ ui-segmented-control {
 @media (prefers-reduced-motion: reduce) {
   .segmented-option {
     transition: none;
+    transform: none !important;
   }
 }
