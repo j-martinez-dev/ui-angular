@@ -1,0 +1,56 @@
+@use '../../input/src/field-shared' as field;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+@include field.field-wrapper('number-wrapper');
+@include field.field-element('number-field');
+
+.number-wrapper {
+  align-items: center;
+  gap: var(--spacing);
+  height: var(--number-height);
+  background-color: var(--number-bg);
+  border: var(--number-border);
+}
+
+.number-wrapper--focused {
+  border: var(--number-focus-border);
+}
+
+.number-wrapper--invalid {
+  border: var(--number-invalid-border);
+}
+
+.number-field {
+  flex: 1;
+  text-align: right;
+}
+
+// ── Size variants ───────────────────────────────────────────────────────────
+
+:host(.size-sm) .number-wrapper {
+  padding: var(--spacing) calc(var(--spacing) * 2);
+}
+
+:host(.size-sm) .number-field {
+  font-size: var(--text-sm);
+}
+
+:host(.size-md) .number-wrapper {
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+}
+
+:host(.size-md) .number-field {
+  font-size: var(--text-base);
+}
+
+:host(.size-lg) .number-wrapper {
+  padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 4);
+}
+
+:host(.size-lg) .number-field {
+  font-size: var(--text-lg);
+}
