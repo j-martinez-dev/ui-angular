@@ -1,0 +1,84 @@
+/* ==========================================================================
+ * Nautika Design Tokens — Light Theme
+ *
+ * Warm, gold-accented theme with soft beige sidebar.
+ * Activate with .theme-nautika on any container.
+ * ========================================================================== */
+
+.theme-nautika {
+
+  /* --- Primary (Blue — Actions & CTAs) ----------------------------------- */
+  --color-primary-subtle:   #eff6ff;
+  --color-primary-default:  #3b82f6;
+  --color-primary-emphasis:  #2563eb;
+  --color-on-primary:        #ffffff;
+
+  /* --- Success (Green) --------------------------------------------------- */
+  --color-success-subtle:   #f0fdf4;
+  --color-success-default:  #22c55e;
+  --color-success-emphasis:  #16a34a;
+  --color-on-success:        #ffffff;
+
+  /* --- Warning (Amber) --------------------------------------------------- */
+  --color-warning-subtle:   #fffbeb;
+  --color-warning-default:  #f59e0b;
+  --color-warning-emphasis:  #d97706;
+  --color-on-warning:        #ffffff;
+
+  /* --- Error (Red) ------------------------------------------------------- */
+  --color-error-subtle:     #fef2f2;
+  --color-error-default:    #ef4444;
+  --color-error-emphasis:    #dc2626;
+  --color-on-error:          #ffffff;
+
+  /* --- Info (Blue) ------------------------------------------------------- */
+  --color-info-subtle:      #eff6ff;
+  --color-info-default:     #3b82f6;
+  --color-info-emphasis:     #2563eb;
+  --color-on-info:           #ffffff;
+
+  /* --- Accent 1 (Gold — Navigation active, decorative) ------------------- */
+  --color-accent-1-subtle:   #faf7f2;
+  --color-accent-1-default:  #b59a64;
+  --color-accent-1-emphasis:  #876c45;
+  --color-on-accent-1:        #ffffff;
+
+  /* --- Accent 2 (reserved) ----------------------------------------------- */
+  --color-accent-2-subtle:   transparent;
+  --color-accent-2-default:  transparent;
+  --color-accent-2-emphasis:  transparent;
+  --color-on-accent-2:        transparent;
+
+  /* --- Accent 3 (reserved) ----------------------------------------------- */
+  --color-accent-3-subtle:   transparent;
+  --color-accent-3-default:  transparent;
+  --color-accent-3-emphasis:  transparent;
+  --color-on-accent-3:        transparent;
+
+  /* --- Surfaces ---------------------------------------------------------- */
+  --color-surface-sunken:  #f9fafb;
+  --color-surface-base:    #fcfcfc;
+  --color-surface-raised:  #ffffff;
+  --color-surface-overlay: #ffffff;
+
+  /* --- Text -------------------------------------------------------------- */
+  --color-text-default:   #111827;
+  --color-text-muted:     #6b7280;
+  --color-text-disabled:  #9ca3af;
+
+  /* --- Borders ----------------------------------------------------------- */
+  --color-border-default: #e5e7eb;
+  --color-border-strong:  #d1d5db;
+
+  /* --- Focus ------------------------------------------------------------- */
+  --color-focus-ring: #3b82f6;
+
+  /* --- Disabled ---------------------------------------------------------- */
+  --opacity-disabled: 0.4;
+
+  /* --- Shadows ----------------------------------------------------------- */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+}

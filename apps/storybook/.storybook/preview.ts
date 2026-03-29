@@ -8,6 +8,7 @@ const preview: Preview = {
         light: '',
         dark: 'theme-dark',
         pastel: 'theme-pastel',
+        nautika: 'theme-nautika',
       },
       defaultTheme: 'light',
     }),
