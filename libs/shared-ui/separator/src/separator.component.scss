@@ -1,0 +1,66 @@
+ui-separator {
+  display: block;
+}
+
+// ── Base ────────────────────────────────────────────────────────────────────
+
+.separator {
+  display: flex;
+  align-items: center;
+}
+
+// ── Horizontal ──────────────────────────────────────────────────────────────
+
+.separator--horizontal {
+  flex-direction: row;
+  width: 100%;
+}
+
+.separator--horizontal:not(.separator--labeled) {
+  height: 1px;
+  background: var(--color-border-default);
+}
+
+.separator--horizontal .separator-line {
+  flex: 1;
+  height: 1px;
+  background: var(--color-border-default);
+}
+
+.separator--horizontal .separator-label {
+  padding: 0 calc(var(--spacing) * 2);
+}
+
+// ── Vertical ────────────────────────────────────────────────────────────────
+
+.separator--vertical {
+  flex-direction: column;
+  height: 100%;
+}
+
+.separator--vertical:not(.separator--labeled) {
+  width: 1px;
+  background: var(--color-border-default);
+}
+
+.separator--vertical .separator-line {
+  flex: 1;
+  width: 1px;
+  background: var(--color-border-default);
+}
+
+.separator--vertical .separator-label {
+  padding: calc(var(--spacing) * 2) 0;
+  writing-mode: horizontal-tb;
+}
+
+// ── Label ───────────────────────────────────────────────────────────────────
+
+.separator-label {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  line-height: var(--leading-tight);
+}
