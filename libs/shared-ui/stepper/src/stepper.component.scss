@@ -42,8 +42,9 @@ ui-stepper {
   top: calc(var(--spacing) * 4);
   left: calc(50% + calc(var(--spacing) * 4));
   right: calc(-50% + calc(var(--spacing) * 4));
-  height: 2px;
+  height: calc(var(--spacing) * 0.5);
   background: var(--color-border-default);
+  transition: background-color var(--duration-normal) var(--easing-default);
 }
 
 .stepper--horizontal .stepper-step--completed .stepper-connector {
@@ -77,9 +78,11 @@ ui-stepper {
   position: absolute;
   top: calc(var(--spacing) * 8);
   left: calc(var(--spacing) * 4);
-  width: 2px;
+  transform: translateX(-50%);
+  width: calc(var(--spacing) * 0.5);
   bottom: 0;
   background: var(--color-border-default);
+  transition: background-color var(--duration-normal) var(--easing-default);
 }
 
 .stepper--vertical .stepper-step--completed .stepper-connector {
@@ -124,7 +127,7 @@ ui-stepper {
   font-family: var(--font-sans);
   font-size: var(--text-sm);
   font-weight: var(--font-weight-semibold);
-  line-height: 1;
+  line-height: var(--leading-tight);
 }
 
 .stepper-step--active .stepper-number {
@@ -164,7 +167,8 @@ ui-stepper {
 // ── Reduced motion ──────────────────────────────────────────────────────────
 
 @media (prefers-reduced-motion: reduce) {
-  .stepper-indicator {
+  .stepper-indicator,
+  .stepper-connector {
     transition: none;
   }
 }
