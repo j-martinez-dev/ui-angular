@@ -1,8 +1,9 @@
 import {
   Component,
   computed,
-  effect,
+  inject,
   input,
+  linkedSignal,
   model,
   signal,
 } from '@angular/core';
@@ -56,10 +57,12 @@ const HEIGHT_MAP: Record<NumberSize, string> = {
           class="number-field"
           type="text"
           inputmode="decimal"
+          role="spinbutton"
           [value]="displayValue()"
           [placeholder]="placeholder()"
           [disabled]="disabled()"
           [readonly]="readonly()"
+          [attr.aria-label]="label()"
           [attr.required]="required() || null"
           [attr.aria-invalid]="invalid() || null"
           [attr.aria-valuemin]="min()"
@@ -74,9 +77,9 @@ const HEIGHT_MAP: Record<NumberSize, string> = {
   `,
 })
 export class UiNumberComponent implements FormValueControl<number | null> {
-  private decimalPipe = new DecimalPipe('en-US');
+  private decimalPipe = inject(DecimalPipe);
 
-  // Signal Forms contrac (t
+  // Signal Forms contract
   value = model<number | null>(null);
   touched = model<boolean>(false);
   disabled = input<boolean>(false);
@@ -89,6 +92,9 @@ export class UiNumberComponent implements FormValueControl<number | null> {
   min = input<number | undefined>(undefined);
   max = input<number | undefined>(undefined);
 
+  // Accessibility
+  label = input<string | undefined>(undefined);
+
   // Additional inputs
   format = input<string>('1.0-2');
   locale = input<string>('fr-FR');
@@ -98,29 +104,22 @@ export class UiNumberComponent implements FormValueControl<number | null> {
 
   // Internal state
   protected isFocused = signal<boolean>(false);
-  protected displayValue = signal<string>('');
+  protected displayValue = linkedSignal(() => {
+    const v = this.value();
+    if (this.isFocused()) {
+      return v !== null ? String(v) : '';
+    }
+    return v !== null
+      ? this.decimalPipe.transform(v, this.format(), this.locale()) ?? ''
+      : '';
+  });
 
   // Computed
   protected variantStyles = computed(() => FORM_FIELD_VARIANT_MAP[this.variant()]);
   protected heightValue = computed(() => HEIGHT_MAP[this.size()]);
 
-  constructor() {
-    effect(() => {
-      if (!this.isFocused()) {
-        const v = this.value();
-        this.displayValue.set(
-          v !== null
-            ? this.decimalPipe.transform(v, this.format(), this.locale()) ?? ''
-            : '',
-        );
-      }
-    });
-  }
-
   protected onFocus(): void {
     this.isFocused.set(true);
-    const v = this.value();
-    this.displayValue.set(v !== null ? String(v) : '');
   }
 
   protected onInput(event: Event): void {
@@ -137,7 +136,7 @@ export class UiNumberComponent implements FormValueControl<number | null> {
   }
 
   private parseInput(raw: string): number | null {
-    const normalized = raw.replace(',', '.');
+    const normalized = raw.replace(/,/g, '.');
     const parsed = parseFloat(normalized);
     if (isNaN(parsed)) return null;
     if (this.min() !== undefined && parsed < this.min()!) return this.min()!;

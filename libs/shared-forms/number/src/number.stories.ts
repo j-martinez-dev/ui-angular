@@ -22,9 +22,9 @@ import { UiNumberComponent, NumberVariant, NumberSize } from './number.component
       <section class="flex flex-col gap-4">
         <h3 class="ui-h3">Usage</h3>
         <div class="flex flex-col gap-4 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-number placeholder="0" />
-          <ui-number [(value)]="demoValue" format="1.2-2" placeholder="0,00" />
-          <ui-number variant="filled" placeholder="0" />
+          <ui-number placeholder="0" label="Number" />
+          <ui-number [(value)]="demoValue" format="1.2-2" placeholder="0,00" label="Amount" />
+          <ui-number variant="filled" placeholder="0" label="Number" />
           <code class="ui-code">&lt;ui-number format="1.2-2" placeholder="0,00" /&gt;</code>
         </div>
       </section>
@@ -78,6 +78,12 @@ import { UiNumberComponent, NumberVariant, NumberSize } from './number.component
               <td class="ui-body-sm p-2">Value bounds — clamped on blur</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
+              <td class="ui-code p-2">label</td>
+              <td class="ui-code p-2">string | undefined</td>
+              <td class="ui-code p-2">undefined</td>
+              <td class="ui-body-sm p-2">Accessible name (aria-label)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border-default);">
               <td class="ui-code p-2">disabled</td>
               <td class="ui-code p-2">boolean</td>
               <td class="ui-code p-2">false</td>
@@ -114,7 +120,7 @@ const SIZES: NumberSize[] = ['sm', 'md', 'lg'];
         <p class="ui-overline">Variants</p>
         <div class="flex flex-col gap-3 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md); max-width: 400px;">
           @for (variant of variants; track variant) {
-            <ui-number [variant]="variant" [(value)]="variantValues[variant]" placeholder="0,00" format="1.2-2" />
+            <ui-number [variant]="variant" [(value)]="variantValues[variant]" placeholder="0,00" format="1.2-2" label="Number" />
           }
         </div>
       </section>
@@ -123,7 +129,7 @@ const SIZES: NumberSize[] = ['sm', 'md', 'lg'];
         <p class="ui-overline">Sizes</p>
         <div class="flex flex-col gap-3 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md); max-width: 400px;">
           @for (size of sizes; track size) {
-            <ui-number [size]="size" [(value)]="sizeValues[size]" placeholder="0" format="1.0-0" />
+            <ui-number [size]="size" [(value)]="sizeValues[size]" placeholder="0" format="1.0-0" label="Number" />
           }
         </div>
       </section>
@@ -131,45 +137,45 @@ const SIZES: NumberSize[] = ['sm', 'md', 'lg'];
       <section class="flex flex-col gap-4">
         <p class="ui-overline">Formatting</p>
         <div class="flex flex-col gap-3 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-number [(value)]="integerValue" format="1.0-0" placeholder="0" />
-          <ui-number [(value)]="currencyValue" format="1.2-2" placeholder="0,00" />
-          <ui-number [(value)]="preciseValue" format="1.0-4" placeholder="0" />
+          <ui-number [(value)]="integerValue" format="1.0-0" placeholder="0" label="Integer" />
+          <ui-number [(value)]="currencyValue" format="1.2-2" placeholder="0,00" label="Currency" />
+          <ui-number [(value)]="preciseValue" format="1.0-4" placeholder="0" label="Precision" />
         </div>
       </section>
 
       <section class="flex flex-col gap-4">
         <p class="ui-overline">With min / max</p>
         <div class="flex flex-col gap-3 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-number [(value)]="clampedValue" [min]="0" [max]="100" format="1.0-0" placeholder="0–100" />
+          <ui-number [(value)]="clampedValue" [min]="0" [max]="100" format="1.0-0" placeholder="0–100" label="Clamped value" />
         </div>
       </section>
 
       <section class="flex flex-col gap-4">
         <p class="ui-overline">States</p>
         <div class="flex flex-col gap-3 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-number [(value)]="disabledValue" [disabled]="true" format="1.2-2" placeholder="0,00" />
-          <ui-number [(value)]="readonlyValue" [readonly]="true" format="1.2-2" placeholder="0,00" />
-          <ui-number [(value)]="invalidValue" [invalid]="true" format="1.2-2" placeholder="0,00" />
+          <ui-number [(value)]="disabledValue" [disabled]="true" format="1.2-2" placeholder="0,00" label="Disabled" />
+          <ui-number [(value)]="readonlyValue" [readonly]="true" format="1.2-2" placeholder="0,00" label="Readonly" />
+          <ui-number [(value)]="invalidValue" [invalid]="true" format="1.2-2" placeholder="0,00" label="Invalid" />
         </div>
       </section>
 
       <section class="flex flex-col gap-4">
         <p class="ui-overline">Theme — Dark</p>
         <div class="theme-dark flex flex-col gap-3 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-number placeholder="0,00" format="1.2-2" />
-          <ui-number variant="filled" placeholder="0,00" format="1.2-2" />
-          <ui-number variant="ghost" placeholder="0,00" format="1.2-2" />
-          <ui-number [invalid]="true" placeholder="0,00" format="1.2-2" />
+          <ui-number placeholder="0,00" format="1.2-2" label="Number" />
+          <ui-number variant="filled" placeholder="0,00" format="1.2-2" label="Number" />
+          <ui-number variant="ghost" placeholder="0,00" format="1.2-2" label="Number" />
+          <ui-number [invalid]="true" placeholder="0,00" format="1.2-2" label="Number" />
         </div>
       </section>
 
       <section class="flex flex-col gap-4">
         <p class="ui-overline">Theme — Pastel</p>
         <div class="theme-pastel flex flex-col gap-3 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-number placeholder="0,00" format="1.2-2" />
-          <ui-number variant="filled" placeholder="0,00" format="1.2-2" />
-          <ui-number variant="ghost" placeholder="0,00" format="1.2-2" />
-          <ui-number [invalid]="true" placeholder="0,00" format="1.2-2" />
+          <ui-number placeholder="0,00" format="1.2-2" label="Number" />
+          <ui-number variant="filled" placeholder="0,00" format="1.2-2" label="Number" />
+          <ui-number variant="ghost" placeholder="0,00" format="1.2-2" label="Number" />
+          <ui-number [invalid]="true" placeholder="0,00" format="1.2-2" label="Number" />
         </div>
       </section>
 
@@ -180,16 +186,16 @@ class NumberVariantsComponent {
   variants = VARIANTS;
   sizes = SIZES;
 
-  variantValues: Record<string, number | null> = {
-    outlined: 1234.56,
-    filled: 9876.54,
-    ghost: 42,
+  variantValues: Record<string, ReturnType<typeof signal<number | null>>> = {
+    outlined: signal<number | null>(1234.56),
+    filled: signal<number | null>(9876.54),
+    ghost: signal<number | null>(42),
   };
 
-  sizeValues: Record<string, number | null> = {
-    sm: 100,
-    md: 2500,
-    lg: 50000,
+  sizeValues: Record<string, ReturnType<typeof signal<number | null>>> = {
+    sm: signal<number | null>(100),
+    md: signal<number | null>(2500),
+    lg: signal<number | null>(50000),
   };
 
   integerValue = signal<number | null>(42);
@@ -218,6 +224,7 @@ const meta: Meta<UiNumberComponent> = {
     format: { control: 'text' },
     locale: { control: 'text' },
     placeholder: { control: 'text' },
+    label: { control: 'text' },
     disabled: { control: 'boolean' },
     readonly: { control: 'boolean' },
     invalid: { control: 'boolean' },
@@ -244,6 +251,7 @@ export const Playground: Story = {
     format: '1.0-2',
     locale: 'fr-FR',
     placeholder: '0',
+    label: 'Number',
     disabled: false,
     readonly: false,
     invalid: false,
