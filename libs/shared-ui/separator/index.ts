@@ -1,1 +1,5 @@
-export { UiSeparatorComponent } from './src/separator.component';
+export {
+  UiSeparatorComponent,
+  type SeparatorOrientation,
+  type SeparatorColor,
+} from './src/separator.component';

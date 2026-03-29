@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { Component } from '@angular/core';
-import { UiSeparatorComponent } from './separator.component';
+import { UiSeparatorComponent, type SeparatorColor } from './separator.component';
+
+const COLORS: SeparatorColor[] = ['default', 'strong', 'primary', 'success', 'warning', 'error', 'info'];
 
 // ── Docs ────────────────────────────────────────────────────────────────────
 
@@ -14,7 +16,8 @@ import { UiSeparatorComponent } from './separator.component';
         <h2 class="ui-h2">Separator</h2>
         <p class="ui-body-md ui-text-muted">
           A visual divider for separating content sections.
-          Supports horizontal and vertical orientations, with an optional centered label.
+          Supports horizontal and vertical orientations, an optional centered label,
+          and multiple color variants.
         </p>
       </section>
 
@@ -24,7 +27,7 @@ import { UiSeparatorComponent } from './separator.component';
           <p class="ui-body-sm">Content above</p>
           <ui-separator />
           <p class="ui-body-sm">Content below</p>
-          <ui-separator label="ou" />
+          <ui-separator label="ou" color="primary" />
           <p class="ui-body-sm">Alternative content</p>
         </div>
       </section>
@@ -46,6 +49,12 @@ import { UiSeparatorComponent } from './separator.component';
               <td class="ui-code p-2">horizontal | vertical</td>
               <td class="ui-code p-2">horizontal</td>
               <td class="ui-body-sm p-2">Direction of the separator</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border-default);">
+              <td class="ui-code p-2">color</td>
+              <td class="ui-code p-2">default | strong | primary | success | warning | error | info</td>
+              <td class="ui-code p-2">default</td>
+              <td class="ui-body-sm p-2">Color of the line and label</td>
             </tr>
             <tr>
               <td class="ui-code p-2">label</td>
@@ -70,11 +79,23 @@ class SeparatorDocsComponent {}
     <div class="flex flex-col gap-10 p-8" style="background: var(--color-surface-base); color: var(--color-text-default);">
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Horizontal — No label</p>
+        <p class="ui-overline">Colors — No label</p>
         <div class="flex flex-col gap-4 p-6" style="background: var(--color-surface-raised); border-radius: var(--radius-md); max-width: 400px;">
-          <p class="ui-body-sm">Section A</p>
-          <ui-separator />
-          <p class="ui-body-sm">Section B</p>
+          @for (color of colors; track color) {
+            <div class="flex items-center gap-3">
+              <span class="ui-caption w-16">{{ color }}</span>
+              <ui-separator [color]="color" class="flex-1" />
+            </div>
+          }
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <p class="ui-overline">Colors — With label</p>
+        <div class="flex flex-col gap-4 p-6" style="background: var(--color-surface-raised); border-radius: var(--radius-md); max-width: 400px;">
+          @for (color of colors; track color) {
+            <ui-separator [color]="color" [label]="color" />
+          }
         </div>
       </section>
 
@@ -88,19 +109,12 @@ class SeparatorDocsComponent {}
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Horizontal — Long label</p>
-        <div class="flex flex-col gap-4 p-6" style="background: var(--color-surface-raised); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-separator label="Informations supplémentaires" />
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
         <p class="ui-overline">Vertical — Inline items</p>
-        <div class="flex items-center gap-4 p-6" style="background: var(--color-surface-raised); border-radius: var(--radius-md); height: 48px;">
+        <div class="flex items-center gap-4 px-6 py-3" style="background: var(--color-surface-raised); border-radius: var(--radius-md); height: 48px;">
           <span class="ui-body-sm">Accueil</span>
           <ui-separator orientation="vertical" />
           <span class="ui-body-sm">Produits</span>
-          <ui-separator orientation="vertical" />
+          <ui-separator orientation="vertical" color="primary" />
           <span class="ui-body-sm">Contact</span>
         </div>
       </section>
@@ -108,27 +122,29 @@ class SeparatorDocsComponent {}
       <section class="flex flex-col gap-4">
         <p class="ui-overline">Theme — Dark</p>
         <div class="theme-dark flex flex-col gap-4 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 400px;">
-          <p class="ui-body-sm">Section A</p>
           <ui-separator />
-          <ui-separator label="ou" />
-          <p class="ui-body-sm">Section B</p>
+          <ui-separator label="ou" color="primary" />
+          <ui-separator color="success" />
+          <ui-separator label="attention" color="warning" />
         </div>
       </section>
 
       <section class="flex flex-col gap-4">
         <p class="ui-overline">Theme — Pastel</p>
         <div class="theme-pastel flex flex-col gap-4 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 400px;">
-          <p class="ui-body-sm">Section A</p>
           <ui-separator />
-          <ui-separator label="ou" />
-          <p class="ui-body-sm">Section B</p>
+          <ui-separator label="ou" color="primary" />
+          <ui-separator color="error" />
+          <ui-separator label="info" color="info" />
         </div>
       </section>
 
     </div>
   `,
 })
-class SeparatorVariantsComponent {}
+class SeparatorVariantsComponent {
+  colors = COLORS;
+}
 
 // ── Meta ────────────────────────────────────────────────────────────────────
 
@@ -139,6 +155,10 @@ const meta: Meta<UiSeparatorComponent> = {
     orientation: {
       control: 'select',
       options: ['horizontal', 'vertical'],
+    },
+    color: {
+      control: 'select',
+      options: ['default', 'strong', 'primary', 'success', 'warning', 'error', 'info'],
     },
     label: { control: 'text' },
   },
@@ -159,12 +179,15 @@ export const Docs: Story = {
 export const Playground: Story = {
   args: {
     orientation: 'horizontal',
+    color: 'default',
     label: 'ou',
   },
   render: (args) => ({
     props: args,
-    template: `<div style="max-width: 400px;">
-      <ui-separator [orientation]="orientation" [label]="label" />
+    template: `<div style="max-width: 400px; display: flex; align-items: center; gap: 1rem; height: 48px;">
+      <span class="ui-body-sm">Avant</span>
+      <ui-separator [orientation]="orientation" [color]="color" [label]="label" />
+      <span class="ui-body-sm">Après</span>
     </div>`,
   }),
 };

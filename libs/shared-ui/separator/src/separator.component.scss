@@ -1,5 +1,15 @@
-ui-separator {
-  display: block;
+// ── Host ────────────────────────────────────────────────────────────────────
+
+:host {
+  display: flex;
+}
+
+:host(.orientation-vertical) {
+  align-self: stretch;
+  height: 100%;
+  width: 1px;
+  flex-shrink: 0;
+  background: var(--sep-line);
 }
 
 // ── Base ────────────────────────────────────────────────────────────────────
@@ -18,13 +28,13 @@ ui-separator {
 
 .separator--horizontal:not(.separator--labeled) {
   height: 1px;
-  background: var(--color-border-default);
+  background: var(--sep-line);
 }
 
 .separator--horizontal .separator-line {
   flex: 1;
   height: 1px;
-  background: var(--color-border-default);
+  background: var(--sep-line);
 }
 
 .separator--horizontal .separator-label {
@@ -35,18 +45,18 @@ ui-separator {
 
 .separator--vertical {
   flex-direction: column;
+  width: 1px;
   height: 100%;
 }
 
 .separator--vertical:not(.separator--labeled) {
-  width: 1px;
-  background: var(--color-border-default);
+  background: var(--sep-line);
 }
 
 .separator--vertical .separator-line {
   flex: 1;
   width: 1px;
-  background: var(--color-border-default);
+  background: var(--sep-line);
 }
 
 .separator--vertical .separator-label {
@@ -60,7 +70,7 @@ ui-separator {
   font-family: var(--font-sans);
   font-size: var(--text-xs);
   font-weight: var(--font-weight-medium);
-  color: var(--color-text-muted);
+  color: var(--sep-label);
   white-space: nowrap;
   line-height: var(--leading-tight);
 }
