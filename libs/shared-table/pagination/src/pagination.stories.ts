@@ -177,7 +177,7 @@ class PaginationVariantsComponent {
 // ── Meta ────────────────────────────────────────────────────────────────────
 
 const meta: Meta<UiPaginationComponent> = {
-  title: 'Shared Forms/Pagination',
+  title: 'Shared Table/Pagination',
   component: UiPaginationComponent,
   decorators: [
     applicationConfig({

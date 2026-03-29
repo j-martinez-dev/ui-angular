@@ -6,13 +6,14 @@ Technical overview of the design system's structure, build system, and key decis
 
 ## Monorepo layout
 
-The project is an Nx monorepo with two library projects and one Storybook application:
+The project is an Nx monorepo with three library projects and one Storybook application:
 
 ```
 /
 ├── libs/
-│   ├── shared-ui/          ← general UI components (26 components)
-│   └── shared-forms/       ← form controls (13 components)
+│   ├── shared-ui/          ← general UI components (24 components)
+│   ├── shared-forms/       ← form controls (12 components)
+│   └── shared-table/       ← table and pagination (2 components)
 ├── apps/
 │   └── storybook/          ← Storybook documentation app
 ├── styles/                 ← global design tokens and CSS
@@ -28,18 +29,24 @@ The project is an Nx monorepo with two library projects and one Storybook applic
 
 Presentational and layout components with no form state management:
 
-Accordion, Alert, Avatar, Badge, Breadcrumb, Button, Card, Dropdown Menu, Empty State, Icon, Icon Button, List Item, Modal, Navbar, Page Header, Progress Bar, Sidebar, Spinner, Stats Block, Table, Tabs, Tag, Toast, Tooltip, Wizard Bottom Bar
+Accordion, Alert, Avatar, Badge, Breadcrumb, Button, Card, Dropdown Menu, Empty State, Icon, Icon Button, List Item, Modal, Navbar, Page Header, Progress Bar, Sidebar, Spinner, Stats Block, Tabs, Tag, Toast, Tooltip, Wizard Bottom Bar
 
 ### `@ui/shared-forms`
 
 Form controls implementing Angular Signal Forms interfaces, plus form-adjacent components:
 
-Checkbox, Date Picker, File Upload, Form Field, Input, Multi Select, Pagination, Radio, Search Bar, Select, Slider, Textarea, Toggle
+Checkbox, Date Picker, File Upload, Form Field, Input, Multi Select, Radio, Search Bar, Select, Slider, Textarea, Toggle
 
-**Why separate?** Form components have a dependency on `@angular/forms/signals` and carry form state logic. Separating them:
-- Allows apps that don't use forms to import only `shared-ui`
-- Avoids circular dependencies (`shared-ui` components don't import form controls)
-- Makes the dependency graph clear: `shared-forms` → `shared-ui` (one-way)
+### `@ui/shared-table`
+
+Table and pagination components:
+
+Table, Pagination
+
+**Why separate?** Each library has a distinct responsibility:
+- **Form components** depend on `@angular/forms/signals` and carry form state logic. Separating them allows apps that don't use forms to import only `shared-ui`.
+- **Table components** have their own global CSS (BEM-scoped) and are often used independently of both general UI and forms. Isolating them avoids pulling in table-specific styles when not needed.
+- The dependency graph stays clear and one-way: `shared-table` → `shared-ui`, `shared-forms` → `shared-ui`.
 
 ---
 
@@ -71,14 +78,15 @@ import { UiButtonComponent } from '@ui/shared-ui/button';
 
 ### Library builds
 
-Both libraries use `@nx/angular:ng-packagr-lite`:
+All libraries use `@nx/angular:ng-packagr-lite`:
 
 ```bash
 npx nx build shared-ui        # → dist/libs/shared-ui/
 npx nx build shared-forms      # → dist/libs/shared-forms/
+npx nx build shared-table      # → dist/libs/shared-table/
 ```
 
-Nx automatically resolves build dependencies: `shared-forms` depends on `shared-ui`, so `shared-ui` builds first.
+Nx automatically resolves build dependencies: `shared-forms` and `shared-table` depend on `shared-ui`, so `shared-ui` builds first.
 
 ### Storybook
 
@@ -109,9 +117,11 @@ shared-forms ──→ shared-ui ──→ @angular/core
      │                └──→ @ng-icons/core
      │
      └──→ @angular/forms/signals
+
+shared-table ──→ shared-ui
 ```
 
-`shared-ui` has zero dependencies on `shared-forms`. This prevents circular dependencies.
+`shared-ui` has zero dependencies on `shared-forms` or `shared-table`. This prevents circular dependencies.
 
 ---
 
@@ -122,7 +132,7 @@ shared-forms ──→ shared-ui ──→ @angular/core
 `.github/workflows/deploy-storybook.yml` deploys Storybook to GitHub Pages on every push to `main`:
 
 1. `npm ci`
-2. `npx nx build shared-ui && npx nx build shared-forms`
+2. `npx nx build shared-ui && npx nx build shared-forms && npx nx build shared-table`
 3. `npx nx run storybook:build-storybook`
 4. Deploy to GitHub Pages
 

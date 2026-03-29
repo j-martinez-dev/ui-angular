@@ -6,12 +6,13 @@ How to install, configure, and use the design system in an Angular project.
 
 ## Installation
 
-The design system is organized as two Nx libraries:
+The design system is organized as three Nx libraries:
 
 - **`@ui/shared-ui`** — General UI components (buttons, cards, modals, navigation, etc.)
 - **`@ui/shared-forms`** — Form controls (inputs, selects, checkboxes, etc.)
+- **`@ui/shared-table`** — Table and pagination components
 
-Both are consumed as secondary entry points within the monorepo.
+All are consumed as secondary entry points within the monorepo.
 
 ---
 
@@ -58,10 +59,11 @@ Import components individually from their entry points:
 ```ts
 import { UiButtonComponent } from '@ui/shared-ui/button';
 import { UiInputComponent } from '@ui/shared-forms/input';
+import { UiTableComponent } from '@ui/shared-table/table';
 import { UiCardComponent } from '@ui/shared-ui/card';
 
 @Component({
-  imports: [UiButtonComponent, UiInputComponent, UiCardComponent],
+  imports: [UiButtonComponent, UiInputComponent, UiTableComponent, UiCardComponent],
   // ...
 })
 export class MyComponent {}
@@ -120,7 +122,6 @@ libs/
     modal/
     navbar/
     sidebar/
-    table/
     ...
   shared-forms/           ← form controls
     input/
@@ -129,6 +130,9 @@ libs/
     date-picker/
     form-field/
     ...
+  shared-table/           ← table and pagination
+    table/
+    pagination/
 styles/
   index.css               ← global entry point
   lib/

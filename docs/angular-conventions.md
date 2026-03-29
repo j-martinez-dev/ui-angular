@@ -19,7 +19,7 @@ libs/shared-ui/<component>/
     <component>.stories.ts
 ```
 
-Import path: `@ui/shared-ui/<component>` or `@ui/shared-forms/<component>`
+Import path: `@ui/shared-ui/<component>`, `@ui/shared-forms/<component>`, or `@ui/shared-table/<component>`
 
 ---
 
@@ -282,7 +282,7 @@ Every component must have a `.stories.ts` file with exactly **3 exported stories
 2. **Playground** — All inputs exposed as Storybook controls
 3. **Variants** — Visual catalog of all meaningful combinations side by side
 
-Story title convention: `'Shared UI/<Name>'` or `'Shared Forms/<Name>'`
+Story title convention: `'Shared UI/<Name>'`, `'Shared Forms/<Name>'`, or `'Shared Table/<Name>'`
 
 ---
 

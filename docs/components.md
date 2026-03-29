@@ -158,14 +158,6 @@ When to use each component — and when not to.
 
 ---
 
-### Table
-
-**Use when:** You need to display structured tabular data — data grids, reports, admin lists. Supports sorting, row selection, striped/bordered variants.
-
-**Don't use when:** Each item has complex visual content (images, multi-line descriptions). Use a list of **Cards** instead. Don't use for simple key-value pairs — use a description list.
-
----
-
 ### Tabs
 
 **Use when:** You have multiple views of the same content or related content sections that the user switches between — settings categories, data views, detail panels.
@@ -256,14 +248,6 @@ When to use each component — and when not to.
 
 ---
 
-### Pagination
-
-**Use when:** You have a large dataset split into pages — table data, search results, list views with many items.
-
-**Don't use when:** The dataset is small enough to show entirely. Don't use with infinite scroll — they serve the same purpose.
-
----
-
 ### Radio
 
 **Use when:** The user must choose exactly one option from a small set (2-5 options) — payment method, plan selection, shipping option.
@@ -309,3 +293,21 @@ When to use each component — and when not to.
 **Use when:** You need a visual on/off switch — enabling features, activating settings, switching modes. More visually prominent than a checkbox.
 
 **Don't use when:** You have multiple related boolean options. Use **Checkbox** group instead. Don't use for actions that have immediate irreversible effects without confirmation.
+
+---
+
+## Shared Table (`@ui/shared-table`)
+
+### Table
+
+**Use when:** You need to display structured tabular data — data grids, reports, admin lists. Supports sorting, row selection, striped/bordered variants.
+
+**Don't use when:** Each item has complex visual content (images, multi-line descriptions). Use a list of **Cards** instead. Don't use for simple key-value pairs — use a description list.
+
+---
+
+### Pagination
+
+**Use when:** You have a large dataset split into pages — table data, search results, list views with many items.
+
+**Don't use when:** The dataset is small enough to show entirely. Don't use with infinite scroll — they serve the same purpose.

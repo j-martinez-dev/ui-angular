@@ -12,6 +12,7 @@
     "../src/**/*.stories.mdx",
     "../../../libs/shared-ui/**/src/**/*.stories.ts",
     "../../../libs/shared-forms/**/src/**/*.stories.ts",
+    "../../../libs/shared-table/**/src/**/*.stories.ts",
     "*.js",
     "*.ts"
   ]

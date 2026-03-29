@@ -11,7 +11,9 @@ Tokens live in `styles/` and are structured as follows:
 - `lib/theme.css` — base tokens (light mode)
 - `lib/themes/dark.css` — overrides for dark mode (`.theme-dark`)
 - `lib/themes/pastel.css` — overrides for pastel theme (`.theme-pastel`)
+- `lib/themes/nautika.css` — overrides for nautika theme (`.theme-nautika`)
 - `lib/typography.css` — typography utility classes
+- `lib/table.css` — global table directive styles
 
 The entry point is `styles/index.css`, which imports all files in order.
 
@@ -369,13 +371,14 @@ var(--z-toast)     /* 500 — toasts, notifications (always on top) */
 
 ## Theming
 
-Three themes are available out of the box:
+Four themes are available out of the box:
 
 | Theme | CSS class | File | Description |
 |---|---|---|---|
 | Light | _(default)_ | `lib/theme.css` | Neutral light theme with blue primary |
 | Dark | `.theme-dark` | `lib/themes/dark.css` | Dark surfaces, lighter accent colors, stronger shadows |
 | Pastel | `.theme-pastel` | `lib/themes/pastel.css` | Warm cream surfaces, lavender primary, tinted shadows |
+| Nautika | `.theme-nautika` | `lib/themes/nautika.css` | Warm gold accent, soft beige sidebar, blue primary |
 
 Activate a theme by adding its class to a container element (typically `<html>` or a wrapper `<div>`). Themes can be nested — a `.theme-dark` section inside a `.theme-pastel` page works correctly.
 
@@ -469,7 +472,7 @@ These classes are available globally once `styles/index.css` is imported.
 
 ## Signal Forms integration
 
-Form control components (Checkbox, Radio, Toggle, Slider) implement Angular Signal Forms interfaces from `@angular/forms/signals`:
+Form control components in `@ui/shared-forms` implement Angular Signal Forms interfaces from `@angular/forms/signals`:
 
 | Component | Interface | Value type |
 |---|---|---|
@@ -602,17 +605,22 @@ libs/shared-ui/button/
   ├── index.ts                  ← public API
   └── src/
       ├── button.component.ts
+      ├── button.component.html
       ├── button.component.scss
       └── button.stories.ts    ← Docs + Playground + Variants
 ```
 
 ### Storybook title convention
 
-Use the pattern `Components/<ComponentName>`:
+Use the pattern `<Library>/<ComponentName>` based on which library the component belongs to:
+
+- `@ui/shared-ui` → `'Shared UI/<ComponentName>'`
+- `@ui/shared-forms` → `'Shared Forms/<ComponentName>'`
+- `@ui/shared-table` → `'Shared Table/<ComponentName>'`
 
 ```ts
 const meta: Meta<ButtonComponent> = {
-  title: 'Components/Button',
+  title: 'Shared UI/Button',
   component: ButtonComponent,
 };
 ```

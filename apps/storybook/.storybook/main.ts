@@ -5,6 +5,7 @@ const config: StorybookConfig = {
     '../src/**/*.stories.@(ts|js|mdx)',
     '../../../libs/shared-ui/**/src/**/*.stories.@(ts|js|mdx)',
     '../../../libs/shared-forms/**/src/**/*.stories.@(ts|js|mdx)',
+    '../../../libs/shared-table/**/src/**/*.stories.@(ts|js|mdx)',
   ],
   addons: ['@storybook/addon-themes'],
   framework: {
