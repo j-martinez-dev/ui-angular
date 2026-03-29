@@ -7,7 +7,7 @@ interface CardStyles {
   border: string;
   shadow: string;
   hoverShadow: string;
-  hoverBorder: string;
+  hoverBorderColor: string;
   hoverBg: string;
 }
 
@@ -17,7 +17,7 @@ const VARIANT_MAP: Record<CardVariant, CardStyles> = {
     border: 'none',
     shadow: 'var(--shadow-md)',
     hoverShadow: 'var(--shadow-lg)',
-    hoverBorder: 'none',
+    hoverBorderColor: 'transparent',
     hoverBg: 'var(--color-surface-raised)',
   },
   outlined: {
@@ -25,7 +25,7 @@ const VARIANT_MAP: Record<CardVariant, CardStyles> = {
     border: '1px solid var(--color-border-default)',
     shadow: 'none',
     hoverShadow: 'none',
-    hoverBorder: '1px solid var(--color-border-strong)',
+    hoverBorderColor: 'var(--color-border-strong)',
     hoverBg: 'var(--color-surface-raised)',
   },
   flat: {
@@ -33,7 +33,7 @@ const VARIANT_MAP: Record<CardVariant, CardStyles> = {
     border: 'none',
     shadow: 'none',
     hoverShadow: 'none',
-    hoverBorder: 'none',
+    hoverBorderColor: 'transparent',
     hoverBg: 'var(--color-surface-sunken)',
   },
 };
@@ -57,13 +57,17 @@ const VARIANT_MAP: Record<CardVariant, CardStyles> = {
         </div>
       }
 
-      <ng-content select="[slot=header]" />
+      <div class="card-header">
+        <ng-content select="[slot=header]" />
+      </div>
 
       <div class="card-body">
         <ng-content />
       </div>
 
-      <ng-content select="[slot=footer]" />
+      <div class="card-footer">
+        <ng-content select="[slot=footer]" />
+      </div>
     </div>
   `,
   styleUrl: './card.component.scss',
@@ -72,7 +76,7 @@ const VARIANT_MAP: Record<CardVariant, CardStyles> = {
     '[style.--card-border]': 'styles().border',
     '[style.--card-shadow]': 'styles().shadow',
     '[style.--card-hover-shadow]': 'styles().hoverShadow',
-    '[style.--card-hover-border]': 'styles().hoverBorder',
+    '[style.--card-hover-border-color]': 'styles().hoverBorderColor',
     '[style.--card-hover-bg]': 'styles().hoverBg',
   },
 })

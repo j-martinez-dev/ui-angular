@@ -21,7 +21,7 @@
 
   &:hover {
     box-shadow: var(--card-hover-shadow, none);
-    border: var(--card-hover-border, var(--card-border, none));
+    border-color: var(--card-hover-border-color, transparent);
     background: var(--card-hover-bg, var(--card-bg));
   }
 
@@ -50,10 +50,13 @@
   }
 }
 
-// Header slot
-::ng-deep [slot='header'] {
+.card-header {
   padding: calc(var(--spacing) * 5) calc(var(--spacing) * 6) 0;
   flex-shrink: 0;
+
+  &:empty {
+    display: none;
+  }
 }
 
 .card-body {
@@ -61,11 +64,14 @@
   flex: 1;
 }
 
-// Footer slot
-::ng-deep [slot='footer'] {
+.card-footer {
   padding: calc(var(--spacing) * 4) calc(var(--spacing) * 6);
   border-top: 1px solid var(--color-border-default);
   flex-shrink: 0;
+
+  &:empty {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
