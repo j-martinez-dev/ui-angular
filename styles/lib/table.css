@@ -5,8 +5,6 @@
   border-collapse: collapse;
   font-family: var(--font-sans);
   background: var(--color-surface-raised);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
 }
 
 /* ── Size variants ───────────────────────────────────────────────────────── */
@@ -99,6 +97,11 @@
   cursor: pointer;
 }
 
+.ui-table__row--clickable:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: -2px;
+}
+
 .ui-table__row--active {
   background: var(--color-primary-subtle);
 }
@@ -115,6 +118,10 @@
 }
 
 /* ── Bordered ────────────────────────────────────────────────────────────── */
+
+.ui-table--bordered {
+  border: 1px solid var(--color-border-default);
+}
 
 .ui-table--bordered .ui-table__head,
 .ui-table--bordered .ui-table__cell {

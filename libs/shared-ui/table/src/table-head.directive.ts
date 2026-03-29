@@ -1,4 +1,5 @@
 import {
+  DestroyRef,
   Directive,
   ElementRef,
   Renderer2,
@@ -32,6 +33,7 @@ export class UiTableHeadDirective {
 
   private el = inject(ElementRef);
   private renderer = inject(Renderer2);
+  private destroyRef = inject(DestroyRef);
   private sortIconEl: HTMLElement | null = null;
 
   ariaSortValue = computed(() => {
@@ -53,6 +55,8 @@ export class UiTableHeadDirective {
 
       this.renderSortIcon(direction);
     });
+
+    this.destroyRef.onDestroy(() => this.removeSortIcon());
   }
 
   onSort(): void {

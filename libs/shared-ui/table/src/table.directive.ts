@@ -1,4 +1,4 @@
-import { Directive, ViewEncapsulation, input } from '@angular/core';
+import { Directive, input } from '@angular/core';
 
 export type TableSize = 'sm' | 'md' | 'lg';
 
