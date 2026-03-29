@@ -1,0 +1,55 @@
+@if (clickable()) {
+  <button
+    type="button"
+    class="list-item list-item--clickable"
+    [class.list-item--disabled]="disabled()"
+    (click)="onClick()"
+  >
+    @if (icon()) {
+      <span class="list-item-left">
+        <ui-icon [name]="icon()!" [size]="iconSize()" color="muted" />
+      </span>
+    } @else if (avatar()) {
+      <span class="list-item-left">
+        <ui-avatar [initials]="avatar()!" [color]="avatarColor()" [size]="avatarSize()" />
+      </span>
+    }
+
+    <span class="list-item-content">
+      <span class="list-item-label">{{ label() }}</span>
+      @if (description()) {
+        <span class="list-item-description">{{ description() }}</span>
+      }
+    </span>
+
+    <span class="list-item-end">
+      <ng-content select="[slot=end]" />
+    </span>
+  </button>
+} @else {
+  <div
+    class="list-item"
+    [class.list-item--disabled]="disabled()"
+  >
+    @if (icon()) {
+      <span class="list-item-left">
+        <ui-icon [name]="icon()!" [size]="iconSize()" color="muted" />
+      </span>
+    } @else if (avatar()) {
+      <span class="list-item-left">
+        <ui-avatar [initials]="avatar()!" [color]="avatarColor()" [size]="avatarSize()" />
+      </span>
+    }
+
+    <span class="list-item-content">
+      <span class="list-item-label">{{ label() }}</span>
+      @if (description()) {
+        <span class="list-item-description">{{ description() }}</span>
+      }
+    </span>
+
+    <span class="list-item-end">
+      <ng-content select="[slot=end]" />
+    </span>
+  </div>
+}

@@ -143,31 +143,7 @@ const VARIANT_MAPS: Record<TagVariant, Record<TagColor, TagStyles>> = {
 @Component({
   selector: 'ui-tag',
   imports: [UiIconComponent],
-  template: `
-    <span
-      class="tag"
-      [class.tag--clickable]="clickable()"
-      [attr.role]="clickable() && !removable() ? 'button' : clickable() ? 'button' : null"
-      [attr.tabindex]="clickable() ? 0 : null"
-      (click)="onClick()"
-      (keydown)="onKeydown($event)"
-    >
-      <span class="tag-label">
-        <ng-content />
-      </span>
-
-      @if (removable()) {
-        <button
-          type="button"
-          class="tag-remove"
-          aria-label="Supprimer"
-          (click)="onRemove($event)"
-        >
-          <ui-icon name="heroXMark" size="xs" />
-        </button>
-      }
-    </span>
-  `,
+  templateUrl: './tag.component.html',
   styleUrl: './tag.component.scss',
   host: {
     '[style.--tag-bg]': 'styles().bg',

@@ -1,0 +1,63 @@
+<nav class="pagination" [attr.aria-label]="'Pagination'">
+
+  @if (showInfo()) {
+    <span class="pagination-info">
+      {{ rangeStart() }}&ndash;{{ rangeEnd() }} de {{ totalItems() }} résultats
+    </span>
+  }
+
+  <div class="pagination-controls">
+
+    @if (pageSizeOptions()) {
+      <div class="pagination-size-selector">
+        <span class="pagination-size-label">Lignes par page</span>
+        <ui-select
+          class="pagination-size-select"
+          [options]="selectOptions()"
+          [value]="pageSize()"
+          [size]="selectSize()"
+          variant="outlined"
+          placeholder=""
+          (valueChange)="onPageSizeChange($event)"
+        />
+      </div>
+    }
+
+    <div class="pagination-pages">
+      <ui-icon-button
+        icon="heroChevronLeft"
+        label="Page précédente"
+        variant="ghost"
+        [size]="buttonSize()"
+        [disabled]="currentPage() === 1"
+        (click)="goToPage(currentPage() - 1)"
+      />
+
+      @for (page of visiblePages(); track $index) {
+        @if (page === '...') {
+          <span class="pagination-ellipsis" aria-hidden="true">…</span>
+        } @else {
+          <button
+            class="pagination-page"
+            [class.pagination-page--active]="page === currentPage()"
+            [attr.aria-current]="page === currentPage() ? 'page' : null"
+            [attr.aria-label]="'Page ' + page"
+            (click)="goToPage(+page)"
+          >
+            {{ page }}
+          </button>
+        }
+      }
+
+      <ui-icon-button
+        icon="heroChevronRight"
+        label="Page suivante"
+        variant="ghost"
+        [size]="buttonSize()"
+        [disabled]="currentPage() === totalPages()"
+        (click)="goToPage(currentPage() + 1)"
+      />
+    </div>
+
+  </div>
+</nav>

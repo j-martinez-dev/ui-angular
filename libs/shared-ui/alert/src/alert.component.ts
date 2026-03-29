@@ -100,38 +100,7 @@ const VARIANT_MAPS: Record<AlertVariant, Record<AlertColor, AlertStyles>> = {
 @Component({
   selector: 'ui-alert',
   imports: [UiIconComponent],
-  template: `
-    <div class="alert" [attr.role]="live() === 'off' ? null : 'alert'" [attr.aria-live]="live()">
-      <ui-icon [name]="resolvedIcon()" size="md" />
-
-      <div class="alert-content">
-        @if (title()) {
-          <p class="alert-title">{{ title() }}</p>
-        }
-        <div class="alert-message">
-          <ng-content />
-        </div>
-        @if (actionLabel()) {
-          <button
-            type="button"
-            class="alert-action"
-            (click)="actionClick.emit()"
-          >{{ actionLabel() }}</button>
-        }
-      </div>
-
-      @if (removable()) {
-        <button
-          type="button"
-          class="alert-close"
-          aria-label="Fermer l'alerte"
-          (click)="removed.emit()"
-        >
-          <ui-icon name="heroXMark" size="sm" />
-        </button>
-      }
-    </div>
-  `,
+  templateUrl: './alert.component.html',
   styleUrl: './alert.component.scss',
   host: {
     '[style.--alert-bg]': 'styles().bg',

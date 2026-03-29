@@ -30,11 +30,7 @@ const COLOR_MAP: Record<ProgressBarColor, ProgressBarColorConfig> = {
 
 @Component({
   selector: 'ui-progress-bar',
-  template: `
-    <div class="progress-track">
-      <div class="progress-fill"></div>
-    </div>
-  `,
+  templateUrl: './progress-bar.component.html',
   styleUrl: './progress-bar.component.scss',
   host: {
     'role': 'progressbar',

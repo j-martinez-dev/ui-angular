@@ -11,18 +11,7 @@ import { type ToastItem, type ToastPosition } from './toast.types';
   selector: 'ui-toast-container',
   imports: [UiToastComponent],
   encapsulation: ViewEncapsulation.None,
-  template: `
-    <div
-      [class]="'ui-toast-container ui-toast-container--' + position()"
-    >
-      @for (toast of toasts(); track toast.id) {
-        <ui-toast
-          [toast]="toast"
-          (dismissed)="dismissed.emit(toast.id)"
-        />
-      }
-    </div>
-  `,
+  templateUrl: './toast-container.component.html',
   styleUrl: './toast-container.component.scss',
 })
 export class UiToastContainerComponent {

@@ -29,33 +29,7 @@ const ICON_COLOR_MAP: Record<ToastType, IconColor> = {
   selector: 'ui-toast',
   imports: [UiIconComponent, UiIconButtonComponent],
   encapsulation: ViewEncapsulation.None,
-  template: `
-    <div
-      [class]="'ui-toast ui-toast--' + toast().type"
-      [attr.role]="toast().type === 'error' ? 'alert' : 'status'"
-      [attr.aria-live]="toast().type === 'error' ? 'assertive' : 'polite'"
-    >
-      <ui-icon [name]="resolvedIcon()" size="sm" [color]="resolvedIconColor()" />
-
-      <div class="ui-toast-content">
-        <p class="ui-toast-message">{{ toast().message }}</p>
-        @if (toast().actionLabel) {
-          <button type="button" class="ui-toast-action" (click)="onAction()">
-            {{ toast().actionLabel }}
-          </button>
-        }
-      </div>
-
-      <ui-icon-button
-        icon="heroXMark"
-        label="Fermer"
-        variant="ghost"
-        size="sm"
-        class="ui-toast-dismiss"
-        (click)="dismissed.emit()"
-      />
-    </div>
-  `,
+  templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',
 })
 export class UiToastComponent {

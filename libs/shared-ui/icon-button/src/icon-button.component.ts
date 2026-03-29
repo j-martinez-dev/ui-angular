@@ -38,26 +38,7 @@ const DIMENSION_MAP: Record<IconButtonSize, string> = {
 @Component({
   selector: 'ui-icon-button',
   imports: [UiIconComponent, UiSpinnerComponent, UiTooltipDirective],
-  template: `
-    <button
-      [type]="type()"
-      [attr.aria-label]="label()"
-      [disabled]="disabled() || loading()"
-      [uiTooltip]="label()"
-      [uiTooltipPosition]="tooltipPosition()"
-      [uiTooltipDisabled]="disabled() || loading()"
-      [attr.aria-busy]="loading() || null"
-      class="icon-btn"
-      [class.icon-btn--loading]="loading()"
-      [class.icon-btn--disabled]="disabled()"
-    >
-      @if (loading()) {
-        <ui-spinner [size]="spinnerSize()" color="muted" />
-      } @else {
-        <ui-icon [name]="icon()" [size]="iconSize()" />
-      }
-    </button>
-  `,
+  templateUrl: './icon-button.component.html',
   styleUrl: './icon-button.component.scss',
   host: {
     '[style.--icon-btn-bg]': 'styles().bg',

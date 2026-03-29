@@ -27,34 +27,7 @@ const COLOR_MAP: Record<SpinnerColor, string> = {
 
 @Component({
   selector: 'ui-spinner',
-  template: `
-    @switch (variant()) {
-      @case ('circular') {
-        <svg
-          class="spinner-circular"
-          viewBox="0 0 40 40"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="20"
-            cy="20"
-            r="16"
-            stroke-width="4"
-            stroke-linecap="round"
-          />
-        </svg>
-      }
-      @case ('dots') {
-        <span class="spinner-dots">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </span>
-      }
-    }
-    <span class="sr-only">{{ label() }}</span>
-  `,
+  templateUrl: './spinner.component.html',
   styleUrl: './spinner.component.scss',
   host: {
     'role': 'status',

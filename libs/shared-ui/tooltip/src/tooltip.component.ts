@@ -9,15 +9,7 @@ import { NgTemplateOutlet } from '@angular/common';
 @Component({
   selector: 'ui-tooltip',
   imports: [NgTemplateOutlet],
-  template: `
-    <div class="tooltip-panel">
-      @if (isTemplate()) {
-        <ng-container [ngTemplateOutlet]="templateContent()" />
-      } @else {
-        <span>{{ content() }}</span>
-      }
-    </div>
-  `,
+  templateUrl: './tooltip.component.html',
   styleUrl: './tooltip.component.scss',
   host: {
     role: 'tooltip',

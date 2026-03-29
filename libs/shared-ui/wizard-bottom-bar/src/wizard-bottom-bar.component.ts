@@ -4,46 +4,7 @@ import { UiButtonComponent } from '@ui/shared-ui/button';
 @Component({
   selector: 'ui-wizard-bottom-bar',
   imports: [UiButtonComponent],
-  template: `
-    <div class="wizard-bottom-bar">
-
-      <div class="wizard-bottom-bar-inner">
-
-        <!-- Previous button — hidden on first step -->
-        @if (!isFirstStep()) {
-          <ui-button
-            variant="secondary"
-            size="md"
-            iconLeft="heroChevronLeft"
-            (click)="previous.emit()"
-          >
-            {{ previousLabel() }}
-          </ui-button>
-        } @else {
-          <div class="wizard-bottom-bar-spacer"></div>
-        }
-
-        <!-- Center info -->
-        <div class="wizard-bottom-bar-info">
-          <span class="wizard-step-label">{{ stepLabel() }}</span>
-        </div>
-
-        <!-- Next / Finish button -->
-        <ui-button
-          variant="primary"
-          size="md"
-          [iconRight]="isLastStep() ? 'heroCheck' : 'heroChevronRight'"
-          [loading]="loading()"
-          [disabled]="nextDisabled()"
-          (click)="onNext()"
-        >
-          {{ isLastStep() ? finishLabel() : nextLabel() }}
-        </ui-button>
-
-      </div>
-
-    </div>
-  `,
+  templateUrl: './wizard-bottom-bar.component.html',
   styleUrl: './wizard-bottom-bar.component.scss',
 })
 export class UiWizardBottomBarComponent {

@@ -44,13 +44,7 @@ const COLOR_MAP: Record<AvatarColor, AvatarColorConfig> = {
 @Component({
   selector: 'ui-avatar',
   imports: [UiIconComponent],
-  template: `
-    @if (initials()) {
-      <span class="avatar-initials">{{ initials() }}</span>
-    } @else {
-      <ui-icon name="heroUser" [size]="iconSize()" />
-    }
-  `,
+  templateUrl: './avatar.component.html',
   styleUrl: './avatar.component.scss',
   host: {
     'role': 'img',

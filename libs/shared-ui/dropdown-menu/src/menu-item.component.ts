@@ -12,24 +12,7 @@ import { DROPDOWN_MENU } from './dropdown-menu.token';
 @Component({
   selector: 'ui-menu-item',
   imports: [UiIconComponent],
-  template: `
-    <button
-      #btnRef
-      class="menu-item"
-      [class.menu-item--danger]="variant() === 'danger'"
-      [class.menu-item--disabled]="disabled()"
-      [disabled]="disabled()"
-      role="menuitem"
-      (click)="onItemClick()"
-    >
-      @if (icon()) {
-        <ui-icon [name]="icon()!" size="sm" />
-      }
-      <span class="menu-item-label">
-        <ng-content />
-      </span>
-    </button>
-  `,
+  templateUrl: './menu-item.component.html',
   styleUrl: './menu-item.component.scss',
 })
 export class UiMenuItemComponent {

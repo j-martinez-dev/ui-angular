@@ -1,0 +1,41 @@
+<div
+  class="stats-block"
+  role="list"
+  [style.--stats-columns]="columns()"
+>
+  @for (item of items(); track item.label) {
+    <div class="stats-card" role="listitem">
+
+      <div class="stats-card-header">
+        <span class="stats-label">{{ item.label }}</span>
+        @if (item.icon) {
+          <ui-icon
+            [name]="item.icon"
+            size="md"
+            color="muted"
+            class="stats-icon"
+          />
+        }
+      </div>
+
+      <span class="stats-value">{{ item.value }}</span>
+
+      @if (item.trend) {
+        <div class="stats-trend">
+          <ui-badge
+            [color]="trendColor(item.trend.direction)"
+            variant="subtle"
+            [icon]="trendIcon(item.trend.direction)"
+            size="sm"
+          >
+            {{ item.trend.value }}
+          </ui-badge>
+          @if (item.trend.label) {
+            <span class="stats-trend-label">{{ item.trend.label }}</span>
+          }
+        </div>
+      }
+
+    </div>
+  }
+</div>

@@ -1,0 +1,5 @@
+@if (initials()) {
+  <span class="avatar-initials">{{ initials() }}</span>
+} @else {
+  <ui-icon name="heroUser" [size]="iconSize()" />
+}

@@ -8,77 +8,7 @@ import { type SidebarItem, type SidebarGroup } from './sidebar.types';
 @Component({
   selector: 'ui-sidebar',
   imports: [UiIconComponent, UiIconButtonComponent, UiBadgeComponent, UiTooltipDirective],
-  template: `
-    <aside
-      class="sidebar"
-      [class.sidebar--collapsed]="isCollapsed()"
-    >
-      <!-- Header slot -->
-      <div class="sidebar-header">
-        <div class="sidebar-header-content">
-          <ng-content select="[slot=header]" />
-        </div>
-        <ui-icon-button
-          class="sidebar-toggle"
-          [icon]="isCollapsed() ? 'heroChevronRight' : 'heroChevronLeft'"
-          [label]="isCollapsed() ? 'Déplier la barre latérale' : 'Replier la barre latérale'"
-          variant="ghost"
-          size="sm"
-          (click)="toggleCollapsed()"
-        />
-      </div>
-
-      <!-- Navigation -->
-      <nav class="sidebar-nav">
-        @for (group of groups(); track $index) {
-          <div class="sidebar-group">
-            @if (group.label && !isCollapsed()) {
-              <span class="sidebar-group-label">{{ group.label }}</span>
-            }
-            @for (item of group.items; track item.value) {
-              <button
-                class="sidebar-item"
-                [class.sidebar-item--active]="activeValue() === item.value"
-                [class.sidebar-item--disabled]="item.disabled"
-                [disabled]="item.disabled"
-                [uiTooltip]="isCollapsed() ? item.label : ''"
-                uiTooltipPosition="right"
-                (click)="onItemClick(item)"
-              >
-                @if (item.icon) {
-                  <ui-icon
-                    [name]="item.icon"
-                    size="sm"
-                    [color]="activeValue() === item.value ? 'primary' : 'muted'"
-                  />
-                }
-                @if (!isCollapsed()) {
-                  <span class="sidebar-item-label">{{ item.label }}</span>
-                  @if (item.badge) {
-                    <ui-badge
-                      variant="subtle"
-                      color="primary"
-                      size="sm"
-                      class="sidebar-item-badge"
-                    >
-                      {{ item.badge }}
-                    </ui-badge>
-                  }
-                }
-              </button>
-            }
-          </div>
-        }
-      </nav>
-
-      <!-- Footer slot -->
-      <div class="sidebar-footer">
-        <div class="sidebar-footer-content">
-          <ng-content select="[slot=footer]" />
-        </div>
-      </div>
-    </aside>
-  `,
+  templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
 export class UiSidebarComponent<T = string> {

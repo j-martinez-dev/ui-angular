@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'ui-menu-separator',
-  template: `<hr class="menu-separator" />`,
+  templateUrl: './menu-separator.component.html',
   styles: [`
     .menu-separator {
       border: none;

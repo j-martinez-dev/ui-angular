@@ -1,0 +1,7 @@
+<div class="tooltip-panel">
+  @if (isTemplate()) {
+    <ng-container [ngTemplateOutlet]="templateContent()" />
+  } @else {
+    <span>{{ content() }}</span>
+  }
+</div>

@@ -1,0 +1,21 @@
+<search class="search-bar" [attr.aria-label]="ariaLabel()">
+  <ui-input
+    type="search"
+    [placeholder]="placeholder()"
+    [size]="size()"
+    [variant]="variant()"
+    [disabled]="disabled()"
+    [clearable]="true"
+    [(value)]="query"
+    (valueChange)="onValueChange($event)"
+    (keydown.enter)="onEnter()"
+  />
+  <ui-icon-button
+    icon="heroMagnifyingGlass"
+    label="Rechercher"
+    variant="primary"
+    [size]="size()"
+    [disabled]="disabled()"
+    (click)="onSearch()"
+  />
+</search>

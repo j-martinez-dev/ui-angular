@@ -27,7 +27,7 @@ jobs:
 
       - run: npm ci
 
-      - run: npx nx build shared-ui
+      - run: npx nx build shared-ui && npx nx build shared-forms
 
       - run: npx nx run storybook:build-storybook
 

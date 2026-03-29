@@ -23,45 +23,7 @@ let nextId = 0;
   selector: 'ui-modal',
   imports: [UiIconButtonComponent, A11yModule],
   encapsulation: ViewEncapsulation.None,
-  template: `
-    <div
-      #modalEl
-      [class]="'ui-modal ui-modal--' + size()"
-      role="dialog"
-      aria-modal="true"
-      [attr.aria-labelledby]="title() ? titleId : null"
-      cdkTrapFocus
-      [cdkTrapFocusAutoCapture]="true"
-    >
-      <!-- Header -->
-      <div class="ui-modal-header">
-        <ng-content select="[slot=header]">
-          @if (title()) {
-            <h2 [id]="titleId" class="ui-modal-title">{{ title() }}</h2>
-          }
-        </ng-content>
-        @if (showCloseButton()) {
-          <ui-icon-button
-            icon="heroXMark"
-            label="Fermer"
-            variant="ghost"
-            size="sm"
-            class="ui-modal-close"
-            (click)="close()"
-          />
-        }
-      </div>
-
-      <!-- Body -->
-      <div class="ui-modal-body">
-        <ng-content />
-        <ng-container #bodyContainer />
-      </div>
-
-      <!-- Footer -->
-      <ng-content select="[slot=footer]" />
-    </div>
-  `,
+  templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss',
 })
 export class UiModalComponent {

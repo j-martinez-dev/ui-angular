@@ -1,0 +1,30 @@
+@if (!hidden()) {
+  <label class="checkbox-wrapper" [class.checkbox--disabled]="disabled()">
+    <input
+      type="checkbox"
+      class="sr-only"
+      [checked]="checked()"
+      [disabled]="disabled()"
+      [indeterminate]="indeterminate()"
+      [attr.aria-invalid]="invalid() || null"
+      [attr.aria-required]="required() || null"
+      (change)="onCheckedChange($event)"
+      (blur)="touched.set(true)"
+    />
+    <span
+      class="checkbox-box"
+      [class.checkbox-box--checked]="checked()"
+      [class.checkbox-box--indeterminate]="indeterminate()"
+      [class.checkbox-box--invalid]="invalid()"
+    >
+      @if (indeterminate()) {
+        <ui-icon name="heroMinus" [size]="iconSize()" />
+      } @else if (checked()) {
+        <ui-icon name="heroCheck" [size]="iconSize()" />
+      }
+    </span>
+    @if (label()) {
+      <span class="checkbox-label">{{ label() }}</span>
+    }
+  </label>
+}

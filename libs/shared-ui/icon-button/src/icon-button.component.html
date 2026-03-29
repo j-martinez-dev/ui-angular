@@ -1,0 +1,18 @@
+<button
+  [type]="type()"
+  [attr.aria-label]="label()"
+  [disabled]="disabled() || loading()"
+  [uiTooltip]="label()"
+  [uiTooltipPosition]="tooltipPosition()"
+  [uiTooltipDisabled]="disabled() || loading()"
+  [attr.aria-busy]="loading() || null"
+  class="icon-btn"
+  [class.icon-btn--loading]="loading()"
+  [class.icon-btn--disabled]="disabled()"
+>
+  @if (loading()) {
+    <ui-spinner [size]="spinnerSize()" color="muted" />
+  } @else {
+    <ui-icon [name]="icon()" [size]="iconSize()" />
+  }
+</button>

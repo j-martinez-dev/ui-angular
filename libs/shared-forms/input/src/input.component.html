@@ -1,0 +1,59 @@
+@if (!hidden()) {
+  <div
+    class="input-wrapper"
+    [class.input-wrapper--focused]="isFocused()"
+    [class.input-wrapper--disabled]="disabled()"
+    [class.input-wrapper--readonly]="readonly()"
+    [class.input-wrapper--invalid]="invalid()"
+  >
+    @if (resolvedPrefix()) {
+      <span class="input-prefix">
+        @if (resolvedPrefixIsIcon()) {
+          <ui-icon [name]="resolvedPrefix()!" [size]="iconSize()" color="muted" />
+        } @else {
+          <span class="input-prefix-text">{{ resolvedPrefix() }}</span>
+        }
+      </span>
+    }
+
+    <input
+      #inputEl
+      class="input-field"
+      [type]="type()"
+      [value]="value()"
+      [placeholder]="placeholder() ?? ''"
+      [disabled]="disabled()"
+      [readonly]="readonly()"
+      [attr.id]="id() || null"
+      [attr.required]="required() || null"
+      [attr.minlength]="minLength() ?? null"
+      [attr.maxlength]="maxLength() ?? null"
+      [attr.aria-invalid]="invalid() || null"
+      [attr.aria-required]="required() || null"
+      [attr.aria-describedby]="ariaDescribedBy() || null"
+      (input)="onInput($event)"
+      (focus)="isFocused.set(true)"
+      (blur)="onBlur()"
+    />
+
+    @if (clearable() && value() && !disabled() && !readonly()) {
+      <ui-icon-button
+        icon="heroXMark"
+        variant="ghost"
+        size="sm"
+        label="Effacer"
+        (click)="clearValue()"
+      />
+    }
+
+    @if (suffix()) {
+      <span class="input-suffix">
+        @if (suffixIsIcon()) {
+          <ui-icon [name]="suffix()!" [size]="iconSize()" color="muted" />
+        } @else {
+          <span class="input-suffix-text">{{ suffix() }}</span>
+        }
+      </span>
+    }
+  </div>
+}

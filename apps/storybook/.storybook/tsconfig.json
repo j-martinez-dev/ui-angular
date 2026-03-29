@@ -11,6 +11,7 @@
     "../src/**/*.stories.tsx",
     "../src/**/*.stories.mdx",
     "../../../libs/shared-ui/**/src/**/*.stories.ts",
+    "../../../libs/shared-forms/**/src/**/*.stories.ts",
     "*.js",
     "*.ts"
   ]

@@ -18,56 +18,7 @@ const ICON_SIZE_MAP: Record<BreadcrumbSize, IconSize> = {
 @Component({
   selector: 'ui-breadcrumb',
   imports: [UiIconComponent],
-  template: `
-    <nav aria-label="Fil d'Ariane">
-      <ol class="breadcrumb">
-        @for (item of items(); track item.value; let last = $last) {
-          <li class="breadcrumb-item" [class.breadcrumb-item--active]="last">
-
-            @if (last) {
-              <span class="breadcrumb-label breadcrumb-label--active" aria-current="page">
-                @if (item.icon) {
-                  <ui-icon [name]="item.icon" [size]="iconSize()" />
-                }
-                {{ item.label }}
-              </span>
-            } @else if (item.href) {
-              <a
-                class="breadcrumb-label breadcrumb-label--link"
-                [href]="item.href"
-                (click)="onItemClick($event, item.value)"
-              >
-                @if (item.icon) {
-                  <ui-icon [name]="item.icon" [size]="iconSize()" />
-                }
-                {{ item.label }}
-              </a>
-            } @else {
-              <button
-                class="breadcrumb-label breadcrumb-label--link"
-                (click)="itemClick.emit(item.value)"
-              >
-                @if (item.icon) {
-                  <ui-icon [name]="item.icon" [size]="iconSize()" />
-                }
-                {{ item.label }}
-              </button>
-            }
-
-            @if (!last) {
-              <ui-icon
-                name="heroChevronRight"
-                [size]="iconSize()"
-                color="muted"
-                class="breadcrumb-separator"
-              />
-            }
-
-          </li>
-        }
-      </ol>
-    </nav>
-  `,
+  templateUrl: './breadcrumb.component.html',
   styleUrl: './breadcrumb.component.scss',
   host: {
     '[class.size-sm]': 'size() === "sm"',

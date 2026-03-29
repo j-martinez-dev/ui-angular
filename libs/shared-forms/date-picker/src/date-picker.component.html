@@ -1,0 +1,28 @@
+@if (!hidden()) {
+  <div #trigger class="datepicker" (click)="toggleCalendar()" (keydown.enter)="toggleCalendar()">
+    <ui-input
+      type="text"
+      [variant]="variant()"
+      [size]="size()"
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      [readonly]="true"
+      [invalid]="invalid()"
+      [value]="displayValue()"
+      suffix="heroCalendarDays"
+      [suffixIsIcon]="true"
+    />
+  </div>
+
+  <ng-template #calendarTpl>
+    <ui-date-picker-calendar
+      [value]="value()"
+      [minDate]="minDate()"
+      [maxDate]="maxDate()"
+      [firstDayOfWeek]="firstDayOfWeek()"
+      [locale]="locale()"
+      (dateSelected)="onDateSelected($event)"
+      (closeRequested)="close()"
+    />
+  </ng-template>
+}

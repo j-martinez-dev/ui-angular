@@ -1,0 +1,77 @@
+<div
+  class="calendar"
+  role="dialog"
+  aria-label="Sélecteur de date"
+  (keydown)="onKeydown($event)"
+>
+
+  <div class="calendar-header">
+    <ui-icon-button
+      icon="heroChevronLeft"
+      label="Précédent"
+      variant="ghost"
+      size="sm"
+      (click)="navigatePrev()"
+    />
+    <button class="calendar-title" (click)="cycleView()">
+      {{ headerLabel() }}
+    </button>
+    <ui-icon-button
+      icon="heroChevronRight"
+      label="Suivant"
+      variant="ghost"
+      size="sm"
+      (click)="navigateNext()"
+    />
+  </div>
+
+  @if (view() === 'days') {
+    <div class="calendar-grid" role="grid">
+      @for (day of weekDayNames(); track day) {
+        <span class="calendar-weekday">{{ day }}</span>
+      }
+      @for (cell of dayCells(); track cell.key) {
+        <button
+          class="calendar-day"
+          [class.calendar-day--selected]="selectedKey() === cell.key"
+          [class.calendar-day--today]="todayKey === cell.key"
+          [class.calendar-day--adjacent]="cell.isAdjacentMonth"
+          [class.calendar-day--disabled]="cell.isDisabled"
+          [disabled]="cell.isDisabled || cell.isAdjacentMonth"
+          (click)="selectDate(cell.date)"
+        >
+          {{ cell.day }}
+        </button>
+      }
+    </div>
+  }
+
+  @if (view() === 'months') {
+    <div class="calendar-months">
+      @for (month of monthNames(); track month.index) {
+        <button
+          class="calendar-month"
+          [class.calendar-month--selected]="isCurrentMonth(month.index)"
+          (click)="selectMonth(month.index)"
+        >
+          {{ month.label }}
+        </button>
+      }
+    </div>
+  }
+
+  @if (view() === 'years') {
+    <div class="calendar-years">
+      @for (year of yearRange(); track year) {
+        <button
+          class="calendar-year"
+          [class.calendar-year--selected]="isCurrentYear(year)"
+          (click)="selectYear(year)"
+        >
+          {{ year }}
+        </button>
+      }
+    </div>
+  }
+
+</div>

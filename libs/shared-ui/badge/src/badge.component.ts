@@ -63,14 +63,7 @@ const VARIANT_MAPS: Record<BadgeVariant, Record<BadgeColor, BadgeStyles>> = {
 @Component({
   selector: 'ui-badge',
   imports: [UiIconComponent],
-  template: `
-    @if (icon()) {
-      <ui-icon [name]="icon()!" [size]="iconSize()" />
-    }
-    <span>
-      <ng-content />
-    </span>
-  `,
+  templateUrl: './badge.component.html',
   styleUrl: './badge.component.scss',
   host: {
     '[style.--badge-bg]': 'styles().bg',

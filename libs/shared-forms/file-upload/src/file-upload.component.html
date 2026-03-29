@@ -1,0 +1,59 @@
+@if (!hidden()) {
+  <div
+    class="file-upload"
+    [class.file-upload--dragging]="isDragging()"
+    [class.file-upload--has-file]="!!value()"
+    [class.file-upload--disabled]="disabled()"
+    [class.file-upload--readonly]="readonly()"
+    [class.file-upload--invalid]="invalid()"
+    [attr.tabindex]="disabled() || readonly() ? -1 : 0"
+    role="button"
+    [attr.aria-label]="value() ? value()!.name : placeholder()"
+    [attr.aria-disabled]="disabled()"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)"
+    (click)="openFilePicker()"
+    (keydown.enter)="openFilePicker()"
+    (keydown.space)="onSpaceKey($event)"
+  >
+    <input
+      #fileInput
+      type="file"
+      class="sr-only"
+      [accept]="accept()"
+      [disabled]="disabled()"
+      (change)="onFileSelected($event)"
+    />
+
+    @if (!value()) {
+      <div class="file-upload-empty">
+        <ui-icon name="heroArrowUpTray" size="xl" color="muted" />
+        <p class="file-upload-placeholder">{{ placeholder() }}</p>
+        @if (accept()) {
+          <p class="file-upload-hint">{{ accept() }}</p>
+        }
+        @if (maxSize()) {
+          <p class="file-upload-hint">Max: {{ formatFileSize(maxSize()!) }}</p>
+        }
+      </div>
+    } @else {
+      <div class="file-upload-preview" (click)="$event.stopPropagation()">
+        <ui-icon name="heroDocument" size="lg" color="muted" />
+        <div class="file-upload-info">
+          <span class="file-upload-name">{{ value()!.name }}</span>
+          <span class="file-upload-size">{{ formatFileSize(value()!.size) }}</span>
+        </div>
+        @if (!readonly()) {
+          <ui-icon-button
+            icon="heroXMark"
+            label="Supprimer le fichier"
+            variant="ghost"
+            size="sm"
+            (click)="removeFile()"
+          />
+        }
+      </div>
+    }
+  </div>
+}

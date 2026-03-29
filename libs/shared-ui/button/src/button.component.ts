@@ -25,31 +25,7 @@ const SPINNER_SIZE_MAP: Record<ButtonSize, SpinnerSize> = {
 @Component({
   selector: 'ui-button',
   imports: [UiIconComponent, UiSpinnerComponent],
-  template: `
-    <button
-      [type]="type()"
-      class="btn"
-      [disabled]="disabled() || loading()"
-      [class.btn--full-width]="fullWidth()"
-      [class.btn--loading]="loading()"
-      [class.btn--disabled]="disabled()"
-      [attr.aria-busy]="loading() || null"
-    >
-      @if (loading()) {
-        <ui-spinner [size]="spinnerSize()" color="muted" />
-      } @else if (iconLeft()) {
-        <ui-icon [name]="iconLeft()!" [size]="iconSize()" />
-      }
-
-      <span class="btn-label">
-        <ng-content />
-      </span>
-
-      @if (!loading() && iconRight()) {
-        <ui-icon [name]="iconRight()!" [size]="iconSize()" />
-      }
-    </button>
-  `,
+  templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
   host: {
     '[style.--btn-bg]': 'styles().bg',

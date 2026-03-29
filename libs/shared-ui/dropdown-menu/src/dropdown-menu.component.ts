@@ -34,31 +34,7 @@ const POSITION_MAP: Record<
 @Component({
   selector: 'ui-dropdown-menu',
   imports: [UiIconButtonComponent],
-  template: `
-    <div class="dropdown-menu">
-      <ui-icon-button
-        #triggerRef
-        [icon]="icon()"
-        [label]="label()"
-        [variant]="triggerVariant()"
-        [size]="triggerSize()"
-        [disabled]="disabled()"
-        [attr.aria-haspopup]="'menu'"
-        [attr.aria-expanded]="isOpen()"
-        (click)="toggleMenu()"
-      />
-    </div>
-
-    <ng-template #panelTpl>
-      <div
-        class="menu-panel"
-        role="menu"
-        (keydown)="onPanelKeydown($event)"
-      >
-        <ng-content />
-      </div>
-    </ng-template>
-  `,
+  templateUrl: './dropdown-menu.component.html',
   styleUrl: './dropdown-menu.component.scss',
   encapsulation: ViewEncapsulation.None,
   providers: [{ provide: DROPDOWN_MENU, useExisting: UiDropdownMenuComponent }],

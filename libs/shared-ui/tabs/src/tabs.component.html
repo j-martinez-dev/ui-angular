@@ -1,0 +1,36 @@
+<div
+  class="tabs"
+  [class.tabs--vertical]="orientation() === 'vertical'"
+  [class.tabs--horizontal]="orientation() === 'horizontal'"
+>
+  <div
+    class="tabs-strip"
+    [class.tabs-strip--pill]="variant() === 'pill'"
+    role="tablist"
+    [attr.aria-orientation]="orientation()"
+  >
+    @for (tab of tabs(); track tab.value) {
+      <button
+        #tabBtn
+        class="tab"
+        [class.tab--active]="activeTabValue() === tab.value"
+        [class.tab--disabled]="tab.disabled"
+        [class.tab--line]="variant() === 'line'"
+        [class.tab--pill]="variant() === 'pill'"
+        role="tab"
+        [id]="'tab-' + tab.value"
+        [attr.aria-selected]="activeTabValue() === tab.value"
+        [attr.aria-controls]="'tabpanel-' + tab.value"
+        [attr.tabindex]="activeTabValue() === tab.value ? 0 : -1"
+        [disabled]="tab.disabled"
+        (click)="selectTab(tab.value)"
+        (keydown)="onKeydown($event)"
+      >
+        @if (tab.icon) {
+          <ui-icon [name]="tab.icon" [size]="iconSize()" />
+        }
+        <span>{{ tab.label }}</span>
+      </button>
+    }
+  </div>
+</div>

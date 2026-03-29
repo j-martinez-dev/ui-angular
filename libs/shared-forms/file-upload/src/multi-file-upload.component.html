@@ -1,0 +1,69 @@
+@if (!hidden()) {
+  <div
+    class="file-upload"
+    [class.file-upload--dragging]="isDragging()"
+    [class.file-upload--has-file]="value().length > 0"
+    [class.file-upload--disabled]="disabled()"
+    [class.file-upload--readonly]="readonly()"
+    [class.file-upload--invalid]="invalid()"
+    [attr.tabindex]="disabled() || readonly() ? -1 : 0"
+    role="button"
+    [attr.aria-label]="value().length > 0
+      ? value().length + ' file(s) selected'
+      : placeholder()"
+    [attr.aria-disabled]="disabled()"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)"
+    (click)="openFilePicker()"
+    (keydown.enter)="openFilePicker()"
+    (keydown.space)="onSpaceKey($event)"
+  >
+    <input
+      #fileInput
+      type="file"
+      class="sr-only"
+      multiple
+      [accept]="accept()"
+      [disabled]="disabled()"
+      (change)="onFileSelected($event)"
+    />
+
+    <div class="file-upload-empty">
+      <ui-icon name="heroArrowUpTray" size="xl" color="muted" />
+      <p class="file-upload-placeholder">{{ placeholder() }}</p>
+      @if (accept()) {
+        <p class="file-upload-hint">{{ accept() }}</p>
+      }
+      @if (maxSize()) {
+        <p class="file-upload-hint">Max: {{ formatFileSize(maxSize()!) }}</p>
+      }
+      @if (maxFiles()) {
+        <p class="file-upload-hint">Max files: {{ maxFiles() }}</p>
+      }
+    </div>
+
+    @if (value().length > 0) {
+      <ul class="file-list">
+        @for (file of value(); track $index) {
+          <li class="file-list-item" (click)="$event.stopPropagation()">
+            <ui-icon name="heroDocument" size="sm" color="muted" />
+            <div class="file-upload-info">
+              <span class="file-upload-name">{{ file.name }}</span>
+              <span class="file-upload-size">{{ formatFileSize(file.size) }}</span>
+            </div>
+            @if (!readonly()) {
+              <ui-icon-button
+                icon="heroXMark"
+                label="Supprimer le fichier"
+                variant="ghost"
+                size="sm"
+                (click)="removeFile(file)"
+              />
+            }
+          </li>
+        }
+      </ul>
+    }
+  </div>
+}

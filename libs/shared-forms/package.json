@@ -1,0 +1,10 @@
+{
+  "name": "@ui/shared-forms",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "^21.2.0",
+    "@angular/forms": "^21.2.0",
+    "@ng-icons/core": "^33.2.0"
+  },
+  "sideEffects": false
+}

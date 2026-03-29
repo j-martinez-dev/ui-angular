@@ -1,0 +1,29 @@
+<div class="form-field" [class.form-field--invalid]="invalid()">
+
+  @if (label()) {
+    <label class="form-field-label" [attr.for]="controlId()">
+      {{ label() }}
+      @if (required()) {
+        <span class="form-field-required" aria-hidden="true">*</span>
+      }
+    </label>
+  }
+
+  <div class="form-field-control">
+    <ng-content />
+  </div>
+
+  @if (invalid() && errors().length > 0) {
+    <div class="form-field-errors" [id]="errorsId()" role="alert">
+      @for (error of errors(); track error.message) {
+        <span class="form-field-error">
+          <ui-icon name="heroExclamationCircle" size="xs" color="error" />
+          {{ error.message }}
+        </span>
+      }
+    </div>
+  } @else if (hint()) {
+    <span class="form-field-hint" [id]="hintId()">{{ hint() }}</span>
+  }
+
+</div>
