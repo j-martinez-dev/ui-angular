@@ -55,7 +55,8 @@
       "@ui/shared-forms/select": ["libs/shared-forms/select/index.ts"],
       "@ui/shared-forms/slider": ["libs/shared-forms/slider/index.ts"],
       "@ui/shared-forms/textarea": ["libs/shared-forms/textarea/index.ts"],
-      "@ui/shared-forms/toggle": ["libs/shared-forms/toggle/index.ts"]
+      "@ui/shared-forms/toggle": ["libs/shared-forms/toggle/index.ts"],
+      "@ui/shared-forms/number": ["libs/shared-forms/number/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
