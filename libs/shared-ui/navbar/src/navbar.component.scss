@@ -1,0 +1,182 @@
+:host {
+  display: block;
+}
+
+// ── Base ──────────────────────────────────────────────────────────────────
+
+.navbar {
+  width: 100%;
+  background: var(--color-surface-raised);
+  border-bottom: 1px solid var(--color-border-default);
+  z-index: var(--z-dropdown);
+}
+
+.navbar--fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.navbar--transparent {
+  background: transparent;
+  border-bottom: none;
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 calc(var(--spacing) * 6);
+  height: calc(var(--spacing) * 16);
+  gap: calc(var(--spacing) * 6);
+}
+
+// ── Brand ─────────────────────────────────────────────────────────────────
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+// ── Desktop nav ───────────────────────────────────────────────────────────
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing);
+}
+
+.navbar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--spacing) * 1.5);
+  padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 3);
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    color var(--duration-fast) var(--easing-default),
+    background-color var(--duration-fast) var(--easing-default);
+
+  &:hover:not(.navbar-item--disabled) {
+    color: var(--color-text-default);
+    background: var(--color-surface-sunken);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+.navbar-item--active {
+  color: var(--color-primary-default);
+  background: var(--color-primary-subtle);
+}
+
+.navbar-item--disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+// ── Actions ───────────────────────────────────────────────────────────────
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing) * 2);
+  flex-shrink: 0;
+}
+
+.navbar-hamburger {
+  display: none;
+}
+
+// ── Mobile menu ───────────────────────────────────────────────────────────
+
+.navbar-mobile {
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4) calc(var(--spacing) * 4);
+  border-top: 1px solid var(--color-border-default);
+  background: var(--color-surface-raised);
+}
+
+.navbar-mobile-item {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing) * 1.5);
+  width: 100%;
+  text-align: left;
+  justify-content: flex-start;
+  padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 3);
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    color var(--duration-fast) var(--easing-default),
+    background-color var(--duration-fast) var(--easing-default);
+
+  &:hover:not(.navbar-mobile-item--disabled) {
+    color: var(--color-text-default);
+    background: var(--color-surface-sunken);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+.navbar-mobile-item--active {
+  color: var(--color-primary-default);
+  background: var(--color-primary-subtle);
+}
+
+.navbar-mobile-item--disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+// ── Responsive ────────────────────────────────────────────────────────────
+
+@media (max-width: 767px) {
+  .navbar-nav {
+    display: none;
+  }
+
+  .navbar-hamburger {
+    display: flex;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-mobile {
+    display: none;
+  }
+}
+
+// ── Reduced motion ────────────────────────────────────────────────────────
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar-item,
+  .navbar-mobile-item {
+    transition: none;
+  }
+}

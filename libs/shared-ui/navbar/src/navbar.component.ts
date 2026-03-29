@@ -1,0 +1,103 @@
+import { Component, input, output, signal } from '@angular/core';
+import { UiIconComponent } from '@ui/shared-ui/icon';
+import { UiIconButtonComponent } from '@ui/shared-ui/icon-button';
+import { type NavbarItem } from './navbar.types';
+
+@Component({
+  selector: 'ui-navbar',
+  imports: [UiIconComponent, UiIconButtonComponent],
+  template: `
+    <header
+      class="navbar"
+      [class.navbar--fixed]="position() === 'fixed'"
+      [class.navbar--transparent]="transparent()"
+    >
+      <div class="navbar-inner">
+
+        <!-- Brand -->
+        <div class="navbar-brand">
+          <ng-content select="[slot=brand]" />
+        </div>
+
+        <!-- Desktop navigation -->
+        <nav class="navbar-nav" aria-label="Navigation principale">
+          @for (item of items(); track item.value) {
+            <button
+              class="navbar-item"
+              [class.navbar-item--active]="activeValue() === item.value"
+              [class.navbar-item--disabled]="item.disabled"
+              [disabled]="item.disabled"
+              (click)="onItemClick(item)"
+            >
+              @if (item.icon) {
+                <ui-icon [name]="item.icon" size="sm" />
+              }
+              {{ item.label }}
+            </button>
+          }
+        </nav>
+
+        <!-- Right actions -->
+        <div class="navbar-actions">
+          <ng-content select="[slot=actions]" />
+
+          <!-- Mobile menu toggle -->
+          <ui-icon-button
+            class="navbar-hamburger"
+            [icon]="isMobileMenuOpen() ? 'heroXMark' : 'heroBars3'"
+            [label]="isMobileMenuOpen() ? 'Fermer le menu' : 'Ouvrir le menu'"
+            variant="ghost"
+            size="md"
+            (click)="toggleMobileMenu()"
+          />
+        </div>
+
+      </div>
+
+      <!-- Mobile menu -->
+      @if (isMobileMenuOpen()) {
+        <nav class="navbar-mobile" aria-label="Navigation mobile">
+          @for (item of items(); track item.value) {
+            <button
+              class="navbar-mobile-item"
+              [class.navbar-mobile-item--active]="activeValue() === item.value"
+              [class.navbar-mobile-item--disabled]="item.disabled"
+              [disabled]="item.disabled"
+              (click)="onItemClick(item); closeMobileMenu()"
+            >
+              @if (item.icon) {
+                <ui-icon [name]="item.icon" size="sm" />
+              }
+              {{ item.label }}
+            </button>
+          }
+        </nav>
+      }
+
+    </header>
+  `,
+  styleUrl: './navbar.component.scss',
+})
+export class UiNavbarComponent<T = string> {
+  items = input<NavbarItem<T>[]>([]);
+  activeValue = input<T>();
+  position = input<'static' | 'fixed'>('static');
+  transparent = input<boolean>(false);
+
+  activeValueChange = output<T>();
+
+  isMobileMenuOpen = signal<boolean>(false);
+
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen.update(v => !v);
+  }
+
+  closeMobileMenu(): void {
+    this.isMobileMenuOpen.set(false);
+  }
+
+  onItemClick(item: NavbarItem<T>): void {
+    if (item.disabled) return;
+    this.activeValueChange.emit(item.value);
+  }
+}
