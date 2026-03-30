@@ -7,7 +7,7 @@
 :host(.orientation-vertical) {
   align-self: stretch;
   height: 100%;
-  width: 1px;
+  width: calc(var(--spacing) * 0.25);
   flex-shrink: 0;
   background: var(--sep-line);
 }
@@ -27,13 +27,13 @@
 }
 
 .separator--horizontal:not(.separator--labeled) {
-  height: 1px;
+  height: calc(var(--spacing) * 0.25);
   background: var(--sep-line);
 }
 
 .separator--horizontal .separator-line {
   flex: 1;
-  height: 1px;
+  height: calc(var(--spacing) * 0.25);
   background: var(--sep-line);
 }
 
@@ -45,7 +45,7 @@
 
 .separator--vertical {
   flex-direction: column;
-  width: 1px;
+  width: calc(var(--spacing) * 0.25);
   height: 100%;
 }
 
@@ -55,7 +55,7 @@
 
 .separator--vertical .separator-line {
   flex: 1;
-  width: 1px;
+  width: calc(var(--spacing) * 0.25);
   background: var(--sep-line);
 }
 

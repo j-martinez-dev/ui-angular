@@ -3,12 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'ui-menu-separator',
   templateUrl: './menu-separator.component.html',
-  styles: [`
-    .menu-separator {
-      border: none;
-      border-top: 1px solid var(--color-border-default);
-      margin: var(--spacing) 0;
-    }
-  `],
+  styleUrl: './menu-separator.component.scss',
 })
 export class UiMenuSeparatorComponent {}

@@ -57,7 +57,7 @@ ui-toast {
 
 .ui-toast-dismiss {
   color: var(--toast-color);
-  opacity: 0.6;
+  opacity: var(--opacity-disabled);
   transition: opacity var(--duration-fast) var(--easing-default);
 
   &:hover {
@@ -92,7 +92,7 @@ ui-toast {
   transition: opacity var(--duration-fast) var(--easing-default);
 
   &:hover {
-    opacity: 0.8;
+    opacity: 1;
   }
 
   &:focus-visible {

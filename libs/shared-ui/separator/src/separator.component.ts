@@ -47,22 +47,7 @@ const COLOR_MAP: Record<SeparatorColor, { line: string; label: string }> = {
     '[style.--sep-line]': 'colorStyles().line',
     '[style.--sep-label]': 'colorStyles().label',
   },
-  template: `
-    <div
-      class="separator"
-      [class.separator--horizontal]="orientation() === 'horizontal'"
-      [class.separator--vertical]="orientation() === 'vertical'"
-      [class.separator--labeled]="!!label()"
-      role="separator"
-      [attr.aria-orientation]="orientation()"
-    >
-      @if (label()) {
-        <span class="separator-line"></span>
-        <span class="separator-label">{{ label() }}</span>
-        <span class="separator-line"></span>
-      }
-    </div>
-  `,
+  templateUrl: './separator.component.html',
 })
 export class UiSeparatorComponent {
   orientation = input<SeparatorOrientation>('horizontal');

@@ -44,37 +44,7 @@ const HEIGHT_MAP: Record<NumberSize, string> = {
     '[class.variant-filled]': 'variant() === "filled"',
     '[class.variant-ghost]': 'variant() === "ghost"',
   },
-  template: `
-    @if (!hidden()) {
-      <div
-        class="number-wrapper"
-        [class.number-wrapper--focused]="isFocused()"
-        [class.number-wrapper--disabled]="disabled()"
-        [class.number-wrapper--readonly]="readonly()"
-        [class.number-wrapper--invalid]="invalid()"
-      >
-        <input
-          class="number-field"
-          type="text"
-          inputmode="decimal"
-          role="spinbutton"
-          [value]="displayValue()"
-          [placeholder]="placeholder()"
-          [disabled]="disabled()"
-          [readonly]="readonly()"
-          [attr.aria-label]="label()"
-          [attr.required]="required() || null"
-          [attr.aria-invalid]="invalid() || null"
-          [attr.aria-valuemin]="min()"
-          [attr.aria-valuemax]="max()"
-          [attr.aria-valuenow]="value()"
-          (focus)="onFocus()"
-          (blur)="onBlur($event)"
-          (input)="onInput($event)"
-        />
-      </div>
-    }
-  `,
+  templateUrl: './number.component.html',
 })
 export class UiNumberComponent implements FormValueControl<number | null> {
   private decimalPipe = inject(DecimalPipe);

@@ -1,0 +1,36 @@
+@if (!hidden()) {
+  <ol
+    class="stepper"
+    [class.stepper--horizontal]="orientation() === 'horizontal'"
+    [class.stepper--vertical]="orientation() === 'vertical'"
+  >
+    @for (step of steps(); track $index; let last = $last) {
+      <li
+        class="stepper-step"
+        [class.stepper-step--completed]="isCompleted($index)"
+        [class.stepper-step--active]="isActive($index)"
+        [class.stepper-step--pending]="isPending($index)"
+        [attr.aria-current]="isActive($index) ? 'step' : null"
+      >
+        <div class="stepper-indicator">
+          @if (isCompleted($index)) {
+            <ui-icon name="heroCheck" size="sm" />
+          } @else {
+            <span class="stepper-number">{{ $index + 1 }}</span>
+          }
+        </div>
+
+        <div class="stepper-content">
+          <span class="stepper-label">{{ step.label }}</span>
+          @if (step.description) {
+            <span class="stepper-description">{{ step.description }}</span>
+          }
+        </div>
+
+        @if (!last) {
+          <div class="stepper-connector" aria-hidden="true"></div>
+        }
+      </li>
+    }
+  </ol>
+}

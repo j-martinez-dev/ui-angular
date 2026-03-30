@@ -1,0 +1,29 @@
+<div
+  class="segmented-control"
+  [class.segmented-control--full-width]="fullWidth()"
+  [class.segmented-control--disabled]="disabled()"
+  [class.size-sm]="size() === 'sm'"
+  [class.size-md]="size() === 'md'"
+  [class.size-lg]="size() === 'lg'"
+  [class.variant-default]="variant() === 'default'"
+  [class.variant-pill]="variant() === 'pill'"
+  [class.variant-bordered]="variant() === 'bordered'"
+  role="group"
+  [attr.aria-label]="label()"
+>
+  @for (option of options(); track option.value) {
+    <button
+      class="segmented-option"
+      [class.segmented-option--active]="value() === option.value"
+      [disabled]="option.disabled || disabled()"
+      [attr.aria-pressed]="value() === option.value"
+      type="button"
+      (click)="selectOption(option)"
+    >
+      @if (option.icon) {
+        <ui-icon [name]="option.icon" [size]="iconSize()" />
+      }
+      <span>{{ option.label }}</span>
+    </button>
+  }
+</div>

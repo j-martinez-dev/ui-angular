@@ -563,7 +563,8 @@ When implementing any component in the library, follow these rules without excep
 24. **Avoid multiple `<ng-content>` in `@if`/`@else` branches** — Angular only projects content into ONE `<ng-content>` slot. If a component conditionally wraps content in different elements (e.g., `<button>` vs `<span>`), use a single template with the `<ng-content>` and conditionally apply classes/attributes, or use `ngTemplateOutlet` to share inner content.
 25. **Stories must provide all required inputs** — when an input is `input.required()`, every `<ui-component>` usage in Docs, Playground, and Variants stories must provide that input. Failing to do so causes `NG0950` runtime errors that break the entire story.
 26. **Stories must register all icons used by child components** — when a component uses `UiSelectComponent`, `UiIconButtonComponent`, or other icon-dependent components internally, the story's `provideIcons()` must include icons used by those children (e.g., `heroChevronDown` for select's dropdown chevron).
-27. **Always generate Storybook stories** — every component must have a `.stories.ts` file colocated next to it with exactly **3 exported stories**:
+27. **Always use external template and style files** — every component must use `templateUrl` (not inline `template`) and `styleUrl` (not inline `styles`). Templates go in `.component.html` files and styles in `.component.scss` files, colocated next to the `.component.ts`.
+28. **Always generate Storybook stories** — every component must have a `.stories.ts` file colocated next to it with exactly **3 exported stories**:
 
 ### Story structure
 
