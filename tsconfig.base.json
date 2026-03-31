@@ -27,6 +27,7 @@
       "@ui/shared-ui/empty-state": ["libs/shared-ui/empty-state/index.ts"],
       "@ui/shared-ui/icon": ["libs/shared-ui/icon/index.ts"],
       "@ui/shared-ui/icon-button": ["libs/shared-ui/icon-button/index.ts"],
+      "@ui/shared-ui/link": ["libs/shared-ui/link/index.ts"],
       "@ui/shared-ui/list-item": ["libs/shared-ui/list-item/index.ts"],
       "@ui/shared-ui/modal": ["libs/shared-ui/modal/index.ts"],
       "@ui/shared-ui/navbar": ["libs/shared-ui/navbar/index.ts"],

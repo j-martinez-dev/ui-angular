@@ -1,0 +1,32 @@
+:host {
+  color: var(--link-color);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: color var(--duration-fast) var(--easing-default);
+}
+
+:host:hover {
+  color: var(--link-hover-color);
+}
+
+:host(.ui-link--underline-always) {
+  text-decoration: underline;
+}
+
+:host(.ui-link--underline-hover) {
+  text-decoration: none;
+}
+
+:host(.ui-link--underline-hover):hover {
+  text-decoration: underline;
+}
+
+:host(.ui-link--underline-never) {
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host {
+    transition: none;
+  }
+}
