@@ -4,7 +4,7 @@
     [class.number-wrapper--focused]="isFocused()"
     [class.number-wrapper--disabled]="disabled()"
     [class.number-wrapper--readonly]="readonly()"
-    [class.number-wrapper--invalid]="invalid()"
+    [class.number-wrapper--invalid]="invalid() && touched()"
   >
     <input
       class="number-field"
@@ -17,7 +17,7 @@
       [readonly]="readonly()"
       [attr.aria-label]="label()"
       [attr.required]="required() || null"
-      [attr.aria-invalid]="invalid() || null"
+      [attr.aria-invalid]="(invalid() && touched()) || null"
       [attr.aria-valuemin]="min()"
       [attr.aria-valuemax]="max()"
       [attr.aria-valuenow]="value()"

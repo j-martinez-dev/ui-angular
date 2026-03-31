@@ -4,7 +4,7 @@
     [class.textarea-wrapper--focused]="isFocused()"
     [class.textarea-wrapper--disabled]="disabled()"
     [class.textarea-wrapper--readonly]="readonly()"
-    [class.textarea-wrapper--invalid]="invalid()"
+    [class.textarea-wrapper--invalid]="invalid() && touched()"
   >
     <textarea
       class="textarea-field"
@@ -17,7 +17,7 @@
       [attr.required]="required() || null"
       [attr.minlength]="minLength() ?? null"
       [attr.maxlength]="maxLength() ?? null"
-      [attr.aria-invalid]="invalid() || null"
+      [attr.aria-invalid]="(invalid() && touched()) || null"
       [attr.aria-required]="required() || null"
       [attr.aria-describedby]="effectiveDescribedBy()"
       [class.textarea-field--auto-resize]="autoResize()"

@@ -4,7 +4,7 @@
     [class.input-wrapper--focused]="isFocused()"
     [class.input-wrapper--disabled]="disabled()"
     [class.input-wrapper--readonly]="readonly()"
-    [class.input-wrapper--invalid]="invalid()"
+    [class.input-wrapper--invalid]="invalid() && touched()"
   >
     @if (resolvedPrefix()) {
       <span class="input-prefix">
@@ -28,7 +28,7 @@
       [attr.required]="required() || null"
       [attr.minlength]="minLength() ?? null"
       [attr.maxlength]="maxLength() ?? null"
-      [attr.aria-invalid]="invalid() || null"
+      [attr.aria-invalid]="(invalid() && touched()) || null"
       [attr.aria-required]="required() || null"
       [attr.aria-describedby]="ariaDescribedBy() || null"
       (input)="onInput($event)"

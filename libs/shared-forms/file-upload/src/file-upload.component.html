@@ -5,7 +5,7 @@
     [class.file-upload--has-file]="!!value()"
     [class.file-upload--disabled]="disabled()"
     [class.file-upload--readonly]="readonly()"
-    [class.file-upload--invalid]="invalid()"
+    [class.file-upload--invalid]="invalid() && touched()"
     [attr.tabindex]="disabled() || readonly() ? -1 : 0"
     role="button"
     [attr.aria-label]="value() ? value()!.name : placeholder()"

@@ -5,7 +5,7 @@
     [class.autocomplete-wrapper--focused]="isOpen()"
     [class.autocomplete-wrapper--disabled]="disabled()"
     [class.autocomplete-wrapper--readonly]="readonly()"
-    [class.autocomplete-wrapper--invalid]="invalid()"
+    [class.autocomplete-wrapper--invalid]="invalid() && touched()"
   >
     <input
       class="autocomplete-input"
@@ -15,7 +15,7 @@
       [disabled]="disabled()"
       [readonly]="readonly()"
       [attr.required]="required() || null"
-      [attr.aria-invalid]="invalid() || null"
+      [attr.aria-invalid]="(invalid() && touched()) || null"
       [attr.aria-expanded]="isOpen()"
       [attr.aria-autocomplete]="'list'"
       [attr.aria-activedescendant]="focusedOptionId()"

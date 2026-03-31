@@ -5,7 +5,7 @@
       class="sr-only"
       [checked]="checked()"
       [disabled]="disabled()"
-      [attr.aria-invalid]="invalid() || null"
+      [attr.aria-invalid]="(invalid() && touched()) || null"
       [attr.aria-required]="required() || null"
       (change)="onCheckedChange($event)"
       (blur)="touched.set(true)"
@@ -13,7 +13,7 @@
     <span
       class="toggle-track"
       [class.toggle-track--checked]="checked()"
-      [class.toggle-track--invalid]="invalid()"
+      [class.toggle-track--invalid]="invalid() && touched()"
     >
       <span class="toggle-thumb"></span>
     </span>

@@ -5,7 +5,7 @@
     [class.select-trigger--open]="isOpen()"
     [class.select-trigger--disabled]="disabled()"
     [class.select-trigger--readonly]="readonly()"
-    [class.select-trigger--invalid]="invalid()"
+    [class.select-trigger--invalid]="invalid() && touched()"
     [attr.aria-expanded]="isOpen()"
     [attr.aria-haspopup]="'listbox'"
     [attr.id]="id() || null"

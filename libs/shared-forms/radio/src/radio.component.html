@@ -6,7 +6,7 @@
       [attr.name]="name() || null"
       [checked]="checked()"
       [disabled]="disabled()"
-      [attr.aria-invalid]="invalid() || null"
+      [attr.aria-invalid]="(invalid() && touched()) || null"
       [attr.aria-required]="required() || null"
       (change)="onCheckedChange($event)"
       (blur)="touched.set(true)"
@@ -14,7 +14,7 @@
     <span
       class="radio-circle"
       [class.radio-circle--checked]="checked()"
-      [class.radio-circle--invalid]="invalid()"
+      [class.radio-circle--invalid]="invalid() && touched()"
     >
       @if (checked()) {
         <span class="radio-dot"></span>

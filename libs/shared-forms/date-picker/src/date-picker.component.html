@@ -7,7 +7,7 @@
       [placeholder]="placeholder()"
       [disabled]="disabled()"
       [readonly]="true"
-      [invalid]="invalid()"
+      [invalid]="invalid() && touched()"
       [value]="displayValue()"
       suffix="heroCalendarDays"
       [suffixIsIcon]="true"

@@ -6,7 +6,7 @@
       [checked]="checked()"
       [disabled]="disabled()"
       [indeterminate]="indeterminate()"
-      [attr.aria-invalid]="invalid() || null"
+      [attr.aria-invalid]="(invalid() && touched()) || null"
       [attr.aria-required]="required() || null"
       (change)="onCheckedChange($event)"
       (blur)="touched.set(true)"
@@ -15,7 +15,7 @@
       class="checkbox-box"
       [class.checkbox-box--checked]="checked()"
       [class.checkbox-box--indeterminate]="indeterminate()"
-      [class.checkbox-box--invalid]="invalid()"
+      [class.checkbox-box--invalid]="invalid() && touched()"
     >
       @if (indeterminate()) {
         <ui-icon name="heroMinus" [size]="iconSize()" />
