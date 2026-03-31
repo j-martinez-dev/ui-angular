@@ -57,7 +57,7 @@ const icons = { heroUser };
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <td class="ui-code p-2">color</td>
-              <td class="ui-code p-2">primary | success | warning | error | info | muted</td>
+              <td class="ui-code p-2">primary | success | warning | error | info | muted | accent-1 | accent-2 | accent-3</td>
               <td class="ui-code p-2">primary</td>
               <td class="ui-body-sm p-2">Semantic color token</td>
             </tr>
@@ -83,7 +83,7 @@ class AvatarDocsComponent {}
 
 // ── Variants ────────────────────────────────────────────────────────────────
 
-const COLORS: AvatarColor[] = ['primary', 'success', 'warning', 'error', 'info', 'muted'];
+const COLORS: AvatarColor[] = ['primary', 'success', 'warning', 'error', 'info', 'muted', 'accent-1', 'accent-2', 'accent-3'];
 const SIZES: AvatarSize[] = ['sm', 'md', 'lg', 'xl'];
 const SHAPES: AvatarShape[] = ['circle', 'square'];
 
@@ -169,6 +169,9 @@ class AvatarVariantsComponent {
       error: 'ER',
       info: 'IN',
       muted: 'MU',
+      'accent-1': 'A1',
+      'accent-2': 'A2',
+      'accent-3': 'A3',
     };
     return map[color];
   }
@@ -190,7 +193,7 @@ const meta: Meta<UiAvatarComponent> = {
     },
     color: {
       control: 'select',
-      options: ['primary', 'success', 'warning', 'error', 'info', 'muted'],
+      options: ['primary', 'success', 'warning', 'error', 'info', 'muted', 'accent-1', 'accent-2', 'accent-3'],
     },
     size: {
       control: 'select',

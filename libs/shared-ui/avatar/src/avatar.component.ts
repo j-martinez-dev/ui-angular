@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { UiIconComponent, IconSize } from '@ui/shared-ui/icon';
 
-export type AvatarColor = 'primary' | 'success' | 'warning' | 'error' | 'info' | 'muted';
+export type AvatarColor = 'primary' | 'success' | 'warning' | 'error' | 'info' | 'muted' | 'accent-1' | 'accent-2' | 'accent-3';
 export type AvatarSize = 'sm' | 'md' | 'lg' | 'xl';
 export type AvatarShape = 'circle' | 'square';
 
@@ -39,6 +39,9 @@ const COLOR_MAP: Record<AvatarColor, AvatarColorConfig> = {
   error: { bg: 'var(--color-error-subtle)', color: 'var(--color-error-emphasis)' },
   info: { bg: 'var(--color-info-subtle)', color: 'var(--color-info-emphasis)' },
   muted: { bg: 'var(--color-surface-sunken)', color: 'var(--color-text-default)' },
+  'accent-1': { bg: 'var(--color-accent-1-subtle)', color: 'var(--color-accent-1-emphasis)' },
+  'accent-2': { bg: 'var(--color-accent-2-subtle)', color: 'var(--color-accent-2-emphasis)' },
+  'accent-3': { bg: 'var(--color-accent-3-subtle)', color: 'var(--color-accent-3-emphasis)' },
 };
 
 @Component({
