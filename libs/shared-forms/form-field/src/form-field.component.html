@@ -1,4 +1,4 @@
-<div class="form-field" [class.form-field--invalid]="invalid()">
+<div class="form-field" [class.form-field--invalid]="invalid() && touched()">
 
   @if (label()) {
     <label class="form-field-label" [attr.for]="controlId()">
@@ -13,7 +13,7 @@
     <ng-content />
   </div>
 
-  @if (invalid() && errors().length > 0) {
+  @if (invalid() && touched() && errors().length > 0) {
     <div class="form-field-errors" [id]="errorsId()" role="alert">
       @for (error of errors(); track error.message) {
         <span class="form-field-error">
