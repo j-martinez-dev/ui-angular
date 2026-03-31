@@ -35,6 +35,13 @@
   width: 100%;
 }
 
+.form-field-footer {
+  min-height: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 0.5);
+}
+
 .form-field-errors {
   display: flex;
   flex-direction: column;
