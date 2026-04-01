@@ -72,6 +72,12 @@
   }
 }
 
+.sidebar-group-avatar {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing) 0;
+}
+
 .sidebar-group-label {
   font-family: var(--font-sans);
   font-size: var(--text-xs);

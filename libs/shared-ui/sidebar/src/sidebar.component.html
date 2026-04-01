@@ -21,8 +21,14 @@
   <nav class="sidebar-nav">
     @for (group of groups(); track $index) {
       <div class="sidebar-group">
-        @if (group.label && !isCollapsed()) {
-          <span class="sidebar-group-label">{{ group.label }}</span>
+        @if (group.label) {
+          @if (!isCollapsed()) {
+            <span class="sidebar-group-label">{{ group.label }}</span>
+          } @else {
+            <div class="sidebar-group-avatar" [uiTooltip]="group.label" uiTooltipPosition="right">
+              <ui-avatar [initials]="group.label[0]" size="sm" [color]="groupAvatarColor()" variant="inverted" />
+            </div>
+          }
         }
         @for (item of group.items; track item.value) {
           <button
