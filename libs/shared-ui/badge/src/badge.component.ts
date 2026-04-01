@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { UiIconComponent, IconSize } from '@ui/shared-ui/icon';
 
-export type BadgeVariant = 'filled' | 'subtle' | 'outline';
+export type BadgeVariant = 'filled' | 'subtle' | 'outline' | 'inverted';
 export type BadgeColor = 'primary' | 'success' | 'warning' | 'error' | 'info' | 'muted';
 export type BadgeSize = 'sm' | 'md' | 'lg';
 export type BadgeShape = 'rounded' | 'pill';
@@ -54,10 +54,20 @@ const OUTLINE_MAP: Record<BadgeColor, BadgeStyles> = {
   muted: { bg: 'transparent', color: 'var(--color-text-muted)', border: '1px solid var(--color-text-muted)' },
 };
 
+const INVERTED_MAP: Record<BadgeColor, BadgeStyles> = {
+  primary: { bg: 'var(--color-primary-emphasis)', color: 'var(--color-on-primary)', border: 'none' },
+  success: { bg: 'var(--color-success-emphasis)', color: 'var(--color-on-success)', border: 'none' },
+  warning: { bg: 'var(--color-warning-emphasis)', color: 'var(--color-on-warning)', border: 'none' },
+  error: { bg: 'var(--color-error-emphasis)', color: 'var(--color-on-error)', border: 'none' },
+  info: { bg: 'var(--color-info-emphasis)', color: 'var(--color-on-info)', border: 'none' },
+  muted: { bg: 'var(--color-text-default)', color: 'var(--color-surface-base)', border: 'none' },
+};
+
 const VARIANT_MAPS: Record<BadgeVariant, Record<BadgeColor, BadgeStyles>> = {
   filled: FILLED_MAP,
   subtle: SUBTLE_MAP,
   outline: OUTLINE_MAP,
+  inverted: INVERTED_MAP,
 };
 
 @Component({

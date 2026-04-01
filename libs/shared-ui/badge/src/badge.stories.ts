@@ -36,7 +36,7 @@ const icons = {
         <h2 class="ui-h2">Badge</h2>
         <p class="ui-body-md ui-text-muted">
           A small label used for status indicators, counts, or categories.
-          Available in filled, subtle, and outline variants with semantic colors.
+          Available in filled, subtle, outline, and inverted variants with semantic colors.
         </p>
       </section>
 
@@ -64,7 +64,7 @@ const icons = {
           <tbody>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <td class="ui-code p-2">variant</td>
-              <td class="ui-code p-2">filled | subtle | outline</td>
+              <td class="ui-code p-2">filled | subtle | outline | inverted</td>
               <td class="ui-code p-2">filled</td>
               <td class="ui-body-sm p-2">Visual style of the badge</td>
             </tr>
@@ -102,7 +102,7 @@ class BadgeDocsComponent {}
 
 // ── Variants ────────────────────────────────────────────────────────────────
 
-const VARIANTS: BadgeVariant[] = ['filled', 'subtle', 'outline'];
+const VARIANTS: BadgeVariant[] = ['filled', 'subtle', 'outline', 'inverted'];
 const COLORS: BadgeColor[] = ['primary', 'success', 'warning', 'error', 'info', 'muted'];
 const SIZES: BadgeSize[] = ['sm', 'md', 'lg'];
 const SHAPES: BadgeShape[] = ['rounded', 'pill'];
@@ -193,7 +193,7 @@ const meta: Meta<UiBadgeComponent> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['filled', 'subtle', 'outline'],
+      options: ['filled', 'subtle', 'outline', 'inverted'],
     },
     color: {
       control: 'select',
