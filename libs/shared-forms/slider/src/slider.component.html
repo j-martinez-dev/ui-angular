@@ -13,6 +13,7 @@
       [class.slider-input--invalid]="invalid() && touched()"
       [style.--slider-fill-percent]="fillPercent()"
       (input)="onInput($event)"
+      (focus)="touched.set(false)"
       (blur)="touched.set(true)"
       (pointerdown)="showTooltip.set(true)"
       (pointerup)="showTooltip.set(false)"

@@ -90,6 +90,7 @@ export class UiNumberComponent implements FormValueControl<number | null> {
 
   protected onFocus(): void {
     this.isFocused.set(true);
+    this.touched.set(false);
   }
 
   protected onInput(event: Event): void {

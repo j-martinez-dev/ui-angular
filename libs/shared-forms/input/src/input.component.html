@@ -32,7 +32,7 @@
       [attr.aria-required]="required() || null"
       [attr.aria-describedby]="ariaDescribedBy() || null"
       (input)="onInput($event)"
-      (focus)="isFocused.set(true)"
+      (focus)="isFocused.set(true); touched.set(false)"
       (blur)="onBlur()"
     />
 

@@ -22,7 +22,7 @@
       [attr.aria-describedby]="effectiveDescribedBy()"
       [class.textarea-field--auto-resize]="autoResize()"
       (input)="onInput($event)"
-      (focus)="isFocused.set(true)"
+      (focus)="isFocused.set(true); touched.set(false)"
       (blur)="onBlur()"
     ></textarea>
   </div>

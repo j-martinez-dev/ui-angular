@@ -8,6 +8,7 @@
       [attr.aria-invalid]="(invalid() && touched()) || null"
       [attr.aria-required]="required() || null"
       (change)="onCheckedChange($event)"
+      (focus)="touched.set(false)"
       (blur)="touched.set(true)"
     />
     <span

@@ -13,6 +13,7 @@
     tabindex="0"
     (click)="toggleDropdown()"
     (keydown)="onKeydown($event)"
+    (focus)="touched.set(false)"
     (blur)="touched.set(true)"
   >
     <span

@@ -142,6 +142,7 @@ export class UiAutocompleteComponent<T = string>
   }
 
   protected onFocus(): void {
+    this.touched.set(false);
     if (this.inputText()) this.openPanel();
   }
 
