@@ -47,6 +47,7 @@ const DIMENSION_MAP: Record<IconButtonSize, string> = {
     '[style.--icon-btn-hover-bg]': 'styles().hoverBg',
     '[style.--icon-btn-radius]': 'radiusValue()',
     '[style.--icon-btn-size]': 'dimensionValue()',
+    '[style.pointer-events]': 'disabled() || loading() ? "none" : null',
   },
 })
 export class UiIconButtonComponent {

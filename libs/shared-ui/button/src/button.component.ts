@@ -35,6 +35,7 @@ const SPINNER_SIZE_MAP: Record<ButtonSize, SpinnerSize> = {
     '[class.size-sm]': 'size() === "sm"',
     '[class.size-md]': 'size() === "md"',
     '[class.size-lg]': 'size() === "lg"',
+    '[style.pointer-events]': 'disabled() || loading() ? "none" : null',
   },
 })
 export class UiButtonComponent {
