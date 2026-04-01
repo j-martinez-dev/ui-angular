@@ -36,8 +36,9 @@
             [class.sidebar-item--active]="activeValue() === item.value"
             [class.sidebar-item--disabled]="item.disabled"
             [disabled]="item.disabled"
-            [uiTooltip]="isCollapsed() ? item.label : ''"
+            [uiTooltip]="item.label"
             uiTooltipPosition="right"
+            [uiTooltipDisabled]="!isCollapsed()"
             (click)="onItemClick(item)"
           >
             @if (item.icon) {
