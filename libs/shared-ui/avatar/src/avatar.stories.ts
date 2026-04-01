@@ -5,6 +5,7 @@ import { provideIcons } from '@ng-icons/core';
 import { heroUser } from '@ng-icons/heroicons/outline';
 import {
   UiAvatarComponent,
+  AvatarVariant,
   AvatarColor,
   AvatarSize,
   AvatarShape,
@@ -106,6 +107,18 @@ const SHAPES: AvatarShape[] = ['circle', 'square'];
       </section>
 
       <section class="flex flex-col gap-4">
+        <p class="ui-overline">Inverted — with initials</p>
+        <div class="flex items-center gap-4 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
+          @for (color of colors; track color) {
+            <div class="flex flex-col items-center gap-2">
+              <ui-avatar [initials]="initialFor(color)" size="lg" [color]="color" variant="inverted" />
+              <span class="ui-caption">{{ color }}</span>
+            </div>
+          }
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
         <p class="ui-overline">Colors — fallback icon</p>
         <div class="flex items-center gap-4 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
           @for (color of colors; track color) {
@@ -191,6 +204,10 @@ const meta: Meta<UiAvatarComponent> = {
     initials: {
       control: 'text',
     },
+    variant: {
+      control: 'select',
+      options: ['subtle', 'inverted'],
+    },
     color: {
       control: 'select',
       options: ['primary', 'success', 'warning', 'error', 'info', 'muted', 'accent-1', 'accent-2', 'accent-3'],
@@ -221,6 +238,7 @@ export const Docs: Story = {
 export const Playground: Story = {
   args: {
     initials: 'JD',
+    variant: 'subtle',
     color: 'primary',
     size: 'md',
     shape: 'circle',
