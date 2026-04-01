@@ -31,6 +31,7 @@ export class UiEmptyStateComponent {
   description = input<string>();
   icon = input<string>();
   actionLabel = input<string>();
+  actionIcon = input<string>();
   actionVariant = input<ButtonVariant>('primary');
   size = input<EmptyStateSize>('md');
 

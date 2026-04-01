@@ -18,6 +18,7 @@
   @if (actionLabel()) {
     <ui-button
       [variant]="actionVariant()"
+      [iconLeft]="actionIcon()"
       size="md"
       (click)="actionClick.emit()"
     >
