@@ -22,6 +22,7 @@
       [attr.aria-controls]="isOpen() ? panelId : null"
       [attr.aria-label]="label()"
       role="combobox"
+      [autocomplete]="autocomplete()"
       (input)="onInput($event)"
       (focus)="onFocus()"
       (blur)="onBlur()"

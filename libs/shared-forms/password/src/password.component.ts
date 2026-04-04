@@ -60,6 +60,7 @@ export class UiPasswordComponent implements FormValueControl<string> {
   size = input<PasswordSize>('md');
   placeholder = input<string>('Mot de passe');
   showStrength = input<boolean>(false);
+  autocomplete = input<string>('off');
 
   // Internal state
   protected isFocused = signal<boolean>(false);

@@ -71,6 +71,7 @@ export class UiNumberComponent implements FormValueControl<number | null> {
   placeholder = input<string>('0');
   variant = input<NumberVariant>('outlined');
   size = input<NumberSize>('md');
+  autocomplete = input<string>('off');
 
   // Internal state
   protected isFocused = signal<boolean>(false);

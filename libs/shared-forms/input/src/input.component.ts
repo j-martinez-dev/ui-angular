@@ -77,6 +77,7 @@ export class UiInputComponent implements FormValueControl<string> {
   suffixIsIcon = input<boolean>(true);
   id = input<string>();
   ariaDescribedBy = input<string>();
+  autocomplete = input<string>('off');
 
   // Internal state
   protected isFocused = signal<boolean>(false);

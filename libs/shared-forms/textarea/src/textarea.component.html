@@ -21,6 +21,7 @@
       [attr.aria-required]="required() || null"
       [attr.aria-describedby]="effectiveDescribedBy()"
       [class.textarea-field--auto-resize]="autoResize()"
+      [autocomplete]="autocomplete()"
       (input)="onInput($event)"
       (focus)="isFocused.set(true); touched.set(false)"
       (blur)="onBlur()"

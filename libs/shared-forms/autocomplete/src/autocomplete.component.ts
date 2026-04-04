@@ -89,6 +89,7 @@ export class UiAutocompleteComponent<T = string>
   noResultsLabel = input<string>('Aucun résultat');
   variant = input<AutocompleteVariant>('outlined');
   size = input<AutocompleteSize>('md');
+  autocomplete = input<string>('off');
 
   // Outputs
   search = output<string>();

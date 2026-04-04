@@ -57,6 +57,7 @@ export class UiTextareaComponent implements FormValueControl<string> {
   showCount = input<boolean>(false);
   id = input<string>();
   ariaDescribedBy = input<string>();
+  autocomplete = input<string>('off');
 
   // Internal state
   protected isFocused = signal<boolean>(false);
