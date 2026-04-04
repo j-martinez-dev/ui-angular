@@ -5,6 +5,8 @@ import {
   input,
 } from '@angular/core';
 import { FormField } from '@angular/forms/signals';
+import { provideIcons } from '@ng-icons/core';
+import { heroExclamationCircle } from '@ng-icons/heroicons/outline';
 import { UiIconComponent } from '@ui/shared-ui/icon';
 
 let nextId = 0;
@@ -12,6 +14,7 @@ let nextId = 0;
 @Component({
   selector: 'ui-form-field',
   imports: [UiIconComponent],
+  viewProviders: [provideIcons({ heroExclamationCircle })],
   templateUrl: './form-field.component.html',
   styleUrl: './form-field.component.scss',
 })

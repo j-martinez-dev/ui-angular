@@ -13,6 +13,8 @@ import {
   DisabledReason,
   WithOptionalFieldTree,
 } from '@angular/forms/signals';
+import { provideIcons } from '@ng-icons/core';
+import { heroArrowUpTray, heroDocument } from '@ng-icons/heroicons/outline';
 import { UiIconComponent } from '@ui/shared-ui/icon';
 import { UiIconButtonComponent } from '@ui/shared-ui/icon-button';
 import { formatFileSize, isFileAccepted, isFileSizeValid } from './file-upload.utils';
@@ -20,6 +22,7 @@ import { formatFileSize, isFileAccepted, isFileSizeValid } from './file-upload.u
 @Component({
   selector: 'ui-multi-file-upload',
   imports: [UiIconComponent, UiIconButtonComponent],
+  viewProviders: [provideIcons({ heroArrowUpTray, heroDocument })],
   templateUrl: './multi-file-upload.component.html',
   styleUrl: './multi-file-upload.component.scss',
 })

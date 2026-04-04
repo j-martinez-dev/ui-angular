@@ -18,6 +18,8 @@ import {
 } from '@angular/forms/signals';
 import { Overlay } from '@angular/cdk/overlay';
 import { Listbox, Option } from '@angular/aria/listbox';
+import { provideIcons } from '@ng-icons/core';
+import { heroChevronDown } from '@ng-icons/heroicons/outline';
 import { UiIconComponent, type IconSize } from '@ui/shared-ui/icon';
 import { UiInputComponent } from '@ui/shared-forms/input';
 import { UiCheckboxComponent } from '@ui/shared-forms/checkbox';
@@ -43,6 +45,7 @@ const HEIGHT_MAP: Record<MultiSelectSize, string> = {
 @Component({
   selector: 'ui-multi-select',
   imports: [UiIconComponent, UiInputComponent, UiCheckboxComponent, UiTooltipDirective, Listbox, Option],
+  viewProviders: [provideIcons({ heroChevronDown })],
   templateUrl: './multi-select.component.html',
   styleUrl: './multi-select.component.scss',
   encapsulation: ViewEncapsulation.None,

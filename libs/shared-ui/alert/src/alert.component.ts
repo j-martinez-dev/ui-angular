@@ -4,6 +4,14 @@ import {
   input,
   output,
 } from '@angular/core';
+import { provideIcons } from '@ng-icons/core';
+import {
+  heroCheckCircle,
+  heroExclamationTriangle,
+  heroXCircle,
+  heroInformationCircle,
+  heroXMark,
+} from '@ng-icons/heroicons/outline';
 import { UiIconComponent } from '@ui/shared-ui/icon';
 
 export type AlertVariant = 'filled' | 'subtle' | 'outline';
@@ -100,6 +108,7 @@ const VARIANT_MAPS: Record<AlertVariant, Record<AlertColor, AlertStyles>> = {
 @Component({
   selector: 'ui-alert',
   imports: [UiIconComponent],
+  viewProviders: [provideIcons({ heroCheckCircle, heroExclamationTriangle, heroXCircle, heroInformationCircle, heroXMark })],
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.scss',
   host: {

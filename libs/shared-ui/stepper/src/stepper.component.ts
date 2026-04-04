@@ -2,6 +2,8 @@ import {
   Component,
   input,
 } from '@angular/core';
+import { provideIcons } from '@ng-icons/core';
+import { heroCheck } from '@ng-icons/heroicons/outline';
 import { UiIconComponent } from '@ui/shared-ui/icon';
 import { type StepperItem } from './stepper.types';
 
@@ -10,6 +12,7 @@ export type StepperOrientation = 'horizontal' | 'vertical';
 @Component({
   selector: 'ui-stepper',
   imports: [UiIconComponent],
+  viewProviders: [provideIcons({ heroCheck })],
   styleUrl: './stepper.component.scss',
   host: {
     'role': 'navigation',

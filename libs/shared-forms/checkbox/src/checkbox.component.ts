@@ -10,6 +10,8 @@ import {
   DisabledReason,
   WithOptionalFieldTree,
 } from '@angular/forms/signals';
+import { provideIcons } from '@ng-icons/core';
+import { heroCheck, heroMinus } from '@ng-icons/heroicons/outline';
 import { UiIconComponent, IconSize } from '@ui/shared-ui/icon';
 
 export type CheckboxSize = 'sm' | 'md' | 'lg';
@@ -23,6 +25,7 @@ const ICON_SIZE_MAP: Record<CheckboxSize, IconSize> = {
 @Component({
   selector: 'ui-checkbox',
   imports: [UiIconComponent],
+  viewProviders: [provideIcons({ heroCheck, heroMinus })],
   templateUrl: './checkbox.component.html',
   styleUrl: './checkbox.component.scss',
   host: {

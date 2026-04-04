@@ -18,6 +18,8 @@ import {
 } from '@angular/forms/signals';
 import { Overlay } from '@angular/cdk/overlay';
 import { Listbox, Option } from '@angular/aria/listbox';
+import { provideIcons } from '@ng-icons/core';
+import { heroChevronDown, heroCheck } from '@ng-icons/heroicons/outline';
 import { UiIconComponent, type IconSize } from '@ui/shared-ui/icon';
 import { UiInputComponent } from '@ui/shared-forms/input';
 import { UiTooltipDirective } from '@ui/shared-ui/tooltip';
@@ -43,6 +45,7 @@ const HEIGHT_MAP: Record<SelectSize, string> = {
 @Component({
   selector: 'ui-select',
   imports: [UiIconComponent, UiInputComponent, UiTooltipDirective, Listbox, Option],
+  viewProviders: [provideIcons({ heroChevronDown, heroCheck })],
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss',
   encapsulation: ViewEncapsulation.None,

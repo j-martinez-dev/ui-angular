@@ -3,6 +3,8 @@ import {
   computed,
   input,
 } from '@angular/core';
+import { provideIcons } from '@ng-icons/core';
+import { heroUser } from '@ng-icons/heroicons/outline';
 import { UiIconComponent, IconSize } from '@ui/shared-ui/icon';
 
 export type AvatarVariant = 'subtle' | 'inverted';
@@ -65,6 +67,7 @@ const VARIANT_MAPS: Record<AvatarVariant, Record<AvatarColor, AvatarColorConfig>
 @Component({
   selector: 'ui-avatar',
   imports: [UiIconComponent],
+  viewProviders: [provideIcons({ heroUser })],
   templateUrl: './avatar.component.html',
   styleUrl: './avatar.component.scss',
   host: {

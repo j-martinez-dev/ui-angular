@@ -4,6 +4,8 @@ import {
   input,
   output,
 } from '@angular/core';
+import { provideIcons } from '@ng-icons/core';
+import { heroXMark } from '@ng-icons/heroicons/outline';
 import { UiIconComponent } from '@ui/shared-ui/icon';
 
 export type TagVariant = 'filled' | 'subtle' | 'outline';
@@ -143,6 +145,7 @@ const VARIANT_MAPS: Record<TagVariant, Record<TagColor, TagStyles>> = {
 @Component({
   selector: 'ui-tag',
   imports: [UiIconComponent],
+  viewProviders: [provideIcons({ heroXMark })],
   templateUrl: './tag.component.html',
   styleUrl: './tag.component.scss',
   host: {

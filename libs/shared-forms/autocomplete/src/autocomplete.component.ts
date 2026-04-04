@@ -22,6 +22,8 @@ import {
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { Listbox, Option } from '@angular/aria/listbox';
+import { provideIcons } from '@ng-icons/core';
+import { heroMagnifyingGlass, heroCheck } from '@ng-icons/heroicons/outline';
 import { UiIconComponent } from '@ui/shared-ui/icon';
 import { UiIconButtonComponent } from '@ui/shared-ui/icon-button';
 import { UiSpinnerComponent } from '@ui/shared-ui/spinner';
@@ -45,6 +47,7 @@ let nextPanelId = 0;
 @Component({
   selector: 'ui-autocomplete',
   imports: [UiIconComponent, UiIconButtonComponent, UiSpinnerComponent, Listbox, Option],
+  viewProviders: [provideIcons({ heroMagnifyingGlass, heroCheck })],
   styleUrl: './autocomplete.component.scss',
   encapsulation: ViewEncapsulation.None,
   host: {

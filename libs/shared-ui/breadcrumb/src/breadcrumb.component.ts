@@ -4,6 +4,8 @@ import {
   input,
   output,
 } from '@angular/core';
+import { provideIcons } from '@ng-icons/core';
+import { heroChevronRight } from '@ng-icons/heroicons/outline';
 import { UiIconComponent, type IconSize } from '@ui/shared-ui/icon';
 import { type BreadcrumbItem } from './breadcrumb.types';
 
@@ -18,6 +20,7 @@ const ICON_SIZE_MAP: Record<BreadcrumbSize, IconSize> = {
 @Component({
   selector: 'ui-breadcrumb',
   imports: [UiIconComponent],
+  viewProviders: [provideIcons({ heroChevronRight })],
   templateUrl: './breadcrumb.component.html',
   styleUrl: './breadcrumb.component.scss',
   host: {

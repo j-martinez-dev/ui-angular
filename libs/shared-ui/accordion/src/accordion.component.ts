@@ -7,6 +7,8 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
+import { provideIcons } from '@ng-icons/core';
+import { heroChevronDown } from '@ng-icons/heroicons/outline';
 import { UiIconComponent } from '@ui/shared-ui/icon';
 import { type AccordionItem } from './accordion.types';
 
@@ -15,6 +17,7 @@ let nextId = 0;
 @Component({
   selector: 'ui-accordion',
   imports: [UiIconComponent, NgTemplateOutlet],
+  viewProviders: [provideIcons({ heroChevronDown })],
   templateUrl: './accordion.component.html',
   styleUrl: './accordion.component.scss',
 })
