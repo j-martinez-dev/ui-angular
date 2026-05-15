@@ -200,8 +200,8 @@ const SIZES: TabsSize[] = ['sm', 'md', 'lg'];
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Pastel</p>
-        <div class="theme-pastel p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 520px;">
+        <p class="ui-overline">Theme — Vercel</p>
+        <div class="theme-vercel p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 520px;">
           <div class="flex flex-col gap-4">
             <ui-tabs [tabs]="simpleTabs" variant="line" />
             <ui-tabs [tabs]="simpleTabs" variant="pill" />

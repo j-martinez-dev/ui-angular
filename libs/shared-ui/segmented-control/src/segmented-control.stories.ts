@@ -266,8 +266,8 @@ const COLORS: SegmentedControlColor[] = ['neutral', 'primary', 'success', 'warni
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Pastel</p>
-        <div class="theme-pastel flex flex-col gap-3 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
+        <p class="ui-overline">Theme — Vercel</p>
+        <div class="theme-vercel flex flex-col gap-3 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
           <ui-segmented-control [options]="periods" [value]="selectedPeriod()" color="primary" label="Period" (valueChange)="selectedPeriod.set($event)" />
           <ui-segmented-control [options]="themeOptions" [value]="selectedTheme()" color="warning" variant="pill" label="Theme" (valueChange)="selectedTheme.set($event)" />
           <ui-segmented-control [options]="periods" [value]="selectedPeriod()" color="error" variant="bordered" label="Period" (valueChange)="selectedPeriod.set($event)" />

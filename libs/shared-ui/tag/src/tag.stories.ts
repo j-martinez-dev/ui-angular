@@ -158,8 +158,8 @@ const SIZES: TagSize[] = ['sm', 'md', 'lg'];
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Pastel</p>
-        <div class="theme-pastel flex flex-wrap items-center gap-3 p-4" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
+        <p class="ui-overline">Theme — Vercel</p>
+        <div class="theme-vercel flex flex-wrap items-center gap-3 p-4" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
           @for (color of colors; track color) {
             <ui-tag variant="subtle" [color]="color">{{ color }}</ui-tag>
           }

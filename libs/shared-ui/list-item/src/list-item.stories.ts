@@ -178,8 +178,8 @@ class ListItemDocsComponent {}
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Pastel</p>
-        <div class="theme-pastel p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 480px;">
+        <p class="ui-overline">Theme — Vercel</p>
+        <div class="theme-vercel p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 480px;">
           <ui-list-item label="Pastel theme item" description="Soft colors" icon="heroStar" [clickable]="true" />
           <ui-list-item label="Pastel avatar" avatar="PT" avatarColor="success">
             <ui-badge slot="end" color="success" variant="subtle">Active</ui-badge>

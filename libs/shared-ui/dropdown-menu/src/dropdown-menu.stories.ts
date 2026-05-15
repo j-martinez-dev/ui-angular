@@ -247,8 +247,8 @@ class DropdownMenuDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Pastel</p>
-        <div class="theme-pastel flex flex-wrap items-center gap-6 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
+        <p class="ui-overline">Theme — Vercel</p>
+        <div class="theme-vercel flex flex-wrap items-center gap-6 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
           <ui-dropdown-menu label="Pastel menu">
             <ui-menu-item icon="heroPencil" (itemClick)="noop()">Edit</ui-menu-item>
             <ui-menu-item icon="heroCog6Tooth" (itemClick)="noop()">Settings</ui-menu-item>

@@ -5,7 +5,9 @@
 
 @import "./lib/theme.css";
 @import "./lib/themes/dark.css";
-@import "./lib/themes/pastel.css";
-@import "./lib/themes/nautika.css";
+@import "./lib/themes/stripe.css";
+@import "./lib/themes/vercel.css";
+@import "./lib/themes/linear.css";
+@import "./lib/themes/figma.css";
 @import "./lib/typography.css";
 @import "./lib/table.css";

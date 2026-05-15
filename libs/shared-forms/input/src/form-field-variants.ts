@@ -10,7 +10,7 @@ export interface FormFieldVariantStyles {
 export const FORM_FIELD_VARIANT_MAP: Record<FormFieldVariant, FormFieldVariantStyles> = {
   outlined: {
     bg: 'var(--color-surface-raised)',
-    border: '1px solid var(--color-border-default)',
+    border: '1px solid var(--color-border-input)',
     focusBorder: '1px solid var(--color-primary-default)',
     invalidBorder: '1px solid var(--color-error-default)',
   },

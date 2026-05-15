@@ -11,8 +11,10 @@ const preview: Preview = {
       themes: {
         light: '',
         dark: 'theme-dark',
-        pastel: 'theme-pastel',
-        nautika: 'theme-nautika',
+        stripe: 'theme-stripe',
+        vercel: 'theme-vercel',
+        linear: 'theme-linear',
+        figma: 'theme-figma',
       },
       defaultTheme: 'light',
     }),

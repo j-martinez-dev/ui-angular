@@ -131,7 +131,7 @@ class StatsBlockDocsComponent {
 
       <section class="flex flex-col gap-4">
         <p class="ui-overline">Theme \u2014 Pastel</p>
-        <div class="theme-pastel p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
+        <div class="theme-vercel p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
           <ui-stats-block [items]="items" [columns]="4" />
         </div>
       </section>

@@ -203,8 +203,8 @@ class SidebarDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Pastel</p>
-        <div class="theme-pastel" style="height: 620px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
+        <p class="ui-overline">Theme — Vercel</p>
+        <div class="theme-vercel" style="height: 620px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
           <ui-sidebar
             [groups]="groups"
             [activeValue]="active4()"

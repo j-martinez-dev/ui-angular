@@ -128,8 +128,8 @@ class LinkDocsComponent {}
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Pastel</p>
-        <div class="theme-pastel flex gap-6 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
+        <p class="ui-overline">Theme — Vercel</p>
+        <div class="theme-vercel flex gap-6 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
           <a href="javascript:void(0)" uiLink>Default</a>
           <a href="javascript:void(0)" uiLink="muted">Muted</a>
           <a href="javascript:void(0)" uiLink="danger">Danger</a>

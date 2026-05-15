@@ -340,8 +340,8 @@ class TableDocsComponent {
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Pastel</p>
-        <div class="theme-pastel p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
+        <p class="ui-overline">Theme — Vercel</p>
+        <div class="theme-vercel p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
           <table uiTable [hoverable]="true">
             <thead uiTableHeader>
               <tr uiTableRow>

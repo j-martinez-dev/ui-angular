@@ -13,7 +13,10 @@ styles/
     theme.css            ← base tokens (light mode)
     themes/
       dark.css           ← dark mode overrides (.theme-dark)
-      pastel.css         ← pastel theme overrides (.theme-pastel)
+      stripe.css         ← Stripe-inspired theme (.theme-stripe)
+      vercel.css         ← Vercel-inspired theme (.theme-vercel)
+      linear.css         ← Linear-inspired theme (.theme-linear, dark)
+      figma.css          ← Figma-inspired theme (.theme-figma)
     typography.css       ← typography utility classes
     table.css            ← table directive styles
 ```
@@ -115,7 +118,7 @@ outline-offset: 2px;
 ### Disabled
 
 ```css
-var(--opacity-disabled)      /* 0.4 light/pastel, 0.35 dark */
+var(--opacity-disabled)      /* 0.4 most themes, 0.35 dark / linear */
 ```
 
 ---
@@ -292,18 +295,21 @@ Dark mode shadows have higher opacity to maintain depth perception.
 
 ## Theming
 
-Three themes available out of the box:
+One dark-mode variant plus four brand themes from [getdesign.md](https://getdesign.md/) ship out of the box:
 
 | Theme | Activation | Description |
 |---|---|---|
 | Light | _(default)_ | Neutral light with blue primary |
 | Dark | `.theme-dark` | Dark surfaces, lighter accents |
-| Pastel | `.theme-pastel` | Warm cream, lavender primary |
+| Stripe | `.theme-stripe` | Electric indigo primary, weight-300 display, gradient mesh |
+| Vercel | `.theme-vercel` | Ink-near-black on near-white canvas, Geist sans |
+| Linear | `.theme-linear` | Lavender accent on near-black canvas (intrinsically dark) |
+| Figma | `.theme-figma` | Pure B/W chrome with oversized pastel block accents |
 
 Apply by adding the class to any container:
 
 ```html
-<html class="theme-dark">
+<html class="theme-stripe">
 ```
 
-Themes can be nested — a `.theme-dark` section inside a `.theme-pastel` page works correctly. Token names are identical across all themes.
+Themes can be nested — a `.theme-dark` section inside a `.theme-stripe` page works correctly. Token names are identical across all themes. Generate additional brand themes with the `theme-from-designmd` skill.

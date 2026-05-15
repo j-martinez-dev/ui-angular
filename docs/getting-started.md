@@ -84,11 +84,14 @@ Add a theme class to any container (typically `<html>` or a wrapper `<div>`):
 <!-- Dark -->
 <html class="theme-dark">
 
-<!-- Pastel -->
-<html class="theme-pastel">
+<!-- Brand themes (generated from getdesign.md) -->
+<html class="theme-stripe">
+<html class="theme-vercel">
+<html class="theme-linear">
+<html class="theme-figma">
 ```
 
-Themes can be nested. A `.theme-dark` section inside a `.theme-pastel` page works correctly.
+Themes can be nested. A `.theme-dark` section inside a `.theme-stripe` page works correctly.
 
 ### Define accent colors
 
@@ -139,7 +142,10 @@ styles/
     theme.css             ← base tokens
     themes/
       dark.css
-      pastel.css
+      stripe.css
+      vercel.css
+      linear.css
+      figma.css
     typography.css
     table.css
 apps/

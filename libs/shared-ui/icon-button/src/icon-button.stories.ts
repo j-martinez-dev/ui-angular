@@ -187,8 +187,8 @@ const SHAPES: IconButtonShape[] = ['square', 'circle'];
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Pastel</p>
-        <div class="theme-pastel flex flex-wrap items-center gap-3 p-4" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
+        <p class="ui-overline">Theme — Vercel</p>
+        <div class="theme-vercel flex flex-wrap items-center gap-3 p-4" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
           @for (variant of variants; track variant) {
             <ui-icon-button icon="heroHeart" [label]="variant" [variant]="variant" />
           }

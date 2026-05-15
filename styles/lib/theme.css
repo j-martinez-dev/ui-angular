@@ -5,31 +5,41 @@
 
   /* Primary */
   --color-primary-subtle: oklch(95% 0.03 250);
+  --color-primary-soft: oklch(70% 0.15 250);
   --color-primary-default: oklch(55% 0.2 250);
+  --color-primary-deep: oklch(45% 0.2 250);
   --color-primary-emphasis: oklch(45% 0.2 250);
   --color-on-primary: oklch(99% 0 0);
 
   /* Success */
   --color-success-subtle: oklch(95% 0.05 145);
+  --color-success-soft: oklch(70% 0.14 145);
   --color-success-default: oklch(55% 0.18 145);
+  --color-success-deep: oklch(45% 0.18 145);
   --color-success-emphasis: oklch(45% 0.18 145);
   --color-on-success: oklch(99% 0 0);
 
   /* Warning */
   --color-warning-subtle: oklch(97% 0.05 85);
+  --color-warning-soft: oklch(85% 0.14 85);
   --color-warning-default: oklch(75% 0.18 85);
+  --color-warning-deep: oklch(60% 0.18 85);
   --color-warning-emphasis: oklch(60% 0.18 85);
   --color-on-warning: oklch(20% 0 0);
 
   /* Error */
   --color-error-subtle: oklch(95% 0.04 25);
+  --color-error-soft: oklch(70% 0.16 25);
   --color-error-default: oklch(55% 0.2 25);
+  --color-error-deep: oklch(45% 0.2 25);
   --color-error-emphasis: oklch(45% 0.2 25);
   --color-on-error: oklch(99% 0 0);
 
   /* Info */
   --color-info-subtle: oklch(95% 0.03 220);
+  --color-info-soft: oklch(70% 0.12 220);
   --color-info-default: oklch(55% 0.15 220);
+  --color-info-deep: oklch(45% 0.15 220);
   --color-info-emphasis: oklch(45% 0.15 220);
   --color-on-info: oklch(99% 0 0);
 
@@ -56,6 +66,8 @@
   --color-surface-raised: oklch(99.5% 0 0);
   --color-surface-overlay: oklch(100% 0 0);
   --color-surface-sunken: oklch(94% 0 0);
+  --color-surface-inverse: oklch(20% 0 0);
+  --color-on-surface-inverse: oklch(99% 0 0);
 
   /* Focus */
   --color-focus-ring: oklch(55% 0.2 250);
@@ -65,11 +77,13 @@
 
   /* Text */
   --color-text-default: oklch(15% 0 0);
+  --color-text-secondary: oklch(30% 0 0);
   --color-text-muted: oklch(50% 0 0);
   --color-text-disabled: oklch(70% 0 0);
 
   /* Borders */
   --color-border-default: oklch(88% 0 0);
+  --color-border-input: oklch(88% 0 0);
   --color-border-strong: oklch(70% 0 0);
 
   /* =====================
@@ -77,6 +91,55 @@
   ===================== */
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Fira Code", ui-monospace, monospace;
+
+  /* Letter spacing */
+  --tracking-tighter: -0.04em;
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+
+  /* OpenType font features */
+  --font-feature-default: normal;
+  --font-feature-tabular: "tnum";
+  --font-feature-display: normal;
+
+  /* Display tier (large editorial headlines) */
+  --type-display-xxl-size: 3.5rem;
+  --type-display-xxl-weight: 700;
+  --type-display-xxl-tracking: var(--tracking-tight);
+  --type-display-xxl-leading: 1.05;
+
+  --type-display-xl-size: 3rem;
+  --type-display-xl-weight: 700;
+  --type-display-xl-tracking: var(--tracking-tight);
+  --type-display-xl-leading: 1.1;
+
+  --type-display-lg-size: 2rem;
+  --type-display-lg-weight: 600;
+  --type-display-lg-tracking: var(--tracking-tight);
+  --type-display-lg-leading: 1.15;
+
+  --type-display-md-size: 1.625rem;
+  --type-display-md-weight: 600;
+  --type-display-md-tracking: var(--tracking-normal);
+  --type-display-md-leading: 1.2;
+
+  /* Body tabular (money, numeric cells) */
+  --type-body-tabular-size: 0.875rem;
+  --type-body-tabular-weight: 400;
+  --type-body-tabular-tracking: var(--tracking-normal);
+  --type-body-tabular-leading: 1.4;
+
+  /* Micro / fine print */
+  --type-micro-size: 0.6875rem;
+  --type-micro-weight: 400;
+  --type-micro-tracking: var(--tracking-normal);
+  --type-micro-leading: 1.4;
+
+  --type-micro-cap-size: 0.625rem;
+  --type-micro-cap-weight: 600;
+  --type-micro-cap-tracking: var(--tracking-wide);
+  --type-micro-cap-leading: 1.2;
 
   /* =====================
      SHADOWS
@@ -89,9 +152,11 @@
   /* =====================
      BORDER RADIUS
   ===================== */
+  --radius-xs: 0.125rem;
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
   --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
   --radius-full: 9999px;
 
   /* =====================
@@ -130,4 +195,11 @@
   --z-overlay: 300;
   --z-modal: 400;
   --z-toast: 500;
+
+  /* =====================
+     DECORATIONS
+     Optional brand-specific backdrops. Themes may set --gradient-hero
+     to a gradient or url(...) for the .ui-hero-backdrop utility.
+  ===================== */
+  --gradient-hero: none;
 }

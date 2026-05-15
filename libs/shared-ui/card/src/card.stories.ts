@@ -209,8 +209,8 @@ class CardDocsComponent {}
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Pastel</p>
-        <div class="theme-pastel flex gap-4 flex-wrap p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
+        <p class="ui-overline">Theme — Vercel</p>
+        <div class="theme-vercel flex gap-4 flex-wrap p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
           @for (variant of variants; track variant) {
             <ui-card [variant]="variant" style="width: 280px;">
               <div slot="header">

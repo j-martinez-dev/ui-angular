@@ -38,6 +38,8 @@
   --color-surface-raised: oklch(17% 0 0);
   --color-surface-overlay: oklch(20% 0 0);
   --color-surface-sunken: oklch(9% 0 0);
+  --color-surface-inverse: oklch(95% 0 0);
+  --color-on-surface-inverse: oklch(10% 0 0);
 
   /* Focus */
   --color-focus-ring: oklch(70% 0.2 250);
@@ -47,11 +49,13 @@
 
   /* Text */
   --color-text-default: oklch(92% 0 0);
+  --color-text-secondary: oklch(78% 0 0);
   --color-text-muted: oklch(60% 0 0);
   --color-text-disabled: oklch(40% 0 0);
 
   /* Borders */
   --color-border-default: oklch(28% 0 0);
+  --color-border-input: oklch(28% 0 0);
   --color-border-strong: oklch(45% 0 0);
 
   /* =====================

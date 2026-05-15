@@ -10,10 +10,14 @@ Tokens live in `styles/` and are structured as follows:
 
 - `lib/theme.css` — base tokens (light mode)
 - `lib/themes/dark.css` — overrides for dark mode (`.theme-dark`)
-- `lib/themes/pastel.css` — overrides for pastel theme (`.theme-pastel`)
-- `lib/themes/nautika.css` — overrides for nautika theme (`.theme-nautika`)
+- `lib/themes/stripe.css` — Stripe-inspired theme, generated from getdesign.md (`.theme-stripe`)
+- `lib/themes/vercel.css` — Vercel-inspired theme, generated from getdesign.md (`.theme-vercel`)
+- `lib/themes/linear.css` — Linear-inspired theme (dark by nature), generated from getdesign.md (`.theme-linear`)
+- `lib/themes/figma.css` — Figma-inspired theme, generated from getdesign.md (`.theme-figma`)
 - `lib/typography.css` — typography utility classes
 - `lib/table.css` — global table directive styles
+
+Brand themes are produced by the `theme-from-designmd` skill (in `.claude/skills/`). To add a new one, invoke that skill with a brand slug from [getdesign.md](https://getdesign.md/).
 
 The entry point is `styles/index.css`, which imports all files in order.
 
@@ -60,29 +64,37 @@ Tailwind 4 exposes tokens automatically as utilities:
 
 ### Semantic scale
 
-Each color has **3 levels** plus a text color to use on top of it:
+Each color has **5 levels** plus a text color to use on top of it:
 
 | Level | Usage |
 |---|---|
 | `subtle` | Backgrounds, badges, alerts, soft hover states |
+| `soft` | Lighter accent variant — chart highlights, secondary fills |
 | `default` | The main color — buttons, icons, focus borders |
-| `emphasis` | Active hover states, more intense version of the color |
+| `deep` | Mid-strength variant between `default` and `emphasis` — defaults to `emphasis` when a theme doesn't distinguish them |
+| `emphasis` | Active / pressed hover states, most intense version |
 | `on-{color}` | Text color when the background is `{color}-default` |
+
+> The `soft` and `deep` levels are optional. If a theme doesn't set them they default to `default` and `emphasis` respectively — components built on the base scale keep working unchanged.
 
 ### Available colors
 
 #### Primary
 ```css
 var(--color-primary-subtle)    /* Soft primary background */
+var(--color-primary-soft)      /* Lighter accent variant */
 var(--color-primary-default)   /* Main color */
-var(--color-primary-emphasis)  /* Hover / active */
+var(--color-primary-deep)      /* Mid-strength variant */
+var(--color-primary-emphasis)  /* Hover / active / pressed */
 var(--color-on-primary)        /* Text on top of primary-default */
 ```
 
 #### Success
 ```css
 var(--color-success-subtle)
+var(--color-success-soft)
 var(--color-success-default)
+var(--color-success-deep)
 var(--color-success-emphasis)
 var(--color-on-success)
 ```
@@ -90,7 +102,9 @@ var(--color-on-success)
 #### Warning
 ```css
 var(--color-warning-subtle)
+var(--color-warning-soft)
 var(--color-warning-default)
+var(--color-warning-deep)
 var(--color-warning-emphasis)
 var(--color-on-warning)        /* Dark — warning is a light color */
 ```
@@ -98,7 +112,9 @@ var(--color-on-warning)        /* Dark — warning is a light color */
 #### Error
 ```css
 var(--color-error-subtle)
+var(--color-error-soft)
 var(--color-error-default)
+var(--color-error-deep)
 var(--color-error-emphasis)
 var(--color-on-error)
 ```
@@ -106,7 +122,9 @@ var(--color-on-error)
 #### Info
 ```css
 var(--color-info-subtle)
+var(--color-info-soft)
 var(--color-info-default)
+var(--color-info-deep)
 var(--color-info-emphasis)
 var(--color-on-info)
 ```
@@ -136,10 +154,12 @@ var(--color-on-accent-3)
 Surfaces define the visual depth levels of the UI:
 
 ```css
-var(--color-surface-base)     /* Page background */
-var(--color-surface-raised)   /* Cards, panels */
-var(--color-surface-overlay)  /* Modals, dropdowns, tooltips */
-var(--color-surface-sunken)   /* Inputs, visually recessed areas */
+var(--color-surface-base)        /* Page background */
+var(--color-surface-raised)      /* Cards, panels */
+var(--color-surface-overlay)     /* Modals, dropdowns, tooltips */
+var(--color-surface-sunken)      /* Inputs, visually recessed areas */
+var(--color-surface-inverse)     /* Inverted surface — dark card on light page (or vice versa) */
+var(--color-on-surface-inverse)  /* Text on top of surface-inverse */
 ```
 
 **Expected visual hierarchy:**
@@ -148,18 +168,22 @@ surface-sunken  →  surface-base  →  surface-raised  →  surface-overlay
   (lowest)                                                (highest)
 ```
 
+`surface-inverse` lives outside that ramp — it's a contrast surface for "dark card on light page" patterns (and the reverse in dark themes).
+
 ### Text
 
 ```css
-var(--color-text-default)   /* Primary text */
-var(--color-text-muted)     /* Secondary text, captions, placeholders */
-var(--color-text-disabled)  /* Text in disabled states */
+var(--color-text-default)    /* Primary text */
+var(--color-text-secondary)  /* Slightly de-emphasized text — sub-headings, captions on dense pages */
+var(--color-text-muted)      /* Secondary text, placeholders, helper copy */
+var(--color-text-disabled)   /* Text in disabled states */
 ```
 
 ### Borders
 
 ```css
-var(--color-border-default)  /* Standard borders — inputs, cards, dividers */
+var(--color-border-default)  /* Standard borders — cards, dividers */
+var(--color-border-input)    /* Input-specific hairline — themes may tint it cooler than default */
 var(--color-border-strong)   /* Higher contrast borders — focus, separators */
 ```
 
@@ -178,7 +202,7 @@ outline-offset: 2px;
 ### Disabled
 
 ```css
-var(--opacity-disabled)  /* 0.4 in light/pastel, 0.35 in dark */
+var(--opacity-disabled)  /* 0.4 in most themes, 0.35 in dark / linear */
 ```
 
 All disabled states must use this token instead of hardcoding opacity:
@@ -203,7 +227,36 @@ var(--font-mono)  /* Fira Code — code, technical values */
 
 > The consuming project must load the font (e.g., Google Fonts, Fontsource, or self-hosted). The token only declares the font-family stack.
 
-The size scale, weights, and line-heights are inherited from Tailwind 4 defaults:
+### Letter spacing
+
+```css
+var(--tracking-tighter)  /* -0.04em — display tier with thin weight */
+var(--tracking-tight)    /* -0.02em — large headlines */
+var(--tracking-normal)   /* 0 */
+var(--tracking-wide)     /* 0.05em — small caps, eyebrows */
+```
+
+### OpenType font features
+
+```css
+var(--font-feature-default)   /* Global features applied to <body> — themes may set "ss01" etc. */
+var(--font-feature-tabular)   /* "tnum" — tabular figures for money / numeric cells */
+var(--font-feature-display)   /* Optional alternates for display tiers */
+```
+
+### Composed typography roles
+
+For brand-faithful headlines and tabular text, the system also exposes per-role tokens (`--type-<role>-size`, `--type-<role>-weight`, `--type-<role>-tracking`, `--type-<role>-leading`):
+
+| Role | Use |
+|---|---|
+| `display-xxl` / `display-xl` / `display-lg` / `display-md` | Editorial-density headlines — themes can express thin weight + negative tracking |
+| `body-tabular` | Money / numeric cells (consumed by `.ui-body-tabular`, opts into `font-feature-tabular`) |
+| `micro` / `micro-cap` | Fine print and all-caps eyebrow labels |
+
+Use them via the matching utility classes (`.ui-display-xxl`, `.ui-body-tabular`, `.ui-micro-cap`, …). Existing `.ui-h*` and `.ui-body-*` classes still use Tailwind's text size scale and are unaffected.
+
+The size scale, weights, and line-heights for the standard tier are inherited from Tailwind 4 defaults:
 
 ```css
 /* Sizes */
@@ -248,10 +301,12 @@ var(--shadow-xl)   /* Prominent overlays */
 ## Border radius tokens
 
 ```css
-var(--radius-sm)    /* 0.25rem — badges, tags, small inputs */
-var(--radius-md)    /* 0.5rem  — buttons, inputs, cards */
-var(--radius-lg)    /* 1rem    — large panels, modals */
-var(--radius-full)  /* 9999px  — pills, avatars, toggles */
+var(--radius-xs)    /* 0.125rem — hairline chrome, table corners */
+var(--radius-sm)    /* 0.25rem  — badges, tags, small inputs */
+var(--radius-md)    /* 0.5rem   — buttons, inputs, cards */
+var(--radius-lg)    /* 1rem     — large panels, modals */
+var(--radius-xl)    /* 1.5rem   — product mockups, hero containers */
+var(--radius-full)  /* 9999px   — pills, avatars, toggles */
 ```
 
 ---
@@ -369,18 +424,36 @@ var(--z-toast)     /* 500 — toasts, notifications (always on top) */
 
 ---
 
+## Decoration tokens
+
+Optional brand-specific backdrops. Base theme leaves `--gradient-hero` as `none` so the utility is invisible; themes may set it to a CSS gradient or `url(...)`.
+
+```css
+var(--gradient-hero)  /* Backdrop used by the .ui-hero-backdrop utility class */
+```
+
+```html
+<section class="ui-hero-backdrop p-12">
+  <h1 class="ui-display-xxl">Hero headline</h1>
+</section>
+```
+
+---
+
 ## Theming
 
-Four themes are available out of the box:
+The library ships one dark-mode variant plus four brand themes derived from [getdesign.md](https://getdesign.md/):
 
 | Theme | CSS class | File | Description |
 |---|---|---|---|
 | Light | _(default)_ | `lib/theme.css` | Neutral light theme with blue primary |
 | Dark | `.theme-dark` | `lib/themes/dark.css` | Dark surfaces, lighter accent colors, stronger shadows |
-| Pastel | `.theme-pastel` | `lib/themes/pastel.css` | Warm cream surfaces, lavender primary, tinted shadows |
-| Nautika | `.theme-nautika` | `lib/themes/nautika.css` | Warm gold accent, soft beige sidebar, blue primary |
+| Stripe | `.theme-stripe` | `lib/themes/stripe.css` | Electric indigo primary, deep-navy ink, weight-300 Sohne display, gradient-mesh backdrop |
+| Vercel | `.theme-vercel` | `lib/themes/vercel.css` | Ink-near-black primary on near-white canvas, Geist sans, multi-colour mesh gradient |
+| Linear | `.theme-linear` | `lib/themes/linear.css` | Lavender-blue accent on near-black canvas (intrinsically dark) |
+| Figma | `.theme-figma` | `lib/themes/figma.css` | Pure black/white chrome with oversized pastel block accents, figmaSans |
 
-Activate a theme by adding its class to a container element (typically `<html>` or a wrapper `<div>`). Themes can be nested — a `.theme-dark` section inside a `.theme-pastel` page works correctly.
+Activate a theme by adding its class to a container element (typically `<html>` or a wrapper `<div>`). Themes can be nested — a `.theme-dark` section inside a `.theme-stripe` page works correctly.
 
 Tokens have exactly the same names in all themes — there are no theme-specific tokens. The switch is transparent to components.
 
