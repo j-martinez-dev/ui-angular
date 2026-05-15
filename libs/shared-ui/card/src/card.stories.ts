@@ -199,40 +199,6 @@ class CardDocsComponent {}
       </section>
 
       <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Dark</p>
-        <div class="theme-dark flex gap-4 flex-wrap p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
-          @for (variant of variants; track variant) {
-            <ui-card [variant]="variant" style="width: 280px;">
-              <div slot="header">
-                <h3 class="ui-h5">{{ variant }}</h3>
-              </div>
-              <p class="ui-body-sm ui-text-muted">Carte en thème sombre.</p>
-              <div slot="footer" class="flex justify-end">
-                <ui-button variant="primary" size="sm">Action</ui-button>
-              </div>
-            </ui-card>
-          }
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Vercel</p>
-        <div class="theme-vercel flex gap-4 flex-wrap p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
-          @for (variant of variants; track variant) {
-            <ui-card [variant]="variant" style="width: 280px;">
-              <div slot="header">
-                <h3 class="ui-h5">{{ variant }}</h3>
-              </div>
-              <p class="ui-body-sm ui-text-muted">Carte en thème Vercel.</p>
-              <div slot="footer" class="flex justify-end">
-                <ui-button variant="primary" size="sm">Action</ui-button>
-              </div>
-            </ui-card>
-          }
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
         <p class="ui-overline">Sizes — corner radius</p>
         <div class="flex gap-4 flex-wrap p-6" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
           @for (size of sizes; track size) {

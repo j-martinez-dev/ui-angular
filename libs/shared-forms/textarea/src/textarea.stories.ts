@@ -147,24 +147,6 @@ const SIZES: TextareaSize[] = ['sm', 'md', 'lg'];
         </div>
       </section>
 
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Dark</p>
-        <div class="theme-dark flex flex-col gap-3 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-textarea placeholder="Outlined" />
-          <ui-textarea variant="filled" placeholder="Filled" />
-          <ui-textarea variant="ghost" placeholder="Ghost" />
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Vercel</p>
-        <div class="theme-vercel flex flex-col gap-3 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-textarea placeholder="Outlined" />
-          <ui-textarea variant="filled" placeholder="Filled" />
-          <ui-textarea variant="ghost" placeholder="Ghost" />
-        </div>
-      </section>
-
     </div>
   `,
 })

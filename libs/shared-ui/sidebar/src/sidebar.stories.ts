@@ -183,44 +183,6 @@ class SidebarDocsComponent {
         </div>
       </section>
 
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Dark</p>
-        <div class="theme-dark" style="height: 620px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
-          <ui-sidebar
-            [groups]="groups"
-            [activeValue]="active3()"
-            (activeValueChange)="active3.set($event)"
-          >
-            <div slot="header">
-              <span class="ui-h4" style="color: var(--color-primary-default);">MonApp</span>
-            </div>
-            <div slot="footer" class="flex items-center gap-2">
-              <ui-avatar initials="MD" color="primary" size="sm" />
-              <span class="ui-body-sm">Marie Dubois</span>
-            </div>
-          </ui-sidebar>
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Vercel</p>
-        <div class="theme-vercel" style="height: 620px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden;">
-          <ui-sidebar
-            [groups]="groups"
-            [activeValue]="active4()"
-            (activeValueChange)="active4.set($event)"
-          >
-            <div slot="header">
-              <span class="ui-h4" style="color: var(--color-primary-default);">MonApp</span>
-            </div>
-            <div slot="footer" class="flex items-center gap-2">
-              <ui-avatar initials="PL" color="primary" size="sm" />
-              <span class="ui-body-sm">Pierre Leroy</span>
-            </div>
-          </ui-sidebar>
-        </div>
-      </section>
-
     </div>
   `,
 })

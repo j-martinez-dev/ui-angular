@@ -134,20 +134,6 @@ class StepperDocsComponent {
         </div>
       </section>
 
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Dark</p>
-        <div class="theme-dark p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
-          <ui-stepper [steps]="steps" [currentStep]="3" label="Dark theme" />
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Vercel</p>
-        <div class="theme-vercel p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
-          <ui-stepper [steps]="steps" [currentStep]="3" label="Pastel theme" />
-        </div>
-      </section>
-
     </div>
   `,
 })

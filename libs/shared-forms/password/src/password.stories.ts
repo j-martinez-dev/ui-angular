@@ -157,24 +157,6 @@ class PasswordDocsComponent {
         </div>
       </section>
 
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Dark</p>
-        <div class="theme-dark flex flex-col gap-4 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-form-field label="Mot de passe">
-            <ui-password [formField]="darkForm.password" [showStrength]="true" />
-          </ui-form-field>
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Vercel</p>
-        <div class="theme-vercel flex flex-col gap-4 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-form-field label="Mot de passe">
-            <ui-password [formField]="pastelForm.password" [showStrength]="true" />
-          </ui-form-field>
-        </div>
-      </section>
-
     </div>
   `,
 })

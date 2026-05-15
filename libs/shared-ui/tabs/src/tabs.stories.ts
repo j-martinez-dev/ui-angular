@@ -189,26 +189,6 @@ const SIZES: TabsSize[] = ['sm', 'md', 'lg'];
         </div>
       </section>
 
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Dark</p>
-        <div class="theme-dark p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 520px;">
-          <div class="flex flex-col gap-4">
-            <ui-tabs [tabs]="simpleTabs" variant="line" />
-            <ui-tabs [tabs]="simpleTabs" variant="pill" />
-          </div>
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Vercel</p>
-        <div class="theme-vercel p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 520px;">
-          <div class="flex flex-col gap-4">
-            <ui-tabs [tabs]="simpleTabs" variant="line" />
-            <ui-tabs [tabs]="simpleTabs" variant="pill" />
-          </div>
-        </div>
-      </section>
-
     </div>
   `,
 })

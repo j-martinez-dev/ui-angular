@@ -136,20 +136,6 @@ class AccordionDocsComponent {
         </div>
       </section>
 
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Dark</p>
-        <div class="theme-dark p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 520px;">
-          <ui-accordion [items]="items" [expandedIds]="['what']" />
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Vercel</p>
-        <div class="theme-vercel p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 520px;">
-          <ui-accordion [items]="items" [expandedIds]="['tokens']" />
-        </div>
-      </section>
-
     </div>
   `,
 })

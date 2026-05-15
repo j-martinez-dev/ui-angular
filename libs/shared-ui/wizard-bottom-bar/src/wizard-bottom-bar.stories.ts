@@ -194,24 +194,6 @@ class WizardDocsComponent {
         </div>
       </section>
 
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Dark</p>
-        <div class="theme-dark" style="position: relative; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden; height: 72px; background: var(--color-surface-base);">
-          <div style="position: absolute; bottom: 0; left: 0; right: 0;">
-            <ui-wizard-bottom-bar [currentStep]="2" [totalSteps]="4" />
-          </div>
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Vercel</p>
-        <div class="theme-vercel" style="position: relative; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden; height: 72px; background: var(--color-surface-base);">
-          <div style="position: absolute; bottom: 0; left: 0; right: 0;">
-            <ui-wizard-bottom-bar [currentStep]="3" [totalSteps]="5" />
-          </div>
-        </div>
-      </section>
-
     </div>
   `,
   styles: [`

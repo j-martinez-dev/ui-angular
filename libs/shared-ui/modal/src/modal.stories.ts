@@ -228,20 +228,6 @@ class PlaygroundModalComponent {
           <ui-button variant="secondary" (click)="openPersistent()">Persistent modal</ui-button>
         </div>
       </section>
-
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Dark</p>
-        <div class="theme-dark flex flex-wrap items-center gap-4 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
-          <ui-button variant="secondary" (click)="openSize('md')">Open in dark</ui-button>
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Vercel</p>
-        <div class="theme-vercel flex flex-wrap items-center gap-4 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
-          <ui-button variant="secondary" (click)="openSize('md')">Open in pastel</ui-button>
-        </div>
-      </section>
     </div>
   `,
 })

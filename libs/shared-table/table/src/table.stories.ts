@@ -311,62 +311,6 @@ class TableDocsComponent {
         </table>
       </section>
 
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Dark</p>
-        <div class="theme-dark p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
-          <table uiTable [hoverable]="true" [striped]="true">
-            <thead uiTableHeader>
-              <tr uiTableRow>
-                <th uiTableHead>Nom</th>
-                <th uiTableHead>E-mail</th>
-                <th uiTableHead align="center">Statut</th>
-                <th uiTableHead align="right">Montant</th>
-              </tr>
-            </thead>
-            <tbody uiTableBody>
-              @for (row of rows; track row.id) {
-                <tr uiTableRow>
-                  <td uiTableCell>{{ row.name }}</td>
-                  <td uiTableCell>{{ row.email }}</td>
-                  <td uiTableCell align="center">
-                    <ui-badge [color]="row.statusColor" variant="subtle" size="sm">{{ row.status }}</ui-badge>
-                  </td>
-                  <td uiTableCell align="right">{{ row.amount }}</td>
-                </tr>
-              }
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Vercel</p>
-        <div class="theme-vercel p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
-          <table uiTable [hoverable]="true">
-            <thead uiTableHeader>
-              <tr uiTableRow>
-                <th uiTableHead>Nom</th>
-                <th uiTableHead>E-mail</th>
-                <th uiTableHead align="center">Statut</th>
-                <th uiTableHead align="right">Montant</th>
-              </tr>
-            </thead>
-            <tbody uiTableBody>
-              @for (row of rows; track row.id) {
-                <tr uiTableRow>
-                  <td uiTableCell>{{ row.name }}</td>
-                  <td uiTableCell>{{ row.email }}</td>
-                  <td uiTableCell align="center">
-                    <ui-badge [color]="row.statusColor" variant="subtle" size="sm">{{ row.status }}</ui-badge>
-                  </td>
-                  <td uiTableCell align="right">{{ row.amount }}</td>
-                </tr>
-              }
-            </tbody>
-          </table>
-        </div>
-      </section>
-
     </div>
   `,
 })

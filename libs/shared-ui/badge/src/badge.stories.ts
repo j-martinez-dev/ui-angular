@@ -152,24 +152,6 @@ const SHAPES: BadgeShape[] = ['rounded', 'pill'];
         </div>
       </section>
 
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Dark</p>
-        <div class="theme-dark flex flex-wrap items-center gap-3 p-4" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
-          @for (color of colors; track color) {
-            <ui-badge variant="filled" [color]="color">{{ color }}</ui-badge>
-          }
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Vercel</p>
-        <div class="theme-vercel flex flex-wrap items-center gap-3 p-4" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
-          @for (color of colors; track color) {
-            <ui-badge variant="subtle" [color]="color">{{ color }}</ui-badge>
-          }
-        </div>
-      </section>
-
     </div>
   `,
 })

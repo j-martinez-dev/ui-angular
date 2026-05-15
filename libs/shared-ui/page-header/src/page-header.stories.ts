@@ -166,38 +166,6 @@ class PageHeaderDocsComponent {
         </div>
       </section>
 
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Dark</p>
-        <div class="theme-dark p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
-          <ui-page-header
-            title="Utilisateurs"
-            description="Gérez les utilisateurs et leurs permissions"
-            [breadcrumbs]="breadcrumbs"
-          >
-            <div slot="actions" class="flex gap-2">
-              <ui-button variant="secondary" iconLeft="heroCog6Tooth">Options</ui-button>
-              <ui-button variant="primary" iconLeft="heroPlus">Nouveau</ui-button>
-            </div>
-          </ui-page-header>
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Vercel</p>
-        <div class="theme-vercel p-6" style="background: var(--color-surface-base); border-radius: var(--radius-md);">
-          <ui-page-header
-            title="Utilisateurs"
-            description="Gérez les utilisateurs et leurs permissions"
-            [breadcrumbs]="breadcrumbs"
-          >
-            <div slot="actions" class="flex gap-2">
-              <ui-button variant="secondary" iconLeft="heroCog6Tooth">Options</ui-button>
-              <ui-button variant="primary" iconLeft="heroPlus">Nouveau</ui-button>
-            </div>
-          </ui-page-header>
-        </div>
-      </section>
-
     </div>
   `,
 })

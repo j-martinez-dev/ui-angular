@@ -116,30 +116,6 @@ const POSITIONS: TooltipPosition[] = ['top', 'bottom', 'left', 'right'];
         </div>
       </section>
 
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Dark</p>
-        <div class="theme-dark flex flex-wrap items-center justify-center gap-6 p-10" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
-          <ui-button variant="primary" uiTooltip="Dark theme tooltip" uiTooltipPosition="top">
-            Hover me
-          </ui-button>
-          <ui-button variant="secondary" uiTooltip="Another tooltip" uiTooltipPosition="bottom">
-            Or me
-          </ui-button>
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Vercel</p>
-        <div class="theme-vercel flex flex-wrap items-center justify-center gap-6 p-10" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md);">
-          <ui-button variant="primary" uiTooltip="Pastel theme tooltip" uiTooltipPosition="top">
-            Hover me
-          </ui-button>
-          <ui-button variant="secondary" uiTooltip="Soft tooltip" uiTooltipPosition="bottom">
-            Or me
-          </ui-button>
-        </div>
-      </section>
-
     </div>
   `,
 })

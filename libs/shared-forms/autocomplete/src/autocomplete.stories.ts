@@ -218,24 +218,6 @@ const SIZES: AutocompleteSize[] = ['sm', 'md', 'lg'];
         </div>
       </section>
 
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Dark</p>
-        <div class="theme-dark flex flex-col gap-3 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-autocomplete [options]="filteredCities()" placeholder="Rechercher..." label="City" (search)="onSearch($event)" />
-          <ui-autocomplete [options]="filteredCities()" variant="filled" placeholder="Rechercher..." label="City" (search)="onSearch($event)" />
-          <ui-autocomplete [options]="filteredCities()" variant="ghost" placeholder="Rechercher..." label="City" (search)="onSearch($event)" />
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Vercel</p>
-        <div class="theme-vercel flex flex-col gap-3 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-autocomplete [options]="filteredCities()" placeholder="Rechercher..." label="City" (search)="onSearch($event)" />
-          <ui-autocomplete [options]="filteredCities()" variant="filled" placeholder="Rechercher..." label="City" (search)="onSearch($event)" />
-          <ui-autocomplete [options]="filteredCities()" variant="ghost" placeholder="Rechercher..." label="City" (search)="onSearch($event)" />
-        </div>
-      </section>
-
     </div>
   `,
 })

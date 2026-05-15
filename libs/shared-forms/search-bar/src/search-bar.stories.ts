@@ -144,20 +144,6 @@ class SearchBarDocsComponent {
         </div>
       </section>
 
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Dark</p>
-        <div class="theme-dark p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 480px;">
-          <ui-search-bar placeholder="Dark theme search..." />
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Vercel</p>
-        <div class="theme-vercel p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 480px;">
-          <ui-search-bar placeholder="Pastel theme search..." />
-        </div>
-      </section>
-
     </div>
   `,
 })

@@ -199,30 +199,6 @@ class FormFieldDocsComponent {
         </div>
       </section>
 
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Dark</p>
-        <div class="theme-dark flex flex-col gap-4 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-form-field label="Email" hint="Dark theme">
-            <ui-input [formField]="darkForm.email" type="email" placeholder="you@example.com" />
-          </ui-form-field>
-          <ui-form-field label="Password">
-            <ui-input [formField]="darkForm.password" type="password" />
-          </ui-form-field>
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Vercel</p>
-        <div class="theme-vercel flex flex-col gap-4 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-form-field label="Name" hint="Pastel theme">
-            <ui-input [formField]="pastelForm.name" placeholder="Your name" />
-          </ui-form-field>
-          <ui-form-field label="Bio">
-            <ui-textarea [formField]="pastelForm.bio" placeholder="About you" [rows]="2" />
-          </ui-form-field>
-        </div>
-      </section>
-
     </div>
   `,
 })

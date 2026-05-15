@@ -159,26 +159,6 @@ const SIZES: NumberSize[] = ['sm', 'md', 'lg'];
         </div>
       </section>
 
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Dark</p>
-        <div class="theme-dark flex flex-col gap-3 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-number placeholder="0,00" format="1.2-2" label="Number" />
-          <ui-number variant="filled" placeholder="0,00" format="1.2-2" label="Number" />
-          <ui-number variant="ghost" placeholder="0,00" format="1.2-2" label="Number" />
-          <ui-number [invalid]="true" placeholder="0,00" format="1.2-2" label="Number" />
-        </div>
-      </section>
-
-      <section class="flex flex-col gap-4">
-        <p class="ui-overline">Theme — Vercel</p>
-        <div class="theme-vercel flex flex-col gap-3 p-6" style="background: var(--color-surface-base); color: var(--color-text-default); border-radius: var(--radius-md); max-width: 400px;">
-          <ui-number placeholder="0,00" format="1.2-2" label="Number" />
-          <ui-number variant="filled" placeholder="0,00" format="1.2-2" label="Number" />
-          <ui-number variant="ghost" placeholder="0,00" format="1.2-2" label="Number" />
-          <ui-number [invalid]="true" placeholder="0,00" format="1.2-2" label="Number" />
-        </div>
-      </section>
-
     </div>
   `,
 })
