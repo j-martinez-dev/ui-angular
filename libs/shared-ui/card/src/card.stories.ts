@@ -7,7 +7,7 @@ import {
   heroShare,
   heroEllipsisHorizontal,
 } from '@ng-icons/heroicons/outline';
-import { UiCardComponent, type CardVariant } from './card.component';
+import { UiCardComponent, type CardVariant, type CardSize } from './card.component';
 import { UiButtonComponent } from '@ui/shared-ui/button';
 import { UiIconButtonComponent } from '@ui/shared-ui/icon-button';
 
@@ -18,6 +18,7 @@ const icons = {
 };
 
 const VARIANTS: CardVariant[] = ['elevated', 'outlined', 'flat'];
+const SIZES: CardSize[] = ['sm', 'md'];
 
 // ── Docs ────────────────────────────────────────────────────────────────────
 
@@ -68,6 +69,12 @@ const VARIANTS: CardVariant[] = ['elevated', 'outlined', 'flat'];
               <td class="ui-code p-2">elevated | outlined | flat</td>
               <td class="ui-code p-2">elevated</td>
               <td class="ui-body-sm p-2">Visual style</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border-default);">
+              <td class="ui-code p-2">size</td>
+              <td class="ui-code p-2">sm | md</td>
+              <td class="ui-code p-2">md</td>
+              <td class="ui-body-sm p-2">Corner radius — sm uses --radius-md, md uses --radius-lg</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
               <td class="ui-code p-2">clickable</td>
@@ -216,10 +223,27 @@ class CardDocsComponent {}
               <div slot="header">
                 <h3 class="ui-h5">{{ variant }}</h3>
               </div>
-              <p class="ui-body-sm ui-text-muted">Carte en thème pastel.</p>
+              <p class="ui-body-sm ui-text-muted">Carte en thème Vercel.</p>
               <div slot="footer" class="flex justify-end">
                 <ui-button variant="primary" size="sm">Action</ui-button>
               </div>
+            </ui-card>
+          }
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <p class="ui-overline">Sizes — corner radius</p>
+        <div class="flex gap-4 flex-wrap p-6" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
+          @for (size of sizes; track size) {
+            <ui-card variant="outlined" [size]="size" style="width: 240px;">
+              <div slot="header">
+                <h3 class="ui-h5">{{ size === 'sm' ? 'Compact' : 'Default' }}</h3>
+              </div>
+              <p class="ui-body-sm ui-text-muted">
+                Size <code class="ui-code">{{ size }}</code> uses
+                <code class="ui-code">{{ size === 'sm' ? '--radius-md' : '--radius-lg' }}</code>.
+              </p>
             </ui-card>
           }
         </div>
@@ -230,6 +254,7 @@ class CardDocsComponent {}
 })
 class CardVariantsComponent {
   variants = VARIANTS;
+  sizes = SIZES;
 }
 
 // ── Meta ────────────────────────────────────────────────────────────────────
@@ -246,6 +271,10 @@ const meta: Meta<UiCardComponent> = {
     variant: {
       control: 'select',
       options: ['elevated', 'outlined', 'flat'],
+    },
+    size: {
+      control: 'select',
+      options: ['sm', 'md'],
     },
     clickable: { control: 'boolean' },
     disabled: { control: 'boolean' },

@@ -6,7 +6,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-md);
+  border-radius: var(--btn-radius, var(--radius-md));
   font-family: var(--font-sans);
   font-weight: var(--font-weight-medium);
   cursor: pointer;

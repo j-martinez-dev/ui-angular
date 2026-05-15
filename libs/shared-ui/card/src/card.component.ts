@@ -1,6 +1,7 @@
 import { Component, computed, input, output } from '@angular/core';
 
 export type CardVariant = 'elevated' | 'outlined' | 'flat';
+export type CardSize = 'sm' | 'md';
 
 interface CardStyles {
   bg: string;
@@ -10,6 +11,11 @@ interface CardStyles {
   hoverBorderColor: string;
   hoverBg: string;
 }
+
+const SIZE_RADIUS_MAP: Record<CardSize, string> = {
+  sm: 'var(--radius-md)',
+  md: 'var(--radius-lg)',
+};
 
 const VARIANT_MAP: Record<CardVariant, CardStyles> = {
   elevated: {
@@ -49,10 +55,12 @@ const VARIANT_MAP: Record<CardVariant, CardStyles> = {
     '[style.--card-hover-shadow]': 'styles().hoverShadow',
     '[style.--card-hover-border-color]': 'styles().hoverBorderColor',
     '[style.--card-hover-bg]': 'styles().hoverBg',
+    '[style.--card-radius]': 'radiusValue()',
   },
 })
 export class UiCardComponent {
   variant = input<CardVariant>('elevated');
+  size = input<CardSize>('md');
   clickable = input<boolean>(false);
   disabled = input<boolean>(false);
   image = input<string>();
@@ -61,6 +69,7 @@ export class UiCardComponent {
   cardClick = output<void>();
 
   protected styles = computed(() => VARIANT_MAP[this.variant()]);
+  protected radiusValue = computed(() => SIZE_RADIUS_MAP[this.size()]);
 
   onClick(): void {
     if (this.clickable() && !this.disabled()) this.cardClick.emit();

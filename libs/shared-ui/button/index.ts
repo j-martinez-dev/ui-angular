@@ -2,6 +2,7 @@ export {
   UiButtonComponent,
   type ButtonVariant,
   type ButtonSize,
+  type ButtonShape,
 } from './src/button.component';
 export {
   type ButtonStyles,

@@ -1,1 +1,5 @@
-export { UiCardComponent, type CardVariant } from './src/card.component';
+export {
+  UiCardComponent,
+  type CardVariant,
+  type CardSize,
+} from './src/card.component';

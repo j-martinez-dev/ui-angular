@@ -13,6 +13,7 @@ import {
   UiButtonComponent,
   ButtonVariant,
   ButtonSize,
+  ButtonShape,
 } from './button.component';
 
 const icons = {
@@ -74,6 +75,12 @@ const icons = {
               <td class="ui-body-sm p-2">Button size</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--color-border-default);">
+              <td class="ui-code p-2">shape</td>
+              <td class="ui-code p-2">rounded | pill</td>
+              <td class="ui-code p-2">rounded</td>
+              <td class="ui-body-sm p-2">Corner radius — use pill for marketing-scale CTAs</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border-default);">
               <td class="ui-code p-2">type</td>
               <td class="ui-code p-2">button | submit | reset</td>
               <td class="ui-code p-2">button</td>
@@ -121,6 +128,7 @@ class ButtonDocsComponent {}
 
 const VARIANTS: ButtonVariant[] = ['primary', 'secondary', 'ghost', 'danger'];
 const SIZES: ButtonSize[] = ['sm', 'md', 'lg'];
+const SHAPES: ButtonShape[] = ['rounded', 'pill'];
 
 @Component({
   selector: 'story-button-variants',
@@ -142,6 +150,16 @@ const SIZES: ButtonSize[] = ['sm', 'md', 'lg'];
         <div class="flex flex-wrap items-center gap-3 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
           @for (size of sizes; track size) {
             <ui-button variant="primary" [size]="size">{{ size }}</ui-button>
+          }
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <p class="ui-overline">Shapes</p>
+        <div class="flex flex-wrap items-center gap-3 p-4" style="background: var(--color-surface-raised); border-radius: var(--radius-md);">
+          @for (shape of shapes; track shape) {
+            <ui-button variant="primary" [shape]="shape">{{ shape }}</ui-button>
+            <ui-button variant="secondary" [shape]="shape">{{ shape }}</ui-button>
           }
         </div>
       </section>
@@ -206,6 +224,7 @@ const SIZES: ButtonSize[] = ['sm', 'md', 'lg'];
 class ButtonVariantsComponent {
   variants = VARIANTS;
   sizes = SIZES;
+  shapes = SHAPES;
 }
 
 // ── Meta ────────────────────────────────────────────────────────────────────
@@ -226,6 +245,10 @@ const meta: Meta<UiButtonComponent> = {
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
+    },
+    shape: {
+      control: 'select',
+      options: ['rounded', 'pill'],
     },
     type: {
       control: 'select',

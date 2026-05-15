@@ -93,9 +93,33 @@
   --radius-xl: 1rem;      /* 16px */
   /* No override for --radius-full (9999px); Vercel's "pill" 100px is approximated by it. */
 
-  /* --- Typography -------------------------------------------------------- */
+  /* --- Typography -------------------------------------------------------- *
+   * Geist is proprietary. Inter is the documented open-source fallback;
+   * "ss01"/"ss02" enable Inter's geometric alternates that approximate
+   * Geist's character set most closely.
+   * ----------------------------------------------------------------------- */
   --font-sans: "Geist", "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  --font-feature-default: "ss01", "ss02";
+
+  /* --- Elevation (stacked shadows + inset hairline rings) ---------------- *
+   * Vercel never uses a single heavy drop shadow — each elevation level is
+   * built from multiple small offsets layered on top of a 1px inset ring,
+   * which keeps the card edge crisp on near-white canvas.
+   * ----------------------------------------------------------------------- */
+  --shadow-sm: inset 0 0 0 1px rgba(0, 0, 0, 0.08),
+               0 1px 1px rgba(0, 0, 0, 0.02),
+               0 2px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: inset 0 0 0 1px rgba(0, 0, 0, 0.08),
+               0 2px 2px rgba(0, 0, 0, 0.04),
+               0 8px 8px -8px rgba(0, 0, 0, 0.04);
+  --shadow-lg: inset 0 0 0 1px rgba(0, 0, 0, 0.08),
+               0 2px 2px rgba(0, 0, 0, 0.04),
+               0 8px 16px -4px rgba(0, 0, 0, 0.04);
+  --shadow-xl: inset 0 0 0 1px rgba(0, 0, 0, 0.08),
+               0 1px 1px rgba(0, 0, 0, 0.02),
+               0 8px 16px -4px rgba(0, 0, 0, 0.04),
+               0 24px 32px -8px rgba(0, 0, 0, 0.06);
 
   --type-display-xxl-size:     3rem;       /* 48px — hero */
   --type-display-xxl-weight:   600;
@@ -130,4 +154,11 @@
     #ff0080 75%,
     #f9cb28 100%
   );
+}
+
+/* Vercel's documented selection colours. Out of band of the token system —
+ * applied as a scoped selector inside the theme. */
+.theme-vercel ::selection {
+  background-color: #171717;
+  color: #f2f2f2;
 }
