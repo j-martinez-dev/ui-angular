@@ -44,10 +44,13 @@
 
 .stats-value {
   font-family: var(--font-sans);
-  font-size: var(--text-4xl);
-  font-weight: var(--font-weight-bold);
+  font-size: var(--type-display-xl-size, var(--text-4xl));
+  font-weight: var(--type-display-xl-weight, var(--font-weight-semibold));
+  letter-spacing: var(--type-display-xl-tracking, var(--tracking-tight));
+  line-height: var(--type-display-xl-leading, var(--leading-tight));
   color: var(--color-text-default);
-  line-height: var(--leading-tight);
+  font-feature-settings: var(--font-feature-tabular);
+  font-variant-numeric: tabular-nums;
 }
 
 .stats-trend {

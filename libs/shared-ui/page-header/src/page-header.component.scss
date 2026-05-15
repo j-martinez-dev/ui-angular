@@ -31,11 +31,12 @@
 
 .page-header-title {
   font-family: var(--font-sans);
-  font-size: var(--text-3xl);
-  font-weight: var(--font-weight-bold);
+  font-size: var(--type-display-lg-size, var(--text-3xl));
+  font-weight: var(--type-display-lg-weight, var(--font-weight-semibold));
+  letter-spacing: var(--type-display-lg-tracking, var(--tracking-tight));
+  line-height: var(--type-display-lg-leading, var(--leading-tight));
   color: var(--color-text-default);
   margin: 0;
-  line-height: var(--leading-tight);
 }
 
 .page-header-description {

@@ -42,6 +42,19 @@
   user-select: none;
 }
 
+/* ── Mono-header modifier ─────────────────────────────────────────────── *
+ * Used by brands that signal "technical" through mono caps eyebrow style
+ * (Vercel `caption-mono`, Stripe `micro-cap` ss01). Apply
+ * `.ui-table--mono-header` on the <table> for the brand's correct header voice.
+ * ──────────────────────────────────────────────────────────────────────── */
+.ui-table--mono-header .ui-table__head {
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-normal);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
 .ui-table__head--sortable {
   cursor: pointer;
   transition: color var(--duration-fast) var(--easing-default);
@@ -141,6 +154,17 @@
 
 .ui-table__cell--right {
   text-align: right;
+}
+
+/* ── Tabular figures modifier ────────────────────────────────────────── *
+ * Apply `.ui-table--tabular` on the <table> to render every cell in
+ * tabular-figure mode — Stripe's financial-data signature. Or apply
+ * `.ui-table__cell--numeric` to a single cell for per-column control.
+ * ──────────────────────────────────────────────────────────────────────── */
+.ui-table--tabular .ui-table__cell,
+.ui-table__cell--numeric {
+  font-feature-settings: var(--font-feature-tabular);
+  font-variant-numeric: tabular-nums;
 }
 
 .ui-table__cell--truncate {

@@ -107,6 +107,16 @@
   --type-micro-cap-tracking: 0.6px;
   --type-micro-cap-leading:  1;
 
+  /* --- Elevation (shadow-light by design — color blocks substitute) ------ *
+   * DESIGN.md Level 1 = 1px hairline; Level 2 = subtle drop
+   * `0 4px 16px rgba(0,0,0,0.06)`; Level 3 = stronger + overlay scrim.
+   * Figma uses saturated panels instead of layered shadows.
+   * ----------------------------------------------------------------------- */
+  --shadow-sm: 0 0 0 1px #e6e6e6;
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.1);
+
   /* --- Decorations ------------------------------------------------------- *
    * Figma's hero is a single oversized pastel block rather than a gradient.
    * The hero backdrop uses the lime block as the default; consumers can
@@ -114,4 +124,10 @@
    * by overriding --gradient-hero locally on a section element.
    * ----------------------------------------------------------------------- */
   --gradient-hero: linear-gradient(180deg, #dceeb1 0%, #dceeb1 100%);
+}
+
+/* Figma selects in brand magenta — joyful but precise. */
+.theme-figma ::selection {
+  background-color: #ff3d8b;
+  color: #ffffff;
 }
